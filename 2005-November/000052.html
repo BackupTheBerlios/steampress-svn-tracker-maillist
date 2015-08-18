@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r96 - trunk/wp-content/themes/default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r96%20-%20trunk/wp-content/themes/default&In-Reply-To=%3C200511090803.jA983gke009066%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000051.html">
+   <LINK REL="Next"  HREF="000053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r96 - trunk/wp-content/themes/default</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r96%20-%20trunk/wp-content/themes/default&In-Reply-To=%3C200511090803.jA983gke009066%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r96 - trunk/wp-content/themes/default">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 09:03:42 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000051.html">[steampress-svn-tracker] r95 - trunk/wp-content/themes
+</A></li>
+        <LI>Next message: <A HREF="000053.html">[steampress-svn-tracker] r97 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#52">[ date ]</a>
+              <a href="thread.html#52">[ thread ]</a>
+              <a href="subject.html#52">[ subject ]</a>
+              <a href="author.html#52">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 09:03:34 +0100 (Wed, 09 Nov 2005)
+New Revision: 96
+
+Modified:
+   trunk/wp-content/themes/default/comments-popup.php
+   trunk/wp-content/themes/default/header.php
+   trunk/wp-content/themes/default/sidebar.php
+   trunk/wp-content/themes/default/style.css
+Log:
+Fixed references to WordPress in the default theme, Kubrick.
+
+Modified: trunk/wp-content/themes/default/comments-popup.php
+===================================================================
+--- trunk/wp-content/themes/default/comments-popup.php	2005-11-09 07:49:24 UTC (rev 95)
++++ trunk/wp-content/themes/default/comments-popup.php	2005-11-09 08:03:34 UTC (rev 96)
+@@ -1,4 +1,4 @@
+-&lt;?php 
++&lt;?php
+ /* Don't remove these lines. */
+ add_filter('comment_text', 'popuplinks');
+ foreach ($posts as $post) { start_wp();
+@@ -98,12 +98,12 @@
+ ?&gt;
+ 
+ &lt;!-- // this is just the end of the motor - don't touch that line either :) --&gt;
+-&lt;?php //} ?&gt; 
+-&lt;p class=&quot;credit&quot;&gt;&lt;?php timer_stop(1); ?&gt; &lt;cite&gt;Powered by &lt;a href=&quot;<A HREF="http://wordpress.org">http://wordpress.org</A>&quot; title=&quot;Powered by WordPress, state-of-the-art semantic personal publishing platform&quot;&gt;&lt;strong&gt;Wordpress&lt;/strong&gt;&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
++&lt;?php //} ?&gt;
++&lt;p class=&quot;credit&quot;&gt;&lt;?php timer_stop(1); ?&gt; &lt;cite&gt;Powered by &lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>&quot; title=&quot;Powered by SteamPress, lightweight personal publishing platform&quot;&gt;&lt;strong&gt;SteamPress&lt;/strong&gt;&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+ &lt;?php // Seen at <A HREF="http://www.mijnkopthee.nl/log2/archive/2003/05/28/esc(18">http://www.mijnkopthee.nl/log2/archive/2003/05/28/esc(18</A>) ?&gt;
+ &lt;script type=&quot;text/javascript&quot;&gt;
+ &lt;!--
+-document.onkeypress = function esc(e) {	
++document.onkeypress = function esc(e) {
+ 	if(typeof(e) == &quot;undefined&quot;) { e=event; }
+ 	if (e.keyCode == 27) { self.close(); }
+ }
+
+Modified: trunk/wp-content/themes/default/header.php
+===================================================================
+--- trunk/wp-content/themes/default/header.php	2005-11-09 07:49:24 UTC (rev 95)
++++ trunk/wp-content/themes/default/header.php	2005-11-09 08:03:34 UTC (rev 96)
+@@ -6,7 +6,7 @@
+ 
+ &lt;title&gt;&lt;?php bloginfo('name'); ?&gt; &lt;?php if ( is_single() ) { ?&gt; &raquo; Blog Archive &lt;?php } ?&gt; &lt;?php wp_title(); ?&gt;&lt;/title&gt;
+ 
+-&lt;meta name=&quot;generator&quot; content=&quot;WordPress &lt;?php bloginfo('version'); ?&gt;&quot; /&gt; &lt;!-- leave this for stats --&gt;
++&lt;meta name=&quot;generator&quot; content=&quot;SteamPress &lt;?php bloginfo('version'); ?&gt;&quot; /&gt; &lt;!-- leave this for stats --&gt;
+ 
+ &lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php bloginfo('stylesheet_url'); ?&gt;&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+ &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;RSS 2.0&quot; href=&quot;&lt;?php bloginfo('rss2_url'); ?&gt;&quot; /&gt;
+@@ -18,21 +18,21 @@
+ /*	To accomodate differing install paths of WordPress, images are referred only here,
+ 	and not in the wp-layout.css file. If you prefer to use only CSS for colors and what
+ 	not, then go right ahead and delete the following lines, and the image files. */
+-		
+-	body { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgcolor.jpg&quot;); }	
++
++	body { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgcolor.jpg&quot;); }
+ &lt;?php /* Checks to see whether it needs a sidebar or not */ if ((! $withcomments) &amp;&amp; (! is_single())) { ?&gt;
+ 	#page { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbg.jpg&quot;) repeat-y top; border: none; }
+ &lt;?php } else { // No sidebar ?&gt;
+-	#page { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgwide.jpg&quot;) repeat-y top; border: none; } 
++	#page { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgwide.jpg&quot;) repeat-y top; border: none; }
+ &lt;?php } ?&gt;
+ 	#header { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickheader.jpg&quot;) no-repeat bottom center; }
+ 	#footer { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickfooter.jpg&quot;) no-repeat bottom; border: none;}
+ 
+ /*	Because the template is slightly different, size-wise, with images, this needs to be set here
+ 	If you don't want to use the template's images, you can also delete the following two lines. */
+-		
++
+ 	#header 	{ margin: 0 !important; margin: 0 0 0 1px; padding: 1px; height: 198px; width: 758px; }
+-	#headerimg 	{ margin: 7px 9px 0; height: 192px; width: 740px; } 
++	#headerimg 	{ margin: 7px 9px 0; height: 192px; width: 740px; }
+ 
+ /* 	To ease the insertion of a personal header image, I have done it in such a way,
+ 	that you simply drop in an image called 'personalheader.jpg' into your /images/
+
+Modified: trunk/wp-content/themes/default/sidebar.php
+===================================================================
+--- trunk/wp-content/themes/default/sidebar.php	2005-11-09 07:49:24 UTC (rev 95)
++++ trunk/wp-content/themes/default/sidebar.php	2005-11-09 08:03:34 UTC (rev 96)
+@@ -1,6 +1,6 @@
+ 	&lt;div id=&quot;sidebar&quot;&gt;
+ 		&lt;ul&gt;
+-			
++
+ 			&lt;li&gt;
+ 				&lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+ 			&lt;/li&gt;
+@@ -15,11 +15,11 @@
+ 			&lt;?php /* If this is a 404 page */ if (is_404()) { ?&gt;
+ 			&lt;?php /* If this is a category archive */ } elseif (is_category()) { ?&gt;
+ 			&lt;p&gt;You are currently browsing the archives for the &lt;?php single_cat_title(''); ?&gt; category.&lt;/p&gt;
+-			
++
+ 			&lt;?php /* If this is a yearly archive */ } elseif (is_day()) { ?&gt;
+ 			&lt;p&gt;You are currently browsing the &lt;a href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;&quot;&gt;&lt;?php echo bloginfo('name'); ?&gt;&lt;/a&gt; weblog archives
+ 			for the day &lt;?php the_time('l, F jS, Y'); ?&gt;.&lt;/p&gt;
+-			
++
+ 			&lt;?php /* If this is a monthly archive */ } elseif (is_month()) { ?&gt;
+ 			&lt;p&gt;You are currently browsing the &lt;a href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;&quot;&gt;&lt;?php echo bloginfo('name'); ?&gt;&lt;/a&gt; weblog archives
+ 			for &lt;?php the_time('F, Y'); ?&gt;.&lt;/p&gt;
+@@ -27,7 +27,7 @@
+       &lt;?php /* If this is a yearly archive */ } elseif (is_year()) { ?&gt;
+ 			&lt;p&gt;You are currently browsing the &lt;a href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;&quot;&gt;&lt;?php echo bloginfo('name'); ?&gt;&lt;/a&gt; weblog archives
+ 			for the year &lt;?php the_time('Y'); ?&gt;.&lt;/p&gt;
+-			
++
+ 		 &lt;?php /* If this is a monthly archive */ } elseif (is_search()) { ?&gt;
+ 			&lt;p&gt;You have searched the &lt;a href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;&quot;&gt;&lt;?php echo bloginfo('name'); ?&gt;&lt;/a&gt; weblog archives
+ 			for &lt;strong&gt;'&lt;?php echo wp_specialchars($s); ?&gt;'&lt;/strong&gt;. If you are unable to find anything in these search results, you can try one of these links.&lt;/p&gt;
+@@ -52,21 +52,21 @@
+ 				&lt;/ul&gt;
+ 			&lt;/li&gt;
+ 
+-			&lt;?php /* If this is the frontpage */ if ( is_home() || is_page() ) { ?&gt;				
++			&lt;?php /* If this is the frontpage */ if ( is_home() || is_page() ) { ?&gt;
+ 				&lt;?php get_links_list(); ?&gt;
+-				
++
+ 				&lt;li&gt;&lt;h2&gt;Meta&lt;/h2&gt;
+ 				&lt;ul&gt;
+ 					&lt;?php wp_register(); ?&gt;
+ 					&lt;li&gt;&lt;?php wp_loginout(); ?&gt;&lt;/li&gt;
+ 					&lt;li&gt;&lt;a href=&quot;<A HREF="http://validator.w3.org/check/referer">http://validator.w3.org/check/referer</A>&quot; title=&quot;This page validates as XHTML 1.0 Transitional&quot;&gt;Valid &lt;abbr title=&quot;eXtensible HyperText Markup Language&quot;&gt;XHTML&lt;/abbr&gt;&lt;/a&gt;&lt;/li&gt;
+ 					&lt;li&gt;&lt;a href=&quot;<A HREF="http://gmpg.org/xfn/">http://gmpg.org/xfn/</A>&quot;&gt;&lt;abbr title=&quot;XHTML Friends Network&quot;&gt;XFN&lt;/abbr&gt;&lt;/a&gt;&lt;/li&gt;
+-					&lt;li&gt;&lt;a href=&quot;<A HREF="http://wordpress.org/">http://wordpress.org/</A>&quot; title=&quot;Powered by WordPress, state-of-the-art semantic personal publishing platform.&quot;&gt;WordPress&lt;/a&gt;&lt;/li&gt;
++					&lt;li&gt;&lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress//">http://steamedpenguin.com/projects/steampress//</A>&quot; title=&quot;Powered by SteamPress, lightweight personal publishing platform.&quot;&gt;SteamPress&lt;/a&gt;&lt;/li&gt;
+ 					&lt;?php wp_meta(); ?&gt;
+ 				&lt;/ul&gt;
+ 				&lt;/li&gt;
+ 			&lt;?php } ?&gt;
+-			
++
+ 		&lt;/ul&gt;
+ 	&lt;/div&gt;
+ 
+
+Modified: trunk/wp-content/themes/default/style.css
+===================================================================
+--- trunk/wp-content/themes/default/style.css	2005-11-09 07:49:24 UTC (rev 95)
++++ trunk/wp-content/themes/default/style.css	2005-11-09 08:03:34 UTC (rev 96)
+@@ -1,7 +1,7 @@
+-/*  
+-Theme Name: WordPress Default
+-Theme URI: <A HREF="http://wordpress.org/">http://wordpress.org/</A>
+-Description: The default WordPress theme based on the famous &lt;a href=&quot;<A HREF="http://binarybonsai.com/kubrick/">http://binarybonsai.com/kubrick/</A>&quot;&gt;Kubrick&lt;/a&gt;.
++/*
++Theme Name: SteamPress Default
++Theme URI: <A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>
++Description: The default SteamPress theme based on the famous &lt;a href=&quot;<A HREF="http://binarybonsai.com/kubrick/">http://binarybonsai.com/kubrick/</A>&quot;&gt;Kubrick&lt;/a&gt;.
+ Version: 1.5
+ Author: Michael Heilemann
+ Author URI: <A HREF="http://binarybonsai.com/">http://binarybonsai.com/</A>
+@@ -14,8 +14,8 @@
+ 
+ 	The CSS, XHTML and design is released under GPL:
+ 	<A HREF="http://www.opensource.org/licenses/gpl-license.php">http://www.opensource.org/licenses/gpl-license.php</A>
+-	
+ 
++
+ 	*** REGARDING IMAGES ***
+ 	All CSS that involves the use of images, can be found in the 'index.php' file.
+ 	This is to ease installation inside subdirectories of a server.
+@@ -59,7 +59,7 @@
+ .widecolumn {
+ 	line-height: 1.6em;
+ 	}
+-	
++
+ .narrowcolumn .postmetadata {
+ 	text-align: center;
+ 	}
+@@ -132,7 +132,7 @@
+ .commentlist li, #commentform input, #commentform textarea {
+ 	font: 0.9em 'Lucida Grande', Verdana, Arial, Sans-Serif;
+ 	}
+-	
++
+ .commentlist li {
+ 	font-weight: bold;
+ 	}
+@@ -164,7 +164,7 @@
+ small, #sidebar ul ul li, #sidebar ul ol li, .nocomments, .postmetadata, blockquote, strike {
+ 	color: #777;
+ 	}
+-	
++
+ code {
+ 	font: 1.1em 'Courier New', Courier, Fixed;
+ 	}
+@@ -184,7 +184,7 @@
+ 	color: #147;
+ 	text-decoration: underline;
+ 	}
+-	
++
+ #wp-calendar #prev a {
+ 	font-size: 9pt;
+ 	}
+@@ -209,7 +209,7 @@
+ /* Begin Structure */
+ body {
+ 	margin: 0;
+-	padding: 0; 
++	padding: 0;
+ 	}
+ 
+ #page {
+@@ -219,7 +219,7 @@
+ 	width: 760px;
+ 	border: 1px solid #959596;
+ 	}
+-	
++
+ #header {
+ 	padding: 0;
+ 	margin: 0 auto;
+@@ -246,7 +246,7 @@
+ 	margin: 5px 0 0 150px;
+ 	width: 450px;
+ 	}
+-	
++
+ .post {
+ 	margin: 0 0 40px;
+ 	text-align: justify;
+@@ -263,7 +263,7 @@
+ .widecolumn .postmetadata {
+ 	margin: 30px 0;
+ 	}
+-	
++
+ #footer {
+ 	padding: 0 0 0 1px;
+ 	margin: 0 auto;
+@@ -327,13 +327,13 @@
+ 	thought?!) align the image to the right. And using 'class=&quot;centered',
+ 	will of course center the image. This is much better than using
+ 	align=&quot;center&quot;, being much more futureproof (and valid) */
+-	
++
+ img.centered {
+ 	display: block;
+ 	margin-left: auto;
+ 	margin-right: auto;
+ 	}
+-	
++
+ img.alignright {
+ 	padding: 4px;
+ 	margin: 0 0 2px 7px;
+@@ -349,7 +349,7 @@
+ .alignright {
+ 	float: right;
+ 	}
+-	
++
+ .alignleft {
+ 	float: left
+ 	}
+@@ -368,7 +368,7 @@
+ 	list-style: none;
+ 	padding-left: 10px;
+ 	text-indent: -10px;
+-	} 
++	}
+ 
+ html&gt;body .entry li {
+ 	margin: 7px 0 8px 10px;
+@@ -393,7 +393,7 @@
+ 	list-style-type: none;
+ 	list-style-image: none;
+ 	}
+-	
++
+ #sidebar ul, #sidebar ul ol {
+ 	margin: 0;
+ 	padding: 0;
+@@ -432,7 +432,7 @@
+ /* Begin Form Elements */
+ #searchform {
+ 	margin: 10px auto;
+-	padding: 5px 3px; 
++	padding: 5px 3px;
+ 	text-align: center;
+ 	}
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000051.html">[steampress-svn-tracker] r95 - trunk/wp-content/themes
+</A></li>
+	<LI>Next message: <A HREF="000053.html">[steampress-svn-tracker] r97 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#52">[ date ]</a>
+              <a href="thread.html#52">[ thread ]</a>
+              <a href="subject.html#52">[ subject ]</a>
+              <a href="author.html#52">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

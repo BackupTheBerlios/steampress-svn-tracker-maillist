@@ -1,0 +1,2023 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [SteamPress-SVN-Tracker] r111 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r111%20-%20trunk/wp-includes&In-Reply-To=%3C200511221514.jAMFEdar012820%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000066.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[SteamPress-SVN-Tracker] r111 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r111%20-%20trunk/wp-includes&In-Reply-To=%3C200511221514.jAMFEdar012820%40sheep.berlios.de%3E"
+       TITLE="[SteamPress-SVN-Tracker] r111 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov 22 16:14:39 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000066.html">[SteamPress-SVN-Tracker] r110 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[SteamPress-SVN-Tracker] r112 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-22 16:14:38 +0100 (Tue, 22 Nov 2005)
+New Revision: 111
+
+Modified:
+   trunk/wp-includes/class-snoopy.php
+Log:
+- Upgrade to Snoopy 1.2.3
+- Added GPL copyright notices and permission to copy statements
+
+
+
+Modified: trunk/wp-includes/class-snoopy.php
+===================================================================
+--- trunk/wp-includes/class-snoopy.php	2005-11-22 15:13:41 UTC (rev 110)
++++ trunk/wp-includes/class-snoopy.php	2005-11-22 15:14:38 UTC (rev 111)
+@@ -5,7 +5,7 @@
+ Snoopy - the PHP net client
+ Author: Monte Ohrt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">monte at ispi.net</A>&gt;
+ Copyright (c): 1999-2000 ispi, all rights reserved
+-Version: 1.0
++Version: 1.2.3
+ 
+  * This library is free software; you can redistribute it and/or
+  * modify it under the terms of the GNU Lesser General Public
+@@ -31,129 +31,199 @@
+ Lincoln, NE 68510
+ 
+ The latest version of Snoopy can be obtained from:
+-<A HREF="http://snoopy.sourceforge.net">http://snoopy.sourceforge.net</A>
++<A HREF="http://snoopy.sourceforge.net/">http://snoopy.sourceforge.net/</A>
+ 
+ *************************************************/
+ 
+-if ( !in_array('Snoopy', get_declared_classes() ) ) :
+-class Snoopy
++if ( !in_array('Snoopy', get_declared_classes() ) )
+ {
+-	/**** Public variables ****/
+-	
+-	/* user definable vars */
+ 
+-	var $host			=	&quot;www.php.net&quot;;		// host name we are connecting to
+-	var $port			=	80;					// port we are connecting to
+-	var $proxy_host		=	&quot;&quot;;					// proxy host to use
+-	var $proxy_port		=	&quot;&quot;;					// proxy port to use
+-	var $agent			=	&quot;Snoopy v1.0&quot;;		// agent we masquerade as
+-	var	$referer		=	&quot;&quot;;					// referer info to pass
+-	var $cookies		=	array();			// array of cookies to pass
+-												// $cookies[&quot;username&quot;]=&quot;joe&quot;;
+-	var	$rawheaders		=	array();			// array of raw headers to send
+-												// $rawheaders[&quot;Content-type&quot;]=&quot;text/html&quot;;
++	class Snoopy
++	{
++		/**** Public variables ****/
+ 
+-	var $maxredirs		=	5;					// http redirection depth maximum. 0 = disallow
+-	var $lastredirectaddr	=	&quot;&quot;;				// contains address of last redirected address
+-	var	$offsiteok		=	true;				// allows redirection off-site
+-	var $maxframes		=	0;					// frame content depth maximum. 0 = disallow
+-	var $expandlinks	=	true;				// expand links to fully qualified URLs.
+-												// this only applies to fetchlinks()
+-												// or submitlinks()
+-	var $passcookies	=	true;				// pass set cookies back through redirects
+-												// NOTE: this currently does not respect
+-												// dates, domains or paths.
+-	
+-	var	$user			=	&quot;&quot;;					// user for http authentication
+-	var	$pass			=	&quot;&quot;;					// password for http authentication
+-	
+-	// http accept types
+-	var $accept			=	&quot;image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*&quot;;
+-	
+-	var $results		=	&quot;&quot;;					// where the content is put
+-		
+-	var $error			=	&quot;&quot;;					// error messages sent here
+-	var	$response_code	=	&quot;&quot;;					// response code returned from server
+-	var	$headers		=	array();			// headers returned from server sent here
+-	var	$maxlength		=	500000;				// max return data length (body)
+-	var $read_timeout	=	0;					// timeout on read operations, in seconds
+-												// supported only since PHP 4 Beta 4
+-												// set to 0 to disallow timeouts
+-	var $timed_out		=	false;				// if a read operation timed out
+-	var	$status			=	0;					// http request status
+-	
+-	var	$curl_path		=	&quot;/usr/bin/curl&quot;;
+-												// Snoopy will use cURL for fetching
+-												// SSL content if a full system path to
+-												// the cURL binary is supplied here.
+-												// set to false if you do not have
+-												// cURL installed. See <A HREF="http://curl.haxx.se">http://curl.haxx.se</A>
+-												// for details on installing cURL.
+-												// Snoopy does *not* use the cURL
+-												// library functions built into php,
+-												// as these functions are not stable
+-												// as of this Snoopy release.
+-	
+-	// send Accept-encoding: gzip?
+-	var $use_gzip		= true;	
+-	
+-	/**** Private variables ****/	
+-	
+-	var	$_maxlinelen	=	4096;				// max line length (headers)
+-	
+-	var $_httpmethod	=	&quot;GET&quot;;				// default http request method
+-	var $_httpversion	=	&quot;HTTP/1.0&quot;;			// default http request version
+-	var $_submit_method	=	&quot;POST&quot;;				// default submit method
+-	var $_submit_type	=	&quot;application/x-www-form-urlencoded&quot;;	// default submit type
+-	var $_mime_boundary	=   &quot;&quot;;					// MIME boundary for multipart/form-data submit type
+-	var $_redirectaddr	=	false;				// will be set if page fetched is a redirect
+-	var $_redirectdepth	=	0;					// increments on an http redirect
+-	var $_frameurls		= 	array();			// frame src urls
+-	var $_framedepth	=	0;					// increments on frame depth
+-	
+-	var $_isproxy		=	false;				// set if using a proxy server
+-	var $_fp_timeout	=	30;					// timeout for socket connection
++		/* user definable vars */
+ 
+-/*======================================================================*\
+-	Function:	fetch
+-	Purpose:	fetch the contents of a web page
+-				(and possibly other protocols in the
+-				future like ftp, nntp, gopher, etc.)
+-	Input:		$URI	the location of the page to fetch
+-	Output:		$this-&gt;results	the output text from the fetch
+-\*======================================================================*/
++		var $host			=	&quot;www.php.net&quot;;		// host name we are connecting to
++		var $port			=	80;					// port we are connecting to
++		var $proxy_host		=	&quot;&quot;;					// proxy host to use
++		var $proxy_port		=	&quot;&quot;;					// proxy port to use
++		var $proxy_user		=	&quot;&quot;;					// proxy user to use
++		var $proxy_pass		=	&quot;&quot;;					// proxy password to use
+ 
+-	function fetch($URI)
+-	{
+-	
+-		//preg_match(&quot;|^([^:]+)://([^:/]+)(:[\d]+)*(.*)|&quot;,$URI,$URI_PARTS);
+-		$URI_PARTS = parse_url($URI);
+-		if (!empty($URI_PARTS[&quot;user&quot;]))
+-			$this-&gt;user = $URI_PARTS[&quot;user&quot;];
+-		if (!empty($URI_PARTS[&quot;pass&quot;]))
+-			$this-&gt;pass = $URI_PARTS[&quot;pass&quot;];
+-				
+-		switch($URI_PARTS[&quot;scheme&quot;])
++		var $agent			=	&quot;Snoopy v1.2.3&quot;;	// agent we masquerade as
++		var	$referer		=	&quot;&quot;;					// referer info to pass
++		var $cookies		=	array();			// array of cookies to pass
++													// $cookies[&quot;username&quot;]=&quot;joe&quot;;
++		var	$rawheaders		=	array();			// array of raw headers to send
++													// $rawheaders[&quot;Content-type&quot;]=&quot;text/html&quot;;
++
++		var $maxredirs		=	5;					// http redirection depth maximum. 0 = disallow
++		var $lastredirectaddr	=	&quot;&quot;;				// contains address of last redirected address
++		var	$offsiteok		=	true;				// allows redirection off-site
++		var $maxframes		=	0;					// frame content depth maximum. 0 = disallow
++		var $expandlinks	=	true;				// expand links to fully qualified URLs.
++													// this only applies to fetchlinks()
++													// submitlinks(), and submittext()
++		var $passcookies	=	true;				// pass set cookies back through redirects
++													// NOTE: this currently does not respect
++													// dates, domains or paths.
++
++		var	$user			=	&quot;&quot;;					// user for http authentication
++		var	$pass			=	&quot;&quot;;					// password for http authentication
++
++		// http accept types
++		var $accept			=	&quot;image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, */*&quot;;
++
++		var $results		=	&quot;&quot;;					// where the content is put
++
++		var $error			=	&quot;&quot;;					// error messages sent here
++		var	$response_code	=	&quot;&quot;;					// response code returned from server
++		var	$headers		=	array();			// headers returned from server sent here
++		var	$maxlength		=	500000;				// max return data length (body)
++		var $read_timeout	=	0;					// timeout on read operations, in seconds
++													// supported only since PHP 4 Beta 4
++													// set to 0 to disallow timeouts
++		var $timed_out		=	false;				// if a read operation timed out
++		var	$status			=	0;					// http request status
++
++		var $temp_dir		=	&quot;/tmp&quot;;				// temporary directory that the webserver
++													// has permission to write to.
++													// under Windows, this should be C:\temp
++
++		var	$curl_path		=	&quot;/usr/local/bin/curl&quot;;
++													// Snoopy will use cURL for fetching
++													// SSL content if a full system path to
++													// the cURL binary is supplied here.
++													// set to false if you do not have
++													// cURL installed. See <A HREF="http://curl.haxx.se">http://curl.haxx.se</A>
++													// for details on installing cURL.
++													// Snoopy does *not* use the cURL
++													// library functions built into php,
++													// as these functions are not stable
++													// as of this Snoopy release.
++
++		/**** Private variables ****/
++
++		var	$_maxlinelen	=	4096;				// max line length (headers)
++
++		var $_httpmethod	=	&quot;GET&quot;;				// default http request method
++		var $_httpversion	=	&quot;HTTP/1.0&quot;;			// default http request version
++		var $_submit_method	=	&quot;POST&quot;;				// default submit method
++		var $_submit_type	=	&quot;application/x-www-form-urlencoded&quot;;	// default submit type
++		var $_mime_boundary	=   &quot;&quot;;					// MIME boundary for multipart/form-data submit type
++		var $_redirectaddr	=	false;				// will be set if page fetched is a redirect
++		var $_redirectdepth	=	0;					// increments on an http redirect
++		var $_frameurls		= 	array();			// frame src urls
++		var $_framedepth	=	0;					// increments on frame depth
++
++		var $_isproxy		=	false;				// set if using a proxy server
++		var $_fp_timeout	=	30;					// timeout for socket connection
++
++	/*======================================================================*\
++		Function:	fetch
++		Purpose:	fetch the contents of a web page
++					(and possibly other protocols in the
++					future like ftp, nntp, gopher, etc.)
++		Input:		$URI	the location of the page to fetch
++		Output:		$this-&gt;results	the output text from the fetch
++	\*======================================================================*/
++
++		function fetch($URI)
+ 		{
+-			case &quot;http&quot;:
+-				$this-&gt;host = $URI_PARTS[&quot;host&quot;];
+-				if(!empty($URI_PARTS[&quot;port&quot;]))
+-					$this-&gt;port = $URI_PARTS[&quot;port&quot;];
+-				if($this-&gt;_connect($fp))
+-				{
++
++			//preg_match(&quot;|^([^:]+)://([^:/]+)(:[\d]+)*(.*)|&quot;,$URI,$URI_PARTS);
++			$URI_PARTS = parse_url($URI);
++			if (!empty($URI_PARTS[&quot;user&quot;]))
++				$this-&gt;user = $URI_PARTS[&quot;user&quot;];
++			if (!empty($URI_PARTS[&quot;pass&quot;]))
++				$this-&gt;pass = $URI_PARTS[&quot;pass&quot;];
++			if (empty($URI_PARTS[&quot;query&quot;]))
++				$URI_PARTS[&quot;query&quot;] = '';
++			if (empty($URI_PARTS[&quot;path&quot;]))
++				$URI_PARTS[&quot;path&quot;] = '';
++
++			switch(strtolower($URI_PARTS[&quot;scheme&quot;]))
++			{
++				case &quot;http&quot;:
++					$this-&gt;host = $URI_PARTS[&quot;host&quot;];
++					if(!empty($URI_PARTS[&quot;port&quot;]))
++						$this-&gt;port = $URI_PARTS[&quot;port&quot;];
++					if($this-&gt;_connect($fp))
++					{
++						if($this-&gt;_isproxy)
++						{
++							// using proxy, send entire URI
++							$this-&gt;_httprequest($URI,$fp,$URI,$this-&gt;_httpmethod);
++						}
++						else
++						{
++							$path = $URI_PARTS[&quot;path&quot;].($URI_PARTS[&quot;query&quot;] ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
++							// no proxy, send only the path
++							$this-&gt;_httprequest($path, $fp, $URI, $this-&gt;_httpmethod);
++						}
++
++						$this-&gt;_disconnect($fp);
++
++						if($this-&gt;_redirectaddr)
++						{
++							/* url was redirected, check if we've hit the max depth */
++							if($this-&gt;maxredirs &gt; $this-&gt;_redirectdepth)
++							{
++								// only follow redirect if it's on this site, or offsiteok is true
++								if(preg_match(&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,$this-&gt;_redirectaddr) || $this-&gt;offsiteok)
++								{
++									/* follow the redirect */
++									$this-&gt;_redirectdepth++;
++									$this-&gt;lastredirectaddr=$this-&gt;_redirectaddr;
++									$this-&gt;fetch($this-&gt;_redirectaddr);
++								}
++							}
++						}
++
++						if($this-&gt;_framedepth &lt; $this-&gt;maxframes &amp;&amp; count($this-&gt;_frameurls) &gt; 0)
++						{
++							$frameurls = $this-&gt;_frameurls;
++							$this-&gt;_frameurls = array();
++
++							while(list(,$frameurl) = each($frameurls))
++							{
++								if($this-&gt;_framedepth &lt; $this-&gt;maxframes)
++								{
++									$this-&gt;fetch($frameurl);
++									$this-&gt;_framedepth++;
++								}
++								else
++									break;
++							}
++						}
++					}
++					else
++					{
++						return false;
++					}
++					return true;
++					break;
++				case &quot;https&quot;:
++					if(!$this-&gt;curl_path)
++						return false;
++					if(function_exists(&quot;is_executable&quot;))
++						if (!is_executable($this-&gt;curl_path))
++							return false;
++					$this-&gt;host = $URI_PARTS[&quot;host&quot;];
++					if(!empty($URI_PARTS[&quot;port&quot;]))
++						$this-&gt;port = $URI_PARTS[&quot;port&quot;];
+ 					if($this-&gt;_isproxy)
+ 					{
+ 						// using proxy, send entire URI
+-						$this-&gt;_httprequest($URI,$fp,$URI,$this-&gt;_httpmethod);
++						$this-&gt;_httpsrequest($URI,$URI,$this-&gt;_httpmethod);
+ 					}
+ 					else
+ 					{
+-						$path = $URI_PARTS[&quot;path&quot;].(isset($URI_PARTS[&quot;query&quot;]) ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
++						$path = $URI_PARTS[&quot;path&quot;].($URI_PARTS[&quot;query&quot;] ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
+ 						// no proxy, send only the path
+-						$this-&gt;_httprequest($path, $fp, $URI, $this-&gt;_httpmethod);
++						$this-&gt;_httpsrequest($path, $URI, $this-&gt;_httpmethod);
+ 					}
+-					
+-					$this-&gt;_disconnect($fp);
+ 
+ 					if($this-&gt;_redirectaddr)
+ 					{
+@@ -175,7 +245,7 @@
+ 					{
+ 						$frameurls = $this-&gt;_frameurls;
+ 						$this-&gt;_frameurls = array();
+-						
++
+ 						while(list(,$frameurl) = each($frameurls))
+ 						{
+ 							if($this-&gt;_framedepth &lt; $this-&gt;maxframes)
+@@ -186,716 +256,1005 @@
+ 							else
+ 								break;
+ 						}
+-					}					
+-				}
+-				else
+-				{
++					}
++					return true;
++					break;
++				default:
++					// not a valid protocol
++					$this-&gt;error	=	'Invalid protocol &quot;'.$URI_PARTS[&quot;scheme&quot;].'&quot;\n';
+ 					return false;
+-				}
+-				return true;					
+-				break;
+-			case &quot;https&quot;:
+-				if(!$this-&gt;curl_path || (!is_executable($this-&gt;curl_path))) {
+-					$this-&gt;error = &quot;Bad curl ($this-&gt;curl_path), can't fetch HTTPS \n&quot;;
++					break;
++			}
++			return true;
++		}
++
++	/*======================================================================*\
++		Function:	submit
++		Purpose:	submit an http form
++		Input:		$URI	the location to post the data
++					$formvars	the formvars to use.
++						format: $formvars[&quot;var&quot;] = &quot;val&quot;;
++					$formfiles  an array of files to submit
++						format: $formfiles[&quot;var&quot;] = &quot;/dir/filename.ext&quot;;
++		Output:		$this-&gt;results	the text output from the post
++	\*======================================================================*/
++
++		function submit($URI, $formvars=&quot;&quot;, $formfiles=&quot;&quot;)
++		{
++			unset($postdata);
++
++			$postdata = $this-&gt;_prepare_post_body($formvars, $formfiles);
++
++			$URI_PARTS = parse_url($URI);
++			if (!empty($URI_PARTS[&quot;user&quot;]))
++				$this-&gt;user = $URI_PARTS[&quot;user&quot;];
++			if (!empty($URI_PARTS[&quot;pass&quot;]))
++				$this-&gt;pass = $URI_PARTS[&quot;pass&quot;];
++			if (empty($URI_PARTS[&quot;query&quot;]))
++				$URI_PARTS[&quot;query&quot;] = '';
++			if (empty($URI_PARTS[&quot;path&quot;]))
++				$URI_PARTS[&quot;path&quot;] = '';
++
++			switch(strtolower($URI_PARTS[&quot;scheme&quot;]))
++			{
++				case &quot;http&quot;:
++					$this-&gt;host = $URI_PARTS[&quot;host&quot;];
++					if(!empty($URI_PARTS[&quot;port&quot;]))
++						$this-&gt;port = $URI_PARTS[&quot;port&quot;];
++					if($this-&gt;_connect($fp))
++					{
++						if($this-&gt;_isproxy)
++						{
++							// using proxy, send entire URI
++							$this-&gt;_httprequest($URI,$fp,$URI,$this-&gt;_submit_method,$this-&gt;_submit_type,$postdata);
++						}
++						else
++						{
++							$path = $URI_PARTS[&quot;path&quot;].($URI_PARTS[&quot;query&quot;] ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
++							// no proxy, send only the path
++							$this-&gt;_httprequest($path, $fp, $URI, $this-&gt;_submit_method, $this-&gt;_submit_type, $postdata);
++						}
++
++						$this-&gt;_disconnect($fp);
++
++						if($this-&gt;_redirectaddr)
++						{
++							/* url was redirected, check if we've hit the max depth */
++							if($this-&gt;maxredirs &gt; $this-&gt;_redirectdepth)
++							{
++								if(!preg_match(&quot;|^&quot;.$URI_PARTS[&quot;scheme&quot;].&quot;://|&quot;, $this-&gt;_redirectaddr))
++									$this-&gt;_redirectaddr = $this-&gt;_expandlinks($this-&gt;_redirectaddr,$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$URI_PARTS[&quot;host&quot;]);
++
++								// only follow redirect if it's on this site, or offsiteok is true
++								if(preg_match(&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,$this-&gt;_redirectaddr) || $this-&gt;offsiteok)
++								{
++									/* follow the redirect */
++									$this-&gt;_redirectdepth++;
++									$this-&gt;lastredirectaddr=$this-&gt;_redirectaddr;
++									if( strpos( $this-&gt;_redirectaddr, &quot;?&quot; ) &gt; 0 )
++										$this-&gt;fetch($this-&gt;_redirectaddr); // the redirect has changed the request method from post to get
++									else
++										$this-&gt;submit($this-&gt;_redirectaddr,$formvars, $formfiles);
++								}
++							}
++						}
++
++						if($this-&gt;_framedepth &lt; $this-&gt;maxframes &amp;&amp; count($this-&gt;_frameurls) &gt; 0)
++						{
++							$frameurls = $this-&gt;_frameurls;
++							$this-&gt;_frameurls = array();
++
++							while(list(,$frameurl) = each($frameurls))
++							{
++								if($this-&gt;_framedepth &lt; $this-&gt;maxframes)
++								{
++									$this-&gt;fetch($frameurl);
++									$this-&gt;_framedepth++;
++								}
++								else
++									break;
++							}
++						}
++
++					}
++					else
++					{
++						return false;
++					}
++					return true;
++					break;
++				case &quot;https&quot;:
++					if(!$this-&gt;curl_path)
++						return false;
++					if(function_exists(&quot;is_executable&quot;))
++						if (!is_executable($this-&gt;curl_path))
++							return false;
++					$this-&gt;host = $URI_PARTS[&quot;host&quot;];
++					if(!empty($URI_PARTS[&quot;port&quot;]))
++						$this-&gt;port = $URI_PARTS[&quot;port&quot;];
++					if($this-&gt;_isproxy)
++					{
++						// using proxy, send entire URI
++						$this-&gt;_httpsrequest($URI, $URI, $this-&gt;_submit_method, $this-&gt;_submit_type, $postdata);
++					}
++					else
++					{
++						$path = $URI_PARTS[&quot;path&quot;].($URI_PARTS[&quot;query&quot;] ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
++						// no proxy, send only the path
++						$this-&gt;_httpsrequest($path, $URI, $this-&gt;_submit_method, $this-&gt;_submit_type, $postdata);
++					}
++
++					if($this-&gt;_redirectaddr)
++					{
++						/* url was redirected, check if we've hit the max depth */
++						if($this-&gt;maxredirs &gt; $this-&gt;_redirectdepth)
++						{
++							if(!preg_match(&quot;|^&quot;.$URI_PARTS[&quot;scheme&quot;].&quot;://|&quot;, $this-&gt;_redirectaddr))
++								$this-&gt;_redirectaddr = $this-&gt;_expandlinks($this-&gt;_redirectaddr,$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$URI_PARTS[&quot;host&quot;]);
++
++							// only follow redirect if it's on this site, or offsiteok is true
++							if(preg_match(&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,$this-&gt;_redirectaddr) || $this-&gt;offsiteok)
++							{
++								/* follow the redirect */
++								$this-&gt;_redirectdepth++;
++								$this-&gt;lastredirectaddr=$this-&gt;_redirectaddr;
++								if( strpos( $this-&gt;_redirectaddr, &quot;?&quot; ) &gt; 0 )
++									$this-&gt;fetch($this-&gt;_redirectaddr); // the redirect has changed the request method from post to get
++								else
++									$this-&gt;submit($this-&gt;_redirectaddr,$formvars, $formfiles);
++							}
++						}
++					}
++
++					if($this-&gt;_framedepth &lt; $this-&gt;maxframes &amp;&amp; count($this-&gt;_frameurls) &gt; 0)
++					{
++						$frameurls = $this-&gt;_frameurls;
++						$this-&gt;_frameurls = array();
++
++						while(list(,$frameurl) = each($frameurls))
++						{
++							if($this-&gt;_framedepth &lt; $this-&gt;maxframes)
++							{
++								$this-&gt;fetch($frameurl);
++								$this-&gt;_framedepth++;
++							}
++							else
++								break;
++						}
++					}
++					return true;
++					break;
++
++				default:
++					// not a valid protocol
++					$this-&gt;error	=	'Invalid protocol &quot;'.$URI_PARTS[&quot;scheme&quot;].'&quot;\n';
+ 					return false;
++					break;
++			}
++			return true;
++		}
++
++	/*======================================================================*\
++		Function:	fetchlinks
++		Purpose:	fetch the links from a web page
++		Input:		$URI	where you are fetching from
++		Output:		$this-&gt;results	an array of the URLs
++	\*======================================================================*/
++
++		function fetchlinks($URI)
++		{
++			if ($this-&gt;fetch($URI))
++			{
++				if($this-&gt;lastredirectaddr)
++					$URI = $this-&gt;lastredirectaddr;
++				if(is_array($this-&gt;results))
++				{
++					for($x=0;$x&lt;count($this-&gt;results);$x++)
++						$this-&gt;results[$x] = $this-&gt;_striplinks($this-&gt;results[$x]);
+ 				}
+-				$this-&gt;host = $URI_PARTS[&quot;host&quot;];
+-				if(!empty($URI_PARTS[&quot;port&quot;]))
+-					$this-&gt;port = $URI_PARTS[&quot;port&quot;];
+-				if($this-&gt;_isproxy)
++				else
++					$this-&gt;results = $this-&gt;_striplinks($this-&gt;results);
++
++				if($this-&gt;expandlinks)
++					$this-&gt;results = $this-&gt;_expandlinks($this-&gt;results, $URI);
++				return true;
++			}
++			else
++				return false;
++		}
++
++	/*======================================================================*\
++		Function:	fetchform
++		Purpose:	fetch the form elements from a web page
++		Input:		$URI	where you are fetching from
++		Output:		$this-&gt;results	the resulting html form
++	\*======================================================================*/
++
++		function fetchform($URI)
++		{
++
++			if ($this-&gt;fetch($URI))
++			{
++
++				if(is_array($this-&gt;results))
+ 				{
+-					// using proxy, send entire URI
+-					$this-&gt;_httpsrequest($URI,$URI,$this-&gt;_httpmethod);
++					for($x=0;$x&lt;count($this-&gt;results);$x++)
++						$this-&gt;results[$x] = $this-&gt;_stripform($this-&gt;results[$x]);
+ 				}
+ 				else
++					$this-&gt;results = $this-&gt;_stripform($this-&gt;results);
++
++				return true;
++			}
++			else
++				return false;
++		}
++
++
++	/*======================================================================*\
++		Function:	fetchtext
++		Purpose:	fetch the text from a web page, stripping the links
++		Input:		$URI	where you are fetching from
++		Output:		$this-&gt;results	the text from the web page
++	\*======================================================================*/
++
++		function fetchtext($URI)
++		{
++			if($this-&gt;fetch($URI))
++			{
++				if(is_array($this-&gt;results))
+ 				{
+-					$path = $URI_PARTS[&quot;path&quot;].($URI_PARTS[&quot;query&quot;] ? &quot;?&quot;.$URI_PARTS[&quot;query&quot;] : &quot;&quot;);
+-					// no proxy, send only the path
+-					$this-&gt;_httpsrequest($path, $URI, $this-&gt;_httpmethod);
++					for($x=0;$x&lt;count($this-&gt;results);$x++)
++						$this-&gt;results[$x] = $this-&gt;_striptext($this-&gt;results[$x]);
+ 				}
++				else
++					$this-&gt;results = $this-&gt;_striptext($this-&gt;results);
++				return true;
++			}
++			else
++				return false;
++		}
+ 
+-				if($this-&gt;_redirectaddr)
++	/*======================================================================*\
++		Function:	submitlinks
++		Purpose:	grab links from a form submission
++		Input:		$URI	where you are submitting from
++		Output:		$this-&gt;results	an array of the links from the post
++	\*======================================================================*/
++
++		function submitlinks($URI, $formvars=&quot;&quot;, $formfiles=&quot;&quot;)
++		{
++			if($this-&gt;submit($URI,$formvars, $formfiles))
++			{
++				if($this-&gt;lastredirectaddr)
++					$URI = $this-&gt;lastredirectaddr;
++				if(is_array($this-&gt;results))
+ 				{
+-					/* url was redirected, check if we've hit the max depth */
+-					if($this-&gt;maxredirs &gt; $this-&gt;_redirectdepth)
++					for($x=0;$x&lt;count($this-&gt;results);$x++)
+ 					{
+-						// only follow redirect if it's on this site, or offsiteok is true
+-						if(preg_match(&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,$this-&gt;_redirectaddr) || $this-&gt;offsiteok)
+-						{
+-							/* follow the redirect */
+-							$this-&gt;_redirectdepth++;
+-							$this-&gt;lastredirectaddr=$this-&gt;_redirectaddr;
+-							$this-&gt;fetch($this-&gt;_redirectaddr);
+-						}
++						$this-&gt;results[$x] = $this-&gt;_striplinks($this-&gt;results[$x]);
++						if($this-&gt;expandlinks)
++							$this-&gt;results[$x] = $this-&gt;_expandlinks($this-&gt;results[$x],$URI);
+ 					}
+ 				}
++				else
++				{
++					$this-&gt;results = $this-&gt;_striplinks($this-&gt;results);
++					if($this-&gt;expandlinks)
++						$this-&gt;results = $this-&gt;_expandlinks($this-&gt;results,$URI);
++				}
++				return true;
++			}
++			else
++				return false;
++		}
+ 
+-				if($this-&gt;_framedepth &lt; $this-&gt;maxframes &amp;&amp; count($this-&gt;_frameurls) &gt; 0)
++	/*======================================================================*\
++		Function:	submittext
++		Purpose:	grab text from a form submission
++		Input:		$URI	where you are submitting from
++		Output:		$this-&gt;results	the text from the web page
++	\*======================================================================*/
++
++		function submittext($URI, $formvars = &quot;&quot;, $formfiles = &quot;&quot;)
++		{
++			if($this-&gt;submit($URI,$formvars, $formfiles))
++			{
++				if($this-&gt;lastredirectaddr)
++					$URI = $this-&gt;lastredirectaddr;
++				if(is_array($this-&gt;results))
+ 				{
+-					$frameurls = $this-&gt;_frameurls;
+-					$this-&gt;_frameurls = array();
+-
+-					while(list(,$frameurl) = each($frameurls))
++					for($x=0;$x&lt;count($this-&gt;results);$x++)
+ 					{
+-						if($this-&gt;_framedepth &lt; $this-&gt;maxframes)
+-						{
+-							$this-&gt;fetch($frameurl);
+-							$this-&gt;_framedepth++;
+-						}
+-						else
+-							break;
++						$this-&gt;results[$x] = $this-&gt;_striptext($this-&gt;results[$x]);
++						if($this-&gt;expandlinks)
++							$this-&gt;results[$x] = $this-&gt;_expandlinks($this-&gt;results[$x],$URI);
+ 					}
+-				}					
+-				return true;					
+-				break;
+-			default:
+-				// not a valid protocol
+-				$this-&gt;error	=	'Invalid protocol &quot;'.$URI_PARTS[&quot;scheme&quot;].'&quot;\n';
++				}
++				else
++				{
++					$this-&gt;results = $this-&gt;_striptext($this-&gt;results);
++					if($this-&gt;expandlinks)
++						$this-&gt;results = $this-&gt;_expandlinks($this-&gt;results,$URI);
++				}
++				return true;
++			}
++			else
+ 				return false;
+-				break;
+-		}		
+-		return true;
+-	}
++		}
+ 
+ 
+ 
+-/*======================================================================*\
+-	Private functions
+-\*======================================================================*/
+-	
+-	
+-/*======================================================================*\
+-	Function:	_striplinks
+-	Purpose:	strip the hyperlinks from an html document
+-	Input:		$document	document to strip.
+-	Output:		$match		an array of the links
+-\*======================================================================*/
++	/*======================================================================*\
++		Function:	set_submit_multipart
++		Purpose:	Set the form submission content type to
++					multipart/form-data
++	\*======================================================================*/
++		function set_submit_multipart()
++		{
++			$this-&gt;_submit_type = &quot;multipart/form-data&quot;;
++		}
+ 
+-	function _striplinks($document)
+-	{	
+-		preg_match_all(&quot;'&lt;\s*a\s+.*href\s*=\s*			# find &lt;a href=
+-						([\&quot;\'])?					# find single or double quote
+-						(?(1) (.*?)\\1 | ([^\s\&gt;]+))		# if quote found, match up to next matching
+-													# quote, otherwise match up to next space
+-						'isx&quot;,$document,$links);
+-						
+ 
+-		// catenate the non-empty matches from the conditional subpattern
+-
+-		while(list($key,$val) = each($links[2]))
++	/*======================================================================*\
++		Function:	set_submit_normal
++		Purpose:	Set the form submission content type to
++					application/x-www-form-urlencoded
++	\*======================================================================*/
++		function set_submit_normal()
+ 		{
+-			if(!empty($val))
+-				$match[] = $val;
+-		}				
+-		
+-		while(list($key,$val) = each($links[3]))
+-		{
+-			if(!empty($val))
+-				$match[] = $val;
+-		}		
+-		
+-		// return the links
+-		return $match;
+-	}
++			$this-&gt;_submit_type = &quot;application/x-www-form-urlencoded&quot;;
++		}
+ 
+-/*======================================================================*\
+-	Function:	_stripform
+-	Purpose:	strip the form elements from an html document
+-	Input:		$document	document to strip.
+-	Output:		$match		an array of the links
+-\*======================================================================*/
+ 
+-	function _stripform($document)
+-	{	
+-		preg_match_all(&quot;'&lt;\/?(FORM|INPUT|SELECT|TEXTAREA|(OPTION))[^&lt;&gt;]*&gt;(?(2)(.*(?=&lt;\/?(option|select)[^&lt;&gt;]*&gt;[\r\n]*)|(?=[\r\n]*))|(?=[\r\n]*))'Usi&quot;,$document,$elements);
+-		
+-		// catenate the matches
+-		$match = implode(&quot;\r\n&quot;,$elements[0]);
+-				
+-		// return the links
+-		return $match;
+-	}
+ 
+-	
+-	
+-/*======================================================================*\
+-	Function:	_striptext
+-	Purpose:	strip the text from an html document
+-	Input:		$document	document to strip.
+-	Output:		$text		the resulting text
+-\*======================================================================*/
+ 
+-	function _striptext($document)
+-	{
+-		
+-		// I didn't use preg eval (//e) since that is only available in PHP 4.0.
+-		// so, list your entities one by one here. I included some of the
+-		// more common ones.
+-								
+-		$search = array(&quot;'&lt;script[^&gt;]*?&gt;.*?&lt;/script&gt;'si&quot;,	// strip out javascript
+-						&quot;'&lt;[\/\!]*?[^&lt;&gt;]*?&gt;'si&quot;,			// strip out html tags
+-						&quot;'([\r\n])[\s]+'&quot;,					// strip out white space
+-						&quot;'&amp;(quote|#34);'i&quot;,					// replace html entities
+-						&quot;'&amp;(amp|#38);'i&quot;,
+-						&quot;'&amp;(lt|#60);'i&quot;,
+-						&quot;'&amp;(gt|#62);'i&quot;,
+-						&quot;'&amp;(nbsp|#160);'i&quot;,
+-						&quot;'&amp;(iexcl|#161);'i&quot;,
+-						&quot;'&amp;(cent|#162);'i&quot;,
+-						&quot;'&amp;(pound|#163);'i&quot;,
+-						&quot;'&amp;(copy|#169);'i&quot;
+-						);				
+-		$replace = array(	&quot;&quot;,
+-							&quot;&quot;,
+-							&quot;\\1&quot;,
+-							&quot;\&quot;&quot;,
+-							&quot;&amp;&quot;,
+-							&quot;&lt;&quot;,
+-							&quot;&gt;&quot;,
+-							&quot; &quot;,
+-							chr(161),
+-							chr(162),
+-							chr(163),
+-							chr(169));
+-					
+-		$text = preg_replace($search,$replace,$document);
+-								
+-		return $text;
+-	}
++	/*======================================================================*\
++		Private functions
++	\*======================================================================*/
+ 
+-/*======================================================================*\
+-	Function:	_expandlinks
+-	Purpose:	expand each link into a fully qualified URL
+-	Input:		$links			the links to qualify
+-				$URI			the full URI to get the base from
+-	Output:		$expandedLinks	the expanded links
+-\*======================================================================*/
+ 
+-	function _expandlinks($links,$URI)
+-	{
+-		
+-		preg_match(&quot;/^[^\?]+/&quot;,$URI,$match);
++	/*======================================================================*\
++		Function:	_striplinks
++		Purpose:	strip the hyperlinks from an html document
++		Input:		$document	document to strip.
++		Output:		$match		an array of the links
++	\*======================================================================*/
+ 
+-		$match = preg_replace(&quot;|/[^\/\.]+\.[^\/\.]+$|&quot;,&quot;&quot;,$match[0]);
+-				
+-		$search = array( 	&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,
+-							&quot;|^(?!<A HREF="http://">http://</A>)(\/)?(?!mailto:)|i&quot;,
+-							&quot;|/\./|&quot;,
+-							&quot;|/[^\/]+/\.\./|&quot;
+-						);
+-						
+-		$replace = array(	&quot;&quot;,
+-							$match.&quot;/&quot;,
+-							&quot;/&quot;,
+-							&quot;/&quot;
+-						);			
+-				
+-		$expandedLinks = preg_replace($search,$replace,$links);
++		function _striplinks($document)
++		{
++			preg_match_all(&quot;'&lt;\s*a\s.*?href\s*=\s*			# find &lt;a href=
++							([\&quot;\'])?					# find single or double quote
++							(?(1) (.*?)\\1 | ([^\s\&gt;]+))		# if quote found, match up to next matching
++														# quote, otherwise match up to next space
++							'isx&quot;,$document,$links);
+ 
+-		return $expandedLinks;
+-	}
+ 
+-/*======================================================================*\
+-	Function:	_httprequest
+-	Purpose:	go get the http data from the server
+-	Input:		$url		the url to fetch
+-				$fp			the current open file pointer
+-				$URI		the full URI
+-				$body		body contents to send if any (POST)
+-	Output:		
+-\*======================================================================*/
+-	
+-	function _httprequest($url,$fp,$URI,$http_method,$content_type=&quot;&quot;,$body=&quot;&quot;)
+-	{
+-		if($this-&gt;passcookies &amp;&amp; $this-&gt;_redirectaddr)
+-			$this-&gt;setcookies();
+-			
+-		$URI_PARTS = parse_url($URI);
+-		if(empty($url))
+-			$url = &quot;/&quot;;
+-		$headers = $http_method.&quot; &quot;.$url.&quot; &quot;.$this-&gt;_httpversion.&quot;\r\n&quot;;		
+-		if(!empty($this-&gt;agent))
+-			$headers .= &quot;User-Agent: &quot;.$this-&gt;agent.&quot;\r\n&quot;;
+-		if(!empty($this-&gt;host) &amp;&amp; !isset($this-&gt;rawheaders['Host']))
+-			$headers .= &quot;Host: &quot;.$this-&gt;host.&quot;\r\n&quot;;
+-		if(!empty($this-&gt;accept))
+-			$headers .= &quot;Accept: &quot;.$this-&gt;accept.&quot;\r\n&quot;;
+-		
+-		if($this-&gt;use_gzip) {
+-			// make sure PHP was built with --with-zlib
+-			// and we can handle gzipp'ed data
+-			if ( function_exists(gzinflate) ) {
+-			   $headers .= &quot;Accept-encoding: gzip\r\n&quot;;
++			// catenate the non-empty matches from the conditional subpattern
++
++			while(list($key,$val) = each($links[2]))
++			{
++				if(!empty($val))
++					$match[] = $val;
+ 			}
+-			else {
+-			   trigger_error(
+-			   	&quot;use_gzip is on, but PHP was built without zlib support.&quot;.
+-				&quot;  Requesting file(s) without gzip encoding.&quot;, 
+-				E_USER_NOTICE);
++
++			while(list($key,$val) = each($links[3]))
++			{
++				if(!empty($val))
++					$match[] = $val;
+ 			}
++
++			// return the links
++			return $match;
+ 		}
+-		
+-		if(!empty($this-&gt;referer))
+-			$headers .= &quot;Referer: &quot;.$this-&gt;referer.&quot;\r\n&quot;;
+-		if(!empty($this-&gt;cookies))
+-		{			
+-			if(!is_array($this-&gt;cookies))
+-				$this-&gt;cookies = (array)$this-&gt;cookies;
+-	
+-			reset($this-&gt;cookies);
+-			if ( count($this-&gt;cookies) &gt; 0 ) {
+-				$cookie_headers .= 'Cookie: ';
+-				foreach ( $this-&gt;cookies as $cookieKey =&gt; $cookieVal ) {
+-				$cookie_headers .= $cookieKey.&quot;=&quot;.urlencode($cookieVal).&quot;; &quot;;
+-				}
+-				$headers .= substr($cookie_headers,0,-2) . &quot;\r\n&quot;;
+-			} 
++
++	/*======================================================================*\
++		Function:	_stripform
++		Purpose:	strip the form elements from an html document
++		Input:		$document	document to strip.
++		Output:		$match		an array of the links
++	\*======================================================================*/
++
++		function _stripform($document)
++		{
++			preg_match_all(&quot;'&lt;\/?(FORM|INPUT|SELECT|TEXTAREA|(OPTION))[^&lt;&gt;]*&gt;(?(2)(.*(?=&lt;\/?(option|select)[^&lt;&gt;]*&gt;[\r\n]*)|(?=[\r\n]*))|(?=[\r\n]*))'Usi&quot;,$document,$elements);
++
++			// catenate the matches
++			$match = implode(&quot;\r\n&quot;,$elements[0]);
++
++			// return the links
++			return $match;
+ 		}
+-		if(!empty($this-&gt;rawheaders))
++
++
++
++	/*======================================================================*\
++		Function:	_striptext
++		Purpose:	strip the text from an html document
++		Input:		$document	document to strip.
++		Output:		$text		the resulting text
++	\*======================================================================*/
++
++		function _striptext($document)
+ 		{
+-			if(!is_array($this-&gt;rawheaders))
+-				$this-&gt;rawheaders = (array)$this-&gt;rawheaders;
+-			while(list($headerKey,$headerVal) = each($this-&gt;rawheaders))
+-				$headers .= $headerKey.&quot;: &quot;.$headerVal.&quot;\r\n&quot;;
++
++			// I didn't use preg eval (//e) since that is only available in PHP 4.0.
++			// so, list your entities one by one here. I included some of the
++			// more common ones.
++
++			$search = array(&quot;'&lt;script[^&gt;]*?&gt;.*?&lt;/script&gt;'si&quot;,	// strip out javascript
++							&quot;'&lt;[\/\!]*?[^&lt;&gt;]*?&gt;'si&quot;,			// strip out html tags
++							&quot;'([\r\n])[\s]+'&quot;,					// strip out white space
++							&quot;'&amp;(quot|#34|#034|#x22);'i&quot;,		// replace html entities
++							&quot;'&amp;(amp|#38|#038|#x26);'i&quot;,			// added hexadecimal values
++							&quot;'&amp;(lt|#60|#060|#x3c);'i&quot;,
++							&quot;'&amp;(gt|#62|#062|#x3e);'i&quot;,
++							&quot;'&amp;(nbsp|#160|#xa0);'i&quot;,
++							&quot;'&amp;(iexcl|#161);'i&quot;,
++							&quot;'&amp;(cent|#162);'i&quot;,
++							&quot;'&amp;(pound|#163);'i&quot;,
++							&quot;'&amp;(copy|#169);'i&quot;,
++							&quot;'&amp;(reg|#174);'i&quot;,
++							&quot;'&amp;(deg|#176);'i&quot;,
++							&quot;'&amp;(#39|#039|#x27);'&quot;,
++							&quot;'&amp;(euro|#8364);'i&quot;,				// europe
++							&quot;'&amp;a(uml|UML);'&quot;,					// german
++							&quot;'&amp;o(uml|UML);'&quot;,
++							&quot;'&amp;u(uml|UML);'&quot;,
++							&quot;'&amp;A(uml|UML);'&quot;,
++							&quot;'&amp;O(uml|UML);'&quot;,
++							&quot;'&amp;U(uml|UML);'&quot;,
++							&quot;'&szlig;'i&quot;,
++							);
++			$replace = array(	&quot;&quot;,
++								&quot;&quot;,
++								&quot;\\1&quot;,
++								&quot;\&quot;&quot;,
++								&quot;&amp;&quot;,
++								&quot;&lt;&quot;,
++								&quot;&gt;&quot;,
++								&quot; &quot;,
++								chr(161),
++								chr(162),
++								chr(163),
++								chr(169),
++								chr(174),
++								chr(176),
++								chr(39),
++								chr(128),
++								&quot;&#65533;,
++								&quot;&#65533;,
++								&quot;&quot;,
++								&quot;&#65533;,
++								&quot;&#65533;,
++								&quot;&#65533;,
++								&quot;&#65533;,
++							);
++
++			$text = preg_replace($search,$replace,$document);
++
++			return $text;
+ 		}
+-		if(!empty($content_type)) {
+-			$headers .= &quot;Content-type: $content_type&quot;;
+-			if ($content_type == &quot;multipart/form-data&quot;)
+-				$headers .= &quot;; boundary=&quot;.$this-&gt;_mime_boundary;
+-			$headers .= &quot;\r\n&quot;;
++
++	/*======================================================================*\
++		Function:	_expandlinks
++		Purpose:	expand each link into a fully qualified URL
++		Input:		$links			the links to qualify
++					$URI			the full URI to get the base from
++		Output:		$expandedLinks	the expanded links
++	\*======================================================================*/
++
++		function _expandlinks($links,$URI)
++		{
++
++			preg_match(&quot;/^[^\?]+/&quot;,$URI,$match);
++
++			$match = preg_replace(&quot;|/[^\/\.]+\.[^\/\.]+$|&quot;,&quot;&quot;,$match[0]);
++			$match = preg_replace(&quot;|/$|&quot;,&quot;&quot;,$match);
++			$match_part = parse_url($match);
++			$match_root =
++			$match_part[&quot;scheme&quot;].&quot;://&quot;.$match_part[&quot;host&quot;];
++
++			$search = array( 	&quot;|^<A HREF="http://">http://</A>&quot;.preg_quote($this-&gt;host).&quot;|i&quot;,
++								&quot;|^(\/)|i&quot;,
++								&quot;|^(?!<A HREF="http://">http://</A>)(?!mailto:)|i&quot;,
++								&quot;|/\./|&quot;,
++								&quot;|/[^\/]+/\.\./|&quot;
++							);
++
++			$replace = array(	&quot;&quot;,
++								$match_root.&quot;/&quot;,
++								$match.&quot;/&quot;,
++								&quot;/&quot;,
++								&quot;/&quot;
++							);
++
++			$expandedLinks = preg_replace($search,$replace,$links);
++
++			return $expandedLinks;
+ 		}
+-		if(!empty($body))	
+-			$headers .= &quot;Content-length: &quot;.strlen($body).&quot;\r\n&quot;;
+-		if(!empty($this-&gt;user) || !empty($this-&gt;pass))	
+-			$headers .= &quot;Authorization: BASIC &quot;.base64_encode($this-&gt;user.&quot;:&quot;.$this-&gt;pass).&quot;\r\n&quot;;
+ 
+-		$headers .= &quot;\r\n&quot;;
+-		
+-		// set the read timeout if needed
+-		if ($this-&gt;read_timeout &gt; 0)
+-			socket_set_timeout($fp, $this-&gt;read_timeout);
+-		$this-&gt;timed_out = false;
+-		
+-		fwrite($fp,$headers.$body,strlen($headers.$body));
+-		
+-		$this-&gt;_redirectaddr = false;
+-		unset($this-&gt;headers);
+-		
+-		// content was returned gzip encoded?
+-		$is_gzipped = false;
+-						
+-		while($currentHeader = fgets($fp,$this-&gt;_maxlinelen))
++	/*======================================================================*\
++		Function:	_httprequest
++		Purpose:	go get the http data from the server
++		Input:		$url		the url to fetch
++					$fp			the current open file pointer
++					$URI		the full URI
++					$body		body contents to send if any (POST)
++		Output:
++	\*======================================================================*/
++
++		function _httprequest($url,$fp,$URI,$http_method,$content_type=&quot;&quot;,$body=&quot;&quot;)
+ 		{
+-			if ($this-&gt;read_timeout &gt; 0 &amp;&amp; $this-&gt;_check_timeout($fp))
++			$cookie_headers = '';
++			if($this-&gt;passcookies &amp;&amp; $this-&gt;_redirectaddr)
++				$this-&gt;setcookies();
++
++			$URI_PARTS = parse_url($URI);
++			if(empty($url))
++				$url = &quot;/&quot;;
++			$headers = $http_method.&quot; &quot;.$url.&quot; &quot;.$this-&gt;_httpversion.&quot;\r\n&quot;;
++			if(!empty($this-&gt;agent))
++				$headers .= &quot;User-Agent: &quot;.$this-&gt;agent.&quot;\r\n&quot;;
++			if(!empty($this-&gt;host) &amp;&amp; !isset($this-&gt;rawheaders['Host'])) {
++				$headers .= &quot;Host: &quot;.$this-&gt;host;
++				if(!empty($this-&gt;port))
++					$headers .= &quot;:&quot;.$this-&gt;port;
++				$headers .= &quot;\r\n&quot;;
++			}
++			if(!empty($this-&gt;accept))
++				$headers .= &quot;Accept: &quot;.$this-&gt;accept.&quot;\r\n&quot;;
++			if(!empty($this-&gt;referer))
++				$headers .= &quot;Referer: &quot;.$this-&gt;referer.&quot;\r\n&quot;;
++			if(!empty($this-&gt;cookies))
+ 			{
+-				$this-&gt;status=-100;
+-				return false;
++				if(!is_array($this-&gt;cookies))
++					$this-&gt;cookies = (array)$this-&gt;cookies;
++
++				reset($this-&gt;cookies);
++				if ( count($this-&gt;cookies) &gt; 0 ) {
++					$cookie_headers .= 'Cookie: ';
++					foreach ( $this-&gt;cookies as $cookieKey =&gt; $cookieVal ) {
++					$cookie_headers .= $cookieKey.&quot;=&quot;.urlencode($cookieVal).&quot;; &quot;;
++					}
++					$headers .= substr($cookie_headers,0,-2) . &quot;\r\n&quot;;
++				}
+ 			}
+-				
+-		//	if($currentHeader == &quot;\r\n&quot;)
+-			if(preg_match(&quot;/^\r?\n$/&quot;, $currentHeader) )
+-			      break;
+-						
+-			// if a header begins with Location: or URI:, set the redirect
+-			if(preg_match(&quot;/^(Location:|URI:)/i&quot;,$currentHeader))
++			if(!empty($this-&gt;rawheaders))
+ 			{
+-				// get URL portion of the redirect
+-				preg_match(&quot;/^(Location:|URI:)\s+(.*)/&quot;,chop($currentHeader),$matches);
+-				// look for :// in the Location header to see if hostname is included
+-				if(!preg_match(&quot;|\:\/\/|&quot;,$matches[2]))
++				if(!is_array($this-&gt;rawheaders))
++					$this-&gt;rawheaders = (array)$this-&gt;rawheaders;
++				while(list($headerKey,$headerVal) = each($this-&gt;rawheaders))
++					$headers .= $headerKey.&quot;: &quot;.$headerVal.&quot;\r\n&quot;;
++			}
++			if(!empty($content_type)) {
++				$headers .= &quot;Content-type: $content_type&quot;;
++				if ($content_type == &quot;multipart/form-data&quot;)
++					$headers .= &quot;; boundary=&quot;.$this-&gt;_mime_boundary;
++				$headers .= &quot;\r\n&quot;;
++			}
++			if(!empty($body))
++				$headers .= &quot;Content-length: &quot;.strlen($body).&quot;\r\n&quot;;
++			if(!empty($this-&gt;user) || !empty($this-&gt;pass))
++				$headers .= &quot;Authorization: Basic &quot;.base64_encode($this-&gt;user.&quot;:&quot;.$this-&gt;pass).&quot;\r\n&quot;;
++
++			//add proxy auth headers
++			if(!empty($this-&gt;proxy_user))
++				$headers .= 'Proxy-Authorization: ' . 'Basic ' . base64_encode($this-&gt;proxy_user . ':' . $this-&gt;proxy_pass).&quot;\r\n&quot;;
++
++
++			$headers .= &quot;\r\n&quot;;
++
++			// set the read timeout if needed
++			if ($this-&gt;read_timeout &gt; 0)
++				socket_set_timeout($fp, $this-&gt;read_timeout);
++			$this-&gt;timed_out = false;
++
++			fwrite($fp,$headers.$body,strlen($headers.$body));
++
++			$this-&gt;_redirectaddr = false;
++			unset($this-&gt;headers);
++
++			while($currentHeader = fgets($fp,$this-&gt;_maxlinelen))
++			{
++				if ($this-&gt;read_timeout &gt; 0 &amp;&amp; $this-&gt;_check_timeout($fp))
+ 				{
+-					// no host in the path, so prepend
+-					$this-&gt;_redirectaddr = $URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host.&quot;:&quot;.$this-&gt;port;
+-					// eliminate double slash
+-					if(!preg_match(&quot;|^/|&quot;,$matches[2]))
+-							$this-&gt;_redirectaddr .= &quot;/&quot;.$matches[2];
++					$this-&gt;status=-100;
++					return false;
++				}
++
++				if($currentHeader == &quot;\r\n&quot;)
++					break;
++
++				// if a header begins with Location: or URI:, set the redirect
++				if(preg_match(&quot;/^(Location:|URI:)/i&quot;,$currentHeader))
++				{
++					// get URL portion of the redirect
++					preg_match(&quot;/^(Location:|URI:)[ ]+(.*)/i&quot;,chop($currentHeader),$matches);
++					// look for :// in the Location header to see if hostname is included
++					if(!preg_match(&quot;|\:\/\/|&quot;,$matches[2]))
++					{
++						// no host in the path, so prepend
++						$this-&gt;_redirectaddr = $URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host.&quot;:&quot;.$this-&gt;port;
++						// eliminate double slash
++						if(!preg_match(&quot;|^/|&quot;,$matches[2]))
++								$this-&gt;_redirectaddr .= &quot;/&quot;.$matches[2];
++						else
++								$this-&gt;_redirectaddr .= $matches[2];
++					}
+ 					else
+-							$this-&gt;_redirectaddr .= $matches[2];
++						$this-&gt;_redirectaddr = $matches[2];
+ 				}
+-				else
+-					$this-&gt;_redirectaddr = $matches[2];
++
++				if(preg_match(&quot;|^HTTP/|&quot;,$currentHeader))
++				{
++					if(preg_match(&quot;|^HTTP/[^\s]*\s(.*?)\s|&quot;,$currentHeader, $status))
++					{
++						$this-&gt;status= $status[1];
++					}
++					$this-&gt;response_code = $currentHeader;
++				}
++
++				$this-&gt;headers[] = $currentHeader;
+ 			}
+-		
+-			if(preg_match(&quot;|^HTTP/|&quot;,$currentHeader))
++
++			$results = '';
++			do {
++				$_data = fread($fp, $this-&gt;maxlength);
++				if (strlen($_data) == 0) {
++					break;
++				}
++				$results .= $_data;
++			} while(true);
++
++			if ($this-&gt;read_timeout &gt; 0 &amp;&amp; $this-&gt;_check_timeout($fp))
+ 			{
+-                if(preg_match(&quot;|^HTTP/[^\s]*\s(.*?)\s|&quot;,$currentHeader, $status))
+-				{
+-					$this-&gt;status= $status[1];
+-                }				
+-				$this-&gt;response_code = $currentHeader;
++				$this-&gt;status=-100;
++				return false;
+ 			}
+-			
+-			if (preg_match(&quot;/Content-Encoding: gzip/&quot;, $currentHeader) ) {
+-				$is_gzipped = true;
++
++			// check if there is a a redirect meta tag
++
++			if(preg_match(&quot;'&lt;meta[\s]*http-equiv[^&gt;]*?content[\s]*=[\s]*[\&quot;\']?\d+;[\s]*URL[\s]*=[\s]*([^\&quot;\']*?)[\&quot;\']?&gt;'i&quot;,$results,$match))
++
++			{
++				$this-&gt;_redirectaddr = $this-&gt;_expandlinks($match[1],$URI);
+ 			}
+-			
+-			$this-&gt;headers[] = $currentHeader;
+-		}
+ 
+-		# $results = fread($fp, $this-&gt;maxlength);
+-		$results = &quot;&quot;;
+-		while ( $data = fread($fp, $this-&gt;maxlength) ) {
+-		    $results .= $data;
+-		    if (
+-		        strlen($results) &gt; $this-&gt;maxlength ) {
+-		        break;
+-		    }
++			// have we hit our frame depth and is there frame src to fetch?
++			if(($this-&gt;_framedepth &lt; $this-&gt;maxframes) &amp;&amp; preg_match_all(&quot;'&lt;frame\s+.*src[\s]*=[\'\&quot;]?([^\'\&quot;\&gt;]+)'i&quot;,$results,$match))
++			{
++				$this-&gt;results[] = $results;
++				for($x=0; $x&lt;count($match[1]); $x++)
++					$this-&gt;_frameurls[] = $this-&gt;_expandlinks($match[1][$x],$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host);
++			}
++			// have we already fetched framed content?
++			elseif(is_array($this-&gt;results))
++				$this-&gt;results[] = $results;
++			// no framed content
++			else
++				$this-&gt;results = $results;
++
++			return true;
+ 		}
+-		
+-		// gunzip
+-		if ( $is_gzipped ) {
+-			// per <A HREF="http://www.php.net/manual/en/function.gzencode.php">http://www.php.net/manual/en/function.gzencode.php</A>
+-			$results = substr($results, 10);
+-			$results = gzinflate($results);
+-		}
+-		
+-		if ($this-&gt;read_timeout &gt; 0 &amp;&amp; $this-&gt;_check_timeout($fp))
+-		{
+-			$this-&gt;status=-100;
+-			return false;
+-		}
+-		
+-		// check if there is a a redirect meta tag
+-		
+-		if(preg_match(&quot;'&lt;meta[\s]*http-equiv[^&gt;]*?content[\s]*=[\s]*[\&quot;\']?\d+;[\s]+URL[\s]*=[\s]*([^\&quot;\']*?)[\&quot;\']?&gt;'i&quot;,$results,$match))
+-		{
+-			$this-&gt;_redirectaddr = $this-&gt;_expandlinks($match[1],$URI);	
+-		}
+ 
+-		// have we hit our frame depth and is there frame src to fetch?
+-		if(($this-&gt;_framedepth &lt; $this-&gt;maxframes) &amp;&amp; preg_match_all(&quot;'&lt;frame\s+.*src[\s]*=[\'\&quot;]?([^\'\&quot;\&gt;]+)'i&quot;,$results,$match))
++	/*======================================================================*\
++		Function:	_httpsrequest
++		Purpose:	go get the https data from the server using curl
++		Input:		$url		the url to fetch
++					$URI		the full URI
++					$body		body contents to send if any (POST)
++		Output:
++	\*======================================================================*/
++
++		function _httpsrequest($url,$URI,$http_method,$content_type=&quot;&quot;,$body=&quot;&quot;)
+ 		{
+-			$this-&gt;results[] = $results;
+-			for($x=0; $x&lt;count($match[1]); $x++)
+-				$this-&gt;_frameurls[] = $this-&gt;_expandlinks($match[1][$x],$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host);
+-		}
+-		// have we already fetched framed content?
+-		elseif(is_array($this-&gt;results))
+-			$this-&gt;results[] = $results;
+-		// no framed content
+-		else
+-			$this-&gt;results = $results;
+-		
+-		return true;
+-	}
++			if($this-&gt;passcookies &amp;&amp; $this-&gt;_redirectaddr)
++				$this-&gt;setcookies();
+ 
+-/*======================================================================*\
+-	Function:	_httpsrequest
+-	Purpose:	go get the https data from the server using curl
+-	Input:		$url		the url to fetch
+-				$URI		the full URI
+-				$body		body contents to send if any (POST)
+-	Output:		
+-\*======================================================================*/
+-	
+-	function _httpsrequest($url,$URI,$http_method,$content_type=&quot;&quot;,$body=&quot;&quot;)
+-	{
+-		if($this-&gt;passcookies &amp;&amp; $this-&gt;_redirectaddr)
+-			$this-&gt;setcookies();
++			$headers = array();
+ 
+-		$headers = array();		
+-					
+-		$URI_PARTS = parse_url($URI);
+-		if(empty($url))
+-			$url = &quot;/&quot;;
+-		// GET ... header not needed for curl
+-		//$headers[] = $http_method.&quot; &quot;.$url.&quot; &quot;.$this-&gt;_httpversion;		
+-		if(!empty($this-&gt;agent))
+-			$headers[] = &quot;User-Agent: &quot;.$this-&gt;agent;
+-		if(!empty($this-&gt;host))
+-			$headers[] = &quot;Host: &quot;.$this-&gt;host;
+-		if(!empty($this-&gt;accept))
+-			$headers[] = &quot;Accept: &quot;.$this-&gt;accept;
+-		if(!empty($this-&gt;referer))
+-			$headers[] = &quot;Referer: &quot;.$this-&gt;referer;
+-		if(!empty($this-&gt;cookies))
+-		{			
+-			if(!is_array($this-&gt;cookies))
+-				$this-&gt;cookies = (array)$this-&gt;cookies;
+-	
+-			reset($this-&gt;cookies);
+-			if ( count($this-&gt;cookies) &gt; 0 ) {
+-				$cookie_str = 'Cookie: ';
+-				foreach ( $this-&gt;cookies as $cookieKey =&gt; $cookieVal ) {
+-				$cookie_str .= $cookieKey.&quot;=&quot;.urlencode($cookieVal).&quot;; &quot;;
++			$URI_PARTS = parse_url($URI);
++			if(empty($url))
++				$url = &quot;/&quot;;
++			// GET ... header not needed for curl
++			//$headers[] = $http_method.&quot; &quot;.$url.&quot; &quot;.$this-&gt;_httpversion;
++			if(!empty($this-&gt;agent))
++				$headers[] = &quot;User-Agent: &quot;.$this-&gt;agent;
++			if(!empty($this-&gt;host))
++				if(!empty($this-&gt;port))
++					$headers[] = &quot;Host: &quot;.$this-&gt;host.&quot;:&quot;.$this-&gt;port;
++				else
++					$headers[] = &quot;Host: &quot;.$this-&gt;host;
++			if(!empty($this-&gt;accept))
++				$headers[] = &quot;Accept: &quot;.$this-&gt;accept;
++			if(!empty($this-&gt;referer))
++				$headers[] = &quot;Referer: &quot;.$this-&gt;referer;
++			if(!empty($this-&gt;cookies))
++			{
++				if(!is_array($this-&gt;cookies))
++					$this-&gt;cookies = (array)$this-&gt;cookies;
++
++				reset($this-&gt;cookies);
++				if ( count($this-&gt;cookies) &gt; 0 ) {
++					$cookie_str = 'Cookie: ';
++					foreach ( $this-&gt;cookies as $cookieKey =&gt; $cookieVal ) {
++					$cookie_str .= $cookieKey.&quot;=&quot;.urlencode($cookieVal).&quot;; &quot;;
++					}
++					$headers[] = substr($cookie_str,0,-2);
+ 				}
+-				$headers[] = substr($cookie_str,0,-2);
+ 			}
+-		}
+-		if(!empty($this-&gt;rawheaders))
+-		{
+-			if(!is_array($this-&gt;rawheaders))
+-				$this-&gt;rawheaders = (array)$this-&gt;rawheaders;
+-			while(list($headerKey,$headerVal) = each($this-&gt;rawheaders))
+-				$headers[] = $headerKey.&quot;: &quot;.$headerVal;
+-		}
+-		if(!empty($content_type)) {
+-			if ($content_type == &quot;multipart/form-data&quot;)
+-				$headers[] = &quot;Content-type: $content_type; boundary=&quot;.$this-&gt;_mime_boundary;
+-			else
+-				$headers[] = &quot;Content-type: $content_type&quot;;
+-		}
+-		if(!empty($body))	
+-			$headers[] = &quot;Content-length: &quot;.strlen($body);
+-		if(!empty($this-&gt;user) || !empty($this-&gt;pass))	
+-			$headers[] = &quot;Authorization: BASIC &quot;.base64_encode($this-&gt;user.&quot;:&quot;.$this-&gt;pass);
+-			
+-		for($curr_header = 0; $curr_header &lt; count($headers); $curr_header++)
+-			$cmdline_params .= &quot; -H \&quot;&quot;.$headers[$curr_header].&quot;\&quot;&quot;;
+-		
+-		if(!empty($body))
+-			$cmdline_params .= &quot; -d \&quot;$body\&quot;&quot;;
+-		
+-		if($this-&gt;read_timeout &gt; 0)
+-			$cmdline_params .= &quot; -m &quot;.$this-&gt;read_timeout;
+-		
+-		$headerfile = uniqid(time());
+-		
+-		# accept self-signed certs
+-		$cmdline_params .= &quot; -k&quot;;
+-		exec($this-&gt;curl_path.&quot; -D \&quot;/tmp/$headerfile\&quot;&quot;.$cmdline_params.&quot; &quot;.$URI,$results,$return);
+-		
+-		if($return)
+-		{
+-			$this-&gt;error = &quot;Error: cURL could not retrieve the document, error $return.&quot;;
+-			return false;
+-		}
+-			
+-			
+-		$results = implode(&quot;\r\n&quot;,$results);
+-		
+-		$result_headers = file(&quot;/tmp/$headerfile&quot;);
+-						
+-		$this-&gt;_redirectaddr = false;
+-		unset($this-&gt;headers);
+-						
+-		for($currentHeader = 0; $currentHeader &lt; count($result_headers); $currentHeader++)
+-		{
+-			
+-			// if a header begins with Location: or URI:, set the redirect
+-			if(preg_match(&quot;/^(Location: |URI: )/i&quot;,$result_headers[$currentHeader]))
++			if(!empty($this-&gt;rawheaders))
+ 			{
+-				// get URL portion of the redirect
+-				preg_match(&quot;/^(Location: |URI:)(.*)/&quot;,chop($result_headers[$currentHeader]),$matches);
+-				// look for :// in the Location header to see if hostname is included
+-				if(!preg_match(&quot;|\:\/\/|&quot;,$matches[2]))
++				if(!is_array($this-&gt;rawheaders))
++					$this-&gt;rawheaders = (array)$this-&gt;rawheaders;
++				while(list($headerKey,$headerVal) = each($this-&gt;rawheaders))
++					$headers[] = $headerKey.&quot;: &quot;.$headerVal;
++			}
++			if(!empty($content_type)) {
++				if ($content_type == &quot;multipart/form-data&quot;)
++					$headers[] = &quot;Content-type: $content_type; boundary=&quot;.$this-&gt;_mime_boundary;
++				else
++					$headers[] = &quot;Content-type: $content_type&quot;;
++			}
++			if(!empty($body))
++				$headers[] = &quot;Content-length: &quot;.strlen($body);
++			if(!empty($this-&gt;user) || !empty($this-&gt;pass))
++				$headers[] = &quot;Authorization: BASIC &quot;.base64_encode($this-&gt;user.&quot;:&quot;.$this-&gt;pass);
++
++			for($curr_header = 0; $curr_header &lt; count($headers); $curr_header++) {
++				$safer_header = strtr( $headers[$curr_header], &quot;\&quot;&quot;, &quot; &quot; );
++				$cmdline_params .= &quot; -H \&quot;&quot;.$safer_header.&quot;\&quot;&quot;;
++			}
++
++			if(!empty($body))
++				$cmdline_params .= &quot; -d \&quot;$body\&quot;&quot;;
++
++			if($this-&gt;read_timeout &gt; 0)
++				$cmdline_params .= &quot; -m &quot;.$this-&gt;read_timeout;
++
++			$headerfile = tempnam($temp_dir, &quot;sno&quot;);
++
++			$safer_URI = strtr( $URI, &quot;\&quot;&quot;, &quot; &quot; ); // strip quotes from the URI to avoid shell access
++			exec($this-&gt;curl_path.&quot; -D \&quot;$headerfile\&quot;&quot;.$cmdline_params.&quot; \&quot;&quot;.$safer_URI.&quot;\&quot;&quot;,$results,$return);
++
++			if($return)
++			{
++				$this-&gt;error = &quot;Error: cURL could not retrieve the document, error $return.&quot;;
++				return false;
++			}
++
++
++			$results = implode(&quot;\r\n&quot;,$results);
++
++			$result_headers = file(&quot;$headerfile&quot;);
++
++			$this-&gt;_redirectaddr = false;
++			unset($this-&gt;headers);
++
++			for($currentHeader = 0; $currentHeader &lt; count($result_headers); $currentHeader++)
++			{
++
++				// if a header begins with Location: or URI:, set the redirect
++				if(preg_match(&quot;/^(Location: |URI: )/i&quot;,$result_headers[$currentHeader]))
+ 				{
+-					// no host in the path, so prepend
+-					$this-&gt;_redirectaddr = $URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host.&quot;:&quot;.$this-&gt;port;
+-					// eliminate double slash
+-					if(!preg_match(&quot;|^/|&quot;,$matches[2]))
+-							$this-&gt;_redirectaddr .= &quot;/&quot;.$matches[2];
++					// get URL portion of the redirect
++					preg_match(&quot;/^(Location: |URI:)\s+(.*)/&quot;,chop($result_headers[$currentHeader]),$matches);
++					// look for :// in the Location header to see if hostname is included
++					if(!preg_match(&quot;|\:\/\/|&quot;,$matches[2]))
++					{
++						// no host in the path, so prepend
++						$this-&gt;_redirectaddr = $URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host.&quot;:&quot;.$this-&gt;port;
++						// eliminate double slash
++						if(!preg_match(&quot;|^/|&quot;,$matches[2]))
++								$this-&gt;_redirectaddr .= &quot;/&quot;.$matches[2];
++						else
++								$this-&gt;_redirectaddr .= $matches[2];
++					}
+ 					else
+-							$this-&gt;_redirectaddr .= $matches[2];
++						$this-&gt;_redirectaddr = $matches[2];
+ 				}
+-				else
+-					$this-&gt;_redirectaddr = $matches[2];
++
++				if(preg_match(&quot;|^HTTP/|&quot;,$result_headers[$currentHeader]))
++					$this-&gt;response_code = $result_headers[$currentHeader];
++
++				$this-&gt;headers[] = $result_headers[$currentHeader];
+ 			}
+-		
+-			if(preg_match(&quot;|^HTTP/|&quot;,$result_headers[$currentHeader]))
++
++			// check if there is a a redirect meta tag
++
++			if(preg_match(&quot;'&lt;meta[\s]*http-equiv[^&gt;]*?content[\s]*=[\s]*[\&quot;\']?\d+;[\s]*URL[\s]*=[\s]*([^\&quot;\']*?)[\&quot;\']?&gt;'i&quot;,$results,$match))
+ 			{
+-			    $this-&gt;response_code = $result_headers[$currentHeader];
+-			    if(preg_match(&quot;|^HTTP/[^\s]*\s(.*?)\s|&quot;,$this-&gt;response_code, $match))
+-			    {
+-				$this-&gt;status= $match[1];
+-                	    }
++				$this-&gt;_redirectaddr = $this-&gt;_expandlinks($match[1],$URI);
+ 			}
+-			$this-&gt;headers[] = $result_headers[$currentHeader];
++
++			// have we hit our frame depth and is there frame src to fetch?
++			if(($this-&gt;_framedepth &lt; $this-&gt;maxframes) &amp;&amp; preg_match_all(&quot;'&lt;frame\s+.*src[\s]*=[\'\&quot;]?([^\'\&quot;\&gt;]+)'i&quot;,$results,$match))
++			{
++				$this-&gt;results[] = $results;
++				for($x=0; $x&lt;count($match[1]); $x++)
++					$this-&gt;_frameurls[] = $this-&gt;_expandlinks($match[1][$x],$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host);
++			}
++			// have we already fetched framed content?
++			elseif(is_array($this-&gt;results))
++				$this-&gt;results[] = $results;
++			// no framed content
++			else
++				$this-&gt;results = $results;
++
++			unlink(&quot;$headerfile&quot;);
++
++			return true;
+ 		}
+ 
+-		// check if there is a a redirect meta tag
+-		
+-		if(preg_match(&quot;'&lt;meta[\s]*http-equiv[^&gt;]*?content[\s]*=[\s]*[\&quot;\']?\d+;[\s]+URL[\s]*=[\s]*([^\&quot;\']*?)[\&quot;\']?&gt;'i&quot;,$results,$match))
++	/*======================================================================*\
++		Function:	setcookies()
++		Purpose:	set cookies for a redirection
++	\*======================================================================*/
++
++		function setcookies()
+ 		{
+-			$this-&gt;_redirectaddr = $this-&gt;_expandlinks($match[1],$URI);	
++			for($x=0; $x&lt;count($this-&gt;headers); $x++)
++			{
++			if(preg_match('/^set-cookie:[\s]+([^=]+)=([^;]+)/i', $this-&gt;headers[$x],$match))
++				$this-&gt;cookies[$match[1]] = urldecode($match[2]);
++			}
+ 		}
+ 
+-		// have we hit our frame depth and is there frame src to fetch?
+-		if(($this-&gt;_framedepth &lt; $this-&gt;maxframes) &amp;&amp; preg_match_all(&quot;'&lt;frame\s+.*src[\s]*=[\'\&quot;]?([^\'\&quot;\&gt;]+)'i&quot;,$results,$match))
++
++	/*======================================================================*\
++		Function:	_check_timeout
++		Purpose:	checks whether timeout has occurred
++		Input:		$fp	file pointer
++	\*======================================================================*/
++
++		function _check_timeout($fp)
+ 		{
+-			$this-&gt;results[] = $results;
+-			for($x=0; $x&lt;count($match[1]); $x++)
+-				$this-&gt;_frameurls[] = $this-&gt;_expandlinks($match[1][$x],$URI_PARTS[&quot;scheme&quot;].&quot;://&quot;.$this-&gt;host);
++			if ($this-&gt;read_timeout &gt; 0) {
++				$fp_status = socket_get_status($fp);
++				if ($fp_status[&quot;timed_out&quot;]) {
++					$this-&gt;timed_out = true;
++					return true;
++				}
++			}
++			return false;
+ 		}
+-		// have we already fetched framed content?
+-		elseif(is_array($this-&gt;results))
+-			$this-&gt;results[] = $results;
+-		// no framed content
+-		else
+-			$this-&gt;results = $results;
+ 
+-		unlink(&quot;/tmp/$headerfile&quot;);
+-		
+-		return true;
+-	}
++	/*======================================================================*\
++		Function:	_connect
++		Purpose:	make a socket connection
++		Input:		$fp	file pointer
++	\*======================================================================*/
+ 
+-/*======================================================================*\
+-	Function:	setcookies()
+-	Purpose:	set cookies for a redirection
+-\*======================================================================*/
+-	
+-	function setcookies()
+-	{
+-		for($x=0; $x&lt;count($this-&gt;headers); $x++)
++		function _connect(&amp;$fp)
+ 		{
+-		if(preg_match(&quot;/^set-cookie:[\s]+([^=]+)=([^;]+)/i&quot;, $this-&gt;headers[$x],$match))
+-			$this-&gt;cookies[$match[1]] = $match[2];
+-		}
+-	}
++			if(!empty($this-&gt;proxy_host) &amp;&amp; !empty($this-&gt;proxy_port))
++				{
++					$this-&gt;_isproxy = true;
+ 
+-	
+-/*======================================================================*\
+-	Function:	_check_timeout
+-	Purpose:	checks whether timeout has occurred
+-	Input:		$fp	file pointer
+-\*======================================================================*/
++					$host = $this-&gt;proxy_host;
++					$port = $this-&gt;proxy_port;
++				}
++			else
++			{
++				$host = $this-&gt;host;
++				$port = $this-&gt;port;
++			}
+ 
+-	function _check_timeout($fp)
+-	{
+-		if ($this-&gt;read_timeout &gt; 0) {
+-			$fp_status = socket_get_status($fp);
+-			if ($fp_status[&quot;timed_out&quot;]) {
+-				$this-&gt;timed_out = true;
++			$this-&gt;status = 0;
++
++			if($fp = fsockopen(
++						$host,
++						$port,
++						$errno,
++						$errstr,
++						$this-&gt;_fp_timeout
++						))
++			{
++				// socket connection succeeded
++
+ 				return true;
+ 			}
+-		}
+-		return false;
+-	}
+-
+-/*======================================================================*\
+-	Function:	_connect
+-	Purpose:	make a socket connection
+-	Input:		$fp	file pointer
+-\*======================================================================*/
+-	
+-	function _connect(&amp;$fp)
+-	{
+-		if(!empty($this-&gt;proxy_host) &amp;&amp; !empty($this-&gt;proxy_port))
++			else
+ 			{
+-				$this-&gt;_isproxy = true;
+-				$host = $this-&gt;proxy_host;
+-				$port = $this-&gt;proxy_port;
++				// socket connection failed
++				$this-&gt;status = $errno;
++				switch($errno)
++				{
++					case -3:
++						$this-&gt;error=&quot;socket creation failed (-3)&quot;;
++					case -4:
++						$this-&gt;error=&quot;dns lookup failure (-4)&quot;;
++					case -5:
++						$this-&gt;error=&quot;connection refused or timed out (-5)&quot;;
++					default:
++						$this-&gt;error=&quot;connection failed (&quot;.$errno.&quot;)&quot;;
++				}
++				return false;
+ 			}
+-		else
+-		{
+-			$host = $this-&gt;host;
+-			$port = $this-&gt;port;
+ 		}
+-	
+-		$this-&gt;status = 0;
+-		
+-		if($fp = fsockopen(
+-					$host,
+-					$port,
+-					$errno,
+-					$errstr,
+-					$this-&gt;_fp_timeout
+-					))
+-		{
+-			// socket connection succeeded
++	/*======================================================================*\
++		Function:	_disconnect
++		Purpose:	disconnect a socket connection
++		Input:		$fp	file pointer
++	\*======================================================================*/
+ 
+-			return true;
+-		}
+-		else
++		function _disconnect($fp)
+ 		{
+-			// socket connection failed
+-			$this-&gt;status = $errno;
+-			switch($errno)
+-			{
+-				case -3:
+-					$this-&gt;error=&quot;socket creation failed (-3)&quot;;
+-				case -4:
+-					$this-&gt;error=&quot;dns lookup failure (-4)&quot;;
+-				case -5:
+-					$this-&gt;error=&quot;connection refused or timed out (-5)&quot;;
+-				default:
+-					$this-&gt;error=&quot;connection failed (&quot;.$errno.&quot;)&quot;;
+-			}
+-			return false;
++			return(fclose($fp));
+ 		}
+-	}
+-/*======================================================================*\
+-	Function:	_disconnect
+-	Purpose:	disconnect a socket connection
+-	Input:		$fp	file pointer
+-\*======================================================================*/
+-	
+-	function _disconnect($fp)
+-	{
+-		return(fclose($fp));
+-	}
+ 
+-	
+-/*======================================================================*\
+-	Function:	_prepare_post_body
+-	Purpose:	Prepare post body according to encoding type
+-	Input:		$formvars  - form variables
+-				$formfiles - form upload files
+-	Output:		post body
+-\*======================================================================*/
+-	
+-	function _prepare_post_body($formvars, $formfiles)
+-	{
+-		settype($formvars, &quot;array&quot;);
+-		settype($formfiles, &quot;array&quot;);
+ 
+-		if (count($formvars) == 0 &amp;&amp; count($formfiles) == 0)
+-			return;
+-		
+-		switch ($this-&gt;_submit_type) {
+-			case &quot;application/x-www-form-urlencoded&quot;:
+-				reset($formvars);
+-				while(list($key,$val) = each($formvars)) {
+-					if (is_array($val) || is_object($val)) {
+-						while (list($cur_key, $cur_val) = each($val)) {
+-							$postdata .= urlencode($key).&quot;[]=&quot;.urlencode($cur_val).&quot;&amp;&quot;;
+-						}
+-					} else
+-						$postdata .= urlencode($key).&quot;=&quot;.urlencode($val).&quot;&amp;&quot;;
+-				}
+-				break;
++	/*======================================================================*\
++		Function:	_prepare_post_body
++		Purpose:	Prepare post body according to encoding type
++		Input:		$formvars  - form variables
++					$formfiles - form upload files
++		Output:		post body
++	\*======================================================================*/
+ 
+-			case &quot;multipart/form-data&quot;:
+-				$this-&gt;_mime_boundary = &quot;Snoopy&quot;.md5(uniqid(microtime()));
+-				
+-				reset($formvars);
+-				while(list($key,$val) = each($formvars)) {
+-					if (is_array($val) || is_object($val)) {
+-						while (list($cur_key, $cur_val) = each($val)) {
++		function _prepare_post_body($formvars, $formfiles)
++		{
++			settype($formvars, &quot;array&quot;);
++			settype($formfiles, &quot;array&quot;);
++			$postdata = '';
++
++			if (count($formvars) == 0 &amp;&amp; count($formfiles) == 0)
++				return;
++
++			switch ($this-&gt;_submit_type) {
++				case &quot;application/x-www-form-urlencoded&quot;:
++					reset($formvars);
++					while(list($key,$val) = each($formvars)) {
++						if (is_array($val) || is_object($val)) {
++							while (list($cur_key, $cur_val) = each($val)) {
++								$postdata .= urlencode($key).&quot;[]=&quot;.urlencode($cur_val).&quot;&amp;&quot;;
++							}
++						} else
++							$postdata .= urlencode($key).&quot;=&quot;.urlencode($val).&quot;&amp;&quot;;
++					}
++					break;
++
++				case &quot;multipart/form-data&quot;:
++					$this-&gt;_mime_boundary = &quot;Snoopy&quot;.md5(uniqid(microtime()));
++
++					reset($formvars);
++					while(list($key,$val) = each($formvars)) {
++						if (is_array($val) || is_object($val)) {
++							while (list($cur_key, $cur_val) = each($val)) {
++								$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;\r\n&quot;;
++								$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$key\[\]\&quot;\r\n\r\n&quot;;
++								$postdata .= &quot;$cur_val\r\n&quot;;
++							}
++						} else {
+ 							$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;\r\n&quot;;
+-							$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$key\[\]\&quot;\r\n\r\n&quot;;
+-							$postdata .= &quot;$cur_val\r\n&quot;;
++							$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$key\&quot;\r\n\r\n&quot;;
++							$postdata .= &quot;$val\r\n&quot;;
+ 						}
+-					} else {
+-						$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;\r\n&quot;;
+-						$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$key\&quot;\r\n\r\n&quot;;
+-						$postdata .= &quot;$val\r\n&quot;;
+ 					}
+-				}
+-				
+-				reset($formfiles);
+-				while (list($field_name, $file_names) = each($formfiles)) {
+-					settype($file_names, &quot;array&quot;);
+-					while (list(, $file_name) = each($file_names)) {
+-						if (!is_readable($file_name)) continue;
+ 
+-						$fp = fopen($file_name, &quot;r&quot;);
+-						$file_content = fread($fp, filesize($file_name));
+-						fclose($fp);
+-						$base_name = basename($file_name);
++					reset($formfiles);
++					while (list($field_name, $file_names) = each($formfiles)) {
++						settype($file_names, &quot;array&quot;);
++						while (list(, $file_name) = each($file_names)) {
++							if (!is_readable($file_name)) continue;
+ 
+-						$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;\r\n&quot;;
+-						$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$field_name\&quot;; filename=\&quot;$base_name\&quot;\r\n\r\n&quot;;
+-						$postdata .= &quot;$file_content\r\n&quot;;
++							$fp = fopen($file_name, &quot;r&quot;);
++							$file_content = fread($fp, filesize($file_name));
++							fclose($fp);
++							$base_name = basename($file_name);
++
++							$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;\r\n&quot;;
++							$postdata .= &quot;Content-Disposition: form-data; name=\&quot;$field_name\&quot;; filename=\&quot;$base_name\&quot;\r\n\r\n&quot;;
++							$postdata .= &quot;$file_content\r\n&quot;;
++						}
+ 					}
+-				}
+-				$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;--\r\n&quot;;
+-				break;
++					$postdata .= &quot;--&quot;.$this-&gt;_mime_boundary.&quot;--\r\n&quot;;
++					break;
++			}
++
++			return $postdata;
+ 		}
+-
+-		return $postdata;
+ 	}
+ }
+-endif;
+-
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000066.html">[SteamPress-SVN-Tracker] r110 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[SteamPress-SVN-Tracker] r112 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#67">[ date ]</a>
+              <a href="thread.html#67">[ thread ]</a>
+              <a href="subject.html#67">[ subject ]</a>
+              <a href="author.html#67">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

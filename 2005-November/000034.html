@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r78 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r78%20-%20trunk&In-Reply-To=%3C200511082247.jA8MlTRC022899%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000033.html">
+   <LINK REL="Next"  HREF="000035.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r78 - trunk</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r78%20-%20trunk&In-Reply-To=%3C200511082247.jA8MlTRC022899%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r78 - trunk">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov  8 23:47:29 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000033.html">[steampress-svn-tracker] r77 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000035.html">[steampress-svn-tracker] r79 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-08 23:47:29 +0100 (Tue, 08 Nov 2005)
+New Revision: 78
+
+Modified:
+   trunk/wp-settings.php
+Log:
+Cleaned more 'if: endif;' crap. clean brackets. Add brackets.
+
+Modified: trunk/wp-settings.php
+===================================================================
+--- trunk/wp-settings.php	2005-11-08 22:43:17 UTC (rev 77)
++++ trunk/wp-settings.php	2005-11-08 22:47:29 UTC (rev 78)
+@@ -1,22 +1,31 @@
+ &lt;?php
+ // Turn register globals off
+-function unregister_GLOBALS() {
++function unregister_GLOBALS()
++{
+ 	if ( !ini_get('register_globals') )
++	{
+ 		return;
++	}
+ 
+ 	if ( isset($_REQUEST['GLOBALS']) )
++	{
+ 		die('GLOBALS overwrite attempt detected');
++	}
+ 
+ 	// Variables that shouldn't be unset
+ 	$noUnset = array('GLOBALS', '_GET', '_POST', '_COOKIE', '_REQUEST', '_SERVER', '_ENV', '_FILES', 'table_prefix');
+-	
++
+ 	$input = array_merge($_GET, $_POST, $_COOKIE, $_SERVER, $_ENV, $_FILES, isset($_SESSION) &amp;&amp; is_array($_SESSION) ? $_SESSION : array());
+-	foreach ( $input as $k =&gt; $v ) 
++	foreach ( $input as $k =&gt; $v )
++	{
+ 		if ( !in_array($k, $noUnset) &amp;&amp; isset($GLOBALS[$k]) )
++		{
+ 			unset($GLOBALS[$k]);
++		}
++	}
+ }
+ 
+-unregister_GLOBALS(); 
++unregister_GLOBALS();
+ 
+ $HTTP_HOST = getenv('HTTP_HOST');  /* domain name */
+ $REMOTE_ADDR = getenv('REMOTE_ADDR'); /* visitor's IP */
+@@ -24,22 +33,29 @@
+ unset( $wp_filter, $cache_userdata, $cache_lastcommentmodified, $cache_lastpostdate, $cache_settings, $category_cache, $cache_categories );
+ 
+ // Fix for IIS, which doesn't set REQUEST_URI
+-if (! isset($_SERVER['REQUEST_URI'])) {
++if (! isset($_SERVER['REQUEST_URI']))
++{
+ 	$_SERVER['REQUEST_URI'] = $_SERVER['SCRIPT_NAME'];
+-	
++
+ 	// Append the query string if it exists and isn't null
+-	if (isset($_SERVER['QUERY_STRING']) &amp;&amp; !empty($_SERVER['QUERY_STRING'])) {
++	if (isset($_SERVER['QUERY_STRING']) &amp;&amp; !empty($_SERVER['QUERY_STRING']))
++	{
+ 		$_SERVER['REQUEST_URI'] .= '?' . $_SERVER['QUERY_STRING'];
+ 	}
+ }
+ 
+ if ( !(phpversion() &gt;= '4.1') )
++{
+ 	die( 'Your server is running PHP version ' . phpversion() . ' but WordPress requires at least 4.1' );
++}
+ 
+ if ( !extension_loaded('mysql') )
++{
+ 	die( 'Your PHP installation appears to be missing the MySQL which is required for WordPress.' );
++}
+ 
+-function timer_start() {
++function timer_start()
++{
+ 	global $timestart;
+ 	$mtime = explode(' ', microtime() );
+ 	$mtime = $mtime[1] + $mtime[0];
+@@ -53,7 +69,9 @@
+ 
+ // For an advanced caching plugin to use, static because you would only want one
+ if ( defined('WP_CACHE') )
++{
+ 	require (ABSPATH . 'wp-content/advanced-cache.php');
++}
+ 
+ define('WPINC', 'wp-includes');
+ require_once (ABSPATH . WPINC . '/wp-db.php');
+@@ -70,7 +88,9 @@
+ $wpdb-&gt;postmeta         = $table_prefix . 'postmeta';
+ 
+ if ( defined('CUSTOM_USER_TABLE') )
++{
+ 	$wpdb-&gt;users = CUSTOM_USER_TABLE;
++}
+ 
+ // We're going to need to keep this around for a few months even though we're not using it internally
+ 
+@@ -89,11 +109,16 @@
+ require_once (ABSPATH . WPINC . '/wp-l10n.php');
+ 
+ $wpdb-&gt;hide_errors();
+-if ( !update_user_cache() &amp;&amp; (!strstr($_SERVER['PHP_SELF'], 'install.php') &amp;&amp; !defined('WP_INSTALLING')) ) {
++if ( !update_user_cache() &amp;&amp; (!strstr($_SERVER['PHP_SELF'], 'install.php') &amp;&amp; !defined('WP_INSTALLING')) )
++{
+ 	if ( strstr($_SERVER['PHP_SELF'], 'wp-admin') )
++	{
+ 		$link = 'install.php';
++	}
+ 	else
++	{
+ 		$link = 'wp-admin/install.php';
++	}
+ 	die(sprintf(__(&quot;It doesn't look like you've installed WP yet. Try running &lt;a href='%s'&gt;install.php&lt;/a&gt;.&quot;), $link));
+ }
+ $wpdb-&gt;show_errors();
+@@ -112,28 +137,37 @@
+ require (ABSPATH . WPINC . '/kses.php');
+ require (ABSPATH . WPINC . '/version.php');
+ 
+-if (!strstr($_SERVER['PHP_SELF'], 'install.php') &amp;&amp; !strstr($_SERVER['PHP_SELF'], 'wp-admin/import')) :
+-    // Used to guarantee unique hash cookies
+-    $cookiehash = md5(get_settings('siteurl')); // Remove in 1.4
+-	define('COOKIEHASH', $cookiehash); 
+-endif;
++if (!strstr($_SERVER['PHP_SELF'], 'install.php') &amp;&amp; !strstr($_SERVER['PHP_SELF'], 'wp-admin/import'))
++{
++	// Used to guarantee unique hash cookies
++	$cookiehash = md5(get_settings('siteurl')); // Remove in 1.4
++	define('COOKIEHASH', $cookiehash);
++}
+ 
+ require (ABSPATH . WPINC . '/vars.php');
+ 
+ do_action('core_files_loaded');
+ 
+ // Check for hacks file if the option is enabled
+-if (get_settings('hack_file')) {
++if (get_settings('hack_file'))
++{
+ 	if (file_exists(ABSPATH . '/my-hacks.php'))
++	{
+ 		require(ABSPATH . '/my-hacks.php');
++	}
+ }
+ 
+-if ( get_settings('active_plugins') ) {
++if ( get_settings('active_plugins') )
++{
+ 	$current_plugins = get_settings('active_plugins');
+-	if ( is_array($current_plugins) ) {
+-		foreach ($current_plugins as $plugin) {
++	if ( is_array($current_plugins) )
++	{
++		foreach ($current_plugins as $plugin)
++		{
+ 			if ('' != $plugin &amp;&amp; file_exists(ABSPATH . 'wp-content/plugins/' . $plugin))
++			{
+ 				include_once(ABSPATH . 'wp-content/plugins/' . $plugin);
++			}
+ 		}
+ 	}
+ }
+@@ -141,7 +175,9 @@
+ require (ABSPATH . WPINC . '/pluggable-functions.php');
+ 
+ if ( defined('WP_CACHE') &amp;&amp; function_exists('wp_cache_postload') )
++{
+ 	wp_cache_postload();
++}
+ 
+ do_action('plugins_loaded');
+ 
+@@ -153,14 +189,16 @@
+ // Pull in locale data after loading text domain.
+ require_once(ABSPATH . WPINC . '/locale.php');
+ 
+-if ( !get_magic_quotes_gpc() ) {
++if ( !get_magic_quotes_gpc() )
++{
+ 	$_GET    = add_magic_quotes($_GET   );
+ 	$_POST   = add_magic_quotes($_POST  );
+ 	$_COOKIE = add_magic_quotes($_COOKIE);
+ 	$_SERVER = add_magic_quotes($_SERVER);
+ }
+ 
+-function shutdown_action_hook() {
++function shutdown_action_hook()
++{
+ 	do_action('shutdown');
+ }
+ register_shutdown_function('shutdown_action_hook');
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000033.html">[steampress-svn-tracker] r77 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000035.html">[steampress-svn-tracker] r79 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

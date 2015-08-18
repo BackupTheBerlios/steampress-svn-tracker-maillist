@@ -1,0 +1,2809 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [SteamPress-SVN-Tracker] r114 - in trunk/wp-content: plugins themes/default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r114%20-%20in%20trunk/wp-content%3A%20plugins%20themes/default&In-Reply-To=%3C200511221548.jAMFmWm9015624%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000069.html">
+   <LINK REL="Next"  HREF="000071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[SteamPress-SVN-Tracker] r114 - in trunk/wp-content: plugins themes/default</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r114%20-%20in%20trunk/wp-content%3A%20plugins%20themes/default&In-Reply-To=%3C200511221548.jAMFmWm9015624%40sheep.berlios.de%3E"
+       TITLE="[SteamPress-SVN-Tracker] r114 - in trunk/wp-content: plugins themes/default">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov 22 16:48:32 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000069.html">[SteamPress-SVN-Tracker] r113 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000071.html">[SteamPress-SVN-Tracker] r115 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-22 16:48:31 +0100 (Tue, 22 Nov 2005)
+New Revision: 114
+
+Removed:
+   trunk/wp-content/plugins/hello.php
+   trunk/wp-content/plugins/markdown.php
+   trunk/wp-content/plugins/textile1.php
+Modified:
+   trunk/wp-content/themes/default/404.php
+   trunk/wp-content/themes/default/archive.php
+   trunk/wp-content/themes/default/archives.php
+   trunk/wp-content/themes/default/comments-popup.php
+   trunk/wp-content/themes/default/comments.php
+   trunk/wp-content/themes/default/footer.php
+   trunk/wp-content/themes/default/header.php
+   trunk/wp-content/themes/default/index.php
+   trunk/wp-content/themes/default/links.php
+   trunk/wp-content/themes/default/page.php
+   trunk/wp-content/themes/default/search.php
+   trunk/wp-content/themes/default/searchform.php
+   trunk/wp-content/themes/default/sidebar.php
+   trunk/wp-content/themes/default/single.php
+   trunk/wp-content/themes/default/style.css
+Log:
+- Added copyright notices and permission to copy statements at the beginning of every file of source code.
+
+
+
+Deleted: trunk/wp-content/plugins/hello.php
+===================================================================
+--- trunk/wp-content/plugins/hello.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/plugins/hello.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,73 +0,0 @@
+-&lt;?php
+-/*
+-Plugin Name: Hello Dolly
+-Plugin URI: <A HREF="http://wordpress.org/#">http://wordpress.org/#</A>
+-Description: This is not just a plugin, it symbolizes the hope and enthusiasm of an entire generation summed up in two words sung most famously by Louis Armstrong. Hello, Dolly. This is, by the way, the world's first official WordPress plugin. When enabled you will randomly see a lyric from &lt;cite&gt;Hello, Dolly&lt;/cite&gt; in the upper right of your admin screen on every page.
+-Author: Matt Mullenweg
+-Version: 1.0
+-Author URI: <A HREF="http://photomatt.net/">http://photomatt.net/</A>
+-*/ 
+-
+-// These are the lyrics to Hello Dolly
+-$lyrics = &quot;Hello, Dolly
+-Well, hello, Dolly
+-It's so nice to have you back where you belong
+-You're lookin' swell, Dolly
+-I can tell, Dolly
+-You're still glowin', you're still crowin'
+-You're still goin' strong
+-We feel the room swayin'
+-While the band's playin'
+-One of your old favourite songs from way back when
+-So, take her wrap, fellas
+-Find her an empty lap, fellas
+-Dolly'll never go away again
+-Hello, Dolly
+-Well, hello, Dolly
+-It's so nice to have you back where you belong
+-You're lookin' swell, Dolly
+-I can tell, Dolly
+-You're still glowin', you're still crowin'
+-You're still goin' strong
+-We feel the room swayin'
+-While the band's playin'
+-One of your old favourite songs from way back when
+-Golly, gee, fellas
+-Find her a vacant knee, fellas
+-Dolly'll never go away
+-Dolly'll never go away
+-Dolly'll never go away again&quot;;
+-
+-// Here we split it into lines
+-$lyrics = explode(&quot;\n&quot;, $lyrics);
+-// And then randomly choose a line
+-$chosen = wptexturize( $lyrics[ mt_rand(0, count($lyrics) ) ] );
+-
+-// This just echoes the chosen line, we'll position it later
+-function hello_dolly() {
+-	global $chosen;
+-	echo &quot;&lt;p id='dolly'&gt;$chosen&lt;/p&gt;&quot;;
+-}
+-
+-// Now we set that function up to execute when the admin_footer action is called
+-add_action('admin_footer', 'hello_dolly');
+-
+-// We need some CSS to position the paragraph
+-function dolly_css() {
+-	echo &quot;
+-	&lt;style type='text/css'&gt;
+-	#dolly {
+-		position: absolute;
+-		top: 5px;
+-margin: 0; padding: 0;
+-		right: 3em;
+-		font-size: 20px;
+-		color: #666;
+-	}
+-	&lt;/style&gt;
+-	&quot;;
+-}
+-
+-add_action('admin_head', 'dolly_css');
+-
+-?&gt;
+\ No newline at end of file
+
+Deleted: trunk/wp-content/plugins/markdown.php
+===================================================================
+--- trunk/wp-content/plugins/markdown.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/plugins/markdown.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,1283 +0,0 @@
+-&lt;?php
+-
+-#
+-# Markdown  -  A text-to-HTML conversion tool for web writers
+-#
+-# Copyright (c) 2004 John Gruber  
+-# &lt;<A HREF="http://daringfireball.net/projects/markdown/">http://daringfireball.net/projects/markdown/</A>&gt;
+-#
+-# Copyright (c) 2004 Michel Fortin - PHP Port  
+-# &lt;<A HREF="http://www.michelf.com/projects/php-markdown/">http://www.michelf.com/projects/php-markdown/</A>&gt;
+-#
+-
+-
+-global	$MarkdownPHPVersion, $MarkdownSyntaxVersion,
+-		$md_empty_element_suffix, $md_tab_width,
+-		$md_nested_brackets_depth, $md_nested_brackets, 
+-		$md_escape_table, $md_backslash_escape_table, 
+-		$md_list_level;
+-
+-$MarkdownPHPVersion    = '1.0.1'; # Fri 17 Dec 2004
+-$MarkdownSyntaxVersion = '1.0.1'; # Sun 12 Dec 2004
+-
+-
+-#
+-# Global default settings:
+-#
+-$md_empty_element_suffix = &quot; /&gt;&quot;;     # Change to &quot;&gt;&quot; for HTML output
+-$md_tab_width = 4;
+-
+-
+-# -- WordPress Plugin Interface -----------------------------------------------
+-/*
+-Plugin Name: Markdown
+-Plugin URI: <A HREF="http://www.michelf.com/projects/php-markdown/">http://www.michelf.com/projects/php-markdown/</A>
+-Description: &lt;a href=&quot;<A HREF="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</A>&quot;&gt;Markdown syntax&lt;/a&gt; allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by &lt;a href=&quot;<A HREF="http://daringfireball.net/">http://daringfireball.net/</A>&quot;&gt;John Gruber&lt;/a&gt;. &lt;a href=&quot;<A HREF="http://www.michelf.com/projects/php-markdown/">http://www.michelf.com/projects/php-markdown/</A>&quot;&gt;More...&lt;/a&gt;
+-Version: 1.0.1
+-Author: Michel Fortin
+-Author URI: <A HREF="http://www.michelf.com/">http://www.michelf.com/</A>
+-*/
+-if (isset($wp_version)) {
+-	# Remove default WordPress auto-paragraph filter.
+-	remove_filter('the_content', 'wpautop');
+-	remove_filter('the_excerpt', 'wpautop');
+-	remove_filter('comment_text', 'wpautop');
+-	# Add Markdown filter with priority 6 (same as Textile).
+-	add_filter('the_content', 'Markdown', 6);
+-	add_filter('the_excerpt', 'Markdown', 6);
+-	add_filter('the_excerpt_rss', 'Markdown', 6);
+-	add_filter('comment_text', 'Markdown', 6);
+-}
+-
+-
+-# -- bBlog Plugin Info --------------------------------------------------------
+-function identify_modifier_markdown() {
+-	global $MarkdownPHPVersion;
+-	return array(
+-		'name'			=&gt; 'markdown',
+-		'type'			=&gt; 'modifier',
+-		'nicename'		=&gt; 'Markdown',
+-		'description'	=&gt; 'A text-to-HTML conversion tool for web writers',
+-		'authors'		=&gt; 'Michel Fortin and John Gruber',
+-		'licence'		=&gt; 'GPL',
+-		'version'		=&gt; $MarkdownPHPVersion,
+-		'help'			=&gt; '&lt;a href=&quot;<A HREF="http://daringfireball.net/projects/markdown/syntax">http://daringfireball.net/projects/markdown/syntax</A>&quot;&gt;Markdown syntax&lt;/a&gt; allows you to write using an easy-to-read, easy-to-write plain text format. Based on the original Perl version by &lt;a href=&quot;<A HREF="http://daringfireball.net/">http://daringfireball.net/</A>&quot;&gt;John Gruber&lt;/a&gt;. &lt;a href=&quot;<A HREF="http://www.michelf.com/projects/php-markdown/">http://www.michelf.com/projects/php-markdown/</A>&quot;&gt;More...&lt;/a&gt;'
+-	);
+-}
+-
+-# -- Smarty Modifier Interface ------------------------------------------------
+-function smarty_modifier_markdown($text) {
+-	return Markdown($text);
+-}
+-
+-# -- Textile Compatibility Mode -----------------------------------------------
+-# Rename this file to &quot;classTextile.php&quot; and it can replace Textile anywhere.
+-if (strcasecmp(substr(__FILE__, -16), &quot;classTextile.php&quot;) == 0) {
+-	# Try to include PHP SmartyPants. Should be in the same directory.
+-	@include_once 'smartypants.php';
+-	# Fake Textile class. It calls Markdown instead.
+-	class Textile {
+-		function TextileThis($text, $lite='', $encode='', $noimage='', $strict='') {
+-			if ($lite == '' &amp;&amp; $encode == '')   $text = Markdown($text);
+-			if (function_exists('SmartyPants')) $text = SmartyPants($text);
+-			return $text;
+-		}
+-	}
+-}
+-
+-
+-
+-#
+-# Globals:
+-#
+-
+-# Regex to match balanced [brackets].
+-# Needed to insert a maximum bracked depth while converting to PHP.
+-$md_nested_brackets_depth = 6;
+-$md_nested_brackets = 
+-	str_repeat('(?&gt;[^\[\]]+|\[', $md_nested_brackets_depth).
+-	str_repeat('\])*', $md_nested_brackets_depth);
+-
+-# Table of hash values for escaped characters:
+-$md_escape_table = array(
+-	&quot;\\&quot; =&gt; md5(&quot;\\&quot;),
+-	&quot;`&quot; =&gt; md5(&quot;`&quot;),
+-	&quot;*&quot; =&gt; md5(&quot;*&quot;),
+-	&quot;_&quot; =&gt; md5(&quot;_&quot;),
+-	&quot;{&quot; =&gt; md5(&quot;{&quot;),
+-	&quot;}&quot; =&gt; md5(&quot;}&quot;),
+-	&quot;[&quot; =&gt; md5(&quot;[&quot;),
+-	&quot;]&quot; =&gt; md5(&quot;]&quot;),
+-	&quot;(&quot; =&gt; md5(&quot;(&quot;),
+-	&quot;)&quot; =&gt; md5(&quot;)&quot;),
+-	&quot;&gt;&quot; =&gt; md5(&quot;&gt;&quot;),
+-	&quot;#&quot; =&gt; md5(&quot;#&quot;),
+-	&quot;+&quot; =&gt; md5(&quot;+&quot;),
+-	&quot;-&quot; =&gt; md5(&quot;-&quot;),
+-	&quot;.&quot; =&gt; md5(&quot;.&quot;),
+-	&quot;!&quot; =&gt; md5(&quot;!&quot;)
+-);
+-# Create an identical table but for escaped characters.
+-$md_backslash_escape_table;
+-foreach ($md_escape_table as $key =&gt; $char)
+-	$md_backslash_escape_table[&quot;\\$key&quot;] = $char;
+-
+-
+-function Markdown($text) {
+-#
+-# Main function. The order in which other subs are called here is
+-# essential. Link and image substitutions need to happen before
+-# _EscapeSpecialChars(), so that any *'s or _'s in the &lt;a&gt;
+-# and &lt;img&gt; tags get encoded.
+-#
+-	# Clear the global hashes. If we don't clear these, you get conflicts
+-	# from other articles when generating a page which contains more than
+-	# one article (e.g. an index page that shows the N most recent
+-	# articles):
+-	global $md_urls, $md_titles, $md_html_blocks;
+-	$md_urls = array();
+-	$md_titles = array();
+-	$md_html_blocks = array();
+-
+-	# Standardize line endings:
+-	#   DOS to Unix and Mac to Unix
+-	$text = str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;), &quot;\n&quot;, $text);
+-
+-	# Make sure $text ends with a couple of newlines:
+-	$text .= &quot;\n\n&quot;;
+-
+-	# Convert all tabs to spaces.
+-	$text = _Detab($text);
+-
+-	# Strip any lines consisting only of spaces and tabs.
+-	# This makes subsequent regexen easier to write, because we can
+-	# match consecutive blank lines with /\n+/ instead of something
+-	# contorted like /[ \t]*\n+/ .
+-	$text = preg_replace('/^[ \t]+$/m', '', $text);
+-
+-	# Turn block-level HTML blocks into hash entries
+-	$text = _HashHTMLBlocks($text);
+-
+-	# Strip link definitions, store in hashes.
+-	$text = _StripLinkDefinitions($text);
+-
+-	$text = _RunBlockGamut($text);
+-
+-	$text = _UnescapeSpecialChars($text);
+-
+-	return $text . &quot;\n&quot;;
+-}
+-
+-
+-function _StripLinkDefinitions($text) {
+-#
+-# Strips link definitions from text, stores the URLs and titles in
+-# hash references.
+-#
+-	global $md_tab_width;
+-	$less_than_tab = $md_tab_width - 1;
+-
+-	# Link defs are in the form: ^[id]: url &quot;optional title&quot;
+-	$text = preg_replace_callback('{
+-						^[ ]{0,'.$less_than_tab.'}\[(.+)\]:	# id = $1
+-						  [ \t]*
+-						  \n?				# maybe *one* newline
+-						  [ \t]*
+-						&lt;?(\S+?)&gt;?			# url = $2
+-						  [ \t]*
+-						  \n?				# maybe one newline
+-						  [ \t]*
+-						(?:
+-							(?&lt;=\s)			# lookbehind for whitespace
+-							[&quot;(]
+-							(.+?)			# title = $3
+-							[&quot;)]
+-							[ \t]*
+-						)?	# title is optional
+-						(?:\n+|\Z)
+-		}xm',
+-		'_StripLinkDefinitions_callback',
+-		$text);
+-	return $text;
+-}
+-function _StripLinkDefinitions_callback($matches) {
+-	global $md_urls, $md_titles;
+-	$link_id = strtolower($matches[1]);
+-	$md_urls[$link_id] = _EncodeAmpsAndAngles($matches[2]);
+-	if (isset($matches[3]))
+-		$md_titles[$link_id] = str_replace('&quot;', '&quot;', $matches[3]);
+-	return ''; # String that will replace the block
+-}
+-
+-
+-function _HashHTMLBlocks($text) {
+-	global $md_tab_width;
+-	$less_than_tab = $md_tab_width - 1;
+-
+-	# Hashify HTML blocks:
+-	# We only want to do this for block-level HTML tags, such as headers,
+-	# lists, and tables. That's because we still want to wrap &lt;p&gt;s around
+-	# &quot;paragraphs&quot; that are wrapped in non-block-level tags, such as anchors,
+-	# phrase emphasis, and spans. The list of tags we're looking for is
+-	# hard-coded:
+-	$block_tags_a = 'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|'.
+-					'script|noscript|form|fieldset|iframe|math|ins|del';
+-	$block_tags_b = 'p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|'.
+-					'script|noscript|form|fieldset|iframe|math';
+-
+-	# First, look for nested blocks, e.g.:
+-	# 	&lt;div&gt;
+-	# 		&lt;div&gt;
+-	# 		tags for inner block must be indented.
+-	# 		&lt;/div&gt;
+-	# 	&lt;/div&gt;
+-	#
+-	# The outermost tags must start at the left margin for this to match, and
+-	# the inner nested divs must be indented.
+-	# We need to do this before the next, more liberal match, because the next
+-	# match will start at the first `&lt;div&gt;` and stop at the first `&lt;/div&gt;`.
+-	$text = preg_replace_callback(&quot;{
+-				(						# save in $1
+-					^					# start of line  (with /m)
+-					&lt;($block_tags_a)	# start tag = $2
+-					\\b					# word break
+-					(.*\\n)*?			# any number of lines, minimally matching
+-					&lt;/\\2&gt;				# the matching end tag
+-					[ \\t]*				# trailing spaces/tabs
+-					(?=\\n+|\\Z)	# followed by a newline or end of document
+-				)
+-		}xm&quot;,
+-		'_HashHTMLBlocks_callback',
+-		$text);
+-
+-	#
+-	# Now match more liberally, simply from `\n&lt;tag&gt;` to `&lt;/tag&gt;\n`
+-	#
+-	$text = preg_replace_callback(&quot;{
+-				(						# save in $1
+-					^					# start of line  (with /m)
+-					&lt;($block_tags_b)	# start tag = $2
+-					\\b					# word break
+-					(.*\\n)*?			# any number of lines, minimally matching
+-					.*&lt;/\\2&gt;				# the matching end tag
+-					[ \\t]*				# trailing spaces/tabs
+-					(?=\\n+|\\Z)	# followed by a newline or end of document
+-				)
+-		}xm&quot;,
+-		'_HashHTMLBlocks_callback',
+-		$text);
+-
+-	# Special case just for &lt;hr /&gt;. It was easier to make a special case than
+-	# to make the other regex more complicated.
+-	$text = preg_replace_callback('{
+-				(?:
+-					(?&lt;=\n\n)		# Starting after a blank line
+-					|				# or
+-					\A\n?			# the beginning of the doc
+-				)
+-				(						# save in $1
+-					[ ]{0,'.$less_than_tab.'}
+-					&lt;(hr)				# start tag = $2
+-					\b					# word break
+-					([^&lt;&gt;])*?			# 
+-					/?&gt;					# the matching end tag
+-					[ \t]*
+-					(?=\n{2,}|\Z)		# followed by a blank line or end of document
+-				)
+-		}x',
+-		'_HashHTMLBlocks_callback',
+-		$text);
+-
+-	# Special case for standalone HTML comments:
+-	$text = preg_replace_callback('{
+-				(?:
+-					(?&lt;=\n\n)		# Starting after a blank line
+-					|				# or
+-					\A\n?			# the beginning of the doc
+-				)
+-				(						# save in $1
+-					[ ]{0,'.$less_than_tab.'}
+-					(?s:
+-						&lt;!
+-						(--.*?--\s*)+
+-						&gt;
+-					)
+-					[ \t]*
+-					(?=\n{2,}|\Z)		# followed by a blank line or end of document
+-				)
+-			}x',
+-			'_HashHTMLBlocks_callback',
+-			$text);
+-
+-	return $text;
+-}
+-function _HashHTMLBlocks_callback($matches) {
+-	global $md_html_blocks;
+-	$text = $matches[1];
+-	$key = md5($text);
+-	$md_html_blocks[$key] = $text;
+-	return &quot;\n\n$key\n\n&quot;; # String that will replace the block
+-}
+-
+-
+-function _RunBlockGamut($text) {
+-#
+-# These are all the transformations that form block-level
+-# tags like paragraphs, headers, and list items.
+-#
+-	global $md_empty_element_suffix;
+-
+-	$text = _DoHeaders($text);
+-
+-	# Do Horizontal Rules:
+-	$text = preg_replace(
+-		array('{^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$}mx',
+-			  '{^[ ]{0,2}([ ]? -[ ]?){3,}[ \t]*$}mx',
+-			  '{^[ ]{0,2}([ ]? _[ ]?){3,}[ \t]*$}mx'),
+-		&quot;\n&lt;hr$md_empty_element_suffix\n&quot;, 
+-		$text);
+-
+-	$text = _DoLists($text);
+-
+-	$text = _DoCodeBlocks($text);
+-
+-	$text = _DoBlockQuotes($text);
+-
+-	# We already ran _HashHTMLBlocks() before, in Markdown(), but that
+-	# was to escape raw HTML in the original Markdown source. This time,
+-	# we're escaping the markup we've just created, so that we don't wrap
+-	# &lt;p&gt; tags around block-level tags.
+-	$text = _HashHTMLBlocks($text);
+-
+-	$text = _FormParagraphs($text);
+-
+-	return $text;
+-}
+-
+-
+-function _RunSpanGamut($text) {
+-#
+-# These are all the transformations that occur *within* block-level
+-# tags like paragraphs, headers, and list items.
+-#
+-	global $md_empty_element_suffix;
+-
+-	$text = _DoCodeSpans($text);
+-
+-	$text = _EscapeSpecialChars($text);
+-
+-	# Process anchor and image tags. Images must come first,
+-	# because ![foo][f] looks like an anchor.
+-	$text = _DoImages($text);
+-	$text = _DoAnchors($text);
+-
+-	# Make links out of things like `&lt;<A HREF="http://example.com/">http://example.com/</A>&gt;`
+-	# Must come after _DoAnchors(), because you can use &lt; and &gt;
+-	# delimiters in inline links like [this](&lt;url&gt;).
+-	$text = _DoAutoLinks($text);
+-
+-	# Fix unencoded ampersands and &lt;'s:
+-	$text = _EncodeAmpsAndAngles($text);
+-
+-	$text = _DoItalicsAndBold($text);
+-
+-	# Do hard breaks:
+-	$text = preg_replace('/ {2,}\n/', &quot;&lt;br$md_empty_element_suffix\n&quot;, $text);
+-
+-	return $text;
+-}
+-
+-
+-function _EscapeSpecialChars($text) {
+-	global $md_escape_table;
+-	$tokens = _TokenizeHTML($text);
+-
+-	$text = '';   # rebuild $text from the tokens
+-#	$in_pre = 0;  # Keep track of when we're inside &lt;pre&gt; or &lt;code&gt; tags.
+-#	$tags_to_skip = &quot;!&lt;(/?)(?:pre|code|kbd|script|math)[\s&gt;]!&quot;;
+-
+-	foreach ($tokens as $cur_token) {
+-		if ($cur_token[0] == 'tag') {
+-			# Within tags, encode * and _ so they don't conflict
+-			# with their use in Markdown for italics and strong.
+-			# We're replacing each such character with its
+-			# corresponding MD5 checksum value; this is likely
+-			# overkill, but it should prevent us from colliding
+-			# with the escape values by accident.
+-			$cur_token[1] = str_replace(array('*', '_'),
+-				array($md_escape_table['*'], $md_escape_table['_']),
+-				$cur_token[1]);
+-			$text .= $cur_token[1];
+-		} else {
+-			$t = $cur_token[1];
+-			$t = _EncodeBackslashEscapes($t);
+-			$text .= $t;
+-		}
+-	}
+-	return $text;
+-}
+-
+-
+-function _DoAnchors($text) {
+-#
+-# Turn Markdown link shortcuts into XHTML &lt;a&gt; tags.
+-#
+-	global $md_nested_brackets;
+-	#
+-	# First, handle reference-style links: [link text] [id]
+-	#
+-	$text = preg_replace_callback(&quot;{
+-		(					# wrap whole match in $1
+-		  \\[
+-			($md_nested_brackets)	# link text = $2
+-		  \\]
+-
+-		  [ ]?				# one optional space
+-		  (?:\\n[ ]*)?		# one optional newline followed by spaces
+-
+-		  \\[
+-			(.*?)		# id = $3
+-		  \\]
+-		)
+-		}xs&quot;,
+-		'_DoAnchors_reference_callback', $text);
+-
+-	#
+-	# Next, inline-style links: [link text](url &quot;optional title&quot;)
+-	#
+-	$text = preg_replace_callback(&quot;{
+-		(				# wrap whole match in $1
+-		  \\[
+-			($md_nested_brackets)	# link text = $2
+-		  \\]
+-		  \\(			# literal paren
+-			[ \\t]*
+-			&lt;?(.*?)&gt;?	# href = $3
+-			[ \\t]*
+-			(			# $4
+-			  (['\&quot;])	# quote char = $5
+-			  (.*?)		# Title = $6
+-			  \\5		# matching quote
+-			)?			# title is optional
+-		  \\)
+-		)
+-		}xs&quot;,
+-		'_DoAnchors_inline_callback', $text);
+-
+-	return $text;
+-}
+-function _DoAnchors_reference_callback($matches) {
+-	global $md_urls, $md_titles, $md_escape_table;
+-	$whole_match = $matches[1];
+-	$link_text   = $matches[2];
+-	$link_id     = strtolower($matches[3]);
+-
+-	if ($link_id == &quot;&quot;) {
+-		$link_id = strtolower($link_text); # for shortcut links like [this][].
+-	}
+-
+-	if (isset($md_urls[$link_id])) {
+-		$url = $md_urls[$link_id];
+-		# We've got to encode these to avoid conflicting with italics/bold.
+-		$url = str_replace(array('*', '_'),
+-						   array($md_escape_table['*'], $md_escape_table['_']),
+-						   $url);
+-		$result = &quot;&lt;a href=\&quot;$url\&quot;&quot;;
+-		if ( isset( $md_titles[$link_id] ) ) {
+-			$title = $md_titles[$link_id];
+-			$title = str_replace(array('*',     '_'),
+-								 array($md_escape_table['*'], 
+-									   $md_escape_table['_']), $title);
+-			$result .=  &quot; title=\&quot;$title\&quot;&quot;;
+-		}
+-		$result .= &quot;&gt;$link_text&lt;/a&gt;&quot;;
+-	}
+-	else {
+-		$result = $whole_match;
+-	}
+-	return $result;
+-}
+-function _DoAnchors_inline_callback($matches) {
+-	global $md_escape_table;
+-	$whole_match	= $matches[1];
+-	$link_text		= $matches[2];
+-	$url			= $matches[3];
+-	$title			=&amp; $matches[6];
+-
+-	# We've got to encode these to avoid conflicting with italics/bold.
+-	$url = str_replace(array('*', '_'),
+-					   array($md_escape_table['*'], $md_escape_table['_']), 
+-					   $url);
+-	$result = &quot;&lt;a href=\&quot;$url\&quot;&quot;;
+-	if (isset($title)) {
+-		$title = str_replace('&quot;', '&quot;', $title);
+-		$title = str_replace(array('*', '_'),
+-							 array($md_escape_table['*'], $md_escape_table['_']),
+-							 $title);
+-		$result .=  &quot; title=\&quot;$title\&quot;&quot;;
+-	}
+-	
+-	$result .= &quot;&gt;$link_text&lt;/a&gt;&quot;;
+-
+-	return $result;
+-}
+-
+-
+-function _DoImages($text) {
+-#
+-# Turn Markdown image shortcuts into &lt;img&gt; tags.
+-#
+-	#
+-	# First, handle reference-style labeled images: ![alt text][id]
+-	#
+-	$text = preg_replace_callback('{
+-		(				# wrap whole match in $1
+-		  !\[
+-			(.*?)		# alt text = $2
+-		  \]
+-
+-		  [ ]?				# one optional space
+-		  (?:\n[ ]*)?		# one optional newline followed by spaces
+-
+-		  \[
+-			(.*?)		# id = $3
+-		  \]
+-
+-		)
+-		}xs', 
+-		'_DoImages_reference_callback', $text);
+-
+-	#
+-	# Next, handle inline images:  ![alt text](url &quot;optional title&quot;)
+-	# Don't forget: encode * and _
+-
+-	$text = preg_replace_callback(&quot;{
+-		(				# wrap whole match in $1
+-		  !\\[
+-			(.*?)		# alt text = $2
+-		  \\]
+-		  \\(			# literal paren
+-			[ \\t]*
+-			&lt;?(\S+?)&gt;?	# src url = $3
+-			[ \\t]*
+-			(			# $4
+-			  (['\&quot;])	# quote char = $5
+-			  (.*?)		# title = $6
+-			  \\5		# matching quote
+-			  [ \\t]*
+-			)?			# title is optional
+-		  \\)
+-		)
+-		}xs&quot;,
+-		'_DoImages_inline_callback', $text);
+-
+-	return $text;
+-}
+-function _DoImages_reference_callback($matches) {
+-	global $md_urls, $md_titles, $md_empty_element_suffix, $md_escape_table;
+-	$whole_match = $matches[1];
+-	$alt_text    = $matches[2];
+-	$link_id     = strtolower($matches[3]);
+-
+-	if ($link_id == &quot;&quot;) {
+-		$link_id = strtolower($alt_text); # for shortcut links like ![this][].
+-	}
+-
+-	$alt_text = str_replace('&quot;', '&quot;', $alt_text);
+-	if (isset($md_urls[$link_id])) {
+-		$url = $md_urls[$link_id];
+-		# We've got to encode these to avoid conflicting with italics/bold.
+-		$url = str_replace(array('*', '_'),
+-						   array($md_escape_table['*'], $md_escape_table['_']),
+-						   $url);
+-		$result = &quot;&lt;img src=\&quot;$url\&quot; alt=\&quot;$alt_text\&quot;&quot;;
+-		if (isset($md_titles[$link_id])) {
+-			$title = $md_titles[$link_id];
+-			$title = str_replace(array('*', '_'),
+-								 array($md_escape_table['*'], 
+-									   $md_escape_table['_']), $title);
+-			$result .=  &quot; title=\&quot;$title\&quot;&quot;;
+-		}
+-		$result .= $md_empty_element_suffix;
+-	}
+-	else {
+-		# If there's no such link ID, leave intact:
+-		$result = $whole_match;
+-	}
+-
+-	return $result;
+-}
+-function _DoImages_inline_callback($matches) {
+-	global $md_empty_element_suffix, $md_escape_table;
+-	$whole_match	= $matches[1];
+-	$alt_text		= $matches[2];
+-	$url			= $matches[3];
+-	$title			= '';
+-	if (isset($matches[6])) {
+-		$title		= $matches[6];
+-	}
+-
+-	$alt_text = str_replace('&quot;', '&quot;', $alt_text);
+-	$title    = str_replace('&quot;', '&quot;', $title);
+-	# We've got to encode these to avoid conflicting with italics/bold.
+-	$url = str_replace(array('*', '_'),
+-					   array($md_escape_table['*'], $md_escape_table['_']),
+-					   $url);
+-	$result = &quot;&lt;img src=\&quot;$url\&quot; alt=\&quot;$alt_text\&quot;&quot;;
+-	if (isset($title)) {
+-		$title = str_replace(array('*', '_'),
+-							 array($md_escape_table['*'], $md_escape_table['_']),
+-							 $title);
+-		$result .=  &quot; title=\&quot;$title\&quot;&quot;; # $title already quoted
+-	}
+-	$result .= $md_empty_element_suffix;
+-
+-	return $result;
+-}
+-
+-
+-function _DoHeaders($text) {
+-	# Setext-style headers:
+-	#	  Header 1
+-	#	  ========
+-	#  
+-	#	  Header 2
+-	#	  --------
+-	#
+-	$text = preg_replace(
+-		array('{ ^(.+)[ \t]*\n=+[ \t]*\n+ }emx',
+-			  '{ ^(.+)[ \t]*\n-+[ \t]*\n+ }emx'),
+-		array(&quot;'&lt;h1&gt;'._RunSpanGamut(_UnslashQuotes('\\1')).'&lt;/h1&gt;\n\n'&quot;,
+-			  &quot;'&lt;h2&gt;'._RunSpanGamut(_UnslashQuotes('\\1')).'&lt;/h2&gt;\n\n'&quot;),
+-		$text);
+-
+-	# atx-style headers:
+-	#	# Header 1
+-	#	## Header 2
+-	#	## Header 2 with closing hashes ##
+-	#	...
+-	#	###### Header 6
+-	#
+-	$text = preg_replace(&quot;{
+-			^(\\#{1,6})	# $1 = string of #'s
+-			[ \\t]*
+-			(.+?)		# $2 = Header text
+-			[ \\t]*
+-			\\#*			# optional closing #'s (not counted)
+-			\\n+
+-		}xme&quot;,
+-		&quot;'&lt;h'.strlen('\\1').'&gt;'._RunSpanGamut(_UnslashQuotes('\\2')).'&lt;/h'.strlen('\\1').'&gt;\n\n'&quot;,
+-		$text);
+-
+-	return $text;
+-}
+-
+-
+-function _DoLists($text) {
+-#
+-# Form HTML ordered (numbered) and unordered (bulleted) lists.
+-#
+-	global $md_tab_width, $md_list_level;
+-	$less_than_tab = $md_tab_width - 1;
+-
+-	# Re-usable patterns to match list item bullets and number markers:
+-	$marker_ul  = '[*+-]';
+-	$marker_ol  = '\d+[.]';
+-	$marker_any = &quot;(?:$marker_ul|$marker_ol)&quot;;
+-
+-	# Re-usable pattern to match any entirel ul or ol list:
+-	$whole_list = '
+-		(								# $1 = whole list
+-		  (								# $2
+-			[ ]{0,'.$less_than_tab.'}
+-			('.$marker_any.')				# $3 = first list item marker
+-			[ \t]+
+-		  )
+-		  (?s:.+?)
+-		  (								# $4
+-			  \z
+-			|
+-			  \n{2,}
+-			  (?=\S)
+-			  (?!						# Negative lookahead for another list item marker
+-				[ \t]*
+-				'.$marker_any.'[ \t]+
+-			  )
+-		  )
+-		)
+-	'; // mx
+-	
+-	# We use a different prefix before nested lists than top-level lists.
+-	# See extended comment in _ProcessListItems().
+-
+-	if ($md_list_level) {
+-		$text = preg_replace_callback('{
+-				^
+-				'.$whole_list.'
+-			}mx',
+-			'_DoLists_callback', $text);
+-	}
+-	else {
+-		$text = preg_replace_callback('{
+-				(?:(?&lt;=\n\n)|\A\n?)
+-				'.$whole_list.'
+-			}mx',
+-			'_DoLists_callback', $text);
+-	}
+-
+-	return $text;
+-}
+-function _DoLists_callback($matches) {
+-	# Re-usable patterns to match list item bullets and number markers:
+-	$marker_ul  = '[*+-]';
+-	$marker_ol  = '\d+[.]';
+-	$marker_any = &quot;(?:$marker_ul|$marker_ol)&quot;;
+-	
+-	$list = $matches[1];
+-	$list_type = preg_match(&quot;/$marker_ul/&quot;, $matches[3]) ? &quot;ul&quot; : &quot;ol&quot;;
+-	# Turn double returns into triple returns, so that we can make a
+-	# paragraph for the last item in a list, if necessary:
+-	$list = preg_replace(&quot;/\n{2,}/&quot;, &quot;\n\n\n&quot;, $list);
+-	$result = _ProcessListItems($list, $marker_any);
+-	$result = &quot;&lt;$list_type&gt;\n&quot; . $result . &quot;&lt;/$list_type&gt;\n&quot;;
+-	return $result;
+-}
+-
+-
+-function _ProcessListItems($list_str, $marker_any) {
+-#
+-#	Process the contents of a single ordered or unordered list, splitting it
+-#	into individual list items.
+-#
+-	global $md_list_level;
+-	
+-	# The $md_list_level global keeps track of when we're inside a list.
+-	# Each time we enter a list, we increment it; when we leave a list,
+-	# we decrement. If it's zero, we're not in a list anymore.
+-	#
+-	# We do this because when we're not inside a list, we want to treat
+-	# something like this:
+-	#
+-	#		I recommend upgrading to version
+-	#		8. Oops, now this line is treated
+-	#		as a sub-list.
+-	#
+-	# As a single paragraph, despite the fact that the second line starts
+-	# with a digit-period-space sequence.
+-	#
+-	# Whereas when we're inside a list (or sub-list), that line will be
+-	# treated as the start of a sub-list. What a kludge, huh? This is
+-	# an aspect of Markdown's syntax that's hard to parse perfectly
+-	# without resorting to mind-reading. Perhaps the solution is to
+-	# change the syntax rules such that sub-lists must start with a
+-	# starting cardinal number; e.g. &quot;1.&quot; or &quot;a.&quot;.
+-	
+-	$md_list_level++;
+-
+-	# trim trailing blank lines:
+-	$list_str = preg_replace(&quot;/\n{2,}\\z/&quot;, &quot;\n&quot;, $list_str);
+-
+-	$list_str = preg_replace_callback('{
+-		(\n)?							# leading line = $1
+-		(^[ \t]*)						# leading whitespace = $2
+-		('.$marker_any.') [ \t]+		# list marker = $3
+-		((?s:.+?)						# list item text   = $4
+-		(\n{1,2}))
+-		(?= \n* (\z | \2 ('.$marker_any.') [ \t]+))
+-		}xm',
+-		'_ProcessListItems_callback', $list_str);
+-
+-	$md_list_level--;
+-	return $list_str;
+-}
+-function _ProcessListItems_callback($matches) {
+-	$item = $matches[4];
+-	$leading_line =&amp; $matches[1];
+-	$leading_space =&amp; $matches[2];
+-
+-	if ($leading_line || preg_match('/\n{2,}/', $item)) {
+-		$item = _RunBlockGamut(_Outdent($item));
+-	}
+-	else {
+-		# Recursion for sub-lists:
+-		$item = _DoLists(_Outdent($item));
+-		$item = rtrim($item, &quot;\n&quot;);
+-		$item = _RunSpanGamut($item);
+-	}
+-
+-	return &quot;&lt;li&gt;&quot; . $item . &quot;&lt;/li&gt;\n&quot;;
+-}
+-
+-
+-function _DoCodeBlocks($text) {
+-#
+-#	Process Markdown `&lt;pre&gt;&lt;code&gt;` blocks.
+-#
+-	global $md_tab_width;
+-	$text = preg_replace_callback(&quot;{
+-			(?:\\n\\n|\\A)
+-			(	            # $1 = the code block -- one or more lines, starting with a space/tab
+-			  (?:
+-				(?:[ ]\{$md_tab_width} | \\t)  # Lines must start with a tab or a tab-width of spaces
+-				.*\\n+
+-			  )+
+-			)
+-			((?=^[ ]{0,$md_tab_width}\\S)|\\Z)	# Lookahead for non-space at line-start, or end of doc
+-		}xm&quot;,
+-		'_DoCodeBlocks_callback', $text);
+-
+-	return $text;
+-}
+-function _DoCodeBlocks_callback($matches) {
+-	$codeblock = $matches[1];
+-
+-	$codeblock = _EncodeCode(_Outdent($codeblock));
+-//	$codeblock = _Detab($codeblock);
+-	# trim leading newlines and trailing whitespace
+-	$codeblock = preg_replace(array('/\A\n+/', '/\s+\z/'), '', $codeblock);
+-
+-	$result = &quot;\n\n&lt;pre&gt;&lt;code&gt;&quot; . $codeblock . &quot;\n&lt;/code&gt;&lt;/pre&gt;\n\n&quot;;
+-
+-	return $result;
+-}
+-
+-
+-function _DoCodeSpans($text) {
+-#
+-# 	*	Backtick quotes are used for &lt;code&gt;&lt;/code&gt; spans.
+-#
+-# 	*	You can use multiple backticks as the delimiters if you want to
+-# 		include literal backticks in the code span. So, this input:
+-#
+-#		  Just type ``foo `bar` baz`` at the prompt.
+-#
+-#	  	Will translate to:
+-#
+-#		  &lt;p&gt;Just type &lt;code&gt;foo `bar` baz&lt;/code&gt; at the prompt.&lt;/p&gt;
+-#
+-#		There's no arbitrary limit to the number of backticks you
+-#		can use as delimters. If you need three consecutive backticks
+-#		in your code, use four for delimiters, etc.
+-#
+-#	*	You can use spaces to get literal backticks at the edges:
+-#
+-#		  ... type `` `bar` `` ...
+-#
+-#	  	Turns to:
+-#
+-#		  ... type &lt;code&gt;`bar`&lt;/code&gt; ...
+-#
+-	$text = preg_replace_callback(&quot;@
+-			(`+)		# $1 = Opening run of `
+-			(.+?)		# $2 = The code block
+-			(?&lt;!`)
+-			\\1
+-			(?!`)
+-		@xs&quot;,
+-		'_DoCodeSpans_callback', $text);
+-
+-	return $text;
+-}
+-function _DoCodeSpans_callback($matches) {
+-	$c = $matches[2];
+-	$c = preg_replace('/^[ \t]*/', '', $c); # leading whitespace
+-	$c = preg_replace('/[ \t]*$/', '', $c); # trailing whitespace
+-	$c = _EncodeCode($c);
+-	return &quot;&lt;code&gt;$c&lt;/code&gt;&quot;;
+-}
+-
+-
+-function _EncodeCode($_) {
+-#
+-# Encode/escape certain characters inside Markdown code runs.
+-# The point is that in code, these characters are literals,
+-# and lose their special Markdown meanings.
+-#
+-	global $md_escape_table;
+-
+-	# Encode all ampersands; HTML entities are not
+-	# entities within a Markdown code span.
+-	$_ = str_replace('&amp;', '&amp;', $_);
+-
+-	# Do the angle bracket song and dance:
+-	$_ = str_replace(array('&lt;',    '&gt;'), 
+-					 array('&lt;', '&gt;'), $_);
+-
+-	# Now, escape characters that are magic in Markdown:
+-	$_ = str_replace(array_keys($md_escape_table), 
+-					 array_values($md_escape_table), $_);
+-
+-	return $_;
+-}
+-
+-
+-function _DoItalicsAndBold($text) {
+-	# &lt;strong&gt; must go first:
+-	$text = preg_replace('{ (\*\*|__) (?=\S) (.+?[*_]*) (?&lt;=\S) \1 }sx',
+-		'&lt;strong&gt;\2&lt;/strong&gt;', $text);
+-	# Then &lt;em&gt;:
+-	$text = preg_replace('{ (\*|_) (?=\S) (.+?) (?&lt;=\S) \1 }sx',
+-		'&lt;em&gt;\2&lt;/em&gt;', $text);
+-
+-	return $text;
+-}
+-
+-
+-function _DoBlockQuotes($text) {
+-	$text = preg_replace_callback('/
+-		  (								# Wrap whole match in $1
+-			(
+-			  ^[ \t]*&gt;[ \t]?			# &quot;&gt;&quot; at the start of a line
+-				.+\n					# rest of the first line
+-			  (.+\n)*					# subsequent consecutive lines
+-			  \n*						# blanks
+-			)+
+-		  )
+-		/xm',
+-		'_DoBlockQuotes_callback', $text);
+-
+-	return $text;
+-}
+-function _DoBlockQuotes_callback($matches) {
+-	$bq = $matches[1];
+-	# trim one level of quoting - trim whitespace-only lines
+-	$bq = preg_replace(array('/^[ \t]*&gt;[ \t]?/m', '/^[ \t]+$/m'), '', $bq);
+-	$bq = _RunBlockGamut($bq);		# recurse
+-
+-	$bq = preg_replace('/^/m', &quot;  &quot;, $bq);
+-	# These leading spaces screw with &lt;pre&gt; content, so we need to fix that:
+-	$bq = preg_replace_callback('{(\s*&lt;pre&gt;.+?&lt;/pre&gt;)}sx', 
+-								'_DoBlockQuotes_callback2', $bq);
+-
+-	return &quot;&lt;blockquote&gt;\n$bq\n&lt;/blockquote&gt;\n\n&quot;;
+-}
+-function _DoBlockQuotes_callback2($matches) {
+-	$pre = $matches[1];
+-	$pre = preg_replace('/^  /m', '', $pre);
+-	return $pre;
+-}
+-
+-
+-function _FormParagraphs($text) {
+-#
+-#	Params:
+-#		$text - string to process with html &lt;p&gt; tags
+-#
+-	global $md_html_blocks;
+-
+-	# Strip leading and trailing lines:
+-	$text = preg_replace(array('/\A\n+/', '/\n+\z/'), '', $text);
+-
+-	$grafs = preg_split('/\n{2,}/', $text, -1, PREG_SPLIT_NO_EMPTY);
+-
+-	#
+-	# Wrap &lt;p&gt; tags.
+-	#
+-	foreach ($grafs as $key =&gt; $value) {
+-		if (!isset( $md_html_blocks[$value] )) {
+-			$value = _RunSpanGamut($value);
+-			$value = preg_replace('/^([ \t]*)/', '&lt;p&gt;', $value);
+-			$value .= &quot;&lt;/p&gt;&quot;;
+-			$grafs[$key] = $value;
+-		}
+-	}
+-
+-	#
+-	# Unhashify HTML blocks
+-	#
+-	foreach ($grafs as $key =&gt; $value) {
+-		if (isset( $md_html_blocks[$value] )) {
+-			$grafs[$key] = $md_html_blocks[$value];
+-		}
+-	}
+-
+-	return implode(&quot;\n\n&quot;, $grafs);
+-}
+-
+-
+-function _EncodeAmpsAndAngles($text) {
+-# Smart processing for ampersands and angle brackets that need to be encoded.
+-
+-	# Ampersand-encoding based entirely on Nat Irons's Amputator MT plugin:
+-	#   <A HREF="http://bumppo.net/projects/amputator/">http://bumppo.net/projects/amputator/</A>
+-	$text = preg_replace('/&amp;(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/', 
+-						 '&amp;', $text);;
+-
+-	# Encode naked &lt;'s
+-	$text = preg_replace('{&lt;(?![a-z/?\$!])}i', '&lt;', $text);
+-
+-	return $text;
+-}
+-
+-
+-function _EncodeBackslashEscapes($text) {
+-#
+-#	Parameter:  String.
+-#	Returns:    The string, with after processing the following backslash
+-#				escape sequences.
+-#
+-	global $md_escape_table, $md_backslash_escape_table;
+-	# Must process escaped backslashes first.
+-	return str_replace(array_keys($md_backslash_escape_table),
+-					   array_values($md_backslash_escape_table), $text);
+-}
+-
+-
+-function _DoAutoLinks($text) {
+-	$text = preg_replace(&quot;!&lt;((https?|ftp):[^'\&quot;&gt;\\s]+)&gt;!&quot;, 
+-						 '&lt;a href=&quot;\1&quot;&gt;\1&lt;/a&gt;', $text);
+-
+-	# Email addresses: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">address at domain.foo</A>&gt;
+-	$text = preg_replace('{
+-		&lt;
+-        (?:mailto:)?
+-		(
+-			[-.\w]+
+-			\@
+-			[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+
+-		)
+-		&gt;
+-		}exi',
+-		&quot;_EncodeEmailAddress(_UnescapeSpecialChars(_UnslashQuotes('\\1')))&quot;,
+-		$text);
+-
+-	return $text;
+-}
+-
+-
+-function _EncodeEmailAddress($addr) {
+-#
+-#	Input: an email address, e.g. &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">foo at example.com</A>&quot;
+-#
+-#	Output: the email address as a mailto link, with each character
+-#		of the address encoded as either a decimal or hex entity, in
+-#		the hopes of foiling most address harvesting spam bots. E.g.:
+-#
+-#	  &lt;a href=&quot;&amp;#x6D;&#97;&#105;&#108;&amp;#x74;&#111;:&#102;&#111;&#111;&#64;&#101;
+-#		x&amp;#x61;&#109;&amp;#x70;&#108;&amp;#x65;&amp;#x2E;&#99;&#111;&#109;&quot;&gt;&#102;&#111;&#111;
+-#		&#64;&#101;x&amp;#x61;&#109;&amp;#x70;&#108;&amp;#x65;&amp;#x2E;&#99;&#111;&#109;&lt;/a&gt;
+-#
+-#	Based by a filter by Matthew Wickline, posted to the BBEdit-Talk
+-#	mailing list: &lt;<A HREF="http://tinyurl.com/yu7ue">http://tinyurl.com/yu7ue</A>&gt;
+-#
+-	$addr = &quot;mailto:&quot; . $addr;
+-	$length = strlen($addr);
+-
+-	# leave ':' alone (to spot mailto: later)
+-	$addr = preg_replace_callback('/([^\:])/', 
+-								  '_EncodeEmailAddress_callback', $addr);
+-
+-	$addr = &quot;&lt;a href=\&quot;$addr\&quot;&gt;$addr&lt;/a&gt;&quot;;
+-	# strip the mailto: from the visible part
+-	$addr = preg_replace('/&quot;&gt;.+?:/', '&quot;&gt;', $addr);
+-
+-	return $addr;
+-}
+-function _EncodeEmailAddress_callback($matches) {
+-	$char = $matches[1];
+-	$r = rand(0, 100);
+-	# roughly 10% raw, 45% hex, 45% dec
+-	# '@' *must* be encoded. I insist.
+-	if ($r &gt; 90 &amp;&amp; $char != '@') return $char;
+-	if ($r &lt; 45) return '&amp;#x'.dechex(ord($char)).';';
+-	return '&amp;#'.ord($char).';';
+-}
+-
+-
+-function _UnescapeSpecialChars($text) {
+-#
+-# Swap back in all the special characters we've hidden.
+-#
+-	global $md_escape_table;
+-	return str_replace(array_values($md_escape_table), 
+-					   array_keys($md_escape_table), $text);
+-}
+-
+-
+-# _TokenizeHTML is shared between PHP Markdown and PHP SmartyPants.
+-# We only define it if it is not already defined.
+-if (!function_exists('_TokenizeHTML')) :
+-function _TokenizeHTML($str) {
+-#
+-#   Parameter:  String containing HTML markup.
+-#   Returns:    An array of the tokens comprising the input
+-#               string. Each token is either a tag (possibly with nested,
+-#               tags contained therein, such as &lt;a href=&quot;&lt;MTFoo&gt;&quot;&gt;, or a
+-#               run of text between tags. Each element of the array is a
+-#               two-element array; the first is either 'tag' or 'text';
+-#               the second is the actual value.
+-#
+-#
+-#   Regular expression derived from the _tokenize() subroutine in 
+-#   Brad Choate's MTRegex plugin.
+-#   &lt;<A HREF="http://www.bradchoate.com/past/mtregex.php">http://www.bradchoate.com/past/mtregex.php</A>&gt;
+-#
+-	$index = 0;
+-	$tokens = array();
+-
+-	$match = '(?s:&lt;!(?:--.*?--\s*)+&gt;)|'.	# comment
+-			 '(?s:&lt;\?.*?\?&gt;)|'.				# processing instruction
+-			 '(?:&lt;/?[\w:$]+\b(?&gt;[^&quot;\'&gt;]+|&quot;[^&quot;]*&quot;|\'[^\']*\')*&gt;)'; # regular tags
+-
+-	$parts = preg_split(&quot;{($match)}&quot;, $str, -1, PREG_SPLIT_DELIM_CAPTURE);
+-
+-	foreach ($parts as $part) {
+-		if (++$index % 2 &amp;&amp; $part != '') 
+-			array_push($tokens, array('text', $part));
+-		else
+-			array_push($tokens, array('tag', $part));
+-	}
+-
+-	return $tokens;
+-}
+-endif;
+-
+-
+-function _Outdent($text) {
+-#
+-# Remove one level of line-leading tabs or spaces
+-#
+-	global $md_tab_width;
+-	return preg_replace(&quot;/^(\\t|[ ]{1,$md_tab_width})/m&quot;, &quot;&quot;, $text);
+-}
+-
+-
+-function _Detab($text) {
+-#
+-# Replace tabs with the appropriate amount of space.
+-#
+-	global $md_tab_width;
+-
+-	# For each line we separate the line in blocks delemited by
+-	# tab characters. Then we reconstruct the line adding the appropriate
+-	# number of space charcters.
+-	
+-	$lines = explode(&quot;\n&quot;, $text);
+-	$text = &quot;&quot;;
+-	
+-	foreach ($lines as $line) {
+-		# Split in blocks.
+-		$blocks = explode(&quot;\t&quot;, $line);
+-		# Add each blocks to the line.
+-		$line = $blocks[0];
+-		unset($blocks[0]); # Do not add first block twice.
+-		foreach ($blocks as $block) {
+-			# Calculate amount of space, insert spaces, insert block.
+-			$amount = $md_tab_width - strlen($line) % $md_tab_width;
+-			$line .= str_repeat(&quot; &quot;, $amount) . $block;
+-		}
+-		$text .= &quot;$line\n&quot;;
+-	}
+-	return $text;
+-}
+-
+-
+-function _UnslashQuotes($text) {
+-#
+-#	This function is useful to remove automaticaly slashed double quotes
+-#	when using preg_replace and evaluating an expression.
+-#	Parameter:  String.
+-#	Returns:    The string with any slash-double-quote (\&quot;) sequence replaced
+-#				by a single double quote.
+-#
+-	return str_replace('\&quot;', '&quot;', $text);
+-}
+-
+-
+-/*
+-
+-PHP Markdown
+-============
+-
+-Description
+------------
+-
+-This is a PHP translation of the original Markdown formatter written in
+-Perl by John Gruber.
+-
+-Markdown is a text-to-HTML filter; it translates an easy-to-read /
+-easy-to-write structured text format into HTML. Markdown's text format
+-is most similar to that of plain text email, and supports features such
+-as headers, *emphasis*, code blocks, blockquotes, and links.
+-
+-Markdown's syntax is designed not as a generic markup language, but
+-specifically to serve as a front-end to (X)HTML. You can use span-level
+-HTML tags anywhere in a Markdown document, and you can use block level
+-HTML tags (like &lt;div&gt; and &lt;table&gt; as well).
+-
+-For more information about Markdown's syntax, see:
+-
+-&lt;<A HREF="http://daringfireball.net/projects/markdown/">http://daringfireball.net/projects/markdown/</A>&gt;
+-
+-
+-Bugs
+-----
+-
+-To file bug reports please send email to:
+-
+-&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">michel.fortin at michelf.com</A>&gt;
+-
+-Please include with your report: (1) the example input; (2) the output you
+-expected; (3) the output Markdown actually produced.
+-
+-
+-Version History
+---------------- 
+-
+-See the readme file for detailed release notes for this version.
+-
+-1.0.1 - 17 Dec 2004
+-
+-1.0 - 21 Aug 2004
+-
+-
+-Author &amp; Contributors
+----------------------
+-
+-Original Perl version by John Gruber  
+-&lt;<A HREF="http://daringfireball.net/">http://daringfireball.net/</A>&gt;
+-
+-PHP port and other contributions by Michel Fortin  
+-&lt;<A HREF="http://www.michelf.com/">http://www.michelf.com/</A>&gt;
+-
+-
+-Copyright and License
+----------------------
+-
+-Copyright (c) 2004 Michel Fortin  
+-&lt;<A HREF="http://www.michelf.com/">http://www.michelf.com/</A>&gt;  
+-All rights reserved.
+-
+-Copyright (c) 2003-2004 John Gruber   
+-&lt;<A HREF="http://daringfireball.net/">http://daringfireball.net/</A>&gt;   
+-All rights reserved.
+-
+-Redistribution and use in source and binary forms, with or without
+-modification, are permitted provided that the following conditions are
+-met:
+-
+-*	Redistributions of source code must retain the above copyright notice,
+-	this list of conditions and the following disclaimer.
+-
+-*	Redistributions in binary form must reproduce the above copyright
+-	notice, this list of conditions and the following disclaimer in the
+-	documentation and/or other materials provided with the distribution.
+-
+-*	Neither the name &quot;Markdown&quot; nor the names of its contributors may
+-	be used to endorse or promote products derived from this software
+-	without specific prior written permission.
+-
+-This software is provided by the copyright holders and contributors &quot;as
+-is&quot; and any express or implied warranties, including, but not limited
+-to, the implied warranties of merchantability and fitness for a
+-particular purpose are disclaimed. In no event shall the copyright owner
+-or contributors be liable for any direct, indirect, incidental, special,
+-exemplary, or consequential damages (including, but not limited to,
+-procurement of substitute goods or services; loss of use, data, or
+-profits; or business interruption) however caused and on any theory of
+-liability, whether in contract, strict liability, or tort (including
+-negligence or otherwise) arising in any way out of the use of this
+-software, even if advised of the possibility of such damage.
+-
+-*/
+-?&gt;
+\ No newline at end of file
+
+Deleted: trunk/wp-content/plugins/textile1.php
+===================================================================
+--- trunk/wp-content/plugins/textile1.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/plugins/textile1.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,390 +0,0 @@
+-&lt;?php
+-/*
+-Plugin Name: Textile 1
+-Version: 1.0
+-Plugin URI: <A HREF="http://www.huddledmasses.org/">http://www.huddledmasses.org/</A>
+-Description: This is a simple wrapper for &lt;a href=&quot;<A HREF="http://textism.com/?wp">http://textism.com/?wp</A>&quot;&gt;Dean Allen's&lt;/a&gt; Humane Web Text Generator, also known as &lt;a href=&quot;<A HREF="http://www.textism.com/tools/textile/">http://www.textism.com/tools/textile/</A>&quot;&gt;Textile&lt;/a&gt;. If you use this plugin you should disable Textile 2 and Markdown, as they don't play well together.
+-Author: Dean Allen
+-Author URI: <A HREF="http://www.textism.com/?wp">http://www.textism.com/?wp</A>
+-*/
+-
+-/*
+-
+-This is Textile
+-A Humane Web Text Generator
+-
+-Version 1.0
+-21 Feb, 2003
+-
+-Copyright (c) 2003, Dean Allen, www.textism.com
+-All rights reserved.
+-
+-_______
+-LICENSE
+-
+-Redistribution and use in source and binary forms, with or without
+-modification, are permitted provided that the following conditions are met:
+-
+-* Redistributions of source code must retain the above copyright notice,
+-  this list of conditions and the following disclaimer.
+-
+-* Redistributions in binary form must reproduce the above copyright notice,
+-  this list of conditions and the following disclaimer in the documentation
+-  and/or other materials provided with the distribution.
+-
+-* Neither the name Textile nor the names of its contributors may be used to
+-  endorse or promote products derived from this software without specific
+-  prior written permission.
+-
+-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+-ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+-LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+-SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+-INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+-CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+-ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+-POSSIBILITY OF SUCH DAMAGE.
+-
+-*/
+-
+-
+-	function textile($text) {
+-	$text = stripslashes($text);
+-
+-	$text = preg_replace(&quot;/&amp;(?![#a-zA-Z0-9]+;)/&quot;,&quot;x%x%&quot;,$text);
+-
+-	if (function_exists('mb_encode_numericentity')) {
+-		$text = encode_high($text);
+-	} else {
+-		$text = htmlentities($text,ENT_NOQUOTES,&quot;utf-8&quot;);
+-	}
+-
+-	$text = str_replace(array(&quot;&gt;&quot;, &quot;&lt;&quot;, &quot;&amp;&quot;), array(&quot;&gt;&quot;, &quot;&lt;&quot;, &quot;&amp;&quot;), $text);
+-
+-	$text = str_replace(&quot;\r\n&quot;, &quot;\n&quot;, $text);
+-
+-	$text = str_replace(&quot;\t&quot;, &quot;&quot;, $text);
+-
+-	$text = preg_split(&quot;/\n/&quot;,$text);
+-	foreach($text as $line){
+-		$line = rtrim($line);
+-		$lineout[] = $line;
+-	}
+-
+-	$text = implode(&quot;\n&quot;,$lineout);
+-
+-	$text = preg_replace('/(^|\s)==(.*)==(\s|$)?/msU','$1&lt;notextile&gt;$2&lt;/notextile&gt;$3',$text);
+-
+-	$text = preg_replace('/!([^\s\(=]+)\s?(?:\(([^\)]+)\))?!(\s)?/mU','&lt;img src=&quot;$1&quot; alt=&quot;$2&quot; border=&quot;0&quot; /&gt;$3',$text);
+-
+-	$text = preg_replace('/(&lt;img.+ \/&gt;):(\S+)(\s)/U','&lt;a href=&quot;$2&quot;&gt;$1&lt;/a&gt;$3',$text);
+-
+-	$text = preg_replace(
+-		'/
+-		([\s[{(]|[[:punct:]])?		# 1 optional space or brackets before
+-		&quot;							#   starting &quot;
+-		([^&quot;\(]+)					# 2 text of link
+-		\s?							#   opt space
+-		(?:\(([^\(]*)\))?			# 3 opt title attribute in parenths
+-		&quot;:							#   dividing &quot;:
+-		(\S+\b)						# 4 suppose this is the url
+-		(\/)?						# 5 opt trailing slash
+-		([^[:alnum:]\/;]*)			# 6 opt punctuation after the url
+-		(\s|$)						# 7 either white space or end of string
+-		/x',
+-		'$1&lt;a href=&quot;$4$5&quot; title=&quot;$3&quot;&gt;$2&lt;/a&gt;$6$7',$text);
+-
+-	$qtags = array(
+-		'\*\*'=&gt;'b',
+-		'\*'=&gt;'strong',
+-		'\?\?'=&gt;'cite',
+-		'-'=&gt;'del',
+-		'\+'=&gt;'ins',
+-		'~'=&gt;'sub',
+-		'@'=&gt;'code');
+-
+-	foreach($qtags as $f=&gt;$r){
+-		$text = preg_replace(
+-			'/(^|\s|&gt;)'.$f.'\b(.+)\b([[:punct:]]*)'.$f.'([[:punct:]]{0,2})(\s|$)?/mU',
+-			'$1&lt;'.$r.'&gt;$2$3&lt;/'.$r.'&gt;$4$5',
+-			$text);
+-	}
+-
+-	$text = preg_replace('/(^|\s)__(.*)__([[:punct:]]{0,2})(\s|$)?/mU','$1&lt;i&gt;$2&lt;/i&gt;$3$4',$text);
+-	$text = preg_replace('/(^|\s)_(.*)_([[:punct:]]{0,2})(\s|$)?/mU','$1&lt;em&gt;$2&lt;/em&gt;$3$4',$text);
+-
+-	$text = preg_replace('/\^(.*)\^/mU','&lt;sup&gt;$1&lt;/sup&gt;',$text);
+-
+-	$text = preg_replace('/&quot;$/',&quot;\&quot; &quot;, $text);
+-	$glyph_search = array(
+-		'/([^\s[{(&gt;])?\'(?(1)|(?=\s|s\b))/',					# single closing
+-		'/\'/',													# single opening
+-		'/([^\s[{(])?&quot;(?(1)|(?=\s))/',							# double closing
+-		'/&quot;/',													# double opening
+-		'/\b( )?\.{3}/',										# ellipsis
+-		'/\b([A-Z][A-Z0-9]{2,})\b(?:[(]([^)]*)[)])/',			# 3+ uppercase acronym
+-		'/(^|[^&quot;][&gt;\s])([A-Z][A-Z0-9 ]{2,})([^&lt;a-z0-9]|$)/',	# 3+ uppercase caps
+-		'/\s?--\s?/',											# em dash
+-		'/\s-\s/',												# en dash
+-		'/(\d+) ?x ?(\d+)/',									# dimension sign
+-		'/\b ?[([]TM[])]/i',									# trademark
+-		'/\b ?[([]R[])]/i',										# registered
+-		'/\b ?[([]C[])]/i');									# copyright
+-
+-	$glyph_replace = array(
+-		'$1&#8217;$2',							# single closing
+-		'&#8216;',								# single opening
+-		'$1&#8221;',							# double closing
+-		'&#8220;',								# double opening
+-		'$1&#8230;',							# ellipsis
+-		'&lt;acronym title=&quot;$2&quot;&gt;$1&lt;/acronym&gt;',		# 3+ uppercase acronym
+-		'$1&lt;span class=&quot;caps&quot;&gt;$2&lt;/span&gt;$3',		# 3+ uppercase caps
+-		'&#8212;',								# em dash
+-		' &#8211; ',							# en dash
+-		'$1&#215;$2',							# dimension sign
+-		'&#8482;',								# trademark
+-		'&#174;',								# registered
+-		'&#169;');								# copyright
+-
+-	$codepre = false;
+-
+-	if(!preg_match(&quot;/&lt;.*&gt;/&quot;,$text)){
+-		$text = preg_replace($glyph_search,$glyph_replace,$text);
+-	} else {
+-
+-		$text = preg_split(&quot;/(&lt;.*&gt;)/U&quot;,$text,-1,PREG_SPLIT_DELIM_CAPTURE);
+-			foreach($text as $line){
+-
+-					# matches are off if we're between &lt;code&gt;, &lt;pre&gt; etc.
+-				if(preg_match('/&lt;(code|pre|kbd|notextile)&gt;/i',$line)){$codepre = true; }
+-				if(preg_match('/&lt;\/(code|pre|kbd|notextile)&gt;/i',$line)){$codepre = false; }
+-
+-				if(!preg_match(&quot;/&lt;.*&gt;/&quot;,$line) &amp;&amp; $codepre == false){
+-					$line = preg_replace($glyph_search,$glyph_replace,$line);
+-				}
+-
+-				# convert htmlspecial if between &lt;code&gt;
+-				if ($codepre == true){
+-					$line = htmlspecialchars($line,ENT_NOQUOTES,&quot;UTF-8&quot;);
+-					$line = str_replace(&quot;&lt;pre&gt;&quot;,&quot;&lt;pre&gt;&quot;,$line);
+-					$line = str_replace(&quot;&lt;code&gt;&quot;,&quot;&lt;code&gt;&quot;,$line);
+-					$line = str_replace(&quot;&lt;notextile&gt;&quot;,&quot;&lt;notextile&gt;&quot;,$line);
+-					$line = str_replace(&quot;&lt;kbd&gt;&quot;,&quot;&lt;kbd&gt;&quot;,$line);
+-				}
+-
+-				# each line gets pushed to a new array
+-			$glyph_out[] = $line;
+-		}
+-			# $text is now the new array, cast to a string
+-		$text = implode('',$glyph_out);
+-	}
+-
+-	$text = preg_replace(&quot;/(\S)(_*)([[:punct:]]*) *\n([^#*\s])/&quot;, &quot;$1$2$3&lt;br /&gt;$4&quot;, $text);
+-
+-	$text = str_replace(&quot;l&gt;&lt;br /&gt;&quot;, &quot;l&gt;\n&quot;, $text);
+-
+-	$text = preg_split(&quot;/\n/&quot;,$text);
+-
+-	array_push($text,&quot; &quot;);
+-
+-			$list = '';
+-			$pre = false;
+-
+-			$block_find = array(
+-				'/^\s?\*\s(.*)/',						# bulleted list *
+-				'/^\s?#\s(.*)/',						# numeric list #
+-				'/^bq\. (.*)/',							# blockquote bq.
+-				'/^h(\d)\(([[:alnum:]]+)\)\.\s(.*)/',	# header hn(class).  w/ css class
+-				'/^h(\d)\. (.*)/',						# plain header hn.
+-				'/^p\(([[:alnum:]]+)\)\.\s(.*)/',		# para p(class).  w/ css class
+-				'/^p\. (.*)/i',	 						# plain paragraph
+-				'/^([^\t ]+.*)/i'						# remaining plain paragraph
+-				);
+-
+-			$block_replace = array(
+-				&quot;\t\t&lt;li&gt;$1&lt;/li&gt;&quot;,
+-				&quot;\t\t\t&lt;li&gt;$1&lt;/li&gt;&quot;,
+-				&quot;\t&lt;blockquote&gt;$1&lt;/blockquote&gt;&quot;,
+-				&quot;\t&lt;h$1 class=\&quot;$2\&quot;&gt;$3&lt;/h$1&gt;$4&quot;,
+-				&quot;\t&lt;h$1&gt;$2&lt;/h$1&gt;$3&quot;,
+-				&quot;\t&lt;p class=\&quot;$1\&quot;&gt;$2&lt;/p&gt;$3&quot;,
+-				&quot;\t&lt;p&gt;$1&lt;/p&gt;&quot;,
+-				&quot;\t&lt;p&gt;$1&lt;/p&gt;$2&quot;
+-				);
+-
+-	foreach($text as $line){
+-
+-			if(preg_match('/&lt;pre&gt;/i',$line)){$pre = true; }
+-
+-			if ($pre == false){
+-				$line = preg_replace($block_find,$block_replace,$line);
+-			}
+-
+-			if ($pre == true){
+-				$line = str_replace(&quot;&lt;br /&gt;&quot;,&quot;\n&quot;,$line);
+-			}
+-				if(preg_match('/&lt;\/pre&gt;/i',$line)){$pre = false; }
+-
+-			if ($list == '' &amp;&amp; preg_match('/^\t\t&lt;li&gt;/',$line)){
+-					$list = &quot;ul&quot;;
+-				$line = preg_replace('/^(\t\t&lt;li&gt;.*)/',&quot;\t&lt;ul&gt;\n$1&quot;,$line);
+-
+-			} else if ($list == '' &amp;&amp; preg_match('/^\t\t\t&lt;li&gt;/',$line)){
+-					$list = &quot;ol&quot;;
+-				$line = preg_replace('/^\t(\t\t&lt;li&gt;.*)/',&quot;\t&lt;ol&gt;\n$1&quot;,$line);
+-
+-			# at the end of a ul
+-			} else if ($list == 'ul' &amp;&amp; !preg_match('/^\t\t&lt;li&gt;/',$line)){
+-					$list = '';
+-				$line = preg_replace('/^(.*)$/',&quot;\t&lt;/ul&gt;\n$1&quot;,$line);
+-
+-			# at the end of a ol
+-			} else if ($list == 'ol' &amp;&amp; !preg_match('/^\t\t\t&lt;li&gt;/',$line)){
+-					$list = '';
+-				$line = preg_replace('/^(.*)$/',&quot;\t&lt;/ol&gt;\n$1&quot;,$line);
+-			}
+-
+-			$block_out[] = $line;
+-	}
+-	$text = implode(&quot;\n&quot;,$block_out);
+-	$text = preg_replace('/&lt;\/?notextile&gt;/', &quot;&quot;,$text);
+-	$text = str_replace(&quot;x%x%&quot;,&quot;&#38;&quot;,$text);
+-	$text = str_replace(&quot;&lt;br /&gt;&quot;,&quot;&lt;br /&gt;\n&quot;,$text);
+-	return $text;
+-}
+-
+-function callback_url($text,$title='',$url) {
+-		$out = 'a href=&quot;'.$url.'&quot;';
+-		$out.=($title!='')?' title=&quot;'.$title.'&quot;':'';
+-		$out.='&gt;$text&lt;/a&gt;';
+-		return $out;
+-	}
+-
+-
+-
+-function textile_popup_help($name,$helpvar,$windowW,$windowH) {
+-	$out = $name;
+-	$out .= ' &lt;a target=&quot;_blank&quot; href=&quot;<A HREF="http://www.textpattern.com/help/?item=">http://www.textpattern.com/help/?item=</A>'.$helpvar.'&quot;';
+-	$out .= ' onclick=&quot;window.open(this.href, \'popupwindow\', \'width='.$windowW.',height='.$windowH.',scrollbars,resizable\'); return false;&quot; style=&quot;color:blue;background-color:#ddd&quot;&gt;?&lt;/a&gt;&lt;br /&gt;';
+-	print $out;
+-}
+-
+-
+-function encode_high($text) {
+-	$cmap = cmap();
+-	return mb_encode_numericentity($text, $cmap, &quot;UTF-8&quot;);
+-}
+-
+-
+-function decode_high($text) {
+-	$cmap = cmap();
+-	return mb_decode_numericentity($text, $cmap, &quot;UTF-8&quot;);
+-}
+-
+-
+-function cmap() {
+-
+-	$f = 0xffff;
+-
+-	$cmap = array(
+-	 160,  255,  0, $f,
+-	 402,  402,  0, $f,
+-	 913,  929,  0, $f,
+-	 931,  937,  0, $f,
+-	 945,  969,  0, $f,
+-	 977,  978,  0, $f,
+-	 982,  982,  0, $f,
+-	 8226, 8226, 0, $f,
+-	 8230, 8230, 0, $f,
+-	 8242, 8243, 0, $f,
+-	 8254, 8254, 0, $f,
+-	 8260, 8260, 0, $f,
+-	 8465, 8465, 0, $f,
+-	 8472, 8472, 0, $f,
+-	 8476, 8476, 0, $f,
+-	 8482, 8482, 0, $f,
+-	 8501, 8501, 0, $f,
+-	 8592, 8596, 0, $f,
+-	 8629, 8629, 0, $f,
+-	 8656, 8660, 0, $f,
+-	 8704, 8704, 0, $f,
+-	 8706, 8707, 0, $f,
+-	 8709, 8709, 0, $f,
+-	 8711, 8713, 0, $f,
+-	 8715, 8715, 0, $f,
+-	 8719, 8719, 0, $f,
+-	 8721, 8722, 0, $f,
+-	 8727, 8727, 0, $f,
+-	 8730, 8730, 0, $f,
+-	 8733, 8734, 0, $f,
+-	 8736, 8736, 0, $f,
+-	 8743, 8747, 0, $f,
+-	 8756, 8756, 0, $f,
+-	 8764, 8764, 0, $f,
+-	 8773, 8773, 0, $f,
+-	 8776, 8776, 0, $f,
+-	 8800, 8801, 0, $f,
+-	 8804, 8805, 0, $f,
+-	 8834, 8836, 0, $f,
+-	 8838, 8839, 0, $f,
+-	 8853, 8853, 0, $f,
+-	 8855, 8855, 0, $f,
+-	 8869, 8869, 0, $f,
+-	 8901, 8901, 0, $f,
+-	 8968, 8971, 0, $f,
+-	 9001, 9002, 0, $f,
+-	 9674, 9674, 0, $f,
+-	 9824, 9824, 0, $f,
+-	 9827, 9827, 0, $f,
+-	 9829, 9830, 0, $f,
+-	 338,  339,  0, $f,
+-	 352,  353,  0, $f,
+-	 376,  376,  0, $f,
+-	 710,  710,  0, $f,
+-	 732,  732,  0, $f,
+-	 8194, 8195, 0, $f,
+-	 8201, 8201, 0, $f,
+-	 8204, 8207, 0, $f,
+-	 8211, 8212, 0, $f,
+-	 8216, 8218, 0, $f,
+-	 8218, 8218, 0, $f,
+-	 8220, 8222, 0, $f,
+-	 8224, 8225, 0, $f,
+-	 8240, 8240, 0, $f,
+-	 8249, 8250, 0, $f,
+-	 8364, 8364, 0, $f
+-	 );
+-
+-	return $cmap;
+-}
+-
+-
+-function linkit($text,$title,$url){
+-    $url = preg_replace(&quot;/&amp;(?!amp;)/&quot;,&quot;&amp;&quot;,$url);
+-    $out = '&lt;a href=&quot;'.$url;
+-    if ($title!='') {
+-		$title = trim($title);
+-        $out .= ' title=&quot;'.$title;
+-    }
+-    $out .= '&gt;'.$text.'&lt;/a&gt;';
+-
+-    return $out;
+-}
+-
+-// And now for the filters
+-remove_filter('the_content', 'wpautop');
+-remove_filter('the_excerpt', 'wpautop');
+-remove_filter('comment_text', 'wpautop');
+-
+-remove_filter('the_content', 'wptexturize');
+-remove_filter('the_excerpt', 'wptexturize');
+-remove_filter('comment_text', 'wptexturize');
+-
+-add_filter('the_content', 'textile', 6);
+-add_filter('the_excerpt', 'textile', 6);
+-add_filter('comment_text', 'textile', 6);
+-
+-?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-content/themes/default/404.php
+===================================================================
+--- trunk/wp-content/themes/default/404.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/404.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,11 +1,48 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+ 		&lt;h2 class=&quot;center&quot;&gt;Error 404 - Not Found&lt;/h2&gt;
+ 
+ 	&lt;/div&gt;
+ 
+-&lt;?php get_sidebar(); ?&gt;
+-
+-&lt;?php get_footer(); ?&gt;
+\ No newline at end of file
++&lt;?php get_sidebar();   get_footer(); ?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-content/themes/default/archive.php
+===================================================================
+--- trunk/wp-content/themes/default/archive.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/archive.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,5 +1,44 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+ &lt;?php
+@@ -98,14 +137,10 @@
+ ?&gt;
+ 
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+-		&lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+-
+-&lt;?php
++		&lt;?php include (TEMPLATEPATH . '/searchform.php');  
+ }
+ ?&gt;
+ 
+ 	&lt;/div&gt;
+ 
+-&lt;?php get_sidebar(); ?&gt;
+-
+-&lt;?php get_footer(); ?&gt;
+\ No newline at end of file
++&lt;?php get_sidebar();   get_footer(); ?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-content/themes/default/archives.php
+===================================================================
+--- trunk/wp-content/themes/default/archives.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/archives.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,11 +1,48 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ /*
+ Template Name: Archives
+ */
+-?&gt;
++  get_header(); ?&gt;
+ 
+-&lt;?php get_header(); ?&gt;
+-
+ &lt;div id=&quot;content&quot; class=&quot;widecolumn&quot;&gt;
+ 
+ &lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+@@ -20,6 +57,6 @@
+      &lt;?php wp_list_cats(); ?&gt;
+   &lt;/ul&gt;
+ 
+-&lt;/div&gt;	
++&lt;/div&gt;
+ 
+ &lt;?php get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/comments-popup.php
+===================================================================
+--- trunk/wp-content/themes/default/comments-popup.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/comments-popup.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ /* Don't remove these lines. */
+ add_filter('comment_text', 'popuplinks');
+ foreach ($posts as $post)
+@@ -32,9 +71,7 @@
+ &lt;p&gt;The &lt;acronym title=&quot;Uniform Resource Identifier&quot;&gt;URI&lt;/acronym&gt; to TrackBack this entry is: &lt;em&gt;&lt;?php trackback_url() ?&gt;&lt;/em&gt;&lt;/p&gt;
+ &lt;?php
+ 	}
+-?&gt;
+-
+-&lt;?php
++ 
+ 	// this line is WordPress' motor, do not delete it.
+ 	$comment_author = (isset($_COOKIE['comment_author_' . COOKIEHASH])) ? trim($_COOKIE['comment_author_'. COOKIEHASH]) : '';
+ 	$comment_author_email = (isset($_COOKIE['comment_author_email_'. COOKIEHASH])) ? trim($_COOKIE['comment_author_email_'. COOKIEHASH]) : '';
+@@ -47,9 +84,7 @@
+ 	}
+ 	else
+ 	{
+-?&gt;
+-
+-&lt;?php
++ 
+ 		if ($comments)
+ 		{
+ ?&gt;
+@@ -74,9 +109,7 @@
+ 	&lt;p&gt;No comments yet.&lt;/p&gt;
+ &lt;?php
+ 		}
+-?&gt;
+-
+-&lt;?php
++ 
+ 		if ('open' == $commentstatus-&gt;comment_status)
+ 		{
+ ?&gt;
+
+Modified: trunk/wp-content/themes/default/comments.php
+===================================================================
+--- trunk/wp-content/themes/default/comments.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/comments.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,4 +1,43 @@
+-&lt;?php // Do not delete these lines
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  // Do not delete these lines
+ 	if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
+ 	{
+ 		die ('Please do not load this page directly. Thanks!');
+@@ -61,9 +100,7 @@
+ 		{
+ 			$oddcomment = 'alt';
+ 		}
+-	?&gt;
+-
+-&lt;?php
++	 
+ 	} /* end for each comment */
+ ?&gt;
+ 
+@@ -73,9 +110,7 @@
+ }
+ else // this is displayed if there are no comments so far
+ {
+-?&gt;
+-
+-&lt;?php
++ 
+ 	if ('open' == $post-&gt;comment_status)
+ 	{
+ ?&gt;
+@@ -156,8 +191,6 @@
+ 
+ &lt;?php // If registration required and not logged in
+ 	}
+-?&gt;
+-
+-&lt;?php // if you delete this the sky will fall on your head
++  // if you delete this the sky will fall on your head
+ }
+ ?&gt;
+
+Modified: trunk/wp-content/themes/default/footer.php
+===================================================================
+--- trunk/wp-content/themes/default/footer.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/footer.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,4 +1,45 @@
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
++
+ &lt;hr /&gt;
+ &lt;div id=&quot;footer&quot;&gt;
+ 	&lt;p&gt;
+
+Modified: trunk/wp-content/themes/default/header.php
+===================================================================
+--- trunk/wp-content/themes/default/header.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/header.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,3 +1,44 @@
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
+ &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
+ &lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
+ 
+@@ -51,9 +92,7 @@
+ 	*/
+ &lt;/style&gt;
+ 
+-&lt;?php wp_get_archives('type=monthly&amp;format=link'); ?&gt;
+-
+-&lt;?php wp_head(); ?&gt;
++&lt;?php wp_get_archives('type=monthly&amp;format=link');   wp_head(); ?&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+ 
+
+Modified: trunk/wp-content/themes/default/index.php
+===================================================================
+--- trunk/wp-content/themes/default/index.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/index.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,13 +1,50 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+ &lt;?php
+ if (have_posts())
+ {
+-?&gt;
+-
+-&lt;?php
++ 
+ 	while (have_posts())
+ 	{
+ 		the_post();
+@@ -41,14 +78,10 @@
+ 
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+ 		&lt;p class=&quot;center&quot;&gt;Sorry, but you are looking for something that isn't here.&lt;/p&gt;
+-		&lt;?php include (TEMPLATEPATH . &quot;/searchform.php&quot;); ?&gt;
+-
+-&lt;?php
++		&lt;?php include (TEMPLATEPATH . &quot;/searchform.php&quot;);  
+ }
+ ?&gt;
+ 
+ 	&lt;/div&gt;
+ 
+-&lt;?php get_sidebar(); ?&gt;
+-
+-&lt;?php get_footer(); ?&gt;
++&lt;?php get_sidebar();   get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/links.php
+===================================================================
+--- trunk/wp-content/themes/default/links.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/links.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,11 +1,48 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ /*
+ Template Name: Links
+ */
+-?&gt;
++  get_header(); ?&gt;
+ 
+-&lt;?php get_header(); ?&gt;
+-
+ &lt;div id=&quot;content&quot; class=&quot;widecolumn&quot;&gt;
+ 
+ &lt;h2&gt;Links:&lt;/h2&gt;
+@@ -13,6 +50,6 @@
+ &lt;?php get_links_list(); ?&gt;
+ &lt;/ul&gt;
+ 
+-&lt;/div&gt;	
++&lt;/div&gt;
+ 
+ &lt;?php get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/page.php
+===================================================================
+--- trunk/wp-content/themes/default/page.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/page.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,5 +1,44 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+ &lt;?php
+@@ -25,6 +64,4 @@
+ 	&lt;?php edit_post_link('Edit this entry.', '&lt;p&gt;', '&lt;/p&gt;'); ?&gt;
+ 	&lt;/div&gt;
+ 
+-&lt;?php get_sidebar(); ?&gt;
+-
+-&lt;?php get_footer(); ?&gt;
++&lt;?php get_sidebar();   get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/search.php
+===================================================================
+--- trunk/wp-content/themes/default/search.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/search.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,5 +1,44 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+ &lt;?php
+@@ -48,14 +87,10 @@
+ ?&gt;
+ 
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+-		&lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+-
+-&lt;?php
++		&lt;?php include (TEMPLATEPATH . '/searchform.php');  
+ }
+ ?&gt;
+ 
+ 	&lt;/div&gt;
+ 
+-&lt;?php get_sidebar(); ?&gt;
+-
+-&lt;?php get_footer(); ?&gt;
++&lt;?php get_sidebar();   get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/searchform.php
+===================================================================
+--- trunk/wp-content/themes/default/searchform.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/searchform.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,3 +1,44 @@
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
+ &lt;form method=&quot;get&quot; id=&quot;searchform&quot; action=&quot;&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;&quot;&gt;
+ &lt;div&gt;&lt;input type=&quot;text&quot; value=&quot;&lt;?php echo wp_specialchars($s, 1); ?&gt;&quot; name=&quot;s&quot; id=&quot;s&quot; /&gt;
+ &lt;input type=&quot;submit&quot; id=&quot;searchsubmit&quot; value=&quot;Search&quot; /&gt;
+
+Modified: trunk/wp-content/themes/default/sidebar.php
+===================================================================
+--- trunk/wp-content/themes/default/sidebar.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/sidebar.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,3 +1,44 @@
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
+ 	&lt;div id=&quot;sidebar&quot;&gt;
+ 		&lt;ul&gt;
+ 
+
+Modified: trunk/wp-content/themes/default/single.php
+===================================================================
+--- trunk/wp-content/themes/default/single.php	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/single.php	2005-11-22 15:48:31 UTC (rev 114)
+@@ -1,5 +1,44 @@
+-&lt;?php get_header(); ?&gt;
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++  get_header(); ?&gt;
++
+ 	&lt;div id=&quot;content&quot; class=&quot;widecolumn&quot;&gt;
+ 
+ &lt;?php
+@@ -69,9 +108,7 @@
+ 			&lt;/div&gt;
+ 		&lt;/div&gt;
+ 
+-	&lt;?php comments_template(); ?&gt;
+-
+-&lt;?php
++	&lt;?php comments_template();  
+ 	}
+ }
+ else
+
+Modified: trunk/wp-content/themes/default/style.css
+===================================================================
+--- trunk/wp-content/themes/default/style.css	2005-11-22 15:47:58 UTC (rev 113)
++++ trunk/wp-content/themes/default/style.css	2005-11-22 15:48:31 UTC (rev 114)
+@@ -23,8 +23,44 @@
+ 	Have fun, and don't be afraid to contact me if you have questions.
+ */
+ 
++/*************************************************
+ 
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
+ 
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++
+ /* Begin Typography &amp; Colors */
+ body {
+ 	font-size: 62.5%; /* Resets 1em to 10px */
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000069.html">[SteamPress-SVN-Tracker] r113 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000071.html">[SteamPress-SVN-Tracker] r115 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

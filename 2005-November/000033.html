@@ -1,0 +1,181 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r77 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r77%20-%20trunk&In-Reply-To=%3C200511082243.jA8MhHp3022268%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000032.html">
+   <LINK REL="Next"  HREF="000034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r77 - trunk</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r77%20-%20trunk&In-Reply-To=%3C200511082243.jA8MhHp3022268%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r77 - trunk">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov  8 23:43:17 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000032.html">[steampress-svn-tracker] r76 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000034.html">[steampress-svn-tracker] r78 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-08 23:43:17 +0100 (Tue, 08 Nov 2005)
+New Revision: 77
+
+Modified:
+   trunk/wp-trackback.php
+Log:
+Fixed brackets and indentation.
+
+Modified: trunk/wp-trackback.php
+===================================================================
+--- trunk/wp-trackback.php	2005-11-08 22:40:58 UTC (rev 76)
++++ trunk/wp-trackback.php	2005-11-08 22:43:17 UTC (rev 77)
+@@ -1,22 +1,27 @@
+ &lt;?php
+ require_once( dirname(__FILE__) . '/wp-config.php' );
+ 
+-if ( empty($doing_trackback) ) {
++if ( empty($doing_trackback) )
++{
+ 	$doing_trackback = true;
+ 	$tb = true;
+ 	require_once('wp-blog-header.php');
+ }
+ 
+-function trackback_response($error = 0, $error_message = '') {
++function trackback_response($error = 0, $error_message = '')
++{
+ 	header('Content-Type: text/xml; charset=' . get_option('blog_charset') );
+-	if ($error) {
++	if ($error)
++	{
+ 		echo '&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?'.&quot;&gt;\n&quot;;
+ 		echo &quot;&lt;response&gt;\n&quot;;
+ 		echo &quot;&lt;error&gt;1&lt;/error&gt;\n&quot;;
+ 		echo &quot;&lt;message&gt;$error_message&lt;/message&gt;\n&quot;;
+ 		echo &quot;&lt;/response&gt;&quot;;
+ 		die();
+-	} else {
++	}
++	else
++	{
+ 		echo '&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?'.&quot;&gt;\n&quot;;
+ 		echo &quot;&lt;response&gt;\n&quot;;
+ 		echo &quot;&lt;error&gt;0&lt;/error&gt;\n&quot;;
+@@ -27,7 +32,8 @@
+ // trackback is done by a POST
+ $request_array = 'HTTP_POST_VARS';
+ 
+-if ( !$_GET['tb_id'] ) {
++if ( !$_GET['tb_id'] )
++{
+ 	$tb_id = explode('/', $_SERVER['REQUEST_URI']);
+ 	$tb_id = intval( $tb_id[ count($tb_id) - 1 ] );
+ }
+@@ -39,35 +45,48 @@
+ $charset   = $_POST['charset'];
+ 
+ if ($charset)
++{
+ 	$charset = strtoupper( trim($charset) );
++}
+ else
++{
+ 	$charset = 'ASCII, UTF-8, ISO-8859-1, JIS, EUC-JP, SJIS';
++}
+ 
+-if ( function_exists('mb_convert_encoding') ) { // For international trackbacks
++if ( function_exists('mb_convert_encoding') ) // For international trackbacks
++{
+ 	$title     = mb_convert_encoding($title, get_settings('blog_charset'), $charset);
+ 	$excerpt   = mb_convert_encoding($excerpt, get_settings('blog_charset'), $charset);
+ 	$blog_name = mb_convert_encoding($blog_name, get_settings('blog_charset'), $charset);
+ }
+ 
+-if ( is_single() || is_page() ) 
+-    $tb_id = $posts[0]-&gt;ID;
++if ( is_single() || is_page() )
++{
++	$tb_id = $posts[0]-&gt;ID;
++}
+ 
+ if ( !intval( $tb_id ) )
++{
+ 	trackback_response(1, 'I really need an ID for this to work.');
++}
+ 
+-if (empty($title) &amp;&amp; empty($tb_url) &amp;&amp; empty($blog_name)) {
++if (empty($title) &amp;&amp; empty($tb_url) &amp;&amp; empty($blog_name))
++{
+ 	// If it doesn't look like a trackback at all...
+ 	header('Location: ' . get_permalink($tb_id));
+ 	exit;
+ }
+ 
+-if ( !empty($tb_url) &amp;&amp; !empty($title) &amp;&amp; !empty($tb_url) ) {
++if ( !empty($tb_url) &amp;&amp; !empty($title) &amp;&amp; !empty($tb_url) )
++{
+ 	header('Content-Type: text/xml; charset=' . get_option('blog_charset') );
+ 
+ 	$pingstatus = $wpdb-&gt;get_var(&quot;SELECT ping_status FROM $wpdb-&gt;posts WHERE ID = $tb_id&quot;);
+ 
+ 	if ( 'open' != $pingstatus )
++	{
+ 		trackback_response(1, 'Sorry, trackbacks are closed for this item.');
++	}
+ 
+ 	$title =  wp_specialchars( strip_tags( $title ) );
+ 	$title = (strlen($title) &gt; 250) ? substr($title, 0, 250) . '...' : $title;
+@@ -83,7 +102,9 @@
+ 
+ 	$dupe = $wpdb-&gt;get_results(&quot;SELECT * FROM $wpdb-&gt;comments WHERE comment_post_ID = '$comment_post_ID' AND comment_author_url = '$comment_author_url'&quot;);
+ 	if ( $dupe )
++	{
+ 		trackback_response(1, 'We already have a ping from that URI for this post.');
++	}
+ 
+ 	$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type');
+ 
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000032.html">[steampress-svn-tracker] r76 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000034.html">[steampress-svn-tracker] r78 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

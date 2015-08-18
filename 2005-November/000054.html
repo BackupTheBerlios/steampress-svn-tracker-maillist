@@ -1,0 +1,837 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r98 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r98%20-%20trunk/wp-includes&In-Reply-To=%3C200511091756.jA9HujpQ015298%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000053.html">
+   <LINK REL="Next"  HREF="000055.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r98 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r98%20-%20trunk/wp-includes&In-Reply-To=%3C200511091756.jA9HujpQ015298%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r98 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 18:56:45 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000053.html">[steampress-svn-tracker] r97 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000055.html">[steampress-svn-tracker] r99 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 18:56:42 +0100 (Wed, 09 Nov 2005)
+New Revision: 98
+
+Modified:
+   trunk/wp-includes/default-filters.php
+   trunk/wp-includes/feed-functions.php
+   trunk/wp-includes/functions-compat.php
+   trunk/wp-includes/streams.php
+Log:
+Added whitespace. Fixed brackets. Make code purdy
+
+Modified: trunk/wp-includes/default-filters.php
+===================================================================
+--- trunk/wp-includes/default-filters.php	2005-11-09 17:43:47 UTC (rev 97)
++++ trunk/wp-includes/default-filters.php	2005-11-09 17:56:42 UTC (rev 98)
+@@ -85,4 +85,4 @@
+ // Actions
+ add_action('publish_post', 'generic_ping');
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-includes/feed-functions.php
+===================================================================
+--- trunk/wp-includes/feed-functions.php	2005-11-09 17:43:47 UTC (rev 97)
++++ trunk/wp-includes/feed-functions.php	2005-11-09 17:56:42 UTC (rev 98)
+@@ -1,45 +1,60 @@
+ &lt;?php
+ 
+-function get_bloginfo_rss($show = '') {
++function get_bloginfo_rss($show = '')
++{
+ 	$info = strip_tags(get_bloginfo($show));
+ 	return convert_chars($info);
+ }
+ 
+-function bloginfo_rss($show = '') {
++function bloginfo_rss($show = '')
++{
+ 	echo get_bloginfo_rss($show);
+ }
+ 
+-function the_title_rss() {
++function the_title_rss()
++{
+ 	$title = get_the_title();
+ 	$title = apply_filters('the_title', $title);
+ 	$title = apply_filters('the_title_rss', $title);
+ 	echo $title;
+ }
+ 
+-function the_content_rss($more_link_text='(more...)', $stripteaser=0, $more_file='', $cut = 0, $encode_html = 0) {
++function the_content_rss($more_link_text='(more...)', $stripteaser=0, $more_file='', $cut = 0, $encode_html = 0)
++{
+ 	$content = get_the_content($more_link_text, $stripteaser, $more_file);
+ 	$content = apply_filters('the_content', $content);
+-	if ($cut &amp;&amp; !$encode_html) {
++	if ($cut &amp;&amp; !$encode_html)
++	{
+ 		$encode_html = 2;
+ 	}
+-	if ($encode_html == 1) {
++	if ($encode_html == 1)
++	{
+ 		$content = wp_specialchars($content);
+ 		$cut = 0;
+-	} elseif ($encode_html == 0) {
++	}
++	elseif ($encode_html == 0)
++	{
+ 		$content = make_url_footnote($content);
+-	} elseif ($encode_html == 2) {
++	}
++	elseif ($encode_html == 2)
++	{
+ 		$content = strip_tags($content);
+ 	}
+-	if ($cut) {
++	if ($cut)
++	{
+ 		$blah = explode(' ', $content);
+-		if (count($blah) &gt; $cut) {
++		if (count($blah) &gt; $cut)
++		{
+ 			$k = $cut;
+ 			$use_dotdotdot = 1;
+-		} else {
++		}
++		else
++		{
+ 			$k = count($blah);
+ 			$use_dotdotdot = 0;
+ 		}
+-		for ($i=0; $i&lt;$k; $i++) {
++		for ($i=0; $i&lt;$k; $i++)
++		{
+ 			$excerpt .= $blah[$i].' ';
+ 		}
+ 		$excerpt .= ($use_dotdotdot) ? '...' : '';
+@@ -49,103 +64,142 @@
+ 	echo $content;
+ }
+ 
+-function the_excerpt_rss() {
++function the_excerpt_rss()
++{
+ 	$output = get_the_excerpt(true);
+ 	echo apply_filters('the_excerpt_rss', $output);
+ }
+ 
+-function permalink_single_rss($file = '') {
+-    echo get_permalink();
++function permalink_single_rss($file = '')
++{
++	echo get_permalink();
+ }
+ 
+-function comment_link() {
++function comment_link()
++{
+ 	echo get_comment_link();
+ }
+ 
+-function comment_author_rss() {
++function comment_author_rss()
++{
+ 	$author = apply_filters('comment_author_rss', get_comment_author() );
+ 	echo $author;
+ }
+ 
+-function comment_text_rss() {
++function comment_text_rss()
++{
+ 	$comment_text = get_comment_text();
+ 	$comment_text = apply_filters('comment_text_rss', $comment_text);
+ 	echo $comment_text;
+ }
+ 
+-function comments_rss_link($link_text = 'Comments RSS', $commentsrssfilename = '') {
++function comments_rss_link($link_text = 'Comments RSS', $commentsrssfilename = '')
++{
+ 	$url = comments_rss($commentsrssfilename);
+ 	echo &quot;&lt;a href='$url'&gt;$link_text&lt;/a&gt;&quot;;
+ }
+ 
+-function comments_rss($commentsrssfilename = '') {
++function comments_rss($commentsrssfilename = '')
++{
+ 	global $id;
+ 
+ 	if ('' != get_settings('permalink_structure'))
++	{
+ 		$url = trailingslashit( get_permalink() ) . 'feed/';
++	}
+ 	else
++	{
+ 		$url = get_settings('home') . &quot;/$commentsrssfilename?feed=rss2&amp;p=$id&quot;;
++	}
+ 
+ 	return apply_filters('post_comments_feed_link', $url);
+ }
+ 
+-function get_author_rss_link($echo = false, $author_id, $author_nicename) {
+-       $auth_ID = $author_id;
+-       $permalink_structure = get_settings('permalink_structure');
++function get_author_rss_link($echo = false, $author_id, $author_nicename)
++{
++	$auth_ID = $author_id;
++	$permalink_structure = get_settings('permalink_structure');
+ 
+-       if ('' == $permalink_structure) {
+-				 $link = get_settings('home') . '?feed=rss2&amp;author=' . $author_id;
+-       } else {
+-				 $link = get_author_link(0, $author_id, $author_nicename);
+-				 $link = $link . &quot;feed/&quot;;
+-       }
+-			 
+-			 $link = apply_filters('author_feed_link', $link);
++	if ('' == $permalink_structure)
++	{
++		$link = get_settings('home') . '?feed=rss2&amp;author=' . $author_id;
++	}
++	else
++	{
++		$link = get_author_link(0, $author_id, $author_nicename);
++		$link = $link . &quot;feed/&quot;;
++	}
+ 
+-       if ($echo) echo $link;
+-       return $link;
++	$link = apply_filters('author_feed_link', $link);
++
++	if ($echo)
++	{
++		echo $link;
++	}
++	return $link;
+ }
+ 
+-function get_category_rss_link($echo = false, $cat_ID, $category_nicename) {
+-       $permalink_structure = get_settings('permalink_structure');
++function get_category_rss_link($echo = false, $cat_ID, $category_nicename)
++{
++	$permalink_structure = get_settings('permalink_structure');
+ 
+-       if ('' == $permalink_structure) {
+-				 $link = get_settings('home') . '?feed=rss2&amp;cat=' . $cat_ID;
+-       } else {
+-				 $link = get_category_link($cat_ID);
+-				 $link = $link . &quot;feed/&quot;;
+-       }
++	if ('' == $permalink_structure)
++	{
++		$link = get_settings('home') . '?feed=rss2&amp;cat=' . $cat_ID;
++	}
++	else
++	{
++		$link = get_category_link($cat_ID);
++		$link = $link . &quot;feed/&quot;;
++	}
+ 
+-			 $link = apply_filters('category_feed_link', $link);
++	$link = apply_filters('category_feed_link', $link);
+ 
+-       if ($echo) echo $link;
+-       return $link;
++	if ($echo)
++	{
++		echo $link;
++	}
++	return $link;
+ }
+ 
+-function the_category_rss($type = 'rss') {
+-    $categories = get_the_category();
+-    $the_list = '';
+-    foreach ($categories as $category) {
+-        $category-&gt;cat_name = convert_chars($category-&gt;cat_name);
+-        if ('rdf' == $type) {
+-            $the_list .= &quot;\n\t&lt;dc:subject&gt;$category-&gt;cat_name&lt;/dc:subject&gt;&quot;;
+-        } else {
+-            $the_list .= &quot;\n\t&lt;category&gt;$category-&gt;cat_name&lt;/category&gt;&quot;;
+-        }
+-    }
+-    echo apply_filters('the_category_rss', $the_list, $type);
++function the_category_rss($type = 'rss')
++{
++	$categories = get_the_category();
++	$the_list = '';
++	foreach ($categories as $category)
++	{
++		$category-&gt;cat_name = convert_chars($category-&gt;cat_name);
++		if ('rdf' == $type)
++		{
++			$the_list .= &quot;\n\t&lt;dc:subject&gt;$category-&gt;cat_name&lt;/dc:subject&gt;&quot;;
++		}
++		else
++		{
++			$the_list .= &quot;\n\t&lt;category&gt;$category-&gt;cat_name&lt;/category&gt;&quot;;
++		}
++	}
++	echo apply_filters('the_category_rss', $the_list, $type);
+ }
+ 
+-function rss_enclosure() {
++function rss_enclosure()
++{
+ 	global $id, $post;
+-	if (!empty($post-&gt;post_password) &amp;&amp; ($_COOKIE['wp-postpass_'.COOKIEHASH] != $post-&gt;post_password)) return;
++	if (!empty($post-&gt;post_password) &amp;&amp; ($_COOKIE['wp-postpass_'.COOKIEHASH] != $post-&gt;post_password))
++	{
++		return;
++	}
+ 
+ 	$custom_fields = get_post_custom();
+-	if( is_array( $custom_fields ) ) {
+-		while( list( $key, $val ) = each( $custom_fields ) ) { 
+-			if( $key == 'enclosure' ) {
+-				if (is_array($val)) {
+-					foreach($val as $enc) {
++	if( is_array( $custom_fields ) )
++	{
++		while( list( $key, $val ) = each( $custom_fields ) )
++		{
++			if( $key == 'enclosure' )
++			{
++				if (is_array($val))
++				{
++					foreach($val as $enc)
++					{
+ 						$enclosure = split( &quot;\n&quot;, $enc );
+ 						print &quot;&lt;enclosure url='&quot;.trim( htmlspecialchars($enclosure[ 0 ]) ).&quot;' length='&quot;.trim( $enclosure[ 1 ] ).&quot;' type='&quot;.trim( $enclosure[ 2 ] ).&quot;'/&gt;\n&quot;;
+ 					}
+@@ -155,4 +209,4 @@
+ 	}
+ }
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-includes/functions-compat.php
+===================================================================
+--- trunk/wp-includes/functions-compat.php	2005-11-09 17:43:47 UTC (rev 97)
++++ trunk/wp-includes/functions-compat.php	2005-11-09 17:56:42 UTC (rev 98)
+@@ -5,27 +5,37 @@
+ 
+ /* Added in PHP 4.2.0 */
+ 
+-if (!function_exists('floatval')) {
+-	function floatval($string) {
++if (!function_exists('floatval'))
++{
++	function floatval($string)
++	{
+ 		return ((float) $string);
+ 	}
+ }
+ 
+-if (!function_exists('is_a')) {
+-	function is_a($object, $class) {
++if (!function_exists('is_a'))
++{
++	function is_a($object, $class)
++	{
+ 		// by Aidan Lister &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">aidan at php.net</A>&gt;
+-		if (get_class($object) == strtolower($class)) {
++		if (get_class($object) == strtolower($class))
++		{
+ 			return true;
+-		} else {
++		}
++		else
++		{
+ 			return is_subclass_of($object, $class);
+ 		}
+ 	}
+ }
+ 
+-if (!function_exists('ob_clean')) {
+-	function ob_clean() {
++if (!function_exists('ob_clean'))
++{
++	function ob_clean()
++	{
+ 		// by Aidan Lister &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">aidan at php.net</A>&gt;
+-		if (@ob_end_clean()) {
++		if (@ob_end_clean())
++		{
+ 			return ob_start();
+ 		}
+ 		return false;
+@@ -35,58 +45,66 @@
+ 
+ /* Added in PHP 4.3.0 */
+ 
+-function printr($var, $do_not_echo = false) {
+-	// from php.net/print_r user contributed notes 
++function printr($var, $do_not_echo = false)
++{
++	// from php.net/print_r user contributed notes
+ 	ob_start();
+ 	print_r($var);
+ 	$code =  htmlentities(ob_get_contents());
+ 	ob_clean();
+-	if (!$do_not_echo) {
+-	  echo &quot;&lt;pre&gt;$code&lt;/pre&gt;&quot;;
++	if (!$do_not_echo)
++	{
++		echo &quot;&lt;pre&gt;$code&lt;/pre&gt;&quot;;
+ 	}
+ 	return $code;
+ }
+ 
+-if (!defined('CASE_LOWER')) {
+-    define('CASE_LOWER', 0);
++if (!defined('CASE_LOWER'))
++{
++	define('CASE_LOWER', 0);
+ }
+ 
+-if (!defined('CASE_UPPER')) {
+-    define('CASE_UPPER', 1);
++if (!defined('CASE_UPPER'))
++{
++	define('CASE_UPPER', 1);
+ }
+ 
+ 
+-/**
+- * Replace array_change_key_case()
+- *
+- * @category    PHP
+- * @package     PHP_Compat
+- * @link        <A HREF="http://php.net/function.array_change_key_case">http://php.net/function.array_change_key_case</A>
+- * @author      Stephan Schmidt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">schst at php.net</A>&gt;
+- * @author      Aidan Lister &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">aidan at php.net</A>&gt;
+- * @version     $Revision: 2247 $
+- * @since       PHP 4.2.0
+- * @require     PHP 4.0.0 (user_error)
+- */
+-if (!function_exists('array_change_key_case')) {
+-    function array_change_key_case($input, $case = CASE_LOWER)
+-    {
+-        if (!is_array($input)) {
+-            user_error('array_change_key_case(): The argument should be an array',
+-                E_USER_WARNING);
+-            return false;
+-        }
++/*
++* Replace array_change_key_case()
++*
++* @category    PHP
++* @package     PHP_Compat
++* @link        <A HREF="http://php.net/function.array_change_key_case">http://php.net/function.array_change_key_case</A>
++* @author      Stephan Schmidt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">schst at php.net</A>&gt;
++* @author      Aidan Lister &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">aidan at php.net</A>&gt;
++* @version     $Revision: 2247 $
++* @since       PHP 4.2.0
++* @require     PHP 4.0.0 (user_error)
++*/
+ 
+-        $output   = array ();
+-        $keys     = array_keys($input);
+-        $casefunc = ($case == CASE_LOWER) ? 'strtolower' : 'strtoupper';
++if (!function_exists('array_change_key_case'))
++{
++	function array_change_key_case($input, $case = CASE_LOWER)
++	{
++		if (!is_array($input))
++		{
++			user_error('array_change_key_case(): The argument should be an array',
++				E_USER_WARNING);
++			return false;
++		}
+ 
+-        foreach ($keys as $key) {
+-            $output[$casefunc($key)] = $input[$key];
+-        }
++		$output   = array ();
++		$keys     = array_keys($input);
++		$casefunc = ($case == CASE_LOWER) ? 'strtolower' : 'strtoupper';
+ 
+-        return $output;
+-    }
++		foreach ($keys as $key)
++		{
++			$output[$casefunc($key)] = $input[$key];
++		}
++
++		return $output;
++	}
+ }
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-includes/streams.php
+===================================================================
+--- trunk/wp-includes/streams.php	2005-11-09 17:43:47 UTC (rev 97)
++++ trunk/wp-includes/streams.php	2005-11-09 17:56:42 UTC (rev 98)
+@@ -1,159 +1,190 @@
+ &lt;?php
+ /*
+-   Copyright (c) 2003, 2005 Danilo Segan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">danilo at kvota.net</A>&gt;.
++Copyright (c) 2003, 2005 Danilo Segan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">danilo at kvota.net</A>&gt;.
+ 
+-   This file is part of PHP-gettext.
++This file is part of PHP-gettext.
+ 
+-   PHP-gettext is free software; you can redistribute it and/or modify
+-   it under the terms of the GNU General Public License as published by
+-   the Free Software Foundation; either version 2 of the License, or
+-   (at your option) any later version.
++PHP-gettext is free software; you can redistribute it and/or modify
++it under the terms of the GNU General Public License as published by
++the Free Software Foundation; either version 2 of the License, or
++(at your option) any later version.
+ 
+-   PHP-gettext is distributed in the hope that it will be useful,
+-   but WITHOUT ANY WARRANTY; without even the implied warranty of
+-   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-   GNU General Public License for more details.
++PHP-gettext is distributed in the hope that it will be useful,
++but WITHOUT ANY WARRANTY; without even the implied warranty of
++MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++GNU General Public License for more details.
+ 
+-   You should have received a copy of the GNU General Public License
+-   along with PHP-gettext; if not, write to the Free Software
+-   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++You should have received a copy of the GNU General Public License
++along with PHP-gettext; if not, write to the Free Software
++Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+ */
+ 
+ 
+ // Simple class to wrap file streams, string streams, etc.
+ // seek is essential, and it should be byte stream
+-class StreamReader {
+-  // should return a string [FIXME: perhaps return array of bytes?]
+-  function read($bytes) {
+-    return false;
+-  }
+-  
+-  // should return new position
+-  function seekto($position) {
+-    return false;
+-  }
+-  
+-  // returns current position
+-  function currentpos() {
+-    return false;
+-  }
+-  
+-  // returns length of entire stream (limit for seekto()s)
+-  function length() {
+-    return false;
+-  }
++class StreamReader
++{
++	// should return a string [FIXME: perhaps return array of bytes?]
++	function read($bytes)
++	{
++		return false;
++	}
++
++	// should return new position
++	function seekto($position)
++	{
++		return false;
++	}
++
++	// returns current position
++	function currentpos()
++	{
++		return false;
++	}
++
++	// returns length of entire stream (limit for seekto()s)
++	function length()
++	{
++		return false;
++	}
+ }
+ 
+-class StringReader {
+-  var $_pos;
+-  var $_str;
++class StringReader
++{
++	var $_pos;
++	var $_str;
+ 
+-  function StringReader($str='') {
+-    $this-&gt;_str = $str;
+-    $this-&gt;_pos = 0;
+-  }
++	function StringReader($str='')
++	{
++		$this-&gt;_str = $str;
++		$this-&gt;_pos = 0;
++	}
+ 
+-  function read($bytes) {
+-    $data = substr($this-&gt;_str, $this-&gt;_pos, $bytes);
+-    $this-&gt;_pos += $bytes;
+-    if (strlen($this-&gt;_str)&lt;$this-&gt;_pos)
+-      $this-&gt;_pos = strlen($this-&gt;_str);
++	function read($bytes)
++	{
++		$data = substr($this-&gt;_str, $this-&gt;_pos, $bytes);
++		$this-&gt;_pos += $bytes;
++		if (strlen($this-&gt;_str)&lt;$this-&gt;_pos)
++		$this-&gt;_pos = strlen($this-&gt;_str);
+ 
+-    return $data;
+-  }
++		return $data;
++	}
+ 
+-  function seekto($pos) {
+-    $this-&gt;_pos = $pos;
+-    if (strlen($this-&gt;_str)&lt;$this-&gt;_pos)
+-      $this-&gt;_pos = strlen($this-&gt;_str);
+-    return $this-&gt;_pos;
+-  }
++	function seekto($pos)
++	{
++		$this-&gt;_pos = $pos;
++		if (strlen($this-&gt;_str)&lt;$this-&gt;_pos)
++		$this-&gt;_pos = strlen($this-&gt;_str);
++		return $this-&gt;_pos;
++	}
+ 
+-  function currentpos() {
+-    return $this-&gt;_pos;
+-  }
++	function currentpos()
++	{
++		return $this-&gt;_pos;
++	}
+ 
+-  function length() {
+-    return strlen($this-&gt;_str);
+-  }
++	function length()
++	{
++		return strlen($this-&gt;_str);
++	}
+ 
+ }
+ 
+ 
+-class FileReader {
+-  var $_pos;
+-  var $_fd;
+-  var $_length;
++class FileReader
++{
++	var $_pos;
++	var $_fd;
++	var $_length;
+ 
+-  function FileReader($filename) {
+-    if (file_exists($filename)) {
++	function FileReader($filename)
++	{
++		if (file_exists($filename))
++		{
++			$this-&gt;_length=filesize($filename);
++			$this-&gt;_pos = 0;
++			$this-&gt;_fd = fopen($filename,'rb');
++			if (!$this-&gt;_fd)
++			{
++				$this-&gt;error = 3; // Cannot read file, probably permissions
++				return false;
++			}
++		}
++		else
++		{
++			$this-&gt;error = 2; // File doesn't exist
++			return false;
++		}
++	}
+ 
+-      $this-&gt;_length=filesize($filename);
+-      $this-&gt;_pos = 0;
+-      $this-&gt;_fd = fopen($filename,'rb');
+-      if (!$this-&gt;_fd) {
+-	$this-&gt;error = 3; // Cannot read file, probably permissions
+-	return false;
+-      }
+-    } else {
+-      $this-&gt;error = 2; // File doesn't exist
+-      return false;
+-    }
+-  }
++	function read($bytes)
++	{
++		if ($bytes)
++		{
++			fseek($this-&gt;_fd, $this-&gt;_pos);
++			$data = fread($this-&gt;_fd, $bytes);
++			$this-&gt;_pos = ftell($this-&gt;_fd);
+ 
+-  function read($bytes) {
+-    if ($bytes) {
+-      fseek($this-&gt;_fd, $this-&gt;_pos);
+-      $data = fread($this-&gt;_fd, $bytes);
+-      $this-&gt;_pos = ftell($this-&gt;_fd);
+-      
+-      return $data;
+-    } else return '';
+-  }
++			return $data;
++		}
++		else
++		{
++			return '';
++		}
++	}
+ 
+-  function seekto($pos) {
+-    fseek($this-&gt;_fd, $pos);
+-    $this-&gt;_pos = ftell($this-&gt;_fd);
+-    return $this-&gt;_pos;
+-  }
++	function seekto($pos)
++	{
++		fseek($this-&gt;_fd, $pos);
++		$this-&gt;_pos = ftell($this-&gt;_fd);
++		return $this-&gt;_pos;
++	}
+ 
+-  function currentpos() {
+-    return $this-&gt;_pos;
+-  }
++	function currentpos()
++	{
++		return $this-&gt;_pos;
++	}
+ 
+-  function length() {
+-    return $this-&gt;_length;
+-  }
++	function length()
++	{
++		return $this-&gt;_length;
++	}
+ 
+-  function close() {
+-    fclose($this-&gt;_fd);
+-  }
++	function close()
++	{
++		fclose($this-&gt;_fd);
++	}
+ 
+ }
+ 
+-// Preloads entire file in memory first, then creates a StringReader 
++// Preloads entire file in memory first, then creates a StringReader
+ // over it (it assumes knowledge of StringReader internals)
+-class CachedFileReader extends StringReader {
+-  function CachedFileReader($filename) {
+-    if (file_exists($filename)) {
++class CachedFileReader extends StringReader
++{
++	function CachedFileReader($filename)
++	{
++		if (file_exists($filename))
++		{
+ 
+-      $length=filesize($filename);
+-      $fd = fopen($filename,'rb');
++			$length=filesize($filename);
++			$fd = fopen($filename,'rb');
+ 
+-      if (!$fd) {
+-	$this-&gt;error = 3; // Cannot read file, probably permissions
+-	return false;
+-      }
+-      $this-&gt;_str = fread($fd, $length);
+-      fclose($fd);
++			if (!$fd)
++			{
++				$this-&gt;error = 3; // Cannot read file, probably permissions
++				return false;
++			}
++			$this-&gt;_str = fread($fd, $length);
++			fclose($fd);
+ 
+-    } else {
+-      $this-&gt;error = 2; // File doesn't exist
+-      return false;
+-    }
+-  }
++		}
++		else
++		{
++			$this-&gt;error = 2; // File doesn't exist
++			return false;
++		}
++	}
+ }
+ 
+-
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000053.html">[steampress-svn-tracker] r97 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000055.html">[steampress-svn-tracker] r99 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#54">[ date ]</a>
+              <a href="thread.html#54">[ thread ]</a>
+              <a href="subject.html#54">[ subject ]</a>
+              <a href="author.html#54">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

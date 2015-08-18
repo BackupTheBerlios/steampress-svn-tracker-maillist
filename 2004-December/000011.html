@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r54 - trunk/sp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r54%20-%20trunk/sp-includes&In-Reply-To=%3C200412310346.iBV3ksKh025284%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000010.html">
+   <LINK REL="Next"  HREF="000012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r54 - trunk/sp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r54%20-%20trunk/sp-includes&In-Reply-To=%3C200412310346.iBV3ksKh025284%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r54 - trunk/sp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Fri Dec 31 04:46:54 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000010.html">[steampress-svn-tracker] r53 - trunk/sp-includes
+</A></li>
+        <LI>Next message: <A HREF="000012.html">[steampress-svn-tracker] r55 - trunk/sp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: masquerade
+Date: 2004-12-31 04:46:51 +0100 (Fri, 31 Dec 2004)
+New Revision: 54
+
+Modified:
+   trunk/sp-includes/functions.php
+Log:
+Added a die(); statement to save a bit of time on execution on the initial login
+
+Modified: trunk/sp-includes/functions.php
+===================================================================
+--- trunk/sp-includes/functions.php	2004-12-31 03:31:07 UTC (rev 53)
++++ trunk/sp-includes/functions.php	2004-12-31 03:46:51 UTC (rev 54)
+@@ -1589,6 +1589,7 @@
+ 			//this is here so allt he code recognizes the user as logged in after
+ 			//the initial login, strange things happen otherwise
+ 			header('Location: ' . $_SERVER['PHP_SELF']);
++			die();
+ 		}
+ 		else
+ 		{
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000010.html">[steampress-svn-tracker] r53 - trunk/sp-includes
+</A></li>
+	<LI>Next message: <A HREF="000012.html">[steampress-svn-tracker] r55 - trunk/sp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#11">[ date ]</a>
+              <a href="thread.html#11">[ thread ]</a>
+              <a href="subject.html#11">[ subject ]</a>
+              <a href="author.html#11">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

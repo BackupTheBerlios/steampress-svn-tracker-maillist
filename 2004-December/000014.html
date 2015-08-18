@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r57 - trunk/sp-admin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r57%20-%20trunk/sp-admin&In-Reply-To=%3C200412312025.iBVKPB5D024374%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000013.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r57 - trunk/sp-admin</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r57%20-%20trunk/sp-admin&In-Reply-To=%3C200412312025.iBVKPB5D024374%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r57 - trunk/sp-admin">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Fri Dec 31 21:25:11 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000013.html">[steampress-svn-tracker] r56 - trunk
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2004-12-31 21:25:10 +0100 (Fri, 31 Dec 2004)
+New Revision: 57
+
+Modified:
+   trunk/sp-admin/menu-header.php
+Log:
+comitting broken menu header
+
+Modified: trunk/sp-admin/menu-header.php
+===================================================================
+--- trunk/sp-admin/menu-header.php	2004-12-31 16:49:22 UTC (rev 56)
++++ trunk/sp-admin/menu-header.php	2004-12-31 20:25:10 UTC (rev 57)
+@@ -1,50 +1,109 @@
+-&lt;ul id=&quot;adminmenu&quot;&gt;
++&lt;div id=&quot;adminmenu&quot;&gt;
+ &lt;?php
+ $self = preg_replace('|^.*/sp-admin/|i', '', $_SERVER['PHP_SELF']);
+ $self = preg_replace('|^.*/plugins/|i', '', $self);
+ 
+ get_admin_page_parent();
+ 
+-foreach ($menu as $item) {
++foreach ($menu as $item)
++{
+ 	$class = '';
+ 
+ 	// 0 = name, 1 = user_level, 2 = file
+ 	if ((substr($self, -10) == substr($item[2], -10) &amp;&amp; empty($parent_file)) || ($parent_file &amp;&amp; ($item[2] == $parent_file))) $class = ' class=&quot;current&quot;';
+     
+-	if ($user_level &gt;= $item[1]) {
++	if ($user_level &gt;= $item[1])
++	{
+ 		if ( file_exists(ABSPATH . &quot;sp-content/plugins/{$item[2]}&quot;) )
+-			echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/admin.php?page={$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;			
+-		else
+-			echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/{$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
+-	}
+-}
+-
++		{
++			echo &quot;\n\t&lt;h2&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/admin.php?page={$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/h2&gt;&quot;;
++			if ( isset($submenu[&quot;$parent_file&quot;]) )
++			{
+ ?&gt;
+-	&lt;li class=&quot;last&quot;&gt;&lt;a href=&quot;&lt;?php echo get_settings('siteurl')
+-	 ?&gt;/sp-logout.php&quot; title=&quot;&lt;?php _e('Log out of this account') ?&gt;&quot;&gt;&lt;?php printf(__('Logout (%s)'), $user_nickname) ?&gt;&lt;/a&gt;&lt;/li&gt;
++&lt;ul id=&quot;submenu&quot;&gt;
++&lt;?php 
++				foreach ($submenu[&quot;$parent_file&quot;] as $item)
++				{
++					if ($user_level &lt; $item[1])
++					{
++					continue;
++					}
++					if ( (substr($self, -10) == substr($item[2], -10)) || (isset($plugin_page) &amp;&amp; $plugin_page == $item[2]) )
++					{
++						$class = ' class=&quot;current&quot;';
++					}
++					elseif (isset($submenu_file) &amp;&amp; $submenu_file == substr($item[2], -10))
++					{
++						$class = ' class=&quot;current&quot;';
++					}
++					else
++					{
++						$class = '';
++					}
++	
++					if (file_exists(ABSPATH . &quot;sp-content/plugins/{$item[2]}&quot;))
++					{
++						echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/admin.php?page={$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
++					}
++					else
++					{
++						echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/{$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
++					}
++				}
++			}
++?&gt;
+ &lt;/ul&gt;
+-
++&lt;/div&gt;
+ &lt;?php
+-// Sub-menu
+-if ( isset($submenu[&quot;$parent_file&quot;]) ) :
++		}
++		else
++		{
++			echo &quot;\n\t&lt;h2&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/{$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/h2&gt;&quot;;
++			if ( isset($submenu[&quot;$parent_file&quot;]) )
++			{
+ ?&gt;
+-&lt;ul id=&quot;adminmenu2&quot;&gt;
++&lt;ul id=&quot;submenu&quot;&gt;
+ &lt;?php 
+-foreach ($submenu[&quot;$parent_file&quot;] as $item) : 
+-	 if ($user_level &lt; $item[1]) {
+-		 continue;
+-	 }
+-
+-if ( (substr($self, -10) == substr($item[2], -10)) || (isset($plugin_page) &amp;&amp; $plugin_page == $item[2]) ) $class = ' class=&quot;current&quot;';
+-else if (isset($submenu_file) &amp;&amp; $submenu_file == substr($item[2], -10)) $class = ' class=&quot;current&quot;';	 
+-else $class = '';
+-
+-if (file_exists(ABSPATH . &quot;sp-content/plugins/{$item[2]}&quot;))
+-	echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/admin.php?page={$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;			
+- else
+-	echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/{$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
+-endforeach;
++				foreach ($submenu[&quot;$parent_file&quot;] as $item)
++				{
++					if ($user_level &lt; $item[1])
++					{
++						continue;
++					}
++					if ( (substr($self, -10) == substr($item[2], -10)) || (isset($plugin_page) &amp;&amp; $plugin_page == $item[2]) )
++					{
++						$class = ' class=&quot;current&quot;';
++					}
++					elseif (isset($submenu_file) &amp;&amp; $submenu_file == substr($item[2], -10))
++					{
++						$class = ' class=&quot;current&quot;';
++					}
++					else
++					{
++						$class = '';
++					}
++	
++					if (file_exists(ABSPATH . &quot;sp-content/plugins/{$item[2]}&quot;))
++					{
++						echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/admin.php?page={$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
++					}
++					else
++					{
++						echo &quot;\n\t&lt;li&gt;&lt;a href='&quot; . get_settings('siteurl') . &quot;/sp-admin/{$item[2]}'$class&gt;{$item[0]}&lt;/a&gt;&lt;/li&gt;&quot;;
++					}
++				}
+ ?&gt;
+ 
+ &lt;/ul&gt;
+-&lt;?php endif; ?&gt;
+\ No newline at end of file
++&lt;?php
++			}
++		}
++	}
++}
++?&gt;
++	&lt;h2 class=&quot;last&quot;&gt;
++		&lt;a href=&quot;&lt;?php echo get_settings('siteurl') ?&gt;/sp-logout.php&quot; title=&quot;&lt;?php _e('Log out of this account') ?&gt;&quot;&gt;
++			&lt;?php printf(__('Logout (%s)'), $user_nickname) ?&gt;
++		&lt;/a&gt;
++	&lt;/h2&gt;
++&lt;/div&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000013.html">[steampress-svn-tracker] r56 - trunk
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Steampress-svn-tracker] r43 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteampress-svn-tracker%5D%20r43%20-%20trunk&In-Reply-To=%3C200412300336.iBU3aIYc020088%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Steampress-svn-tracker] r43 - trunk</H1>
+    <B>Samir M. Nassar at BerliOS</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteampress-svn-tracker%5D%20r43%20-%20trunk&In-Reply-To=%3C200412300336.iBU3aIYc020088%40sheep.berlios.de%3E"
+       TITLE="[Steampress-svn-tracker] r43 - trunk">steamedpenguin at sheep.berlios.de
+       </A><BR>
+    <I>Thu Dec 30 04:36:18 CET 2004</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000001.html">[steampress-svn-tracker] r44 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2004-12-30 04:36:13 +0100 (Thu, 30 Dec 2004)
+New Revision: 43
+
+Modified:
+   trunk/sp-login.php
+Log:
+fixing sp-login.php
+
+Modified: trunk/sp-login.php
+===================================================================
+--- trunk/sp-login.php	2004-12-29 21:29:08 UTC (rev 42)
++++ trunk/sp-login.php	2004-12-30 03:36:13 UTC (rev 43)
+@@ -1,92 +1,195 @@
+ &lt;?php
+-/*
+-Plugin Name: SP-Login
+-Plugin URI: <A HREF="http://somethingunpredictable.com/sp-login/">http://somethingunpredictable.com/sp-login/</A>
+-Version: 0.1
+-Description: Replaces the current SteamPress login system that uses sloppy redirects and is under constant fire from Thomas W.
+-Author: Robert Deaton
+-Author URI: <A HREF="http://anothersadsong.com">http://anothersadsong.com</A>
+-*/
+-//I apologize in advance for this little bit of messy code
+-//But its not like its messy in contrast with the rest of the SP code
++require( dirname(__FILE__) . '/sp-config.php' );
+ 
+-function auth_redirect() {
+-	logged_in();
+-}
+-function logged_in()
+-{
+-	global $error, $spdb;
+-	$usercookie =  $_COOKIE['steampressuser_' . COOKIEHASH];
+-	$passcookie = $_COOKIE['steampresspass_' . COOKIEHASH];
+-	@session_start();
+-	$usersession = $_SESSION['steampressuser_' . COOKIEHASH];
+-	$passsession = $_SESSION['steampresspass_' . COOKIEHASH];
+-	if(isset($_POST['loginformsubmit']) &amp;&amp; empty($usercookie) &amp;&amp; empty($passcookie) &amp;&amp; empty($usersession) &amp;&amp; empty($passsession))
+-	{
+-		$spuser = $_POST['log'];
+-		$sppass = md5($_POST['pwd']);
+-		$passfromdb = $spdb-&gt;get_row(&quot;SELECT user_pass FROM $spdb-&gt;users WHERE user_login = '$spuser'&quot;, 'ARRAY_A');
+-		if(!$passfromdb)
+-		{
+-			$error = &quot;Incorrect Username. Remember, usernames are CaSe SeNsEtIvE&quot;;
+-			include(ABSPATH . SPINC . '/sp-login.php');
+-			die();
++$action = $_REQUEST['action'];
++$error = '';
++
++header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
++header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
++header('Cache-Control: no-cache, must-revalidate');
++header('Pragma: no-cache');
++
++// If someone has moved SteamPress let's try to detect it
++if ( dirname('<A HREF="http://">http://</A>' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']) != get_settings('siteurl') )
++	update_option('siteurl', dirname('<A HREF="http://">http://</A>' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF']) );
++
++switch($action) {
++
++case 'logout':
++
++    setcookie('steampressuser_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
++    setcookie('steampresspass_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
++	header('Expires: Mon, 11 Jan 1984 05:00:00 GMT');
++	header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
++	header('Cache-Control: no-cache, must-revalidate, max-age=0');
++	header('Pragma: no-cache');
++
++	header('Location: sp-login.php');
++	exit();
++
++break;
++
++case 'lostpassword':
++
++	?&gt;
++&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
++&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
++&lt;head&gt;
++	&lt;title&gt;SteamPress &raquo; &lt;?php _e('Lost Password') ?&gt;&lt;/title&gt;
++	&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=&lt;?php bloginfo('charset'); ?&gt;&quot; /&gt;
++	&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;/sp-admin/sp-admin.css&quot; type=&quot;text/css&quot; /&gt;
++	&lt;script type=&quot;text/javascript&quot;&gt;
++	function focusit() {
++		// focus on first input field
++		document.getElementById('user_login').focus();
++	}
++	window.onload = focusit;
++	&lt;/script&gt;
++&lt;/head&gt;
++&lt;body&gt;
++&lt;div id=&quot;login&quot;&gt;
++&lt;h1&gt;&lt;a href=&quot;<A HREF="http://steampress.berlios.de/">http://steampress.berlios.de/</A>&quot;&gt;SteamPress&lt;/a&gt;&lt;/h1&gt;
++&lt;p&gt;&lt;?php _e('Please enter your information here. We will send you a new password.') ?&gt;&lt;/p&gt;
++&lt;?php
++if ($error)
++	echo &quot;&lt;div id='login_error'&gt;$error&lt;/div&gt;&quot;;
++?&gt;
++
++&lt;form name=&quot;lostpass&quot; action=&quot;sp-login.php&quot; method=&quot;post&quot; id=&quot;lostpass&quot;&gt;
++&lt;p&gt;
++&lt;input type=&quot;hidden&quot; name=&quot;action&quot; value=&quot;retrievepassword&quot; /&gt;
++&lt;label&gt;&lt;?php _e('Login') ?&gt;: &lt;input type=&quot;text&quot; name=&quot;user_login&quot; id=&quot;user_login&quot; value=&quot;&quot; size=&quot;12&quot; tabindex=&quot;1&quot; /&gt;&lt;/label&gt;&lt;br /&gt;
++&lt;label&gt;&lt;?php _e('E-mail') ?&gt;: &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; value=&quot;&quot; size=&quot;12&quot; tabindex=&quot;2&quot; /&gt;&lt;/label&gt;&lt;br /&gt;
++&lt;/p&gt;
++&lt;p class=&quot;submit&quot;&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;&lt;?php _e('Retrieve Password'); ?&gt; &raquo;&quot; tabindex=&quot;3&quot; /&gt;&lt;/p&gt;
++&lt;/form&gt;
++&lt;/div&gt;
++&lt;/body&gt;
++&lt;/html&gt;
++&lt;?php
++break;
++
++case 'retrievepassword':
++
++	$user_data = get_userdatabylogin($_POST['user_login']);
++	// redefining user_login ensures we return the right case in the email
++	$user_login = $user_data-&gt;user_login;
++	$user_email = $user_data-&gt;user_email;
++
++	if (!$user_email || $user_email != $_POST['email'])
++		die(sprintf(__('Sorry, that user does not seem to exist in our database. Perhaps you have the wrong username or e-mail address? &lt;a href=&quot;%s&quot;&gt;Try again&lt;/a&gt;.'), 'sp-login.php?action=lostpassword'));
++
++	// Generate something random for a password... md5'ing current time with a rand salt
++	$user_pass = substr(md5(uniqid(microtime())), 0, 6);
++	// now insert the new pass md5'd into the db
++ 	$spdb-&gt;query(&quot;UPDATE $spdb-&gt;users SET user_pass = MD5('$user_pass') WHERE user_login = '$user_login'&quot;);
++	$message  = __('Login') . &quot;: $user_login\r\n&quot;;
++	$message .= __('Password') . &quot;: $user_pass\r\n&quot;;
++	$message .= get_settings('siteurl') . '/sp-login.php';
++
++	$m = sp_mail($user_email, sprintf(__(&quot;[%s] Your login and password&quot;), get_settings('blogname')), $message);
++
++	if ($m == false) {
++		 echo '&lt;p&gt;' . __('The e-mail could not be sent.') . &quot;&lt;br /&gt;\n&quot;;
++         echo  __('Possible reason: your host may have disabled the mail() function...') . &quot;&lt;/p&gt;&quot;;
++		die();
++	} else {
++		echo '&lt;p&gt;' .  sprintf(__(&quot;The e-mail was sent successfully to %s's e-mail address.&quot;), $user_login) . '&lt;br /&gt;';
++        echo  &quot;&lt;a href='sp-login.php' title='&quot; . __('Check your e-mail first, of course') . &quot;'&gt;&quot; . __('Click here to login!') . '&lt;/a&gt;&lt;/p&gt;';
++		// send a copy of password change notification to the admin
++		sp_mail(get_settings('admin_email'), sprintf(__('[%s] Password Lost/Change'), get_settings('blogname')), sprintf(__('Password Lost and Changed for user: %s'), $user_login));
++		die();
++	}
++
++break;
++
++case 'login' : 
++default:
++
++	$user_login = '';
++	$user_pass = '';
++	$redirect_to = '';
++	$using_cookie = false;
++
++	if( !empty($_POST) ) {
++		$user_login = $_POST['log'];
++		$user_pass  = $_POST['pwd'];
++		$redirect_to = preg_replace('|[^a-z0-9-~+_.?#=&amp;;,/:]|i', '', $_POST['redirect_to']);
++	} elseif ( !empty($_COOKIE) ) {
++		if (! empty($_COOKIE['steampressuser_' . COOKIEHASH]) )
++			$user_login = $_COOKIE['steampressuser_' . COOKIEHASH];
++		if (! empty($_COOKIE['steampresspass_' . COOKIEHASH]) ) {
++			$user_pass = $_COOKIE['steampresspass_' . COOKIEHASH];
++			$using_cookie = true;
+ 		}
+-		if($sppass == $passfromdb['user_pass'])
+-		{
+-			if($_POST['usesessions'])
+-			{
+-				$_SESSION['steampressuser_' . COOKIEHASH] = $spuser;
+-				$_SESSION['steampresspass_' . COOKIEHASH] = md5($sppass);
+-			}
+-			else
+-			{
+-				setcookie('steampressuser_' . COOKIEHASH, $spuser, time() + 31536000, COOKIEPATH);
+-				setcookie('steampresspass_' . COOKIEHASH, md5($sppass), time() + 31536000, COOKIEPATH);
+-				//header(&quot;Location: &quot; . $_SERVER['PHP_SELF']);
+-				//die();
+-			}
+-		}
+-		else
+-		{
+-			$error = &quot;Incorrect Password.&quot;;
+-			include(ABSPATH . SPINC . '/sp-login.php');
+-			die();
+-		}
++		$redirect_to = 'sp-admin/';
+ 	}
+-	else
+-	{
+-		if(empty($usercookie) || empty($passcookie))
+-		{
+-			include(ABSPATH . SPINC . '/sp-login.php');
+-			die();
+-		}
+-		else
+-		{
+-			$passfromdb = $spdb-&gt;get_row(&quot;SELECT user_pass FROM $spdb-&gt;users WHERE user_login = '$usercookie'&quot;, 'ARRAY_A');
+-			if(!$passfromdb)
+-			{
+-				$error = &quot;Incorrect Username. Remember, usernames are CaSe SeNsEtIvE&quot;;
+-				include(ABSPATH . SPINC . '/sp-login.php');
+-				die();
++
++	if ($user_login &amp;&amp; $user_pass) {
++		$user = get_userdatabylogin($user_login);
++		if ( 0 == $user-&gt;user_level )
++			$redirect_to = get_settings('siteurl') . '/sp-admin/profile.php';
++
++		if ( sp_login($user_login, $user_pass, $using_cookie) ) {
++			if (! $using_cookie) {
++				$user_pass = md5(md5($user_pass)); // Double hash the password in the cookie.
++				setcookie('steampressuser_'. COOKIEHASH, $user_login, time() + 31536000, COOKIEPATH);
++				setcookie('steampresspass_'. COOKIEHASH, $user_pass, time() + 31536000, COOKIEPATH);
+ 			}
+-			else
+-			{
+-				if($passcookie == md5($passfromdb['user_pass']))
+-				{
+-				return true;
+-				}
+-				else
+-				{
+-					//expire the cookies and kill the sessions
+-					session_destroy();
+-				   setcookie('steampressuser_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
+-				   setcookie('steampresspass_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
+-					include(ABSPATH . SPINC . '/sp-login.php');
+-					die();
+-				}
+-			}
++
++			header(&quot;Location: $redirect_to&quot;);
++			exit();
++		} else {
++			if ($using_cookie)			
++				$error = __('Your session has expired.');
+ 		}
+ 	}
+-}
++	if ( isset($_REQUEST['redirect_to']) )
++		$redirect_to = preg_replace('|[^a-z0-9-~+_.?#=&amp;;,/:]|i', '', $_REQUEST['redirect_to']);
+ ?&gt;
++&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
++&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
++&lt;head&gt;
++	&lt;title&gt;SteamPress &rsaquo; &lt;?php _e('Login') ?&gt;&lt;/title&gt;
++	&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=&lt;?php bloginfo('charset'); ?&gt;&quot; /&gt;
++	&lt;link rel=&quot;stylesheet&quot; href=&quot;&lt;?php bloginfo('wpurl'); ?&gt;/sp-admin/sp-admin.css&quot; type=&quot;text/css&quot; /&gt;
++	&lt;script type=&quot;text/javascript&quot;&gt;
++	function focusit() {
++		document.getElementById('log').focus();
++	}
++	window.onload = focusit;
++	&lt;/script&gt;
++&lt;/head&gt;
++&lt;body&gt;
++
++&lt;div id=&quot;login&quot;&gt;
++&lt;h1&gt;&lt;a href=&quot;<A HREF="http://steampress.berlios.de/">http://steampress.berlios.de/</A>&quot;&gt;SteamPress&lt;/a&gt;&lt;/h1&gt;
++&lt;?php
++if ( $error )
++	echo &quot;&lt;div id='login_error'&gt;$error&lt;/div&gt;&quot;;
++?&gt;
++
++&lt;form name=&quot;loginform&quot; id=&quot;loginform&quot; action=&quot;sp-login.php&quot; method=&quot;post&quot;&gt;
++&lt;p&gt;&lt;label&gt;&lt;?php _e('Login') ?&gt;: &lt;input type=&quot;text&quot; name=&quot;log&quot; id=&quot;log&quot; value=&quot;&quot; size=&quot;20&quot; tabindex=&quot;1&quot; /&gt;&lt;/label&gt;&lt;/p&gt;
++&lt;p&gt;&lt;label&gt;&lt;?php _e('Password') ?&gt;: &lt;input type=&quot;password&quot; name=&quot;pwd&quot; value=&quot;&quot; size=&quot;20&quot; tabindex=&quot;2&quot; /&gt;&lt;/label&gt;&lt;/p&gt;
++&lt;p class=&quot;submit&quot;&gt;
++	&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;&lt;?php _e('Login'); ?&gt; &raquo;&quot; tabindex=&quot;3&quot; /&gt;
++	&lt;input type=&quot;hidden&quot; name=&quot;redirect_to&quot; value=&quot;&lt;?php echo $redirect_to; ?&gt;&quot; /&gt;
++&lt;/p&gt;
++&lt;/form&gt;
++&lt;ul&gt;
++	&lt;li&gt;&lt;a href=&quot;&lt;?php bloginfo('home'); ?&gt;&quot; title=&quot;&lt;?php _e('Are you lost?') ?&gt;&quot;&gt;&laquo; &lt;?php _e('Back to blog') ?&gt;&lt;/a&gt;&lt;/li&gt;
++&lt;?php if (get_settings('users_can_register')) : ?&gt;
++	&lt;li&gt;&lt;a href=&quot;&lt;?php bloginfo('wpurl'); ?&gt;/sp-register.php&quot;&gt;&lt;?php _e('Register') ?&gt;&lt;/a&gt;&lt;/li&gt;
++&lt;?php endif; ?&gt;
++	&lt;li&gt;&lt;a href=&quot;&lt;?php bloginfo('wpurl'); ?&gt;/sp-login.php?action=lostpassword&quot; title=&quot;&lt;?php _e('Password Lost and Found') ?&gt;&quot;&gt;&lt;?php _e('Lost your password?') ?&gt;&lt;/a&gt;&lt;/li&gt;
++&lt;/ul&gt;
++&lt;/div&gt;
++
++&lt;/body&gt;
++&lt;/html&gt;
++&lt;?php
++
++break;
++} // end action switch
++?&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000001.html">[steampress-svn-tracker] r44 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

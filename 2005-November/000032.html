@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r76 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r76%20-%20trunk&In-Reply-To=%3C200511082240.jA8MewO0021823%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000031.html">
+   <LINK REL="Next"  HREF="000033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r76 - trunk</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r76%20-%20trunk&In-Reply-To=%3C200511082240.jA8MewO0021823%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r76 - trunk">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov  8 23:40:58 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000031.html">[steampress-svn-tracker] r75 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000033.html">[steampress-svn-tracker] r77 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-08 23:40:58 +0100 (Tue, 08 Nov 2005)
+New Revision: 76
+
+Modified:
+   trunk/wp.php
+Log:
+Cleaned ip more 'if: endif;' crap. Made markup a bit prettier.
+
+Modified: trunk/wp.php
+===================================================================
+--- trunk/wp.php	2005-11-08 22:26:28 UTC (rev 75)
++++ trunk/wp.php	2005-11-08 22:40:58 UTC (rev 76)
+@@ -13,19 +13,25 @@
+ 	&lt;link rel=&quot;pingback&quot; href=&quot;&lt;?php bloginfo('pingback_url'); ?&gt;&quot; /&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+-&lt;h1 id=&quot;header&quot;&gt;&lt;a href=&quot;&lt;?php echo get_settings('home'); ?&gt;&quot; title=&quot;&lt;?php bloginfo('name'); ?&gt;&quot;&gt;&lt;?php bloginfo('name'); ?&gt;&lt;/a&gt;&lt;/h1&gt;
++	&lt;h1 id=&quot;header&quot;&gt;&lt;a href=&quot;&lt;?php echo get_settings('home'); ?&gt;&quot; title=&quot;&lt;?php bloginfo('name'); ?&gt;&quot;&gt;&lt;?php bloginfo('name'); ?&gt;&lt;/a&gt;&lt;/h1&gt;
+ 
+ &lt;!-- // loop start --&gt;
+-&lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
++&lt;?php
++if (have_posts())
++{
++	while (have_posts())
++	{
++		the_post();
++?&gt;
+ &lt;?php the_date('d.m.y', '&lt;h2&gt;','&lt;/h2&gt;'); ?&gt;
+-&lt;h3 id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link: &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
++	&lt;h3 id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link: &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
+ 
+ &lt;?php the_content(); ?&gt;
+ 
+ &lt;?php link_pages('&lt;br /&gt;Pages: ', '&lt;br /&gt;', 'number') ?&gt;
+ 
+-&lt;p&gt;&lt;em&gt;Posted by &lt;strong&gt;&lt;?php the_author() ?&gt;&lt;/strong&gt; @ &lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot;&gt;&lt;?php the_time() ?&gt;&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+-&lt;p&gt;Filed under: &lt;?php the_category(',') ?&gt;&lt;/p&gt;
++	&lt;p&gt;&lt;em&gt;Posted by &lt;strong&gt;&lt;?php the_author() ?&gt;&lt;/strong&gt; @ &lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot;&gt;&lt;?php the_time() ?&gt;&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
++	&lt;p&gt;Filed under: &lt;?php the_category(',') ?&gt;&lt;/p&gt;
+ 
+ &lt;?php comments_popup_link('comments ?', '1 comment', '% comments') ?&gt;
+ 
+@@ -33,16 +39,24 @@
+ 
+ 
+ &lt;!-- // this is just the end of the motor - don't touch that line either :) --&gt;
+-&lt;?php endwhile; else: ?&gt;
+-&lt;p&gt;&lt;?php _e('Sorry, no posts matched your criteria.'); ?&gt;&lt;/p&gt;
+-&lt;?php endif; ?&gt;
++&lt;?php
++	}
++}
++else
++{
++?&gt;
++	&lt;p&gt;&lt;?php _e('Sorry, no posts matched your criteria.'); ?&gt;&lt;/p&gt;
+ 
+-&lt;div align=&quot;right&quot;&gt;&lt;cite&gt;Powered by &lt;a href=&quot;<A HREF="http://wordpress.org">http://wordpress.org</A>&quot;&gt;&lt;strong&gt;Wordpress&lt;/strong&gt;&lt;/a&gt;&lt;/cite&gt;&lt;br /&gt;
+-&lt;br /&gt;
+-&lt;a href=&quot;wp-login.php&quot;&gt;login&lt;/a&gt;&lt;br /&gt;
+-&lt;a href=&quot;wp-register.php&quot;&gt;register&lt;/a&gt;
+-&lt;/div&gt;
++&lt;?php
++}
++?&gt;
+ 
++	&lt;div align=&quot;right&quot;&gt;&lt;cite&gt;Powered by &lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>&quot;&gt;&lt;strong&gt;SteamPress&lt;/strong&gt;&lt;/a&gt;&lt;/cite&gt;&lt;br /&gt;
++		&lt;br /&gt;
++		&lt;a href=&quot;wp-login.php&quot;&gt;login&lt;/a&gt;
++		&lt;br /&gt;
++		&lt;a href=&quot;wp-register.php&quot;&gt;register&lt;/a&gt;
++	&lt;/div&gt;
+ 
+ &lt;/body&gt;
+ &lt;/html&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000031.html">[steampress-svn-tracker] r75 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000033.html">[steampress-svn-tracker] r77 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

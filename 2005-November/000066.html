@@ -1,0 +1,941 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [SteamPress-SVN-Tracker] r110 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r110%20-%20trunk/wp-includes&In-Reply-To=%3C200511221513.jAMFDfAc012738%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000065.html">
+   <LINK REL="Next"  HREF="000067.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[SteamPress-SVN-Tracker] r110 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r110%20-%20trunk/wp-includes&In-Reply-To=%3C200511221513.jAMFDfAc012738%40sheep.berlios.de%3E"
+       TITLE="[SteamPress-SVN-Tracker] r110 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov 22 16:13:41 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000065.html">[SteamPress-SVN-Tracker] r109 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000067.html">[SteamPress-SVN-Tracker] r111 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#66">[ date ]</a>
+              <a href="thread.html#66">[ thread ]</a>
+              <a href="subject.html#66">[ subject ]</a>
+              <a href="author.html#66">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-22 16:13:41 +0100 (Tue, 22 Nov 2005)
+New Revision: 110
+
+Modified:
+   trunk/wp-includes/kses.php
+Log:
+- Updated to kses 0.2.2
+- Added GPL copyright notices and permission to copy statements to start of file
+
+
+
+Modified: trunk/wp-includes/kses.php
+===================================================================
+--- trunk/wp-includes/kses.php	2005-11-21 19:35:02 UTC (rev 109)
++++ trunk/wp-includes/kses.php	2005-11-22 15:13:41 UTC (rev 110)
+@@ -1,19 +1,62 @@
+ &lt;?php
+-// Added wp_ prefix to avoid conflicts with existing kses users
+-# kses 0.2.1 - HTML/XHTML filter that only allows some elements and attributes
+-# Copyright (C) 2002, 2003  Ulf Harnhammar
+-# *** CONTACT INFORMATION ***
+-#
+-# E-mail:      metaur at users dot sourceforge dot net
+-# Web page:    <A HREF="http://sourceforge.net/projects/kses">http://sourceforge.net/projects/kses</A>
+-# Paper mail:  (not at the moment)
+-#
+-# [kses strips evil scripts!]
++
++/*************************************************
++
++SteamPress kses is based on kses 0.2.2
++Copyright (C) 2002, 2003, 2005  Ulf Harnhammar
++
++	E-mail:		metaur at users dot sourceforge dot net
++	Web page:	<A HREF="http://sourceforge.net/projects/kses">http://sourceforge.net/projects/kses</A>
++	Paper mail:	Ulf Harnhammar
++				Ymergatan 17 C
++				753 25  Uppsala
++				SWEDEN
++
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++
+ if (!defined('CUSTOM_TAGS'))
++{
+ 	define('CUSTOM_TAGS', false);
+-	
++}
++
+ // You can override this in your my-hacks.php file
+-if (!CUSTOM_TAGS) {
++if (!CUSTOM_TAGS)
++{
+ $allowedtags = array(
+ 	'a' =&gt; array(
+ 		'href' =&gt; array(),
+@@ -44,8 +87,8 @@
+ //	'ul' =&gt; array(),
+ 	);
+ }
+-function wp_kses($string, $allowed_html, $allowed_protocols =
+-               array('http', 'https', 'ftp', 'news', 'nntp', 'feed', 'gopher', 'mailto'))
++
++function wp_kses($string, $allowed_html, $allowed_protocols = array('http', 'https', 'ftp', 'news', 'nntp', 'telnet', 'gopher', 'mailto'))
+ ###############################################################################
+ # This function makes sure that only the allowed HTML element names, attribute
+ # names and attribute values plus only sane HTML entities will occur in
+@@ -53,13 +96,13 @@
+ # call this function.
+ ###############################################################################
+ {
+-  $string = wp_kses_no_null($string);
+-  $string = wp_kses_js_entities($string);
+-  $string = wp_kses_normalize_entities($string);
+-  $string = wp_kses_hook($string);
+-  $allowed_html_fixed = wp_kses_array_lc($allowed_html);
+-  return wp_kses_split($string, $allowed_html_fixed, $allowed_protocols);
+-} # function wp_kses
++	$string = wp_kses_no_null($string);
++	$string = wp_kses_js_entities($string);
++	$string = wp_kses_normalize_entities($string);
++	$string = wp_kses_hook($string);
++	$allowed_html_fixed = wp_kses_array_lc($allowed_html);
++	return wp_kses_split($string, $allowed_html_fixed, $allowed_protocols);
++} # function kses
+ 
+ 
+ function wp_kses_hook($string)
+@@ -67,7 +110,7 @@
+ # You add any kses hooks here.
+ ###############################################################################
+ {
+-  return $string;
++	return $string;
+ } # function wp_kses_hook
+ 
+ 
+@@ -76,7 +119,7 @@
+ # This function returns kses' version number.
+ ###############################################################################
+ {
+-  return '0.2.1';
++	return '0.2.2';
+ } # function wp_kses_version
+ 
+ 
+@@ -86,13 +129,13 @@
+ # matches stray &quot;&gt;&quot; characters.
+ ###############################################################################
+ {
+-  return preg_replace('%(&lt;'.   # EITHER: &lt;
+-                      '[^&gt;]*'. # things that aren't &gt;
+-                      '(&gt;|$)'. # &gt; or end of string
+-                      '|&gt;)%e', # OR: just a &gt;
+-                      &quot;wp_kses_split2('\\1', \$allowed_html, &quot;.
+-                      '$allowed_protocols)',
+-                      $string);
++	return preg_replace('%(&lt;'.   # EITHER: &lt;
++						'[^&gt;]*'. # things that aren't &gt;
++						'(&gt;|$)'. # &gt; or end of string
++						'|&gt;)%e', # OR: just a &gt;
++						&quot;wp_kses_split2('\\1', \$allowed_html, &quot;.
++						'$allowed_protocols)',
++						$string);
+ } # function wp_kses_split
+ 
+ 
+@@ -104,26 +147,37 @@
+ # attribute list.
+ ###############################################################################
+ {
+-  $string = wp_kses_stripslashes($string);
++	$string = wp_kses_stripslashes($string);
+ 
+-  if (substr($string, 0, 1) != '&lt;')
+-    return '&gt;';
+-    # It matched a &quot;&gt;&quot; character
++	if (substr($string, 0, 1) != '&lt;')
++	{
++		return '&gt;';
++	}
++		# It matched a &quot;&gt;&quot; character
+ 
+-  if (!preg_match('%^&lt;\s*(/\s*)?([a-zA-Z0-9]+)([^&gt;]*)&gt;?$%', $string, $matches))
+-    return '';
+-    # It's seriously malformed
++	if (!preg_match('%^&lt;\s*(/\s*)?([a-zA-Z0-9]+)([^&gt;]*)&gt;?$%', $string, $matches))
++	{
++		return '';
++	}
++		# It's seriously malformed
+ 
+-  $slash = trim($matches[1]);
+-  $elem = $matches[2];
+-  $attrlist = $matches[3];
++	$slash = trim($matches[1]);
++	$elem = $matches[2];
++	$attrlist = $matches[3];
+ 
+-  if (!is_array($allowed_html[strtolower($elem)]))
+-    return '';
+-    # They are using a not allowed HTML element
++	if (!@isset($allowed_html[strtolower($elem)]))
++	{
++		return '';
++	}
++		# They are using a not allowed HTML element
+ 
+-  return wp_kses_attr(&quot;$slash$elem&quot;, $attrlist, $allowed_html,
+-                   $allowed_protocols);
++	if ($slash != '')
++	{
++		return &quot;&lt;$slash$elem&gt;&quot;;
++	}
++	# No attributes are allowed for closing elements
++
++	return wp_kses_attr(&quot;$slash$elem&quot;, $attrlist, $allowed_html, $allowed_protocols);
+ } # function wp_kses_split2
+ 
+ 
+@@ -131,7 +185,7 @@
+ ###############################################################################
+ # This function removes all attributes, if none are allowed for this element.
+ # If some are allowed it calls wp_kses_hair() to split them further, and then it
+-# builds up new HTML code from the data that kses_hair() returns. It also
++# builds up new HTML code from the data that wp_kses_hair() returns. It also
+ # removes &quot;&lt;&quot; and &quot;&gt;&quot; characters, if there are any left. One more thing it
+ # does is to check if the tag has a closing XHTML slash, and if it does,
+ # it puts one in the returned code as well.
+@@ -139,54 +193,70 @@
+ {
+ # Is there a closing XHTML slash at the end of the attributes?
+ 
+-  $xhtml_slash = '';
+-  if (preg_match('%\s/\s*$%', $attr))
+-    $xhtml_slash = ' /';
++	$xhtml_slash = '';
++	if (preg_match('%\s/\s*$%', $attr))
++	{
++		$xhtml_slash = ' /';
++	}
+ 
+-# Are any attributes allowed at all for this element?
++	# Are any attributes allowed at all for this element?
+ 
+-  if (count($allowed_html[strtolower($element)]) == 0)
+-    return &quot;&lt;$element$xhtml_slash&gt;&quot;;
++	if (@count($allowed_html[strtolower($element)]) == 0)
++	{
++		return &quot;&lt;$element$xhtml_slash&gt;&quot;;
++	}
+ 
+-# Split it
++	# Split it
+ 
+-  $attrarr = wp_kses_hair($attr, $allowed_protocols);
++	$attrarr = wp_kses_hair($attr, $allowed_protocols);
+ 
+-# Go through $attrarr, and save the allowed attributes for this element
+-# in $attr2
++	# Go through $attrarr, and save the allowed attributes for this element
++	# in $attr2
+ 
+-  $attr2 = '';
++	$attr2 = '';
+ 
+-  foreach ($attrarr as $arreach)
+-  {
+-    $current = $allowed_html[strtolower($element)]
+-                            [strtolower($arreach['name'])];
+-    if ($current == '')
+-      continue; # the attribute is not allowed
++	foreach ($attrarr as $arreach)
++	{
++		if (!@isset($allowed_html[strtolower($element)]
++								[strtolower($arreach['name'])]))
++		{
++			continue; # the attribute is not allowed
++		}
+ 
+-    if (!is_array($current))
+-      $attr2 .= ' '.$arreach['whole'];
+-    # there are no checks
++		$current = $allowed_html[strtolower($element)]
++								[strtolower($arreach['name'])];
+ 
+-    else
+-    {
+-    # there are some checks
+-      $ok = true;
+-      foreach ($current as $currkey =&gt; $currval)
+-        if (!wp_kses_check_attr_val($arreach['value'], $arreach['vless'],
+-                                 $currkey, $currval))
+-        { $ok = false; break; }
++		if (!is_array($current))
++		{
++			$attr2 .= ' '.$arreach['whole'];
++		}
++		# there are no checks
+ 
+-      if ($ok)
+-        $attr2 .= ' '.$arreach['whole']; # it passed them
+-    } # if !is_array($current)
+-  } # foreach
++		else
++		{
++			# there are some checks
++			$ok = true;
++			foreach ($current as $currkey =&gt; $currval)
++			{
++				if (!wp_kses_check_attr_val($arreach['value'], $arreach['vless'],
++										$currkey, $currval))
++				{
++					$ok = false; break;
++				}
++			}
+ 
++			if ($ok)
++			{
++				$attr2 .= ' '.$arreach['whole']; # it passed them
++			}
++		} # if !is_array($current)
++	} # foreach
++
+ # Remove any &quot;&lt;&quot; or &quot;&gt;&quot; characters
+ 
+-  $attr2 = preg_replace('/[&lt;&gt;]/', '', $attr2);
++	$attr2 = preg_replace('/[&lt;&gt;]/', '', $attr2);
+ 
+-  return &quot;&lt;$element$attr2$xhtml_slash&gt;&quot;;
++	return &quot;&lt;$element$attr2$xhtml_slash&gt;&quot;;
+ } # function wp_kses_attr
+ 
+ 
+@@ -200,118 +270,120 @@
+ # from attribute values.
+ ###############################################################################
+ {
+-  $attrarr = array();
+-  $mode = 0;
+-  $attrname = '';
++	$attrarr = array();
++	$mode = 0;
++	$attrname = '';
+ 
+ # Loop through the whole attribute list
+ 
+-  while (strlen($attr) != 0)
+-  {
+-    $working = 0; # Was the last operation successful?
++	while (strlen($attr) != 0)
++	{
++		$working = 0; # Was the last operation successful?
+ 
+-    switch ($mode)
+-    {
+-      case 0: # attribute name, href for instance
++		switch ($mode)
++		{
++		case 0: # attribute name, href for instance
+ 
+-        if (preg_match('/^([-a-zA-Z]+)/', $attr, $match))
+-        {
+-          $attrname = $match[1];
+-          $working = $mode = 1;
+-          $attr = preg_replace('/^[-a-zA-Z]+/', '', $attr);
+-        }
++			if (preg_match('/^([-a-zA-Z]+)/', $attr, $match))
++			{
++			$attrname = $match[1];
++			$working = $mode = 1;
++			$attr = preg_replace('/^[-a-zA-Z]+/', '', $attr);
++			}
+ 
+-        break;
++			break;
+ 
+-      case 1: # equals sign or valueless (&quot;selected&quot;)
++		case 1: # equals sign or valueless (&quot;selected&quot;)
+ 
+-        if (preg_match('/^\s*=\s*/', $attr)) # equals sign
+-        {
+-          $working = 1; $mode = 2;
+-          $attr = preg_replace('/^\s*=\s*/', '', $attr);
+-          break;
+-        }
++			if (preg_match('/^\s*=\s*/', $attr)) # equals sign
++			{
++			$working = 1; $mode = 2;
++			$attr = preg_replace('/^\s*=\s*/', '', $attr);
++			break;
++			}
+ 
+-        if (preg_match('/^\s+/', $attr)) # valueless
+-        {
+-          $working = 1; $mode = 0;
+-          $attrarr[] = array
+-                        ('name'  =&gt; $attrname,
+-                         'value' =&gt; '',
+-                         'whole' =&gt; $attrname,
+-                         'vless' =&gt; 'y');
+-          $attr = preg_replace('/^\s+/', '', $attr);
+-        }
++			if (preg_match('/^\s+/', $attr)) # valueless
++			{
++			$working = 1; $mode = 0;
++			$attrarr[] = array
++							('name'  =&gt; $attrname,
++							'value' =&gt; '',
++							'whole' =&gt; $attrname,
++							'vless' =&gt; 'y');
++			$attr = preg_replace('/^\s+/', '', $attr);
++			}
+ 
+-        break;
++			break;
+ 
+-      case 2: # attribute value, a URL after href= for instance
++		case 2: # attribute value, a URL after href= for instance
+ 
+-        if (preg_match('/^&quot;([^&quot;]*)&quot;(\s+|$)/', $attr, $match))
+-         # &quot;value&quot;
+-        {
+-          $thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
++			if (preg_match('/^&quot;([^&quot;]*)&quot;(\s+|$)/', $attr, $match))
++			# &quot;value&quot;
++			{
++			$thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
+ 
+-          $attrarr[] = array
+-                        ('name'  =&gt; $attrname,
+-                         'value' =&gt; $thisval,
+-                         'whole' =&gt; &quot;$attrname=\&quot;$thisval\&quot;&quot;,
+-                         'vless' =&gt; 'n');
+-          $working = 1; $mode = 0;
+-          $attr = preg_replace('/^&quot;[^&quot;]*&quot;(\s+|$)/', '', $attr);
+-          break;
+-        }
++			$attrarr[] = array
++							('name'  =&gt; $attrname,
++							'value' =&gt; $thisval,
++							'whole' =&gt; &quot;$attrname=\&quot;$thisval\&quot;&quot;,
++							'vless' =&gt; 'n');
++			$working = 1; $mode = 0;
++			$attr = preg_replace('/^&quot;[^&quot;]*&quot;(\s+|$)/', '', $attr);
++			break;
++			}
+ 
+-        if (preg_match(&quot;/^'([^']*)'(\s+|$)/&quot;, $attr, $match))
+-         # 'value'
+-        {
+-          $thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
++			if (preg_match(&quot;/^'([^']*)'(\s+|$)/&quot;, $attr, $match))
++			# 'value'
++			{
++			$thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
+ 
+-          $attrarr[] = array
+-                        ('name'  =&gt; $attrname,
+-                         'value' =&gt; $thisval,
+-                         'whole' =&gt; &quot;$attrname='$thisval'&quot;,
+-                         'vless' =&gt; 'n');
+-          $working = 1; $mode = 0;
+-          $attr = preg_replace(&quot;/^'[^']*'(\s+|$)/&quot;, '', $attr);
+-          break;
+-        }
++			$attrarr[] = array
++							('name'  =&gt; $attrname,
++							'value' =&gt; $thisval,
++							'whole' =&gt; &quot;$attrname='$thisval'&quot;,
++							'vless' =&gt; 'n');
++			$working = 1; $mode = 0;
++			$attr = preg_replace(&quot;/^'[^']*'(\s+|$)/&quot;, '', $attr);
++			break;
++			}
+ 
+-        if (preg_match(&quot;%^([^\s\&quot;']+)(\s+|$)%&quot;, $attr, $match))
+-         # value
+-        {
+-          $thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
++			if (preg_match(&quot;%^([^\s\&quot;']+)(\s+|$)%&quot;, $attr, $match))
++			# value
++			{
++			$thisval = wp_kses_bad_protocol($match[1], $allowed_protocols);
+ 
+-          $attrarr[] = array
+-                        ('name'  =&gt; $attrname,
+-                         'value' =&gt; $thisval,
+-                         'whole' =&gt; &quot;$attrname=\&quot;$thisval\&quot;&quot;,
+-                         'vless' =&gt; 'n');
+-                         # We add quotes to conform to W3C's HTML spec.
+-          $working = 1; $mode = 0;
+-          $attr = preg_replace(&quot;%^[^\s\&quot;']+(\s+|$)%&quot;, '', $attr);
+-        }
++			$attrarr[] = array
++							('name'  =&gt; $attrname,
++							'value' =&gt; $thisval,
++							'whole' =&gt; &quot;$attrname=\&quot;$thisval\&quot;&quot;,
++							'vless' =&gt; 'n');
++							# We add quotes to conform to W3C's HTML spec.
++			$working = 1; $mode = 0;
++			$attr = preg_replace(&quot;%^[^\s\&quot;']+(\s+|$)%&quot;, '', $attr);
++			}
+ 
+-        break;
+-    } # switch
++			break;
++		} # switch
+ 
+-    if ($working == 0) # not well formed, remove and try again
+-    {
+-      $attr = wp_kses_html_error($attr);
+-      $mode = 0;
+-    }
+-  } # while
++		if ($working == 0) # not well formed, remove and try again
++		{
++		$attr = wp_kses_html_error($attr);
++		$mode = 0;
++		}
++	} # while
+ 
+-  if ($mode == 1)
+-  # special case, for when the attribute list ends with a valueless
+-  # attribute like &quot;selected&quot;
+-    $attrarr[] = array
+-                  ('name'  =&gt; $attrname,
+-                   'value' =&gt; '',
+-                   'whole' =&gt; $attrname,
+-                   'vless' =&gt; 'y');
++	if ($mode == 1)
++	{
++	# special case, for when the attribute list ends with a valueless
++	# attribute like &quot;selected&quot;
++		$attrarr[] = array
++					('name'  =&gt; $attrname,
++					'value' =&gt; '',
++					'whole' =&gt; $attrname,
++					'vless' =&gt; 'y');
++	}
+ 
+-  return $attrarr;
++	return $attrarr;
+ } # function wp_kses_hair
+ 
+ 
+@@ -322,62 +394,76 @@
+ # with even more checks to come soon.
+ ###############################################################################
+ {
+-  $ok = true;
++	$ok = true;
+ 
+-  switch (strtolower($checkname))
+-  {
+-    case 'maxlen':
+-    # The maxlen check makes sure that the attribute value has a length not
+-    # greater than the given value. This can be used to avoid Buffer Overflows
+-    # in WWW clients and various Internet servers.
++	switch (strtolower($checkname))
++	{
++		case 'maxlen':
++		# The maxlen check makes sure that the attribute value has a length not
++		# greater than the given value. This can be used to avoid Buffer Overflows
++		# in WWW clients and various Internet servers.
+ 
+-      if (strlen($value) &gt; $checkvalue)
+-        $ok = false;
+-      break;
++		if (strlen($value) &gt; $checkvalue)
++		{
++			$ok = false;
++		}
++		break;
+ 
+-    case 'minlen':
+-    # The minlen check makes sure that the attribute value has a length not
+-    # smaller than the given value.
++		case 'minlen':
++		# The minlen check makes sure that the attribute value has a length not
++		# smaller than the given value.
+ 
+-      if (strlen($value) &lt; $checkvalue)
+-        $ok = false;
+-      break;
++		if (strlen($value) &lt; $checkvalue)
++		{
++			$ok = false;
++		}
++		break;
+ 
+-    case 'maxval':
+-    # The maxval check does two things: it checks that the attribute value is
+-    # an integer from 0 and up, without an excessive amount of zeroes or
+-    # whitespace (to avoid Buffer Overflows). It also checks that the attribute
+-    # value is not greater than the given value.
+-    # This check can be used to avoid Denial of Service attacks.
++		case 'maxval':
++		# The maxval check does two things: it checks that the attribute value is
++		# an integer from 0 and up, without an excessive amount of zeroes or
++		# whitespace (to avoid Buffer Overflows). It also checks that the attribute
++		# value is not greater than the given value.
++		# This check can be used to avoid Denial of Service attacks.
+ 
+-      if (!preg_match('/^\s{0,6}[0-9]{1,6}\s{0,6}$/', $value))
+-        $ok = false;
+-      if ($value &gt; $checkvalue)
+-        $ok = false;
+-      break;
++		if (!preg_match('/^\s{0,6}[0-9]{1,6}\s{0,6}$/', $value))
++		{
++			$ok = false;
++		}
++		if ($value &gt; $checkvalue)
++		{
++			$ok = false;
++		}
++		break;
+ 
+-    case 'minval':
+-    # The minval check checks that the attribute value is a positive integer,
+-    # and that it is not smaller than the given value.
++		case 'minval':
++		# The minval check checks that the attribute value is a positive integer,
++		# and that it is not smaller than the given value.
+ 
+-      if (!preg_match('/^\s{0,6}[0-9]{1,6}\s{0,6}$/', $value))
+-        $ok = false;
+-      if ($value &lt; $checkvalue)
+-        $ok = false;
+-      break;
++		if (!preg_match('/^\s{0,6}[0-9]{1,6}\s{0,6}$/', $value))
++		{
++			$ok = false;
++		}
++		if ($value &lt; $checkvalue)
++		{
++			$ok = false;
++		}
++		break;
+ 
+-    case 'valueless':
+-    # The valueless check checks if the attribute has a value
+-    # (like &lt;a href=&quot;blah&quot;&gt;) or not (&lt;option selected&gt;). If the given value
+-    # is a &quot;y&quot; or a &quot;Y&quot;, the attribute must not have a value.
+-    # If the given value is an &quot;n&quot; or an &quot;N&quot;, the attribute must have one.
++		case 'valueless':
++		# The valueless check checks if the attribute has a value
++		# (like &lt;a href=&quot;blah&quot;&gt;) or not (&lt;option selected&gt;). If the given value
++		# is a &quot;y&quot; or a &quot;Y&quot;, the attribute must not have a value.
++		# If the given value is an &quot;n&quot; or an &quot;N&quot;, the attribute must have one.
+ 
+-      if (strtolower($checkvalue) != $vless)
+-        $ok = false;
+-      break;
+-  } # switch
++		if (strtolower($checkvalue) != $vless)
++		{
++			$ok = false;
++		}
++		break;
++	} # switch
+ 
+-  return $ok;
++	return $ok;
+ } # function wp_kses_check_attr_val
+ 
+ 
+@@ -389,28 +475,29 @@
+ # fooled by a string like &quot;javascript:javascript:alert(57)&quot;.
+ ###############################################################################
+ {
+-  $string = wp_kses_no_null($string);
+-  $string2 = $string.'a';
++	$string = wp_kses_no_null($string);
++	$string = preg_replace('/\xad+/', '', $string); # deals with Opera &quot;feature&quot;
++	$string2 = $string.'a';
+ 
+-  while ($string != $string2)
+-  {
+-    $string2 = $string;
+-    $string = wp_kses_bad_protocol_once($string, $allowed_protocols);
+-  } # while
++	while ($string != $string2)
++	{
++		$string2 = $string;
++		$string = wp_kses_bad_protocol_once($string, $allowed_protocols);
++	} # while
+ 
+-  return $string;
++	return $string;
+ } # function wp_kses_bad_protocol
+ 
+ 
+ function wp_kses_no_null($string)
+ ###############################################################################
+-# This function removes any NULL or chr(173) characters in $string.
++# This function removes any NULL characters in $string.
+ ###############################################################################
+ {
+-  $string = preg_replace('/\0+/', '', $string);
+-  $string = preg_replace('/(\\\\0)+/', '', $string);
++	$string = preg_replace('/\0+/', '', $string);
++	$string = preg_replace('/(\\\\0)+/', '', $string);
+ 
+-  return $string;
++	return $string;
+ } # function wp_kses_no_null
+ 
+ 
+@@ -421,7 +508,7 @@
+ # preg_replace(//e) seems to require this.
+ ###############################################################################
+ {
+-  return preg_replace('%\\\\&quot;%', '&quot;', $string);
++	return preg_replace('%\\\\&quot;%', '&quot;', $string);
+ } # function wp_kses_stripslashes
+ 
+ 
+@@ -430,21 +517,21 @@
+ # This function goes through an array, and changes the keys to all lower case.
+ ###############################################################################
+ {
+-  $outarray = array();
++	$outarray = array();
+ 
+-  foreach ($inarray as $inkey =&gt; $inval)
+-  {
+-    $outkey = strtolower($inkey);
+-    $outarray[$outkey] = array();
++	foreach ($inarray as $inkey =&gt; $inval)
++	{
++		$outkey = strtolower($inkey);
++		$outarray[$outkey] = array();
+ 
+-    foreach ($inval as $inkey2 =&gt; $inval2)
+-    {
+-      $outkey2 = strtolower($inkey2);
+-      $outarray[$outkey][$outkey2] = $inval2;
+-    } # foreach $inval
+-  } # foreach $inarray
++		foreach ($inval as $inkey2 =&gt; $inval2)
++		{
++			$outkey2 = strtolower($inkey2);
++			$outarray[$outkey][$outkey2] = $inval2;
++		} # foreach $inval
++	} # foreach $inarray
+ 
+-  return $outarray;
++	return $outarray;
+ } # function wp_kses_array_lc
+ 
+ 
+@@ -454,7 +541,7 @@
+ # Netscape 4.
+ ###############################################################################
+ {
+-  return preg_replace('%&amp;\s*\{[^}]*(\}\s*;?|$)%', '', $string);
++	return preg_replace('%&amp;\s*\{[^}]*(\}\s*;?|$)%', '', $string);
+ } # function wp_kses_js_entities
+ 
+ 
+@@ -465,7 +552,7 @@
+ # quotes and apostrophes as well.
+ ###############################################################################
+ {
+-  return preg_replace('/^(&quot;[^&quot;]*(&quot;|$)|\'[^\']*(\'|$)|\S)*\s*/', '', $string);
++	return preg_replace('/^(&quot;[^&quot;]*(&quot;|$)|\'[^\']*(\'|$)|\S)*\s*/', '', $string);
+ } # function wp_kses_html_error
+ 
+ 
+@@ -475,10 +562,7 @@
+ # handling whitespace and HTML entities.
+ ###############################################################################
+ {
+-  return preg_replace('/^((&amp;[^;]*;|[\sA-Za-z0-9])*)'.
+-                      '(:|&#58;|&amp;#[Xx]3[Aa];)\s*/e',
+-                      'wp_kses_bad_protocol_once2(&quot;\\1&quot;, $allowed_protocols)',
+-                      $string);
++	return preg_replace('/^((&amp;[^;]*;|[\sA-Za-z0-9])*)'.'(:|&#58;|&amp;#[Xx]3[Aa];)\s*/e', 'wp_kses_bad_protocol_once2(&quot;\\1&quot;, $allowed_protocols)', $string);
+ } # function wp_kses_bad_protocol_once
+ 
+ 
+@@ -488,23 +572,32 @@
+ # list or not, and returns different data depending on the answer.
+ ###############################################################################
+ {
+-  $string2 = wp_kses_decode_entities($string);
+-  $string2 = preg_replace('/\s/', '', $string2);
+-  $string2 = wp_kses_no_null($string2);
+-  $string2 = strtolower($string2);
++	$string2 = wp_kses_decode_entities($string);
++	$string2 = preg_replace('/\s/', '', $string2);
++	$string2 = wp_kses_no_null($string2);
++	$string2 = preg_replace('/\xad+/', '', $string2);
++	# deals with Opera &quot;feature&quot;
++	$string2 = strtolower($string2);
+ 
+-  $allowed = false;
+-  foreach ($allowed_protocols as $one_protocol)
+-    if (strtolower($one_protocol) == $string2)
+-    {
+-      $allowed = true;
+-      break;
+-    }
++	$allowed = false;
++	foreach ($allowed_protocols as $one_protocol)
++	{
++		if (strtolower($one_protocol) == $string2)
++		{
++		$allowed = true;
++		break;
++		}
++	}
+ 
+-  if ($allowed)
+-    return &quot;$string2:&quot;;
+-  else
+-    return '';
++	if ($allowed)
++	{
++		return &quot;$string2:&quot;;
++	}
++	else
++	{
++		return '';
++	}
++
+ } # function wp_kses_bad_protocol_once2
+ 
+ 
+@@ -516,18 +609,15 @@
+ {
+ # Disarm all entities by converting &amp; to &amp;
+ 
+-  $string = str_replace('&amp;', '&amp;', $string);
++	$string = str_replace('&amp;', '&amp;', $string);
+ 
+ # Change back the allowed entities in our entity whitelist
+ 
+-  $string = preg_replace('/&amp;([A-Za-z][A-Za-z0-9]{0,19});/',
+-                         '&amp;\\1;', $string);
+-  $string = preg_replace('/&amp;#0*([0-9]{1,5});/e',
+-                         'wp_kses_normalize_entities2(&quot;\\1&quot;)', $string);
+-  $string = preg_replace('/&amp;#([Xx])0*(([0-9A-Fa-f]{2}){1,2});/',
+-                         '&amp;#\\1\\2;', $string);
++	$string = preg_replace('/&amp;([A-Za-z][A-Za-z0-9]{0,19});/', '&amp;\\1;', $string);
++	$string = preg_replace('/&amp;#0*([0-9]{1,5});/e', 'wp_kses_normalize_entities2(&quot;\\1&quot;)', $string);
++	$string = preg_replace('/&amp;#([Xx])0*(([0-9A-Fa-f]{2}){1,2});/', '&amp;#\\1\\2;', $string);
+ 
+-  return $string;
++	return $string;
+ } # function wp_kses_normalize_entities
+ 
+ 
+@@ -537,7 +627,7 @@
+ # and nothing more for &amp;#number; entities.
+ ###############################################################################
+ {
+-  return (($i &gt; 65535) ? &quot;&amp;#$i;&quot; : &quot;&amp;#$i;&quot;);
++	return (($i &gt; 65535) ? &quot;&amp;#$i;&quot; : &quot;&amp;#$i;&quot;);
+ } # function wp_kses_normalize_entities2
+ 
+ 
+@@ -548,14 +638,14 @@
+ # URL protocol whitelisting system anyway.
+ ###############################################################################
+ {
+-  $string = preg_replace('/&amp;#([0-9]+);/e', 'chr(&quot;\\1&quot;)', $string);
+-  $string = preg_replace('/&amp;#[Xx]([0-9A-Fa-f]+);/e', 'chr(hexdec(&quot;\\1&quot;))',
+-                         $string);
++	$string = preg_replace('/&amp;#([0-9]+);/e', 'chr(&quot;\\1&quot;)', $string);
++	$string = preg_replace('/&amp;#[Xx]([0-9A-Fa-f]+);/e', 'chr(hexdec(&quot;\\1&quot;))', $string);
+ 
+-  return $string;
++	return $string;
+ } # function wp_kses_decode_entities
+ 
+-function wp_filter_kses( $string ) {
++function wp_filter_kses( $string )
++{
+ 	global $allowedtags;
+ 	return wp_kses($string, $allowedtags);
+ }
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000065.html">[SteamPress-SVN-Tracker] r109 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000067.html">[SteamPress-SVN-Tracker] r111 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#66">[ date ]</a>
+              <a href="thread.html#66">[ thread ]</a>
+              <a href="subject.html#66">[ subject ]</a>
+              <a href="author.html#66">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

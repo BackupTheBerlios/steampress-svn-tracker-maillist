@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r88 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r88%20-%20trunk&In-Reply-To=%3C200511090547.jA95l1XE018779%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000043.html">
+   <LINK REL="Next"  HREF="000045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r88 - trunk</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r88%20-%20trunk&In-Reply-To=%3C200511090547.jA95l1XE018779%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r88 - trunk">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 06:47:01 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000043.html">[steampress-svn-tracker] r87 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000045.html">[steampress-svn-tracker] r89 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 06:46:46 +0100 (Wed, 09 Nov 2005)
+New Revision: 88
+
+Modified:
+   trunk/wp-commentsrss2.php
+Log:
+Add brackets. Whitespace makes code legible. get rid of 'if (): endif;'
+
+Modified: trunk/wp-commentsrss2.php
+===================================================================
+--- trunk/wp-commentsrss2.php	2005-11-09 05:41:03 UTC (rev 87)
++++ trunk/wp-commentsrss2.php	2005-11-09 05:46:46 UTC (rev 88)
+@@ -1,5 +1,6 @@
+-&lt;?php 
+-if ( empty($feed) ) {
++&lt;?php
++if ( empty($feed) )
++{
+ 	$feed = 'rss2';
+ 	$withcomments = 1;
+ 	$doing_rss = 1;
+@@ -8,18 +9,22 @@
+ 
+ header('Content-type: text/xml;charset=' . get_settings('blog_charset'), true);
+ 
+-echo '&lt;?xml version=&quot;1.0&quot; encoding=&quot;'.get_settings('blog_charset').'&quot;?'.'&gt;'; 
++echo '&lt;?xml version=&quot;1.0&quot; encoding=&quot;'.get_settings('blog_charset').'&quot;?'.'&gt;';
+ ?&gt;
+-&lt;!-- generator=&quot;wordpress/&lt;?php echo $wp_version ?&gt;&quot; --&gt;
+-&lt;rss version=&quot;2.0&quot; 
++&lt;!-- generator=&quot;steampress/&lt;?php echo $wp_version ?&gt;&quot; --&gt;
++&lt;rss version=&quot;2.0&quot;
+ 	xmlns:content=&quot;<A HREF="http://purl.org/rss/1.0/modules/content/">http://purl.org/rss/1.0/modules/content/</A>&quot;&gt;
+ &lt;channel&gt;
+ &lt;?php
+ $i = 0;
+-if (have_posts()) :
+-  while (have_posts()) : the_post();
+-	if ($i &lt; 1) {
+-		$i++;
++if (have_posts())
++{
++	while (have_posts())
++	{
++		the_post();
++		if ($i &lt; 1)
++		{
++			$i++;
+ ?&gt;
+ 	&lt;title&gt;&lt;?php if (is_single() || is_page()) { echo &quot;Comments on: &quot;; the_title_rss(); } else { bloginfo_rss(&quot;name&quot;); echo &quot; Comments&quot;; } ?&gt;&lt;/title&gt;
+ 	&lt;link&gt;&lt;?php (is_single()) ? permalink_single_rss() : bloginfo_rss(&quot;url&quot;) ?&gt;&lt;/link&gt;
+@@ -27,56 +32,72 @@
+ 	&lt;pubDate&gt;&lt;?php echo gmdate('r'); ?&gt;&lt;/pubDate&gt;
+ 	&lt;generator&gt;<A HREF="http://wordpress.org/?v=&lt;?php">http://wordpress.org/?v=&lt;?php</A> echo $wp_version ?&gt;&lt;/generator&gt;
+ 
+-&lt;?php 
+-		if (is_single() || is_page()) {
+-			$comments = $wpdb-&gt;get_results(&quot;SELECT comment_ID, comment_author, comment_author_email, 
+-			comment_author_url, comment_date, comment_date_gmt, comment_content, comment_post_ID, 
+-			$wpdb-&gt;posts.ID, $wpdb-&gt;posts.post_password FROM $wpdb-&gt;comments 
+-			LEFT JOIN $wpdb-&gt;posts ON comment_post_id = id WHERE comment_post_ID = '$id' 
+-			AND $wpdb-&gt;comments.comment_approved = '1' AND ($wpdb-&gt;posts.post_status = 'publish' OR $wpdb-&gt;posts.post_status = 'static') 
+-			AND post_date &lt; '&quot;.date(&quot;Y-m-d H:i:59&quot;).&quot;' 
+-			ORDER BY comment_date DESC LIMIT &quot; . get_settings('posts_per_rss') );
+-		} else { // if no post id passed in, we'll just ue the last 10 comments.
+-			$comments = $wpdb-&gt;get_results(&quot;SELECT comment_ID, comment_author, comment_author_email, 
+-			comment_author_url, comment_date, comment_date_gmt, comment_content, comment_post_ID, 
+-			$wpdb-&gt;posts.ID, $wpdb-&gt;posts.post_password FROM $wpdb-&gt;comments 
+-			LEFT JOIN $wpdb-&gt;posts ON comment_post_id = id WHERE ($wpdb-&gt;posts.post_status = 'publish' OR $wpdb-&gt;posts.post_status = 'static') 
+-			AND $wpdb-&gt;comments.comment_approved = '1' AND post_date &lt; '&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;'  
+-			ORDER BY comment_date DESC LIMIT &quot; . get_settings('posts_per_rss') );
+-		}
++&lt;?php
++			if (is_single() || is_page())
++			{
++				$comments = $wpdb-&gt;get_results(&quot;SELECT comment_ID, comment_author, comment_author_email,
++				comment_author_url, comment_date, comment_date_gmt, comment_content, comment_post_ID,
++				$wpdb-&gt;posts.ID, $wpdb-&gt;posts.post_password FROM $wpdb-&gt;comments
++				LEFT JOIN $wpdb-&gt;posts ON comment_post_id = id WHERE comment_post_ID = '$id'
++				AND $wpdb-&gt;comments.comment_approved = '1' AND ($wpdb-&gt;posts.post_status = 'publish' OR $wpdb-&gt;posts.post_status = 'static')
++				AND post_date &lt; '&quot;.date(&quot;Y-m-d H:i:59&quot;).&quot;'
++				ORDER BY comment_date DESC LIMIT &quot; . get_settings('posts_per_rss') );
++			}
++			else // if no post id passed in, we'll just ue the last 10 comments.
++			{
++				$comments = $wpdb-&gt;get_results(&quot;SELECT comment_ID, comment_author, comment_author_email,
++				comment_author_url, comment_date, comment_date_gmt, comment_content, comment_post_ID,
++				$wpdb-&gt;posts.ID, $wpdb-&gt;posts.post_password FROM $wpdb-&gt;comments
++				LEFT JOIN $wpdb-&gt;posts ON comment_post_id = id WHERE ($wpdb-&gt;posts.post_status = 'publish' OR $wpdb-&gt;posts.post_status = 'static')
++				AND $wpdb-&gt;comments.comment_approved = '1' AND post_date &lt; '&quot;.date(&quot;Y-m-d H:i:s&quot;).&quot;'
++				ORDER BY comment_date DESC LIMIT &quot; . get_settings('posts_per_rss') );
++			}
+ 	// this line is WordPress' motor, do not delete it.
+-		if ($comments) {
+-			foreach ($comments as $comment) {
++			if ($comments)
++			{
++				foreach ($comments as $comment)
++				{
+ ?&gt;
+ 	&lt;item&gt;
+- 		&lt;title&gt;&lt;?php if ( (! is_single()) || (! is_page()) ) {
+- 			$title = get_the_title($comment-&gt;comment_post_ID);
+- 			$title = apply_filters('the_title', $title);
+- 			$title = apply_filters('the_title_rss', $title);
+- 			echo &quot;Comment on $title&quot;;
+- 		} ?&gt; by: &lt;?php comment_author_rss() ?&gt;&lt;/title&gt;
++		&lt;title&gt;
++&lt;?php
++					if ( (! is_single()) || (! is_page()) )
++					{
++						$title = get_the_title($comment-&gt;comment_post_ID);
++						$title = apply_filters('the_title', $title);
++						$title = apply_filters('the_title_rss', $title);
++						echo &quot;Comment on $title&quot;;
++					}
++?&gt;
++ by:
++&lt;?php comment_author_rss() ?&gt;
++		&lt;/title&gt;
+ 		&lt;link&gt;&lt;?php comment_link() ?&gt;&lt;/link&gt;
+ 		&lt;pubDate&gt;&lt;?php echo mysql2date('D, d M Y H:i:s +0000', get_comment_time('Y-m-d H:i:s', true), false); ?&gt;&lt;/pubDate&gt;
+ 		&lt;guid&gt;&lt;?php comment_link() ?&gt;&lt;/guid&gt;
+-			&lt;?php 
+-			if (!empty($comment-&gt;post_password) &amp;&amp; $_COOKIE['wp-postpass'] != $comment-&gt;post_password) {
++			&lt;?php
++					if (!empty($comment-&gt;post_password) &amp;&amp; $_COOKIE['wp-postpass'] != $comment-&gt;post_password)
++					{
+ 			?&gt;
+ 		&lt;description&gt;Protected Comments: Please enter your password to view comments.&lt;/description&gt;
+ 		&lt;content:encoded&gt;&lt;![CDATA[&lt;?php echo get_the_password_form() ?&gt;]]&gt;&lt;/content:encoded&gt;
+ 			&lt;?php
+-			} else {
++					}
++					else
++					{
+ 			?&gt;
+ 		&lt;description&gt;&lt;?php comment_text_rss() ?&gt;&lt;/description&gt;
+ 		&lt;content:encoded&gt;&lt;![CDATA[&lt;?php comment_text() ?&gt;]]&gt;&lt;/content:encoded&gt;
+-			&lt;?php 
+-			} // close check for password 
++			&lt;?php
++					} // close check for password
+ 			?&gt;
+ 	&lt;/item&gt;
+-&lt;?php 
++&lt;?php
++				}
+ 			}
+ 		}
+ 	}
+-endwhile; endif;
++}
+ ?&gt;
+ &lt;/channel&gt;
+ &lt;/rss&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000043.html">[steampress-svn-tracker] r87 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000045.html">[steampress-svn-tracker] r89 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#44">[ date ]</a>
+              <a href="thread.html#44">[ thread ]</a>
+              <a href="subject.html#44">[ subject ]</a>
+              <a href="author.html#44">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

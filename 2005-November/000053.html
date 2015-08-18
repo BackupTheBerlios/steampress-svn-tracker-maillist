@@ -1,0 +1,838 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r97 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r97%20-%20trunk/wp-includes&In-Reply-To=%3C200511091743.jA9Hhn8i009001%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000052.html">
+   <LINK REL="Next"  HREF="000054.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r97 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r97%20-%20trunk/wp-includes&In-Reply-To=%3C200511091743.jA9Hhn8i009001%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r97 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 18:43:49 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000052.html">[steampress-svn-tracker] r96 - trunk/wp-content/themes/default
+</A></li>
+        <LI>Next message: <A HREF="000054.html">[steampress-svn-tracker] r98 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 18:43:47 +0100 (Wed, 09 Nov 2005)
+New Revision: 97
+
+Modified:
+   trunk/wp-includes/vars.php
+   trunk/wp-includes/wp-db.php
+   trunk/wp-includes/wp-l10n.php
+Log:
+Added whitespace. Fixed brackets. Mae code purdy
+
+Modified: trunk/wp-includes/vars.php
+===================================================================
+--- trunk/wp-includes/vars.php	2005-11-09 08:03:34 UTC (rev 96)
++++ trunk/wp-includes/vars.php	2005-11-09 17:43:47 UTC (rev 97)
+@@ -2,33 +2,50 @@
+ 
+ // On which page are we ?
+ $PHP_SELF = $_SERVER['PHP_SELF'];
+-if (preg_match('#([^/]+.php)#', $PHP_SELF, $self_matches)) {
++if (preg_match('#([^/]+.php)#', $PHP_SELF, $self_matches))
++{
+ 	$pagenow = $self_matches[1];
+-} else if (strstr($PHP_SELF, '?')) {
++}
++else if (strstr($PHP_SELF, '?'))
++{
+ 	$pagenow = explode('/', $PHP_SELF);
+ 	$pagenow = trim($pagenow[(sizeof($pagenow)-1)]);
+ 	$pagenow = explode('?', $pagenow);
+ 	$pagenow = $pagenow[0];
+-} else {
++}
++else
++{
+ 	$pagenow = 'index.php';
+ }
+ 
+ // Simple browser detection
+ $is_lynx = 0; $is_gecko = 0; $is_winIE = 0; $is_macIE = 0; $is_opera = 0; $is_NS4 = 0;
+-if (!isset($HTTP_USER_AGENT)) {
++if (!isset($HTTP_USER_AGENT))
++{
+ 	$HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
+ }
+-if (preg_match('/Lynx/', $HTTP_USER_AGENT)) {
++if (preg_match('/Lynx/', $HTTP_USER_AGENT))
++{
+ 	$is_lynx = 1;
+-} elseif (preg_match('/Gecko/', $HTTP_USER_AGENT)) {
++}
++elseif (preg_match('/Gecko/', $HTTP_USER_AGENT))
++{
+ 	$is_gecko = 1;
+-} elseif ((preg_match('/MSIE/', $HTTP_USER_AGENT)) &amp;&amp; (preg_match('/Win/', $HTTP_USER_AGENT))) {
++}
++elseif ((preg_match('/MSIE/', $HTTP_USER_AGENT)) &amp;&amp; (preg_match('/Win/', $HTTP_USER_AGENT)))
++{
+ 	$is_winIE = 1;
+-} elseif ((preg_match('/MSIE/', $HTTP_USER_AGENT)) &amp;&amp; (preg_match('/Mac/', $HTTP_USER_AGENT))) {
++}
++elseif ((preg_match('/MSIE/', $HTTP_USER_AGENT)) &amp;&amp; (preg_match('/Mac/', $HTTP_USER_AGENT)))
++{
+ 	$is_macIE = 1;
+-} elseif (preg_match('/Opera/', $HTTP_USER_AGENT)) {
++}
++elseif (preg_match('/Opera/', $HTTP_USER_AGENT))
++{
+ 	$is_opera = 1;
+-} elseif ((preg_match('/Nav/', $HTTP_USER_AGENT) ) || (preg_match('/Mozilla\/4\./', $HTTP_USER_AGENT))) {
++}
++elseif ((preg_match('/Nav/', $HTTP_USER_AGENT) ) || (preg_match('/Mozilla\/4\./', $HTTP_USER_AGENT)))
++{
+ 	$is_NS4 = 1;
+ }
+ $is_IE    = (($is_macIE) || ($is_winIE));
+@@ -38,7 +55,8 @@
+ $is_IIS = strstr($_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS') ? 1 : 0;
+ 
+ // if the config file does not provide the smilies array, let's define it here
+-if (!isset($wpsmiliestrans)) {
++if (!isset($wpsmiliestrans))
++{
+ 	$wpsmiliestrans = array(
+ 	' :)'        =&gt; 'icon_smile.gif',
+ 	' :D'        =&gt; 'icon_biggrin.gif',
+@@ -89,18 +107,22 @@
+ }
+ 
+ // sorts the smilies' array
+-if (!function_exists('smiliescmp')) {
+-function smiliescmp ($a, $b) {
+-	if (strlen($a) == strlen($b)) {
+-		return strcmp($a, $b);
+-	}
++if (!function_exists('smiliescmp'))
++{
++	function smiliescmp ($a, $b)
++	{
++		if (strlen($a) == strlen($b))
++		{
++			return strcmp($a, $b);
++		}
+ 		return (strlen($a) &gt; strlen($b)) ? -1 : 1;
+ 	}
+ }
+ uksort($wpsmiliestrans, 'smiliescmp');
+ 
+ // generates smilies' search &amp; replace arrays
+-foreach($wpsmiliestrans as $smiley =&gt; $img) {
++foreach($wpsmiliestrans as $smiley =&gt; $img)
++{
+ 	$wp_smiliessearch[] = $smiley;
+ 	$smiley_masked = htmlspecialchars( trim($smiley) , ENT_QUOTES);
+ 	$wp_smiliesreplace[] = &quot; &lt;img src='&quot; . get_settings('siteurl') . &quot;/wp-images/smilies/$img' alt='$smiley_masked' class='wp-smiley' /&gt; &quot;;
+@@ -110,4 +132,4 @@
+ define('COOKIEPATH', preg_replace('|https?://[^/]+|i', '', get_settings('home') . '/' ) );
+ define('SITECOOKIEPATH', preg_replace('|https?://[^/]+|i', '', get_settings('siteurl') . '/' ) );
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-includes/wp-db.php
+===================================================================
+--- trunk/wp-includes/wp-db.php	2005-11-09 08:03:34 UTC (rev 96)
++++ trunk/wp-includes/wp-db.php	2005-11-09 17:43:47 UTC (rev 97)
+@@ -11,12 +11,15 @@
+ define('ARRAY_N', 'ARRAY_N', false);
+ 
+ if (!defined('SAVEQUERIES'))
++{
+ 	define('SAVEQUERIES', false);
++}
+ 
+-class wpdb {
++class wpdb
++{
+ 
+ 	var $show_errors = true;
+-	var $num_queries = 0;	
++	var $num_queries = 0;
+ 	var $last_query;
+ 	var $col_info;
+ 	var $queries;
+@@ -39,9 +42,11 @@
+ 	// ==================================================================
+ 	//	DB Constructor - connects to the server and selects a database
+ 
+-	function wpdb($dbuser, $dbpassword, $dbname, $dbhost) {
++	function wpdb($dbuser, $dbpassword, $dbname, $dbhost)
++	{
+ 		$this-&gt;dbh = @mysql_connect($dbhost, $dbuser, $dbpassword);
+-		if (!$this-&gt;dbh) {
++		if (!$this-&gt;dbh)
++		{
+ 			$this-&gt;bail(&quot;
+ &lt;h1&gt;Error establishing a database connection&lt;/h1&gt;
+ &lt;p&gt;This either means that the username and password information in your &lt;code&gt;wp-config.php&lt;/code&gt; file is incorrect or we can't contact the database server at &lt;code&gt;$dbhost&lt;/code&gt;. This could mean your host's database server is down.&lt;/p&gt;
+@@ -60,8 +65,10 @@
+ 	// ==================================================================
+ 	//	Select a DB (if another one needs to be selected)
+ 
+-	function select($db) {
+-		if (!@mysql_select_db($db, $this-&gt;dbh)) {
++	function select($db)
++	{
++		if (!@mysql_select_db($db, $this-&gt;dbh))
++		{
+ 			$this-&gt;bail(&quot;
+ &lt;h1&gt;Can&#8217;t select database&lt;/h1&gt;
+ &lt;p&gt;We were able to connect to the database server (which means your username and password is okay) but not able to select the &lt;code&gt;$db&lt;/code&gt; database.&lt;/p&gt;
+@@ -75,47 +82,58 @@
+ 
+ 	// ====================================================================
+ 	//	Format a string correctly for safe insert under all PHP conditions
+-	
+-	function escape($str) {
+-		return addslashes($str);				
++
++	function escape($str)
++	{
++		return addslashes($str);
+ 	}
+ 
+ 	// ==================================================================
+ 	//	Print SQL/DB error.
+ 
+-	function print_error($str = '') {
++	function print_error($str = '')
++	{
+ 		global $EZSQL_ERROR;
+-		if (!$str) $str = mysql_error();
+-		$EZSQL_ERROR[] = 
++		if (!$str)
++		{
++			$str = mysql_error();
++		}
++		$EZSQL_ERROR[] =
+ 		array ('query' =&gt; $this-&gt;last_query, 'error_str' =&gt; $str);
+ 
+ 		// Is error output turned on or not..
+-		if ( $this-&gt;show_errors ) {
++		if ( $this-&gt;show_errors )
++		{
+ 			// If there is an error then take note of it
+ 			print &quot;&lt;div id='error'&gt;
+ 			&lt;p class='wpdberror'&gt;&lt;strong&gt;WordPress database error:&lt;/strong&gt; [$str]&lt;br /&gt;
+ 			&lt;code&gt;$this-&gt;last_query&lt;/code&gt;&lt;/p&gt;
+ 			&lt;/div&gt;&quot;;
+-		} else {
+-			return false;	
+ 		}
++		else
++		{
++			return false;
++		}
+ 	}
+ 
+ 	// ==================================================================
+ 	//	Turn error handling on or off..
+ 
+-	function show_errors() {
++	function show_errors()
++	{
+ 		$this-&gt;show_errors = true;
+ 	}
+-	
+-	function hide_errors() {
++
++	function hide_errors()
++	{
+ 		$this-&gt;show_errors = false;
+ 	}
+ 
+ 	// ==================================================================
+ 	//	Kill cached query results
+ 
+-	function flush() {
++	function flush()
++	{
+ 		$this-&gt;last_result = null;
+ 		$this-&gt;col_info = null;
+ 		$this-&gt;last_query = null;
+@@ -124,7 +142,8 @@
+ 	// ==================================================================
+ 	//	Basic Query	- see docs for more detail
+ 
+-	function query($query) {
++	function query($query)
++	{
+ 		// initialise return
+ 		$return_val = 0;
+ 		$this-&gt;flush();
+@@ -137,36 +156,47 @@
+ 
+ 		// Perform the query via std mysql_query function..
+ 		if (SAVEQUERIES)
++		{
+ 			$this-&gt;timer_start();
+-		
++		}
++
+ 		$this-&gt;result = @mysql_query($query, $this-&gt;dbh);
+ 		++$this-&gt;num_queries;
+ 
+ 		if (SAVEQUERIES)
++		{
+ 			$this-&gt;queries[] = array( $query, $this-&gt;timer_stop() );
++		}
+ 
+ 		// If there is an error then take note of it..
+-		if ( mysql_error() ) {
++		if ( mysql_error() )
++		{
+ 			$this-&gt;print_error();
+ 			return false;
+ 		}
+ 
+-		if ( preg_match(&quot;/^\\s*(insert|delete|update|replace) /i&quot;,$query) ) {
++		if ( preg_match(&quot;/^\\s*(insert|delete|update|replace) /i&quot;,$query) )
++		{
+ 			$this-&gt;rows_affected = mysql_affected_rows();
+ 			// Take note of the insert_id
+-			if ( preg_match(&quot;/^\\s*(insert|replace) /i&quot;,$query) ) {
+-				$this-&gt;insert_id = mysql_insert_id($this-&gt;dbh);	
++			if ( preg_match(&quot;/^\\s*(insert|replace) /i&quot;,$query) )
++			{
++				$this-&gt;insert_id = mysql_insert_id($this-&gt;dbh);
+ 			}
+ 			// Return number of rows affected
+ 			$return_val = $this-&gt;rows_affected;
+-		} else {
++		}
++		else
++		{
+ 			$i = 0;
+-			while ($i &lt; @mysql_num_fields($this-&gt;result)) {
++			while ($i &lt; @mysql_num_fields($this-&gt;result))
++			{
+ 				$this-&gt;col_info[$i] = @mysql_fetch_field($this-&gt;result);
+ 				$i++;
+ 			}
+ 			$num_rows = 0;
+-			while ( $row = @mysql_fetch_object($this-&gt;result) ) {
++			while ( $row = @mysql_fetch_object($this-&gt;result) )
++			{
+ 				$this-&gt;last_result[$num_rows] = $row;
+ 				$num_rows++;
+ 			}
+@@ -175,24 +205,27 @@
+ 
+ 			// Log number of rows the query returned
+ 			$this-&gt;num_rows = $num_rows;
+-			
++
+ 			// Return number of rows selected
+ 			$return_val = $this-&gt;num_rows;
+ 		}
+-
+ 		return $return_val;
+ 	}
+ 
+ 	// ==================================================================
+ 	//	Get one variable from the DB - see docs for more detail
+ 
+-	function get_var($query=null, $x = 0, $y = 0) {
++	function get_var($query=null, $x = 0, $y = 0)
++	{
+ 		$this-&gt;func_call = &quot;\$db-&gt;get_var(\&quot;$query\&quot;,$x,$y)&quot;;
+ 		if ( $query )
++		{
+ 			$this-&gt;query($query);
++		}
+ 
+ 		// Extract var out of cached results based x,y vals
+-		if ( $this-&gt;last_result[$y] ) {
++		if ( $this-&gt;last_result[$y] )
++		{
+ 			$values = array_values(get_object_vars($this-&gt;last_result[$y]));
+ 		}
+ 
+@@ -203,18 +236,28 @@
+ 	// ==================================================================
+ 	//	Get one row from the DB - see docs for more detail
+ 
+-	function get_row($query = null, $output = OBJECT, $y = 0) {
++	function get_row($query = null, $output = OBJECT, $y = 0)
++	{
+ 		$this-&gt;func_call = &quot;\$db-&gt;get_row(\&quot;$query\&quot;,$output,$y)&quot;;
+ 		if ( $query )
++		{
+ 			$this-&gt;query($query);
++		}
+ 
+-		if ( $output == OBJECT ) {
++		if ( $output == OBJECT )
++		{
+ 			return $this-&gt;last_result[$y] ? $this-&gt;last_result[$y] : null;
+-		} elseif ( $output == ARRAY_A ) {
++		}
++		elseif ( $output == ARRAY_A )
++		{
+ 			return $this-&gt;last_result[$y] ? get_object_vars($this-&gt;last_result[$y]) : null;
+-		} elseif ( $output == ARRAY_N ) {
++		}
++		elseif ( $output == ARRAY_N )
++		{
+ 			return $this-&gt;last_result[$y] ? array_values(get_object_vars($this-&gt;last_result[$y])) : null;
+-		} else {
++		}
++		else
++		{
+ 			$this-&gt;print_error(&quot; \$db-&gt;get_row(string query, output type, int offset) -- Output type must be one of: OBJECT, ARRAY_A, ARRAY_N&quot;);
+ 		}
+ 	}
+@@ -223,12 +266,16 @@
+ 	//	Function to get 1 column from the cached result set based in X index
+ 	// se docs for usage and info
+ 
+-	function get_col($query = null , $x = 0) {
++	function get_col($query = null , $x = 0)
++	{
+ 		if ( $query )
++		{
+ 			$this-&gt;query($query);
++		}
+ 
+ 		// Extract the column values
+-		for ( $i=0; $i &lt; count($this-&gt;last_result); $i++ ) {
++		for ( $i=0; $i &lt; count($this-&gt;last_result); $i++ )
++		{
+ 			$new_array[$i] = $this-&gt;get_var(null, $x, $i);
+ 		}
+ 		return $new_array;
+@@ -237,27 +284,38 @@
+ 	// ==================================================================
+ 	// Return the the query as a result set - see docs for more details
+ 
+-	function get_results($query = null, $output = OBJECT) {
++	function get_results($query = null, $output = OBJECT)
++	{
+ 		$this-&gt;func_call = &quot;\$db-&gt;get_results(\&quot;$query\&quot;, $output)&quot;;
+ 
+ 		if ( $query )
++		{
+ 			$this-&gt;query($query);
++		}
+ 
+ 		// Send back array of objects. Each row is an object
+-		if ( $output == OBJECT ) {
++		if ( $output == OBJECT )
++		{
+ 			return $this-&gt;last_result;
+-		} elseif ( $output == ARRAY_A || $output == ARRAY_N ) {
+-			if ( $this-&gt;last_result ) {
++		}
++		elseif ( $output == ARRAY_A || $output == ARRAY_N )
++		{
++			if ( $this-&gt;last_result )
++			{
+ 				$i = 0;
+-				foreach( $this-&gt;last_result as $row ) {
++				foreach( $this-&gt;last_result as $row )
++				{
+ 					$new_array[$i] = (array) $row;
+-					if ( $output == ARRAY_N ) {
++					if ( $output == ARRAY_N )
++					{
+ 						$new_array[$i] = array_values($new_array[$i]);
+ 					}
+ 					$i++;
+ 				}
+ 				return $new_array;
+-			} else {
++			}
++			else
++			{
+ 				return null;
+ 			}
+ 		}
+@@ -268,29 +326,37 @@
+ 	// Function to get column meta data info pertaining to the last query
+ 	// see docs for more info and usage
+ 
+-	function get_col_info($info_type = 'name', $col_offset = -1) {
+-		if ( $this-&gt;col_info ) {
+-			if ( $col_offset == -1 ) {
++	function get_col_info($info_type = 'name', $col_offset = -1)
++	{
++		if ( $this-&gt;col_info )
++		{
++			if ( $col_offset == -1 )
++			{
+ 				$i = 0;
+-				foreach($this-&gt;col_info as $col ) {
++				foreach($this-&gt;col_info as $col )
++				{
+ 					$new_array[$i] = $col-&gt;{$info_type};
+ 					$i++;
+ 				}
+ 				return $new_array;
+-			} else {
++			}
++			else
++			{
+ 				return $this-&gt;col_info[$col_offset]-&gt;{$info_type};
+ 			}
+ 		}
+ 	}
+ 
+-	function timer_start() {
++	function timer_start()
++	{
+ 		$mtime = microtime();
+ 		$mtime = explode(' ', $mtime);
+ 		$this-&gt;time_start = $mtime[1] + $mtime[0];
+ 		return true;
+ 	}
+-	
+-	function timer_stop($precision = 3) {
++
++	function timer_stop($precision = 3)
++	{
+ 		$mtime = microtime();
+ 		$mtime = explode(' ', $mtime);
+ 		$time_end = $mtime[1] + $mtime[0];
+@@ -298,62 +364,65 @@
+ 		return $time_total;
+ 	}
+ 
+-	function bail($message) { // Just wraps errors in a nice header and footer
+-	if ( !$this-&gt;show_errors )
+-		return false;
+-	header( 'Content-Type: text/html; charset=utf-8');		
+-	echo &lt;&lt;&lt;HEAD
+-	&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
+-	&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
+-	&lt;head&gt;
+-		&lt;title&gt;WordPress &rsaquo; Error&lt;/title&gt;
+-		&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+-		&lt;style media=&quot;screen&quot; type=&quot;text/css&quot;&gt;
+-		&lt;!--
+-		html {
+-			background: #eee;
++	function bail($message) // Just wraps errors in a nice header and footer
++	{
++		if ( !$this-&gt;show_errors )
++		{
++			return false;
+ 		}
+-		body {
+-			background: #fff;
+-			color: #000;
+-			font-family: Georgia, &quot;Times New Roman&quot;, Times, serif;
+-			margin-left: 25%;
+-			margin-right: 25%;
+-			padding: .2em 2em;
+-		}
+-		
+-		h1 {
+-			color: #006;
+-			font-size: 18px;
+-			font-weight: lighter;
+-		}
+-		
+-		h2 {
+-			font-size: 16px;
+-		}
+-		
+-		p, li, dt {
+-			line-height: 140%;
+-			padding-bottom: 2px;
+-		}
+-	
+-		ul, ol {
+-			padding: 5px 5px 5px 20px;
+-		}
+-		#logo {
+-			margin-bottom: 2em;
+-		}
+-		--&gt;
+-		&lt;/style&gt;
+-	&lt;/head&gt;
+-	&lt;body&gt;
+-	&lt;h1 id=&quot;logo&quot;&gt;&lt;img alt=&quot;WordPress&quot; src=&quot;<A HREF="http://static.wordpress.org/logo.png">http://static.wordpress.org/logo.png</A>&quot; /&gt;&lt;/h1&gt;
++		header( 'Content-Type: text/html; charset=utf-8');
++		echo &lt;&lt;&lt;HEAD
++		&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
++		&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
++		&lt;head&gt;
++			&lt;title&gt;WordPress &rsaquo; Error&lt;/title&gt;
++			&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
++			&lt;style media=&quot;screen&quot; type=&quot;text/css&quot;&gt;
++			&lt;!--
++			html {
++				background: #eee;
++			}
++			body {
++				background: #fff;
++				color: #000;
++				font-family: Georgia, &quot;Times New Roman&quot;, Times, serif;
++				margin-left: 25%;
++				margin-right: 25%;
++				padding: .2em 2em;
++			}
++
++			h1 {
++				color: #006;
++				font-size: 18px;
++				font-weight: lighter;
++			}
++
++			h2 {
++				font-size: 16px;
++			}
++
++			p, li, dt {
++				line-height: 140%;
++				padding-bottom: 2px;
++			}
++
++			ul, ol {
++				padding: 5px 5px 5px 20px;
++			}
++			#logo {
++				margin-bottom: 2em;
++			}
++			--&gt;
++			&lt;/style&gt;
++		&lt;/head&gt;
++		&lt;body&gt;
++		&lt;h1 id=&quot;logo&quot;&gt;&lt;img alt=&quot;WordPress&quot; src=&quot;<A HREF="http://static.wordpress.org/logo.png">http://static.wordpress.org/logo.png</A>&quot; /&gt;&lt;/h1&gt;
+ HEAD;
+-	echo $message;
+-	echo &quot;&lt;/body&gt;&lt;/html&gt;&quot;;
+-	die();
++		echo $message;
++		echo &quot;&lt;/body&gt;&lt;/html&gt;&quot;;
++		die();
+ 	}
+ }
+ 
+ $wpdb = new wpdb(DB_USER, DB_PASSWORD, DB_NAME, DB_HOST);
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-includes/wp-l10n.php
+===================================================================
+--- trunk/wp-includes/wp-l10n.php	2005-11-09 08:03:34 UTC (rev 96)
++++ trunk/wp-includes/wp-l10n.php	2005-11-09 17:43:47 UTC (rev 97)
+@@ -1,23 +1,29 @@
+ &lt;?php
+ 
+-if ( defined('WPLANG') &amp;&amp; '' != constant('WPLANG') ) {
++if ( defined('WPLANG') &amp;&amp; '' != constant('WPLANG') )
++{
+ 	include_once(ABSPATH . 'wp-includes/streams.php');
+ 	include_once(ABSPATH . 'wp-includes/gettext.php');
+ }
+ 
+-function get_locale() {
++function get_locale()
++{
+ 	global $locale;
+ 
+ 	if (isset($locale))
++	{
+ 		return $locale;
++	}
+ 
+ 	// WPLANG is defined in wp-config.
+-	if (defined('WPLANG')) {
+-    $locale = WPLANG;
++	if (defined('WPLANG'))
++	{
++		$locale = WPLANG;
+ 	}
+-	
+-	if (empty($locale)) {
+-    $locale = 'en_US';
++
++	if (empty($locale))
++	{
++		$locale = 'en_US';
+ 	}
+ 
+ 	$locale = apply_filters('locale', $locale);
+@@ -25,79 +31,103 @@
+ 	return $locale;
+ }
+ 
+-// Return a translated string.    
+-function __($text, $domain = 'default') {
++// Return a translated string.
++function __($text, $domain = 'default')
++{
+ 	global $l10n;
+ 
+-	if (isset($l10n[$domain])) {
++	if (isset($l10n[$domain]))
++	{
+ 		return $l10n[$domain]-&gt;translate($text);
+-	} else {
++	}
++	else
++	{
+ 		return $text;
+ 	}
+ }
+ 
+ // Echo a translated string.
+-function _e($text, $domain = 'default') {
++function _e($text, $domain = 'default')
++{
+ 	global $l10n;
+ 
+-	if (isset($l10n[$domain])) {
++	if (isset($l10n[$domain]))
++	{
+ 		echo $l10n[$domain]-&gt;translate($text);
+-	} else {
++	}
++	else
++	{
+ 		echo $text;
+ 	}
+ }
+ 
+ // Return the plural form.
+-function __ngettext($single, $plural, $number, $domain = 'default') {
++function __ngettext($single, $plural, $number, $domain = 'default')
++{
+ 	global $l10n;
+ 
+-	if (isset($l10n[$domain])) {
++	if (isset($l10n[$domain]))
++	{
+ 		return $l10n[$domain]-&gt;ngettext($single, $plural, $number);
+-	} else {
++	}
++	else
++	{
+ 		if ($number != 1)
++		{
+ 			return $plural;
++		}
+ 		else
++		{
+ 			return $single;
++		}
+ 	}
+ }
+ 
+-function load_textdomain($domain, $mofile) {
++function load_textdomain($domain, $mofile)
++{
+ 	global $l10n;
+ 
+-	if (isset($l10n[$domain])) {
++	if (isset($l10n[$domain]))
++	{
+ 		return;
+ 	}
+ 
+-	if ( is_readable($mofile)) {
+-    $input = new CachedFileReader($mofile);
+-	}	else {
++	if ( is_readable($mofile))
++	{
++	$input = new CachedFileReader($mofile);
++	}
++	else
++	{
+ 		return;
+ 	}
+ 
+ 	$l10n[$domain] = new gettext_reader($input);
+ }
+ 
+-function load_default_textdomain() {
++function load_default_textdomain()
++{
+ 	global $l10n;
+ 
+ 	$locale = get_locale();
+ 	$mofile = ABSPATH . &quot;wp-includes/languages/$locale.mo&quot;;
+-	
++
+ 	load_textdomain('default', $mofile);
+ }
+ 
+-function load_plugin_textdomain($domain) {
++function load_plugin_textdomain($domain)
++{
+ 	$locale = get_locale();
+-	
++
+ 	$mofile = ABSPATH . &quot;wp-content/plugins/$domain-$locale.mo&quot;;
+ 	load_textdomain($domain, $mofile);
+ }
+ 
+-function load_theme_textdomain($domain) {
++function load_theme_textdomain($domain)
++{
+ 	$locale = get_locale();
+-	
++
+ 	$mofile = get_template_directory() . &quot;/$locale.mo&quot;;
+ 	load_textdomain($domain, $mofile);
+ }
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000052.html">[steampress-svn-tracker] r96 - trunk/wp-content/themes/default
+</A></li>
+	<LI>Next message: <A HREF="000054.html">[steampress-svn-tracker] r98 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#53">[ date ]</a>
+              <a href="thread.html#53">[ thread ]</a>
+              <a href="subject.html#53">[ subject ]</a>
+              <a href="author.html#53">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

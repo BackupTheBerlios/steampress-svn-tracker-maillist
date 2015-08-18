@@ -1,0 +1,5437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [SteamPress-SVN-Tracker] r113 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r113%20-%20trunk/wp-includes&In-Reply-To=%3C200511221548.jAMFm0cN015574%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000068.html">
+   <LINK REL="Next"  HREF="000070.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[SteamPress-SVN-Tracker] r113 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r113%20-%20trunk/wp-includes&In-Reply-To=%3C200511221548.jAMFm0cN015574%40sheep.berlios.de%3E"
+       TITLE="[SteamPress-SVN-Tracker] r113 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov 22 16:48:00 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000068.html">[SteamPress-SVN-Tracker] r112 - trunk/wp-admin
+</A></li>
+        <LI>Next message: <A HREF="000070.html">[SteamPress-SVN-Tracker] r114 - in trunk/wp-content: plugins themes/default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-22 16:47:58 +0100 (Tue, 22 Nov 2005)
+New Revision: 113
+
+Modified:
+   trunk/wp-includes/class-IXR.php
+   trunk/wp-includes/class-snoopy.php
+   trunk/wp-includes/classes.php
+   trunk/wp-includes/comment-functions.php
+   trunk/wp-includes/default-filters.php
+   trunk/wp-includes/feed-functions.php
+   trunk/wp-includes/functions-compat.php
+   trunk/wp-includes/functions-formatting.php
+   trunk/wp-includes/functions-post.php
+   trunk/wp-includes/functions.php
+   trunk/wp-includes/gettext.php
+   trunk/wp-includes/links.php
+   trunk/wp-includes/locale.php
+   trunk/wp-includes/pluggable-functions.php
+   trunk/wp-includes/rss-functions.php
+   trunk/wp-includes/template-functions-author.php
+   trunk/wp-includes/template-functions-category.php
+   trunk/wp-includes/template-functions-general.php
+   trunk/wp-includes/template-functions-links.php
+   trunk/wp-includes/template-functions-post.php
+   trunk/wp-includes/vars.php
+   trunk/wp-includes/version.php
+   trunk/wp-includes/wp-db.php
+   trunk/wp-includes/wp-l10n.php
+Log:
+- Added copyright notices and permission to copy statements at the beginning of every file of source code.
+
+
+
+Modified: trunk/wp-includes/class-IXR.php
+===================================================================
+--- trunk/wp-includes/class-IXR.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/class-IXR.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ /*
+ IXR - The Inutio XML-RPC Library - (c) Incutio Ltd 2002
+ Version 1.62WP - Simon Willison, 11th July 2003 (htmlentities -&gt; htmlspecialchars)
+
+Modified: trunk/wp-includes/class-snoopy.php
+===================================================================
+--- trunk/wp-includes/class-snoopy.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/class-snoopy.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -722,13 +722,7 @@
+ 								chr(176),
+ 								chr(39),
+ 								chr(128),
+-								&quot;&#65533;,
+-								&quot;&#65533;,
+-								&quot;&quot;,
+-								&quot;&#65533;,
+-								&quot;&#65533;,
+-								&quot;&#65533;,
+-								&quot;&#65533;,
++								&quot;&quot;
+ 							);
+ 
+ 			$text = preg_replace($search,$replace,$document);
+
+Modified: trunk/wp-includes/classes.php
+===================================================================
+--- trunk/wp-includes/classes.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/classes.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,6 +1,46 @@
+ &lt;?php
+ 
+-class WP_Query {
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
++class WP_Query
++{
+ 	var $query;
+ 	var $query_vars;
+ 	var $queried_object;
+@@ -29,7 +69,8 @@
+ 	var $is_comments_popup = false;
+ 	var $is_admin = false;
+ 
+-	function init () {
++	function init ()
++	{
+ 		$this-&gt;is_single = false;
+ 		$this-&gt;is_page = false;
+ 		$this-&gt;is_archive = false;
+@@ -57,14 +98,16 @@
+ 		$this-&gt;current_post = -1;
+ 	}
+ 
+-	// Reparse the query vars.
+-	function parse_query_vars() {
++	function parse_query_vars() // Reparse the query vars
++	{
+ 		$this-&gt;parse_query('');
+ 	}
+ 
+-	// Parse a query string and set query type booleans.
+-	function parse_query ($query) {
+-		if ( !empty($query) || !isset($this-&gt;query) ) {
++
++	function parse_query ($query) // Parse a query string and set query type booleans.
++	{
++		if ( !empty($query) || !isset($this-&gt;query) )
++		{
+ 			$this-&gt;init();
+ 			parse_str($query, $qv);
+ 			$this-&gt;query = $query;
+@@ -74,154 +117,207 @@
+ 		$qv['m'] =  (int) $qv['m'];
+ 		$qv['p'] =  (int) $qv['p'];
+ 
+-		if ('' != $qv['name']) {
++		if ('' != $qv['name'])
++		{
+ 			$this-&gt;is_single = true;
+-		} elseif ( $qv['p'] ) {
++		}
++		elseif ( $qv['p'] )
++		{
+ 			$this-&gt;is_single = true;
+-		} elseif (('' != $qv['hour']) &amp;&amp; ('' != $qv['minute']) &amp;&amp;('' != $qv['second']) &amp;&amp; ('' != $qv['year']) &amp;&amp; ('' != $qv['monthnum']) &amp;&amp; ('' != $qv['day'])) {
+-			// If year, month, day, hour, minute, and second are set, a single 
+-		  // post is being queried.        
++		}
++		elseif (('' != $qv['hour']) &amp;&amp; ('' != $qv['minute']) &amp;&amp;('' != $qv['second']) &amp;&amp; ('' != $qv['year']) &amp;&amp; ('' != $qv['monthnum']) &amp;&amp; ('' != $qv['day']))
++		{
++			// If year, month, day, hour, minute, and second are set, a single
++		  // post is being queried.
+ 			$this-&gt;is_single = true;
+-		} elseif ('' != $qv['static'] || '' != $qv['pagename'] || '' != $qv['page_id']) {
++		}
++		elseif ('' != $qv['static'] || '' != $qv['pagename'] || '' != $qv['page_id'])
++		{
+ 			$this-&gt;is_page = true;
+ 			$this-&gt;is_single = false;
+-		} elseif (!empty($qv['s'])) {
++		}
++		elseif (!empty($qv['s']))
++		{
+ 			$this-&gt;is_search = true;
+-		} else {
++		}
++		else
++		{
+ 		// Look for archive queries.  Dates, categories, authors.
+ 
+-			if ( (int) $qv['second']) {
++			if ( (int) $qv['second'])
++			{
+ 				$this-&gt;is_time = true;
+ 				$this-&gt;is_date = true;
+ 			}
+ 
+-			if ( (int) $qv['minute']) {
++			if ( (int) $qv['minute'])
++			{
+ 				$this-&gt;is_time = true;
+ 				$this-&gt;is_date = true;
+ 			}
+ 
+-			if ( (int) $qv['hour']) {
++			if ( (int) $qv['hour'])
++			{
+ 				$this-&gt;is_time = true;
+ 				$this-&gt;is_date = true;
+ 			}
+ 
+-			if ( (int) $qv['day']) {
+-				if (! $this-&gt;is_date) {
++			if ( (int) $qv['day'])
++			{
++				if (! $this-&gt;is_date)
++				{
+ 					$this-&gt;is_day = true;
+ 					$this-&gt;is_date = true;
+ 				}
+ 			}
+ 
+-			if ( (int)  $qv['monthnum']) {
+-				if (! $this-&gt;is_date) {
++			if ( (int)  $qv['monthnum'])
++			{
++				if (! $this-&gt;is_date)
++				{
+ 					$this-&gt;is_month = true;
+ 					$this-&gt;is_date = true;
+ 				}
+ 			}
+ 
+-			if ( (int)  $qv['year']) {
+-				if (! $this-&gt;is_date) {
++			if ( (int)  $qv['year'])
++			{
++				if (! $this-&gt;is_date)
++				{
+ 					$this-&gt;is_year = true;
+ 					$this-&gt;is_date = true;
+ 				}
+ 			}
+ 
+-			if ( (int)  $qv['m']) {
++			if ( (int)  $qv['m'])
++			{
+ 				$this-&gt;is_date = true;
+-				if (strlen($qv['m']) &gt; 9) {
++				if (strlen($qv['m']) &gt; 9)
++				{
+ 					$this-&gt;is_time = true;
+-				} else if (strlen($qv['m']) &gt; 7) {
++				}
++				else if (strlen($qv['m']) &gt; 7)
++				{
+ 					$this-&gt;is_day = true;
+-				} else if (strlen($qv['m']) &gt; 5) {
++				}
++				else if (strlen($qv['m']) &gt; 5)
++				{
+ 					$this-&gt;is_month = true;
+-				} else {
++				}
++				else
++				{
+ 					$this-&gt;is_year = true;
+ 				}
+ 			}
+ 
+-			if ('' != $qv['w']) {
++			if ('' != $qv['w'])
++			{
+ 				$this-&gt;is_date = true;
+ 			}
+ 
+-			if (empty($qv['cat']) || ($qv['cat'] == '0')) {
++			if (empty($qv['cat']) || ($qv['cat'] == '0'))
++			{
+ 				$this-&gt;is_category = false;
+-			} else {
+-				if (stristr($qv['cat'],'-')) {
++			}
++			else
++			{
++				if (stristr($qv['cat'],'-'))
++				{
+ 					$this-&gt;is_category = false;
+-				} else {
++				}
++				else
++				{
+ 					$this-&gt;is_category = true;
+ 				}
+ 			}
+ 
+-			if ('' != $qv['category_name']) {
++			if ('' != $qv['category_name'])
++			{
+ 				$this-&gt;is_category = true;
+ 			}
+-            
+-			if ((empty($qv['author'])) || ($qv['author'] == '0')) {
++
++			if ((empty($qv['author'])) || ($qv['author'] == '0'))
++			{
+ 				$this-&gt;is_author = false;
+-			} else {
++			}
++			else
++			{
+ 				$this-&gt;is_author = true;
+ 			}
+ 
+-			if ('' != $qv['author_name']) {
++			if ('' != $qv['author_name'])
++			{
+ 				$this-&gt;is_author = true;
+ 			}
+ 
+-			if ( ($this-&gt;is_date || $this-&gt;is_author || $this-&gt;is_category)) {
++			if ( ($this-&gt;is_date || $this-&gt;is_author || $this-&gt;is_category))
++			{
+ 				$this-&gt;is_archive = true;
+ 			}
+ 		}
+ 
+-		if ('' != $qv['feed']) {
++		if ('' != $qv['feed'])
++		{
+ 			$this-&gt;is_feed = true;
+ 		}
+ 
+-		if ('' != $qv['tb']) {
++		if ('' != $qv['tb'])
++		{
+ 			$this-&gt;is_trackback = true;
+ 		}
+ 
+-		if ('404' == $qv['error']) {
++		if ('404' == $qv['error'])
++		{
+ 			$this-&gt;is_404 = true;
+ 		}
+ 
+-		if ('' != $qv['paged']) {
++		if ('' != $qv['paged'])
++		{
+ 			$this-&gt;is_paged = true;
+ 		}
+ 
+-		if ('' != $qv['comments_popup']) {
++		if ('' != $qv['comments_popup'])
++		{
+ 			$this-&gt;is_comments_popup = true;
+ 		}
+ 
+-		if (strstr($_SERVER['PHP_SELF'], 'wp-admin/')) {
++		if (strstr($_SERVER['PHP_SELF'], 'wp-admin/'))
++		{
+ 			$this-&gt;is_admin = true;
+ 		}
+ 
+-		if ( ! ($this-&gt;is_archive || $this-&gt;is_single || $this-&gt;is_page || $this-&gt;is_search || $this-&gt;is_feed || $this-&gt;is_trackback || $this-&gt;is_404 || $this-&gt;is_admin || $this-&gt;is_comments_popup)) {
++		if ( ! ($this-&gt;is_archive || $this-&gt;is_single || $this-&gt;is_page || $this-&gt;is_search || $this-&gt;is_feed || $this-&gt;is_trackback || $this-&gt;is_404 || $this-&gt;is_admin || $this-&gt;is_comments_popup))
++		{
+ 			$this-&gt;is_home = true;
+ 		}
+ 
+-		if ( !empty($query) ) {
++		if ( !empty($query) )
++		{
+ 			do_action('parse_query', array(&amp;$this));
+ 		}
+ 	}
+ 
+-	function get($query_var) {
+-		if (isset($this-&gt;query_vars[$query_var])) {
++	function get($query_var)
++	{
++		if (isset($this-&gt;query_vars[$query_var]))
++		{
+ 			return $this-&gt;query_vars[$query_var];
+ 		}
+ 
+ 		return '';
+ 	}
+ 
+-	function set($query_var, $value) {
++	function set($query_var, $value)
++	{
+ 		$this-&gt;query_vars[$query_var] = $value;
+ 	}
+ 
+-	function &amp;get_posts() {
++	function &amp;get_posts()
++	{
+ 		global $wpdb, $pagenow, $request, $user_ID;
+ 
+ 		// Shorthand.
+-		$q = $this-&gt;query_vars;	
++		$q = $this-&gt;query_vars;
+ 
+ 		// First let's clear some variables
+ 		$whichcat = '';
+@@ -233,149 +329,203 @@
+ 		$join = '';
+ 
+ 		if ( !isset($q['posts_per_page']) || $q['posts_per_page'] == 0 )
++		{
+ 			$q['posts_per_page'] = get_settings('posts_per_page');
++		}
++
+ 		if ( !isset($q['what_to_show']) )
++		{
+ 			$q['what_to_show'] = get_settings('what_to_show');
++		}
++
+ 		if ( isset($q['showposts']) &amp;&amp; $q['showposts'] ) {
+ 			$q['showposts'] = (int) $q['showposts'];
+ 			$q['posts_per_page'] = $q['showposts'];
+ 		}
++
+ 		if ( (isset($q['posts_per_archive_page']) &amp;&amp; $q['posts_per_archive_page'] != 0) &amp;&amp; ($this-&gt;is_archive || $this-&gt;is_search) )
++		{
+ 			$q['posts_per_page'] = $q['posts_per_archive_page'];
+-		if ( !isset($q['nopaging']) ) {
+-			if ($q['posts_per_page'] == -1) {
++		}
++
++		if ( !isset($q['nopaging']) )
++		{
++			if ($q['posts_per_page'] == -1)
++			{
+ 				$q['nopaging'] = true;
+-			} else {
++			}
++			else
++			{
+ 				$q['nopaging'] = false;
+ 			}
+ 		}
+-		if ( $this-&gt;is_feed ) {
++
++		if ( $this-&gt;is_feed )
++		{
+ 			$q['posts_per_page'] = get_settings('posts_per_rss');
+ 			$q['what_to_show'] = 'posts';
+ 		}
+ 
+-		if (isset($q['page'])) {
++		if (isset($q['page']))
++		{
+ 			$q['page'] = trim($q['page'], '/');
+ 			$q['page'] = (int) $q['page'];
+ 		}
+-	
++
+ 		$add_hours = intval(get_settings('gmt_offset'));
+ 		$add_minutes = intval(60 * (get_settings('gmt_offset') - $add_hours));
+ 		$wp_posts_post_date_field = &quot;post_date&quot;; // &quot;DATE_ADD(post_date, INTERVAL '$add_hours:$add_minutes' HOUR_MINUTE)&quot;;
+ 
+ 		// If a month is specified in the querystring, load that month
+-		if ( (int) $q['m'] ) {
++		if ( (int) $q['m'] )
++		{
+ 			$q['m'] = '' . preg_replace('|[^0-9]|', '', $q['m']);
+ 			$where .= ' AND YEAR(post_date)=' . substr($q['m'], 0, 4);
+ 			if (strlen($q['m'])&gt;5)
++			{
+ 				$where .= ' AND MONTH(post_date)=' . substr($q['m'], 4, 2);
++			}
+ 			if (strlen($q['m'])&gt;7)
++			{
+ 				$where .= ' AND DAYOFMONTH(post_date)=' . substr($q['m'], 6, 2);
++			}
+ 			if (strlen($q['m'])&gt;9)
++			{
+ 				$where .= ' AND HOUR(post_date)=' . substr($q['m'], 8, 2);
++			}
+ 			if (strlen($q['m'])&gt;11)
++			{
+ 				$where .= ' AND MINUTE(post_date)=' . substr($q['m'], 10, 2);
++			}
+ 			if (strlen($q['m'])&gt;13)
++			{
+ 				$where .= ' AND SECOND(post_date)=' . substr($q['m'], 12, 2);
++			}
+ 		}
+ 
+-		if ( (int) $q['hour'] ) {
++		if ( (int) $q['hour'] )
++		{
+ 			$q['hour'] = '' . intval($q['hour']);
+ 			$where .= &quot; AND HOUR(post_date)='&quot; . $q['hour'] . &quot;'&quot;;
+ 		}
+ 
+-		if ( (int) $q['minute'] ) {
++		if ( (int) $q['minute'] )
++		{
+ 			$q['minute'] = '' . intval($q['minute']);
+ 			$where .= &quot; AND MINUTE(post_date)='&quot; . $q['minute'] . &quot;'&quot;;
+ 		}
+ 
+-		if ( (int) $q['second'] ) {
++		if ( (int) $q['second'] )
++		{
+ 			$q['second'] = '' . intval($q['second']);
+ 			$where .= &quot; AND SECOND(post_date)='&quot; . $q['second'] . &quot;'&quot;;
+ 		}
+ 
+-		if ( (int) $q['year'] ) {
++		if ( (int) $q['year'] )
++		{
+ 			$q['year'] = '' . intval($q['year']);
+ 			$where .= &quot; AND YEAR(post_date)='&quot; . $q['year'] . &quot;'&quot;;
+ 		}
+ 
+-		if ( (int) $q['monthnum'] ) {
++		if ( (int) $q['monthnum'] )
++		{
+ 			$q['monthnum'] = '' . intval($q['monthnum']);
+ 			$where .= &quot; AND MONTH(post_date)='&quot; . $q['monthnum'] . &quot;'&quot;;
+ 		}
+ 
+-		if ( (int) $q['day'] ) {
++		if ( (int) $q['day'] )
++		{
+ 			$q['day'] = '' . intval($q['day']);
+ 			$where .= &quot; AND DAYOFMONTH(post_date)='&quot; . $q['day'] . &quot;'&quot;;
+ 		}
+ 
+-		if ('' != $q['name']) {
++		if ('' != $q['name'])
++		{
+ 			$q['name'] = sanitize_title($q['name']);
+ 			$where .= &quot; AND post_name = '&quot; . $q['name'] . &quot;'&quot;;
+-		} else if ('' != $q['pagename']) {
++		}
++		else if ('' != $q['pagename'])
++		{
+ 			$q['pagename'] = sanitize_title(basename(str_replace('%2F', '/', urlencode($q['pagename']))));
+ 			$q['name'] = $q['pagename'];
+ 			$where .= &quot; AND post_name = '&quot; . $q['pagename'] . &quot;'&quot;;
+ 		}
+ 
+ 
+-		if ( (int) $q['w'] ) {
++		if ( (int) $q['w'] )
++		{
+ 			$q['w'] = ''.intval($q['w']);
+ 			$where .= &quot; AND WEEK(post_date, 1)='&quot; . $q['w'] . &quot;'&quot;;
+ 		}
+ 
+ 		if ( intval($q['comments_popup']) )
++		{
+ 			$q['p'] = intval($q['comments_popup']);
++		}
+ 
+-		// If a post number is specified, load that post
+-		if (($q['p'] != '') &amp;&amp; intval($q['p']) != 0) {
++		if (($q['p'] != '') &amp;&amp; intval($q['p']) != 0) // If a post number is specified, load that post
++		{
+ 			$q['p'] =  (int) $q['p'];
+ 			$where = ' AND ID = ' . $q['p'];
+ 		}
+ 
+-		if (($q['page_id'] != '') &amp;&amp; (intval($q['page_id']) != 0)) {
++		if (($q['page_id'] != '') &amp;&amp; (intval($q['page_id']) != 0))
++		{
+ 			$q['page_id'] = intval($q['page_id']);
+ 			$q['p'] = $q['page_id'];
+ 			$where = ' AND ID = '.$q['page_id'];
+ 		}
+ 
+-		// If a search pattern is specified, load the posts that match
+-		if (!empty($q['s'])) {
++		if (!empty($q['s'])) // If a search pattern is specified, load the posts that match
++		{
+ 			$q['s'] = addslashes_gpc($q['s']);
+ 			$search = ' AND (';
+ 			$q['s'] = preg_replace('/, +/', ' ', $q['s']);
+ 			$q['s'] = str_replace(',', ' ', $q['s']);
+ 			$q['s'] = str_replace('&quot;', ' ', $q['s']);
+ 			$q['s'] = trim($q['s']);
+-			if ($q['exact']) {
++
++			if ($q['exact'])
++			{
+ 				$n = '';
+-			} else {
++			}
++			else
++			{
+ 				$n = '%';
+ 			}
+-			if (!$q['sentence']) {
++
++			if (!$q['sentence'])
++			{
+ 				$s_array = explode(' ',$q['s']);
+ 				$q['search_terms'] = $s_array;
+ 				$search .= '((post_title LIKE \''.$n.$s_array[0].$n.'\') OR (post_content LIKE \''.$n.$s_array[0].$n.'\'))';
+-				for ( $i = 1; $i &lt; count($s_array); $i = $i + 1) {
++				for ( $i = 1; $i &lt; count($s_array); $i = $i + 1)
++				{
+ 					$search .= ' AND ((post_title LIKE \''.$n.$s_array[$i].$n.'\') OR (post_content LIKE \''.$n.$s_array[$i].$n.'\'))';
+ 				}
+ 				$search .= ' OR (post_title LIKE \''.$n.$q['s'].$n.'\') OR (post_content LIKE \''.$n.$q['s'].$n.'\')';
+ 				$search .= ')';
+-			} else {
++			}
++			else
++			{
+ 				$search = ' AND ((post_title LIKE \''.$n.$q['s'].$n.'\') OR (post_content LIKE \''.$n.$q['s'].$n.'\'))';
+ 			}
+ 		}
+ 
+ 		// Category stuff
+ 
+-		if ((empty($q['cat'])) || ($q['cat'] == '0') || 
++		if ((empty($q['cat'])) || ($q['cat'] == '0') ||
+ 				// Bypass cat checks if fetching specific posts
+-				( $this-&gt;is_single || $this-&gt;is_page )) {
++				( $this-&gt;is_single || $this-&gt;is_page ))
++		{
+ 			$whichcat='';
+-		} else {
++		}
++		else
++		{
+ 			$q['cat'] = ''.urldecode($q['cat']).'';
+ 			$q['cat'] = addslashes_gpc($q['cat']);
+-			if (stristr($q['cat'],'-')) {
++			if (stristr($q['cat'],'-'))
++			{
+ 				// Note: if we have a negative, we ignore all the positives. It must
+ 				// always mean 'everything /except/ this one'. We should be able to do
+ 				// multiple negatives but we don't :-(
+@@ -383,32 +533,42 @@
+ 				$andor = 'AND';
+ 				$q['cat'] = explode('-',$q['cat']);
+ 				$q['cat'] = intval($q['cat'][1]);
+-			} else {
++			}
++			else
++			{
+ 				$eq = '=';
+ 				$andor = 'OR';
+ 			}
++
+ 			$join = &quot; LEFT JOIN $wpdb-&gt;post2cat ON ($wpdb-&gt;posts.ID = $wpdb-&gt;post2cat.post_id) &quot;;
+ 			$cat_array = preg_split('/[,\s]+/', $q['cat']);
+ 			$whichcat .= ' AND (category_id '.$eq.' '.intval($cat_array[0]);
+ 			$whichcat .= get_category_children($cat_array[0], ' '.$andor.' category_id '.$eq.' ');
+-			for ($i = 1; $i &lt; (count($cat_array)); $i = $i + 1) {
++			for ($i = 1; $i &lt; (count($cat_array)); $i = $i + 1)
++			{
+ 				$whichcat .= ' '.$andor.' category_id '.$eq.' '.intval($cat_array[$i]);
+ 				$whichcat .= get_category_children($cat_array[$i], ' '.$andor.' category_id '.$eq.' ');
+ 			}
+ 			$whichcat .= ')';
+-			if ($eq == '!=') {
++			if ($eq == '!=')
++			{
+ 				$q['cat'] = '-'.$q['cat']; // Put back the knowledge that we are excluding a category.
+ 			}
+ 		}
+ 
+ 		// Category stuff for nice URIs
+ 
+-		if ('' != $q['category_name']) {
+-			if (stristr($q['category_name'],'/')) {
++		if ('' != $q['category_name'])
++		{
++			if (stristr($q['category_name'],'/'))
++			{
+ 				$q['category_name'] = explode('/',$q['category_name']);
+-				if ($q['category_name'][count($q['category_name'])-1]) {
++				if ($q['category_name'][count($q['category_name'])-1])
++				{
+ 					$q['category_name'] = $q['category_name'][count($q['category_name'])-1]; // no trailing slash
+-				} else {
++				}
++				else
++				{
+ 					$q['category_name'] = $q['category_name'][count($q['category_name'])-2]; // there was a trailling slash
+ 				}
+ 			}
+@@ -423,23 +583,30 @@
+ 
+ 		// Author/user stuff
+ 
+-		if ((empty($q['author'])) || ($q['author'] == '0')) {
++		if ((empty($q['author'])) || ($q['author'] == '0'))
++		{
+ 			$whichauthor='';
+-		} else {
++		}
++		else
++		{
+ 			$q['author'] = ''.urldecode($q['author']).'';
+ 			$q['author'] = addslashes_gpc($q['author']);
+-			if (stristr($q['author'], '-')) {
++			if (stristr($q['author'], '-'))
++			{
+ 				$eq = '!=';
+ 				$andor = 'AND';
+ 				$q['author'] = explode('-', $q['author']);
+ 				$q['author'] = ''.intval($q['author'][1]);
+-			} else {
++			}
++			else
++			{
+ 				$eq = '=';
+ 				$andor = 'OR';
+ 			}
+ 			$author_array = preg_split('/[,\s]+/', $q['author']);
+ 			$whichauthor .= ' AND (post_author '.$eq.' '.intval($author_array[0]);
+-			for ($i = 1; $i &lt; (count($author_array)); $i = $i + 1) {
++			for ($i = 1; $i &lt; (count($author_array)); $i = $i + 1)
++			{
+ 				$whichauthor .= ' '.$andor.' post_author '.$eq.' '.intval($author_array[$i]);
+ 			}
+ 			$whichauthor .= ')';
+@@ -447,12 +614,17 @@
+ 
+ 		// Author stuff for nice URIs
+ 
+-		if ('' != $q['author_name']) {
+-			if (stristr($q['author_name'],'/')) {
++		if ('' != $q['author_name'])
++		{
++			if (stristr($q['author_name'],'/'))
++			{
+ 				$q['author_name'] = explode('/',$q['author_name']);
+-				if ($q['author_name'][count($q['author_name'])-1]) {
++				if ($q['author_name'][count($q['author_name'])-1])
++				{
+ 					$q['author_name'] = $q['author_name'][count($q['author_name'])-1];#no trailing slash
+-				} else {
++				}
++				else
++				{
+ 					$q['author_name'] = $q['author_name'][count($q['author_name'])-2];#there was a trailling slash
+ 				}
+ 			}
+@@ -463,27 +635,36 @@
+ 
+ 		$where .= $search.$whichcat.$whichauthor;
+ 
+-		if ((empty($q['order'])) || ((strtoupper($q['order']) != 'ASC') &amp;&amp; (strtoupper($q['order']) != 'DESC'))) {
++		if ((empty($q['order'])) || ((strtoupper($q['order']) != 'ASC') &amp;&amp; (strtoupper($q['order']) != 'DESC')))
++		{
+ 			$q['order']='DESC';
+ 		}
+ 
+ 		// Order by
+-		if (empty($q['orderby'])) {
++		if (empty($q['orderby']))
++		{
+ 			$q['orderby']='date '.$q['order'];
+-		} else {
++		}
++		else
++		{
+ 			// Used to filter values
+ 			$allowed_keys = array('author','date','category','title');
+ 			$q['orderby'] = urldecode($q['orderby']);
+ 			$q['orderby'] = addslashes_gpc($q['orderby']);
+ 			$orderby_array = explode(' ',$q['orderby']);
+-			if (!in_array($orderby_array[0],$allowed_keys)) {
++
++			if (!in_array($orderby_array[0],$allowed_keys))
++			{
+ 				$orderby_array[0] = 'date';
+ 			}
+ 			$q['orderby'] = $orderby_array[0].' '.$q['order'];
+-			if (count($orderby_array)&gt;1) {
+-				for ($i = 1; $i &lt; (count($orderby_array)); $i = $i + 1) {
++			if (count($orderby_array)&gt;1)
++			{
++				for ($i = 1; $i &lt; (count($orderby_array)); $i = $i + 1)
++				{
+ 					// Only allow certain values for safety
+-					if (in_array($orderby_array[$i],$allowed_keys)) {
++					if (in_array($orderby_array[$i],$allowed_keys))
++					{
+ 						$q['orderby'] .= ',post_'.$orderby_array[$i].' '.$q['order'];
+ 					}
+ 				}
+@@ -492,22 +673,32 @@
+ 
+ 		$now = gmdate('Y-m-d H:i:59');
+ 
+-		if ($pagenow != 'post.php' &amp;&amp; $pagenow != 'edit.php') {
++		if ($pagenow != 'post.php' &amp;&amp; $pagenow != 'edit.php')
++		{
+ 			$where .= &quot; AND post_date_gmt &lt;= '$now'&quot;;
+ 			$distinct = 'DISTINCT';
+ 		}
+ 
+-		if ($this-&gt;is_page) {
++		if ($this-&gt;is_page)
++		{
+ 			$where .= ' AND (post_status = &quot;static&quot;)';
+-		} elseif ($this-&gt;is_single) {
++		}
++		elseif ($this-&gt;is_single)
++		{
+ 			$where .= ' AND (post_status != &quot;static&quot;)';
+-		} else {
++		}
++		else
++		{
+ 			$where .= ' AND (post_status = &quot;publish&quot;';
+ 
+ 			if (isset($user_ID) &amp;&amp; ('' != intval($user_ID)))
++			{
+ 				$where .= &quot; OR post_author = $user_ID AND post_status != 'draft' AND post_status != 'static')&quot;;
++			}
+ 			else
+-				$where .= ')';				
++			{
++				$where .= ')';
++			}
+ 		}
+ 
+ 		// Apply filters on where and join prior to paging so that any
+@@ -516,25 +707,33 @@
+ 		$join = apply_filters('posts_join', $join);
+ 
+ 		// Paging
+-		if (empty($q['nopaging']) &amp;&amp; ! $this-&gt;is_single) {
++		if (empty($q['nopaging']) &amp;&amp; ! $this-&gt;is_single)
++		{
+ 			$page = $q['paged'];
+-			if (empty($page)) {
++			if (empty($page))
++			{
+ 				$page = 1;
+ 			}
+ 
+-			if (($q['what_to_show'] == 'posts')) {
++			if (($q['what_to_show'] == 'posts'))
++			{
+ 				$pgstrt = '';
+ 				$pgstrt = (intval($page) -1) * $q['posts_per_page'] . ', ';
+ 				$limits = 'LIMIT '.$pgstrt.$q['posts_per_page'];
+-			} elseif ($q['what_to_show'] == 'days') {
++			}
++			elseif ($q['what_to_show'] == 'days')
++			{
+ 				$startrow = $q['posts_per_page'] * (intval($page)-1);
+ 				$start_date = $wpdb-&gt;get_var(&quot;SELECT max(post_date) FROM $wpdb-&gt;posts $join WHERE (1=1) $where GROUP BY year(post_date), month(post_date), dayofmonth(post_date) ORDER BY post_date DESC LIMIT $startrow,1&quot;);
+ 				$endrow = $startrow + $q['posts_per_page'] - 1;
+ 				$end_date = $wpdb-&gt;get_var(&quot;SELECT min(post_date) FROM $wpdb-&gt;posts $join WHERE (1=1) $where GROUP BY year(post_date), month(post_date), dayofmonth(post_date) ORDER BY post_date DESC LIMIT $endrow,1&quot;);
+ 
+-				if ($page &gt; 1) {
++				if ($page &gt; 1)
++				{
+ 					$where .= &quot; AND post_date &gt;= '$end_date' AND post_date &lt;= '$start_date'&quot;;
+-				} else {
++				}
++				else
++				{
+ 					$where .= &quot; AND post_date &gt;= '$end_date'&quot;;
+ 				}
+ 			}
+@@ -546,25 +745,37 @@
+ 		$where .= &quot; GROUP BY $wpdb-&gt;posts.ID&quot;;
+ 		$join = apply_filters('posts_join_paged', $join);
+ 		$orderby = &quot;post_&quot; . $q['orderby'];
+-		$orderby = apply_filters('posts_orderby', $orderby); 
++		$orderby = apply_filters('posts_orderby', $orderby);
+ 		$request = &quot; SELECT $distinct * FROM $wpdb-&gt;posts $join WHERE 1=1&quot;.$where.&quot; ORDER BY &quot; . $orderby . &quot; $limits&quot;;
+ 
+ 		$this-&gt;posts = $wpdb-&gt;get_results($request);
+ 
+ 		// Check post status to determine if post should be displayed.
+-		if ($this-&gt;is_single) {
+-			if ('publish' != $this-&gt;posts[0]-&gt;post_status) {
+-				if ( ! (isset($user_ID) &amp;&amp; ('' != intval($user_ID))) ) {
++		if ($this-&gt;is_single)
++		{
++			if ('publish' != $this-&gt;posts[0]-&gt;post_status)
++			{
++				if ( ! (isset($user_ID) &amp;&amp; ('' != intval($user_ID))) )
++				{
+ 					// User must be logged in to view unpublished posts.
+ 					$this-&gt;posts = array();
+-				} else {
+-					if ('draft' == $this-&gt;posts[0]-&gt;post_status) {
++				}
++				else
++				{
++					if ('draft' == $this-&gt;posts[0]-&gt;post_status)
++					{
+ 						// User must have edit permissions on the draft to preview.
+ 						if (! user_can_edit_post($user_ID, $this-&gt;posts[0]-&gt;ID))
++						{
+ 							$this-&gt;posts = array();
+-					} elseif ('private' == $this-&gt;posts[0]-&gt;post_status) {
++						}
++					}
++					elseif ('private' == $this-&gt;posts[0]-&gt;post_status)
++					{
+ 						if ($this-&gt;posts[0]-&gt;post_author != $user_ID)
++						{
+ 							$this-&gt;posts = array();
++						}
+ 					}
+ 				}
+ 			}
+@@ -572,72 +783,90 @@
+ 
+ 		$this-&gt;posts = apply_filters('the_posts', $this-&gt;posts);
+ 		$this-&gt;post_count = count($this-&gt;posts);
+-		if ($this-&gt;post_count &gt; 0) {
++		if ($this-&gt;post_count &gt; 0)
++		{
+ 			$this-&gt;post = $this-&gt;posts[0];
+ 		}
+ 
+ 		update_post_caches($this-&gt;posts);
+-		
++
+ 		// Save any changes made to the query vars.
+ 		$this-&gt;query_vars = $q;
+ 		return $this-&gt;posts;
+ 	}
+ 
+-	function next_post() {
+-        
++	function next_post()
++	{
++
+ 		$this-&gt;current_post++;
+ 
+ 		$this-&gt;post = $this-&gt;posts[$this-&gt;current_post];
+ 		return $this-&gt;post;
+ 	}
+ 
+-	function the_post() {
++	function the_post()
++	{
+ 		global $post;
+ 		$post = $this-&gt;next_post();
+ 		setup_postdata($post);
+ 	}
+ 
+-	function have_posts() {
+-		if ($this-&gt;current_post + 1 &lt; $this-&gt;post_count) {
++	function have_posts()
++	{
++		if ($this-&gt;current_post + 1 &lt; $this-&gt;post_count)
++		{
+ 			return true;
+ 		}
+ 
+ 		return false;
+ 	}
+ 
+-	function rewind_posts() {
++	function rewind_posts()
++	{
+ 		$this-&gt;current_post = -1;
+-		if ($this-&gt;post_count &gt; 0) {
++		if ($this-&gt;post_count &gt; 0)
++		{
+ 			$this-&gt;post = $this-&gt;posts[0];
+ 		}
+ 	}
+-    
+-	function &amp;query($query) {
++
++	function &amp;query($query)
++	{
+ 		$this-&gt;parse_query($query);
+ 		return $this-&gt;get_posts();
+ 	}
+ 
+-	function get_queried_object() {
+-		if (isset($this-&gt;queried_object)) {
++	function get_queried_object()
++	{
++		if (isset($this-&gt;queried_object))
++		{
+ 			return $this-&gt;queried_object;
+ 		}
+ 
+ 		$this-&gt;queried_object = NULL;
+ 		$this-&gt;queried_object_id = 0;
+ 
+-		if ($this-&gt;is_category) {
++		if ($this-&gt;is_category)
++		{
+ 			$category = &amp;get_category($this-&gt;get('cat'));
+ 			$this-&gt;queried_object = &amp;$category;
+ 			$this-&gt;queried_object_id = $this-&gt;get('cat');
+-		} else if ($this-&gt;is_single) {
++		}
++		else if ($this-&gt;is_single)
++		{
+ 			$this-&gt;queried_object = $this-&gt;post;
+ 			$this-&gt;queried_object_id = $this-&gt;post-&gt;ID;
+-		} else if ($this-&gt;is_page) {
++		}
++		else if ($this-&gt;is_page)
++		{
+ 			$this-&gt;queried_object = $this-&gt;post;
+ 			$this-&gt;queried_object_id = $this-&gt;post-&gt;ID;
+-		} else if ($this-&gt;is_author) {
++		}
++		else if ($this-&gt;is_author)
++		{
+ 			global $cache_userdata;
+-			if (isset($cache_userdata[$this-&gt;get('author')])) {
++			if (isset($cache_userdata[$this-&gt;get('author')]))
++			{
+ 				$this-&gt;queried_object = $cache_userdata[$this-&gt;get('author')];
+ 				$this-&gt;queried_object_id = $this-&gt;get('author');
+ 			}
+@@ -646,34 +875,41 @@
+ 		return $this-&gt;queried_object;
+ 	}
+ 
+-	function get_queried_object_id() {
++	function get_queried_object_id()
++	{
+ 		$this-&gt;get_queried_object();
+ 
+-		if (isset($this-&gt;queried_object_id)) {
++		if (isset($this-&gt;queried_object_id))
++		{
+ 			return $this-&gt;queried_object_id;
+ 		}
+ 
+ 		return 0;
+ 	}
+ 
+-	function WP_Query ($query = '') {
+-		if (! empty($query)) {
++	function WP_Query ($query = '')
++	{
++		if (! empty($query))
++		{
+ 			$this-&gt;query($query);
+ 		}
+ 	}
+ }
+ 
+ // Make a global instance.
+-if (! isset($wp_query)) {
++if (! isset($wp_query))
++{
+     $wp_query = new WP_Query();
+ }
+ 
+-class retrospam_mgr {
++class retrospam_mgr
++{
+ 	var $spam_words;
+ 	var $comments_list;
+ 	var $found_comments;
+ 
+-	function retrospam_mgr() {
++	function retrospam_mgr()
++	{
+ 		global $wpdb;
+ 
+ 		$list = explode(&quot;\n&quot;, get_settings('moderation_keys') );
+@@ -683,49 +919,67 @@
+ 		$this-&gt;comment_list = $wpdb-&gt;get_results(&quot;SELECT comment_ID AS ID, comment_content AS text, comment_approved AS approved, comment_author_url AS url, comment_author_ip AS ip, comment_author_email AS email FROM $wpdb-&gt;comments ORDER BY comment_ID ASC&quot;);
+ 	}	// End of class constructor
+ 
+-	function move_spam( $id_list ) {
++	function move_spam( $id_list )
++	{
+ 		global $wpdb;
+ 		$cnt = 0;
+ 		$id_list = explode( ',', $id_list );
+ 
+-		foreach ( $id_list as $comment ) {
+-			if ( $wpdb-&gt;query(&quot;update $wpdb-&gt;comments set comment_approved = '0' where comment_ID = '$comment'&quot;) ) {
++		foreach ( $id_list as $comment )
++		{
++			if ( $wpdb-&gt;query(&quot;update $wpdb-&gt;comments set comment_approved = '0' where comment_ID = '$comment'&quot;) )
++			{
+ 				$cnt++;
+ 			}
+ 		}
+ 		echo &quot;&lt;div class='updated'&gt;&lt;p&gt;$cnt comment&quot;;
+-		if ($cnt != 1 ) echo &quot;s&quot;;
++		if ($cnt != 1 )
++		{
++			echo &quot;s&quot;;
++		}
++
+ 		echo &quot; moved to the moderation queue.&lt;/p&gt;&lt;/div&gt;\n&quot;;
+ 	}	// End function move_spam
+ 
+-	function find_spam() {
++	function find_spam()
++	{
+ 		$in_queue = 0;
+ 
+-		foreach( $this-&gt;comment_list as $comment ) {
+-			if( $comment-&gt;approved == 1 ) {
+-				foreach( $this-&gt;spam_words as $word ) {
++		foreach( $this-&gt;comment_list as $comment )
++{
++			if( $comment-&gt;approved == 1 )
++			{
++				foreach( $this-&gt;spam_words as $word )
++				{
+ 					if ( empty( $word ) )
++					{
+ 						continue;
++					}
+ 					$fulltext = strtolower($comment-&gt;email.' '.$comment-&gt;url.' '.$comment-&gt;ip.' '.$comment-&gt;text);
+-					if( strpos( $fulltext, strtolower(trim($word)) ) != FALSE ) {
++					if( strpos( $fulltext, strtolower(trim($word)) ) != FALSE )
++					{
+ 						$this-&gt;found_comments[] = $comment-&gt;ID;
+ 						break;
+ 					}
+ 				}
+-			} else {
++			}
++			else
++			{
+ 				$in_queue++;
+ 			}
+ 		}
+ 		return array( 'found' =&gt; $this-&gt;found_comments, 'in_queue' =&gt; $in_queue );
+ 	}	// End function find_spam
+ 
+-	function display_edit_form( $counters ) {
++	function display_edit_form( $counters )
++	{
+ 		$numfound = count($counters[found]);
+ 		$numqueue = $counters[in_queue];
+ 
+ 		$body = '&lt;p&gt;' . sprintf(__('Suspected spam comments: &lt;strong&gt;%s&lt;/strong&gt;'), $numfound) . '&lt;/p&gt;';
+ 
+-		if ( count($counters[found]) &gt; 0 ) {
++		if ( count($counters[found]) &gt; 0 )
++		{
+ 			$id_list = implode( ',', $counters[found] );
+ 			$body .= '&lt;p&gt;&lt;a href=&quot;options-discussion.php?action=retrospam&amp;move=true&amp;ids='.$id_list.'&quot;&gt;'. __('Move suspect comments to moderation queue &raquo;') . '&lt;/a&gt;&lt;/p&gt;';
+ 
+@@ -733,13 +987,14 @@
+ 		$head = '&lt;div class=&quot;wrap&quot;&gt;&lt;h2&gt;' . __('Check Comments Results:') . '&lt;/h2&gt;';
+ 
+ 		$foot .= '&lt;p&gt;&lt;a href=&quot;options-discussion.php&quot;&gt;' . __('&laquo; Return to Discussion Options page.') . '&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;';
+-		
++
+ 		return $head . $body . $foot;
+ 	} 	// End function display_edit_form
+ 
+ }
+ 
+-class WP_Rewrite {
++class WP_Rewrite
++{
+ 	var $permalink_structure;
+ 	var $category_base;
+ 	var $category_structure;
+@@ -758,7 +1013,7 @@
+ 	var $index = 'index.php';
+ 	var $matches = '';
+ 	var $rules;
+-	var $rewritecode = 
++	var $rewritecode =
+ 		array(
+ 					'%year%',
+ 					'%monthnum%',
+@@ -774,7 +1029,7 @@
+ 					'%search%'
+ 					);
+ 
+-	var $rewritereplace = 
++	var $rewritereplace =
+ 		array(
+ 					'([0-9]{4})',
+ 					'([0-9]{1,2})',
+@@ -790,7 +1045,7 @@
+ 					'(.+)'
+ 					);
+ 
+-	var $queryreplace = 
++	var $queryreplace =
+ 		array (
+ 					 'year=',
+ 					 'monthnum=',
+@@ -808,94 +1063,120 @@
+ 
+ 	var $feeds = array ('feed', 'rdf', 'rss', 'rss2', 'atom');
+ 
+-	function using_permalinks() {
++	function using_permalinks()
++	{
+ 		if (empty($this-&gt;permalink_structure))
++		{
+ 			return false;
++		}
+ 		else
++		{
+ 			return true;
+-	}					
++		}
++	}
+ 
+-	function using_index_permalinks() {
+-    if (empty($this-&gt;permalink_structure)) {
++	function using_index_permalinks()
++	{
++    	if (empty($this-&gt;permalink_structure))
++		{
+ 			return false;
+-    }
++		}
+ 
+-    // If the index is not in the permalink, we're using mod_rewrite.
+-    if (preg_match('#^/*' . $this-&gt;index . '#', $this-&gt;permalink_structure)) {
+-      return true;
+-    }
+-    
+-    return false;
++		// If the index is not in the permalink, we're using mod_rewrite.
++		if (preg_match('#^/*' . $this-&gt;index . '#', $this-&gt;permalink_structure))
++		{
++			return true;
++		}
++
++		return false;
+ 	}
+ 
+-	function using_mod_rewrite_permalinks() {
++	function using_mod_rewrite_permalinks()
++	{
+ 		if ( $this-&gt;using_permalinks() &amp;&amp; ! $this-&gt;using_index_permalinks())
++		{
+ 			return true;
++		}
+ 		else
++		{
+ 			return false;
+-	}					
++		}
++	}
+ 
+-	function preg_index($number) {
+-    $match_prefix = '$';
+-    $match_suffix = '';
+-    
+-    if (! empty($this-&gt;matches)) {
+-			$match_prefix = '$' . $this-&gt;matches . '['; 
++	function preg_index($number)
++	{
++		$match_prefix = '$';
++		$match_suffix = '';
++
++		if (! empty($this-&gt;matches))
++		{
++			$match_prefix = '$' . $this-&gt;matches . '[';
+ 			$match_suffix = ']';
+-    }        
+-    
+-    return &quot;$match_prefix$number$match_suffix&quot;;        
++		}
++
++		return &quot;$match_prefix$number$match_suffix&quot;;
+ 	}
+ 
+-	function page_rewrite_rules() {
++	function page_rewrite_rules()
++	{
+ 		$uris = get_settings('page_uris');
+ 
+ 		$rewrite_rules = array();
+ 		$page_structure = $this-&gt;get_page_permastruct();
+-		if( is_array( $uris ) )
++		if ( is_array( $uris ) )
++		{
++			foreach ($uris as $uri =&gt; $pagename)
+ 			{
+-				foreach ($uris as $uri =&gt; $pagename) {
+-					$this-&gt;add_rewrite_tag('%pagename%', &quot;($uri)&quot;, 'pagename=');
+-					$rewrite_rules += $this-&gt;generate_rewrite_rules($page_structure);
+-				}
++				$this-&gt;add_rewrite_tag('%pagename%', &quot;($uri)&quot;, 'pagename=');
++				$rewrite_rules += $this-&gt;generate_rewrite_rules($page_structure);
+ 			}
++		}
+ 
+ 		return $rewrite_rules;
+ 	}
+ 
+-	function get_date_permastruct() {
+-		if (isset($this-&gt;date_structure)) {
++	function get_date_permastruct()
++	{
++		if (isset($this-&gt;date_structure))
++		{
+ 			return $this-&gt;date_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
+-			$this-&gt;date_structure = '';
+-			return false;
++		if (empty($this-&gt;permalink_structure))
++		{
++				$this-&gt;date_structure = '';
++				return false;
+ 		}
+-		
++
+ 		// The date permalink must have year, month, and day separated by slashes.
+ 		$endians = array('%year%/%monthnum%/%day%', '%day%/%monthnum%/%year%', '%monthnum%/%day%/%year%');
+ 
+ 		$this-&gt;date_structure = '';
+ 		$date_endian = '';
+ 
+-		foreach ($endians as $endian) {
+-			if (false !== strpos($this-&gt;permalink_structure, $endian)) {
++		foreach ($endians as $endian)
++		{
++			if (false !== strpos($this-&gt;permalink_structure, $endian))
++			{
+ 				$date_endian= $endian;
+ 				break;
+ 			}
+-		} 
++		}
+ 
+ 		if ( empty($date_endian) )
++		{
+ 			$date_endian = '%year%/%monthnum%/%day%';
++		}
+ 
+ 		// Do not allow the date tags and %post_id% to overlap in the permalink
+-		// structure. If they do, move the date tags to $front/date/.  
++		// structure. If they do, move the date tags to $front/date/.
+ 		$front = $this-&gt;front;
+ 		preg_match_all('/%.+?%/', $this-&gt;permalink_structure, $tokens);
+ 		$tok_index = 1;
+-		foreach ($tokens[0] as $token) {
+-			if ( ($token == '%post_id%') &amp;&amp; ($tok_index &lt;= 3) ) {
++		foreach ($tokens[0] as $token)
++		{
++			if ( ($token == '%post_id%') &amp;&amp; ($tok_index &lt;= 3) )
++			{
+ 				$front = $front . 'date/';
+ 				break;
+ 			}
+@@ -906,10 +1187,12 @@
+ 		return $this-&gt;date_structure;
+ 	}
+ 
+-	function get_year_permastruct() {
++	function get_year_permastruct()
++	{
+ 		$structure = $this-&gt;get_date_permastruct($permalink_structure);
+ 
+-		if (empty($structure)) {
++		if (empty($structure))
++		{
+ 			return false;
+ 		}
+ 
+@@ -921,10 +1204,12 @@
+ 		return $structure;
+ 	}
+ 
+-	function get_month_permastruct() {
++	function get_month_permastruct()
++	{
+ 		$structure = $this-&gt;get_date_permastruct($permalink_structure);
+ 
+-		if (empty($structure)) {
++		if (empty($structure))
++		{
+ 			return false;
+ 		}
+ 
+@@ -935,36 +1220,47 @@
+ 		return $structure;
+ 	}
+ 
+-	function get_day_permastruct() {
++	function get_day_permastruct()
++	{
+ 		return $this-&gt;get_date_permastruct($permalink_structure);
+ 	}
+ 
+-	function get_category_permastruct() {
+-		if (isset($this-&gt;category_structure)) {
++	function get_category_permastruct()
++	{
++		if (isset($this-&gt;category_structure))
++		{
+ 			return $this-&gt;category_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;category_structure = '';
+ 			return false;
+ 		}
+ 
+ 		if (empty($this-&gt;category_base))
++		{
+ 			$this-&gt;category_structure = $this-&gt;front . 'category/';
++		}
+ 		else
++		{
+ 			$this-&gt;category_structure = $this-&gt;category_base . '/';
++		}
+ 
+ 		$this-&gt;category_structure .= '%category%';
+-		
++
+ 		return $this-&gt;category_structure;
+ 	}
+ 
+-	function get_author_permastruct() {
+-		if (isset($this-&gt;author_structure)) {
++	function get_author_permastruct()
++	{
++		if (isset($this-&gt;author_structure))
++		{
+ 			return $this-&gt;author_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;author_structure = '';
+ 			return false;
+ 		}
+@@ -974,12 +1270,15 @@
+ 		return $this-&gt;author_structure;
+ 	}
+ 
+-	function get_search_permastruct() {
+-		if (isset($this-&gt;search_structure)) {
++	function get_search_permastruct()
++	{
++		if (isset($this-&gt;search_structure))
++		{
+ 			return $this-&gt;search_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;search_structure = '';
+ 			return false;
+ 		}
+@@ -989,12 +1288,15 @@
+ 		return $this-&gt;search_structure;
+ 	}
+ 
+-	function get_page_permastruct() {
+-		if (isset($this-&gt;page_structure)) {
++	function get_page_permastruct()
++	{
++		if (isset($this-&gt;page_structure))
++		{
+ 			return $this-&gt;page_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;page_structure = '';
+ 			return false;
+ 		}
+@@ -1004,12 +1306,15 @@
+ 		return $this-&gt;page_structure;
+ 	}
+ 
+-	function get_feed_permastruct() {
+-		if (isset($this-&gt;feed_structure)) {
++	function get_feed_permastruct()
++	{
++		if (isset($this-&gt;feed_structure))
++		{
+ 			return $this-&gt;feed_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;feed_structure = '';
+ 			return false;
+ 		}
+@@ -1019,12 +1324,15 @@
+ 		return $this-&gt;feed_structure;
+ 	}
+ 
+-	function get_comment_feed_permastruct() {
+-		if (isset($this-&gt;comment_feed_structure)) {
++	function get_comment_feed_permastruct()
++	{
++		if (isset($this-&gt;comment_feed_structure))
++		{
+ 			return $this-&gt;comment_feed_structure;
+ 		}
+ 
+-    if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			$this-&gt;comment_feed_structure = '';
+ 			return false;
+ 		}
+@@ -1034,24 +1342,30 @@
+ 		return $this-&gt;comment_feed_structure;
+ 	}
+ 
+-	function add_rewrite_tag($tag, $pattern, $query) {
++	function add_rewrite_tag($tag, $pattern, $query)
++	{
+ 		// If the tag already exists, replace the existing pattern and query for
+ 		// that tag, otherwise add the new tag, pattern, and query to the end of
+ 		// the arrays.
+-		$position = array_search($tag, $this-&gt;rewritecode);		
+-		if (FALSE !== $position &amp;&amp; NULL !== $position) {
++		$position = array_search($tag, $this-&gt;rewritecode);
++		if (FALSE !== $position &amp;&amp; NULL !== $position)
++		{
+ 			$this-&gt;rewritereplace[$position] = $pattern;
+-			$this-&gt;queryreplace[$position] = $query;			
+-		} else {
++			$this-&gt;queryreplace[$position] = $query;
++		}
++		else
++		{
+ 			$this-&gt;rewritecode[] = $tag;
+ 			$this-&gt;rewritereplace[] = $pattern;
+ 			$this-&gt;queryreplace[] = $query;
+ 		}
+ 	}
+ 
+-	function generate_rewrite_rules($permalink_structure, $page = true, $feed = true, $forcomments = false, $walk_dirs = true) {
++	function generate_rewrite_rules($permalink_structure, $page = true, $feed = true, $forcomments = false, $walk_dirs = true)
++	{
+ 		$feedregex2 = '';
+-		foreach ($this-&gt;feeds as $feed_name) {
++		foreach ($this-&gt;feeds as $feed_name)
++		{
+ 			$feedregex2 .= $feed_name . '|';
+ 		}
+ 		$feedregex2 = '(' . trim($feedregex2, '|') .  ')/?$';
+@@ -1059,7 +1373,7 @@
+ 
+ 		$trackbackregex = 'trackback/?$';
+ 		$pageregex = 'page/?([0-9]{1,})/?$';
+-		
++
+ 		$front = substr($permalink_structure, 0, strpos($permalink_structure, '%'));
+ 		preg_match_all('/%.+?%/', $permalink_structure, $tokens);
+ 
+@@ -1068,23 +1382,29 @@
+ 		$index = $this-&gt;index;
+ 		$feedindex = $index;
+ 		$trackbackindex = $index;
+-		for ($i = 0; $i &lt; $num_tokens; ++$i) {
+-			if (0 &lt; $i) {
++		for ($i = 0; $i &lt; $num_tokens; ++$i)
++		{
++			if (0 &lt; $i)
++			{
+ 				$queries[$i] = $queries[$i - 1] . '&amp;';
+ 			}
+-             
++
+ 			$query_token = str_replace($this-&gt;rewritecode, $this-&gt;queryreplace, $tokens[0][$i]) . $this-&gt;preg_index($i+1);
+ 			$queries[$i] .= $query_token;
+ 		}
+ 
+ 		$structure = $permalink_structure;
+-		if ($front != '/') {
++		if ($front != '/')
++		{
+ 			$structure = str_replace($front, '', $structure);
+ 		}
+ 		$structure = trim($structure, '/');
+-		if ($walk_dirs) {
++		if ($walk_dirs)
++		{
+ 			$dirs = explode('/', $structure);
+-		} else {
++		}
++		else
++		{
+ 			$dirs[] = $structure;
+ 		}
+ 		$num_dirs = count($dirs);
+@@ -1093,7 +1413,8 @@
+ 
+ 		$post_rewrite = array();
+ 		$struct = $front;
+-		for ($j = 0; $j &lt; $num_dirs; ++$j) {
++		for ($j = 0; $j &lt; $num_dirs; ++$j)
++		{
+ 			$struct .= $dirs[$j] . '/';
+ 			$struct = ltrim($struct, '/');
+ 			$match = str_replace($this-&gt;rewritecode, $this-&gt;rewritereplace, $struct);
+@@ -1109,36 +1430,46 @@
+ 			$feedmatch2 = $match . $feedregex2;
+ 			$feedquery2 = $feedindex . '?' . $query . '&amp;feed=' . $this-&gt;preg_index($num_toks + 1);
+ 
+-			if ($forcomments) {
++			if ($forcomments)
++			{
+ 				$feedquery .= '&amp;withcomments=1';
+ 				$feedquery2 .= '&amp;withcomments=1';
+ 			}
+ 
+ 			$rewrite = array();
+-			if ($feed) 
++			if ($feed)
++			{
+ 				$rewrite = array($feedmatch =&gt; $feedquery, $feedmatch2 =&gt; $feedquery2);
++			}
+ 			if ($page)
++			{
+ 				$rewrite = $rewrite + array($pagematch =&gt; $pagequery);
++			}
+ 
+-			if ($num_toks) {
++			if ($num_toks)
++			{
+ 				$post = 0;
+ 				if (strstr($struct, '%postname%') || strstr($struct, '%post_id%')
+ 						|| strstr($struct, '%pagename%')
+-						|| (strstr($struct, '%year%') &amp;&amp;  strstr($struct, '%monthnum%') &amp;&amp; strstr($struct, '%day%') &amp;&amp; strstr($struct, '%hour%') &amp;&amp; strstr($struct, '%minute') &amp;&amp; strstr($struct, '%second%'))) {
++						|| (strstr($struct, '%year%') &amp;&amp;  strstr($struct, '%monthnum%') &amp;&amp; strstr($struct, '%day%') &amp;&amp; strstr($struct, '%hour%') &amp;&amp; strstr($struct, '%minute') &amp;&amp; strstr($struct, '%second%')))
++				{
+ 					$post = 1;
+ 					$trackbackmatch = $match . $trackbackregex;
+ 					$trackbackquery = $trackbackindex . '?' . $query . '&amp;tb=1';
+ 					$match = rtrim($match, '/');
+ 					$match = $match . '(/[0-9]+)?/?$';
+ 					$query = $index . '?' . $query . '&amp;page=' . $this-&gt;preg_index($num_toks + 1);
+-				} else {
++				}
++				else
++				{
+ 					$match .= '?$';
+ 					$query = $index . '?' . $query;
+ 				}
+-				        
++
+ 				$rewrite = $rewrite + array($match =&gt; $query);
+ 
+-				if ($post) {
++				if ($post)
++				{
+ 					$rewrite = array($trackbackmatch =&gt; $trackbackquery) + $rewrite;
+ 				}
+ 			}
+@@ -1149,18 +1480,21 @@
+ 		return $post_rewrite;
+ 	}
+ 
+-	function generate_rewrite_rule($permalink_structure, $walk_dirs = false) {
++	function generate_rewrite_rule($permalink_structure, $walk_dirs = false)
++	{
+ 		return $this-&gt;generate_rewrite_rules($permalink_structure, false, false, false, $walk_dirs);
+ 	}
+ 
+ 	/* rewrite_rules
+-	 * Construct rewrite matches and queries from permalink structure.
+-	 * Returns an associate array of matches and queries.
+-	 */
+-	function rewrite_rules() {
++	* Construct rewrite matches and queries from permalink structure.
++	* Returns an associate array of matches and queries.
++	*/
++	function rewrite_rules()
++	{
+ 		$rewrite = array();
+ 
+-		if (empty($this-&gt;permalink_structure)) {
++		if (empty($this-&gt;permalink_structure))
++		{
+ 			return $rewrite;
+ 		}
+ 
+@@ -1171,7 +1505,7 @@
+ 		// Date
+ 		$date_rewrite = $this-&gt;generate_rewrite_rules($this-&gt;get_date_permastruct());
+ 		$date_rewrite = apply_filters('date_rewrite_rules', $date_rewrite);
+-		
++
+ 		// Root
+ 		$root_rewrite = $this-&gt;generate_rewrite_rules($this-&gt;root . '/');
+ 		$root_rewrite = apply_filters('root_rewrite_rules', $root_rewrite);
+@@ -1205,13 +1539,16 @@
+ 		return $this-&gt;rules;
+ 	}
+ 
+-	function wp_rewrite_rules() {
++	function wp_rewrite_rules()
++	{
+ 		$this-&gt;matches = 'matches';
+ 		return $this-&gt;rewrite_rules();
+ 	}
+ 
+-	function mod_rewrite_rules() {
+-		if ( ! $this-&gt;using_permalinks()) {
++	function mod_rewrite_rules()
++	{
++		if ( ! $this-&gt;using_permalinks())
++		{
+ 			return '';
+ 		}
+ 
+@@ -1220,7 +1557,7 @@
+ 
+ 		$home_root = parse_url(get_settings('home'));
+ 		$home_root = trailingslashit($home_root['path']);
+-    
++
+ 		$rules = &quot;&lt;IfModule mod_rewrite.c&gt;\n&quot;;
+ 		$rules .= &quot;RewriteEngine On\n&quot;;
+ 		$rules .= &quot;RewriteBase $home_root\n&quot;;
+@@ -1231,19 +1568,24 @@
+ 			&quot;RewriteCond %{REQUEST_FILENAME} -d\n&quot; .
+ 			&quot;RewriteRule ^.*$ - [S=$num_rules]\n&quot;;
+ 
+-		foreach ($rewrite as $match =&gt; $query) {
++		foreach ($rewrite as $match =&gt; $query)
++		{
+ 			// Apache 1.3 does not support the reluctant (non-greedy) modifier.
+ 			$match = str_replace('.+?', '.+', $match);
+ 
+ 			// If the match is unanchored and greedy, prepend rewrite conditions
+ 			// to avoid infinite redirects and eclipsing of real files.
+-			if ($match == '(.+)/?$' || $match == '([^/]+)/?$' ) {
++			if ($match == '(.+)/?$' || $match == '([^/]+)/?$' )
++			{
+ 				//nada.
+ 			}
+ 
+-			if (strstr($query, $this-&gt;index)) {
++			if (strstr($query, $this-&gt;index))
++			{
+ 				$rules .= 'RewriteRule ^' . $match . ' ' . $home_root . $query . &quot; [QSA,L]\n&quot;;
+-			} else {
++			}
++			else
++			{
+ 				$rules .= 'RewriteRule ^' . $match . ' ' . $site_root . $query . &quot; [QSA,L]\n&quot;;
+ 			}
+ 		}
+@@ -1255,11 +1597,13 @@
+ 		return $rules;
+ 	}
+ 
+-	function init() {
++	function init()
++	{
+ 		$this-&gt;permalink_structure = get_settings('permalink_structure');
+-		$this-&gt;front = substr($this-&gt;permalink_structure, 0, strpos($this-&gt;permalink_structure, '%'));		
++		$this-&gt;front = substr($this-&gt;permalink_structure, 0, strpos($this-&gt;permalink_structure, '%'));
+ 		$this-&gt;root = '';
+-		if ($this-&gt;using_index_permalinks()) {
++		if ($this-&gt;using_index_permalinks())
++		{
+ 			$this-&gt;root = $this-&gt;index . '/';
+ 		}
+ 		$this-&gt;category_base = get_settings('category_base');
+@@ -1272,28 +1616,34 @@
+ 		unset($this-&gt;comment_feed_structure);
+ 	}
+ 
+-	function set_permalink_structure($permalink_structure) {
+-		if ($permalink_structure != $this-&gt;permalink_structure) {
++	function set_permalink_structure($permalink_structure)
++	{
++		if ($permalink_structure != $this-&gt;permalink_structure)
++		{
+ 			update_option('permalink_structure', $permalink_structure);
+ 			$this-&gt;init();
+ 		}
+ 	}
+ 
+-	function set_category_base($category_base) {
+-		if ($category_base != $this-&gt;category_base) {
++	function set_category_base($category_base)
++	{
++		if ($category_base != $this-&gt;category_base)
++		{
+ 			update_option('category_base', $category_base);
+ 			$this-&gt;init();
+ 		}
+ 	}
+ 
+-	function WP_Rewrite() {
++	function WP_Rewrite()
++	{
+ 		$this-&gt;init();
+ 	}
+ }
+ 
+ // Make a global instance.
+-if (! isset($wp_rewrite)) {
+-    $wp_rewrite = new WP_Rewrite();
++if (! isset($wp_rewrite))
++{
++	$wp_rewrite = new WP_Rewrite();
+ }
+ 
+ ?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-includes/comment-functions.php
+===================================================================
+--- trunk/wp-includes/comment-functions.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/comment-functions.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ // Template functions
+ 
+ function comments_template( $file = '/comments.php' ) {
+@@ -44,7 +83,7 @@
+ 	$comment_id = (int) $comment_id;
+ 	if (!isset($comment_count_cache[$comment_id]))
+ 		$comment_count_cache[$comment_id] =  $wpdb-&gt;get_var(&quot;SELECT COUNT(*) FROM $wpdb-&gt;comments WHERE comment_post_ID = '$comment_id' AND comment_approved = '1'&quot;);
+-	
++
+ 	return apply_filters('get_comments_number', $comment_count_cache[$comment_id]);
+ }
+ 
+@@ -156,7 +195,7 @@
+ 
+ function get_comment_author_email() {
+ 	global $comment;
+-	return apply_filters('get_comment_author_email', $comment-&gt;comment_author_email);	
++	return apply_filters('get_comment_author_email', $comment-&gt;comment_author_email);
+ }
+ 
+ function comment_author_email() {
+@@ -321,7 +360,7 @@
+ function trackback_rdf($timezone = 0) {
+ 	global $id;
+ 	if (!stristr($_SERVER['HTTP_USER_AGENT'], 'W3C_Validator')) {
+-	echo '&lt;rdf:RDF xmlns:rdf=&quot;<A HREF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</A>&quot; 
++	echo '&lt;rdf:RDF xmlns:rdf=&quot;<A HREF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</A>&quot;
+ 	    xmlns:dc=&quot;<A HREF="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</A>&quot;
+ 	    xmlns:trackback=&quot;<A HREF="http://madskills.com/public/xml/rss/module/trackback/">http://madskills.com/public/xml/rss/module/trackback/</A>&quot;&gt;
+ 		&lt;rdf:Description rdf:about=&quot;';
+@@ -346,7 +385,7 @@
+ 
+ function pings_open() {
+ 	global $post;
+-	if ( 'open' == $post-&gt;ping_status ) 
++	if ( 'open' == $post-&gt;ping_status )
+ 		return true;
+ 	else
+ 		return false;
+@@ -428,7 +467,7 @@
+ 	// Debug
+ 	debug_fwrite($log, 'Post contents:');
+ 	debug_fwrite($log, $content.&quot;\n&quot;);
+-	
++
+ 	// Step 2.
+ 	// Walking thru the links array
+ 	// first we get rid of links pointing to sites, not to specific files
+@@ -453,7 +492,7 @@
+ 		$pingback_server_url = discover_pingback_server_uri($pagelinkedto, 2048);
+ 
+ 		if ($pingback_server_url) {
+-                        set_time_limit( 60 ); 
++                        set_time_limit( 60 );
+ 			 // Now, the RPC call
+ 			debug_fwrite($log, &quot;Page Linked To: $pagelinkedto \n&quot;);
+ 			debug_fwrite($log, 'Page Linked From: ');
+@@ -467,7 +506,7 @@
+ 
+ 			// when set to true, this outputs debug messages by itself
+ 			$client-&gt;debug = false;
+-			
++
+ 			if ( $client-&gt;query('pingback.ping', array($pagelinkedfrom, $pagelinkedto) ) )
+ 				add_ping( $post_ID, $pagelinkedto );
+ 			else
+@@ -589,7 +628,7 @@
+ 		default:
+ 			return false;
+     }
+-    
++
+     if ($wpdb-&gt;query($query)) {
+ 		do_action('wp_set_comment_status', $comment_id, $comment_status);
+ 		return true;
+@@ -601,7 +640,7 @@
+ 
+ function wp_get_comment_status($comment_id) {
+ 	global $wpdb;
+-	
++
+ 	$result = $wpdb-&gt;get_var(&quot;SELECT comment_approved FROM $wpdb-&gt;comments WHERE comment_ID='$comment_id' LIMIT 1&quot;);
+ 	if ($result == NULL) {
+ 		return 'deleted';
+@@ -634,11 +673,11 @@
+ 			// Skip empty lines
+ 			if (empty($word)) { continue; }
+ 
+-			// Do some escaping magic so that '#' chars in the 
++			// Do some escaping magic so that '#' chars in the
+ 			// spam words don't break things:
+ 			$word = preg_quote($word, '#');
+-		
+-			$pattern = &quot;#$word#i&quot;; 
++
++			$pattern = &quot;#$word#i&quot;;
+ 			if ( preg_match($pattern, $author) ) return false;
+ 			if ( preg_match($pattern, $email) ) return false;
+ 			if ( preg_match($pattern, $url) ) return false;
+
+Modified: trunk/wp-includes/default-filters.php
+===================================================================
+--- trunk/wp-includes/default-filters.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/default-filters.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ // Some default filters
+ add_filter('bloginfo','wp_specialchars');
+ add_filter('category_description', 'wptexturize');
+
+Modified: trunk/wp-includes/feed-functions.php
+===================================================================
+--- trunk/wp-includes/feed-functions.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/feed-functions.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function get_bloginfo_rss($show = '')
+ {
+ 	$info = strip_tags(get_bloginfo($show));
+
+Modified: trunk/wp-includes/functions-compat.php
+===================================================================
+--- trunk/wp-includes/functions-compat.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/functions-compat.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ /* Functions missing from older PHP versions */
+ 
+ 
+
+Modified: trunk/wp-includes/functions-formatting.php
+===================================================================
+--- trunk/wp-includes/functions-formatting.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/functions-formatting.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function wptexturize($text) {
+ 	$output = '';
+ 	// Capture tags and everything inside them
+@@ -32,7 +71,7 @@
+ 			$curl = preg_replace(&quot;/'([\s.]|\Z)/&quot;, '&#8217;$1', $curl);
+ 			$curl = preg_replace(&quot;/ \(tm\)/i&quot;, ' &#8482;', $curl);
+ 			$curl = str_replace(&quot;''&quot;, '&#8221;', $curl);
+-			
++
+ 			$curl = preg_replace('/(\d+)x(\d+)/', &quot;$1&#215;$2&quot;, $curl);
+ 
+ 		} elseif (strstr($curl, '&lt;code') || strstr($curl, '&lt;pre') || strstr($curl, '&lt;kbd' || strstr($curl, '&lt;style') || strstr($curl, '&lt;script'))) {
+@@ -58,24 +97,24 @@
+ 	$pee = $pee . &quot;\n&quot;; // just to make things a little easier, pad the end
+ 	$pee = preg_replace('|&lt;br /&gt;\s*&lt;br /&gt;|', &quot;\n\n&quot;, $pee);
+ 	// Space things out a little
+-	$pee = preg_replace('!(&lt;(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)!', &quot;\n$1&quot;, $pee); 
++	$pee = preg_replace('!(&lt;(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)!', &quot;\n$1&quot;, $pee);
+ 	$pee = preg_replace('!(&lt;/(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])&gt;)!', &quot;$1\n&quot;, $pee);
+-	$pee = str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;), &quot;\n&quot;, $pee); // cross-platform newlines 
++	$pee = str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;), &quot;\n&quot;, $pee); // cross-platform newlines
+ 	$pee = preg_replace(&quot;/\n\n+/&quot;, &quot;\n\n&quot;, $pee); // take care of duplicates
+-	$pee = preg_replace('/\n?(.+?)(?:\n\s*\n|\z)/s', &quot;\t&lt;p&gt;$1&lt;/p&gt;\n&quot;, $pee); // make paragraphs, including one at the end 
+-	$pee = preg_replace('|&lt;p&gt;\s*?&lt;/p&gt;|', '', $pee); // under certain strange conditions it could create a P of entirely whitespace 
++	$pee = preg_replace('/\n?(.+?)(?:\n\s*\n|\z)/s', &quot;\t&lt;p&gt;$1&lt;/p&gt;\n&quot;, $pee); // make paragraphs, including one at the end
++	$pee = preg_replace('|&lt;p&gt;\s*?&lt;/p&gt;|', '', $pee); // under certain strange conditions it could create a P of entirely whitespace
+     $pee = preg_replace('!&lt;p&gt;\s*(&lt;/?(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|hr|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)\s*&lt;/p&gt;!', &quot;$1&quot;, $pee); // don't pee all over a tag
+ 	$pee = preg_replace(&quot;|&lt;p&gt;(&lt;li.+?)&lt;/p&gt;|&quot;, &quot;$1&quot;, $pee); // problem with nested lists
+ 	$pee = preg_replace('|&lt;p&gt;&lt;blockquote([^&gt;]*)&gt;|i', &quot;&lt;blockquote$1&gt;&lt;p&gt;&quot;, $pee);
+ 	$pee = str_replace('&lt;/blockquote&gt;&lt;/p&gt;', '&lt;/p&gt;&lt;/blockquote&gt;', $pee);
+ 	$pee = preg_replace('!&lt;p&gt;\s*(&lt;/?(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|hr|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)!', &quot;$1&quot;, $pee);
+-	$pee = preg_replace('!(&lt;/?(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)\s*&lt;/p&gt;!', &quot;$1&quot;, $pee); 
++	$pee = preg_replace('!(&lt;/?(?:table|thead|tfoot|caption|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)\s*&lt;/p&gt;!', &quot;$1&quot;, $pee);
+ 	if ($br) $pee = preg_replace('|(?&lt;!&lt;br /&gt;)\s*\n|', &quot;&lt;br /&gt;\n&quot;, $pee); // optionally make line breaks
+ 	$pee = preg_replace('!(&lt;/?(?:table|thead|tfoot|caption|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|select|form|blockquote|address|math|p|h[1-6])[^&gt;]*&gt;)\s*&lt;br /&gt;!', &quot;$1&quot;, $pee);
+ 	$pee = preg_replace('!&lt;br /&gt;(\s*&lt;/?(?:p|li|div|dl|dd|dt|th|pre|td|ul|ol)&gt;)!', '$1', $pee);
+ 	$pee = preg_replace('!(&lt;pre.*?&gt;)(.*?)&lt;/pre&gt;!ise', &quot; stripslashes('$1') .  clean_pre('$2')  . '&lt;/pre&gt;' &quot;, $pee);
+-	
+-	return $pee; 
++
++	return $pee;
+ }
+ 
+ 
+@@ -109,21 +148,21 @@
+ }
+ 
+ function utf8_uri_encode( $utf8_string ) {
+-  $unicode = '';        
++  $unicode = '';
+   $values = array();
+   $num_octets = 1;
+-        
++
+   for ($i = 0; $i &lt; strlen( $utf8_string ); $i++ ) {
+ 
+     $value = ord( $utf8_string[ $i ] );
+-            
++
+     if ( $value &lt; 128 ) {
+       $unicode .= chr($value);
+     } else {
+       if ( count( $values ) == 0 ) $num_octets = ( $value &lt; 224 ) ? 2 : 3;
+-                
++
+       $values[] = $value;
+-      
++
+       if ( count( $values ) == $num_octets ) {
+ 	if ($num_octets == 3) {
+ 	  $unicode .= '%' . dechex($values[0]) . '%' . dechex($values[1]) . '%' . dechex($values[2]);
+@@ -137,7 +176,7 @@
+     }
+   }
+ 
+-  return $unicode;    
++  return $unicode;
+ }
+ 
+ function remove_accents($string) {
+@@ -239,7 +278,7 @@
+ 		chr(197).chr(190) =&gt; 'z', chr(197).chr(191) =&gt; 's',
+ 		// Euro Sign
+ 		chr(226).chr(130).chr(172) =&gt; 'E');
+-		
++
+ 		$string = strtr($string, $chars);
+ 	} else {
+ 		// Assume ISO-8859-1 if not UTF-8
+@@ -303,7 +342,7 @@
+ 	return $title;
+ }
+ 
+-function convert_chars($content, $flag = 'obsolete') { 
++function convert_chars($content, $flag = 'obsolete') {
+ 	// Translation of invalid Unicode references range to valid range
+ 	$wp_htmltranswinuni = array(
+ 	'&#128;' =&gt; '&#8364;', // the Euro sign
+@@ -360,26 +399,26 @@
+ function funky_javascript_fix($text) {
+ 	// Fixes for browsers' javascript bugs
+ 	global $is_macIE, $is_winIE;
+-	
++
+ 	if ( $is_winIE || $is_macIE )
+ 		$text =  preg_replace(&quot;/\%u([0-9A-F]{4,4})/e&quot;,  &quot;'&amp;#'.base_convert('\\1',16,10).';'&quot;, $text);
+-	
++
+ 	return $text;
+ }
+ 
+ /*
+  balanceTags
+- 
++
+  Balances Tags of string using a modified stack.
+- 
++
+  @param text      Text to be balanced
+  @return          Returns balanced text
+  @author          Leonard Lin (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">leonard at acm.org</A>)
+  @version         v1.1
+  @date            November 4, 2001
+  @license         GPL v2.0
+- @notes           
+- @changelog       
++ @notes
++ @changelog
+  ---  Modified by Scott Reilly (coffee2code) 02 Aug 2004
+              1.2  ***TODO*** Make better - change loop condition to $text
+              1.1  Fixed handling of append/stack pop order of end text
+@@ -387,7 +426,7 @@
+              1.0  First Version
+ */
+ function balanceTags($text, $is_comment = 0) {
+-	
++
+ 	if (get_settings('use_balanceTags') == 0) {
+ 		return $text;
+ 	}
+@@ -411,7 +450,7 @@
+ 		if ($regex[1][0] == &quot;/&quot;) { // End Tag
+ 			$tag = strtolower(substr($regex[1],1));
+ 			// if too many closing tags
+-			if($stacksize &lt;= 0) { 
++			if($stacksize &lt;= 0) {
+ 				$tag = '';
+ 				//or close to be safe $tag = '/' . $tag;
+ 			}
+@@ -468,7 +507,7 @@
+ 		}
+ 		$newtext .= substr($text,0,$i) . $tag;
+ 		$text = substr($text,$i+$l);
+-	}  
++	}
+ 
+ 	// Clear Tag Queue
+ 	$newtext .= $tagqueue;
+@@ -679,7 +718,7 @@
+ 	return preg_replace('/[^<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">a-z0-9+_. at -</A>]/i', '', $email);
+ }
+ 
+-function human_time_diff( $from, $to = '' ) {     
++function human_time_diff( $from, $to = '' ) {
+ 	if ( empty($to) )
+ 		$to = time();
+ 	$diff = (int) abs($to - $from);
+@@ -693,7 +732,7 @@
+ 		$hours = round($diff / 3600);
+ 		if ($hours &lt;= 1)
+ 			$since = __('1 hour');
+-		else 
++		else
+ 			$since = sprintf( __('%s hours'), $hours );
+ 	} elseif ($diff &gt;= 86400) {
+ 		$days = round($diff / 86400);
+
+Modified: trunk/wp-includes/functions-post.php
+===================================================================
+--- trunk/wp-includes/functions-post.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/functions-post.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ /**** DB Functions ****/
+ 
+ /*
+@@ -7,10 +46,10 @@
+  */
+ function wp_insert_post($postarr = array()) {
+ 	global $wpdb, $allowedtags;
+-	
++
+ 	// export array as variables
+ 	extract($postarr);
+-	
++
+ 	$post_name = sanitize_title($post_title);
+ 	$post_author = (int) $post_author;
+ 
+@@ -20,11 +59,11 @@
+ 	}
+ 
+ 	$post_cat = $post_category[0];
+-	
++
+ 	if (empty($post_date))
+ 		$post_date = current_time('mysql');
+ 	// Make sure we have a good gmt date:
+-	if (empty($post_date_gmt)) 
++	if (empty($post_date_gmt))
+ 		$post_date_gmt = get_gmt_from_date($post_date);
+ 	if (empty($comment_status))
+ 		$comment_status = get_settings('default_comment_status');
+@@ -46,18 +85,18 @@
+ 		}
+ 	}
+ 
+-	$sql = &quot;INSERT INTO $wpdb-&gt;posts 
+-		(post_author, post_date, post_date_gmt, post_modified, post_modified_gmt, post_content, post_title, post_excerpt, post_category, post_status, post_name, comment_status, ping_status, post_parent) 
++	$sql = &quot;INSERT INTO $wpdb-&gt;posts
++		(post_author, post_date, post_date_gmt, post_modified, post_modified_gmt, post_content, post_title, post_excerpt, post_category, post_status, post_name, comment_status, ping_status, post_parent)
+ 		VALUES ('$post_author', '$post_date', '$post_date_gmt', '$post_date', '$post_date_gmt', '$post_content', '$post_title', '$post_excerpt', '$post_cat', '$post_status', '$post_name', '$comment_status', '$ping_status', '$post_parent')&quot;;
+-	
++
+ 	$result = $wpdb-&gt;query($sql);
+ 	$post_ID = $wpdb-&gt;insert_id;
+ 
+ 	// Set GUID
+ 	$wpdb-&gt;query(&quot;UPDATE $wpdb-&gt;posts SET guid = '&quot; . get_permalink($post_ID) . &quot;' WHERE ID = '$post_ID'&quot;);
+-	
++
+ 	wp_set_post_cats('', $post_ID, $post_category);
+-	
++
+ 	if ($post_status == 'publish') {
+ 		do_action('publish_post', $post_ID);
+ 	}
+@@ -73,11 +112,11 @@
+ 
+ 	$sql = &quot;SELECT * FROM $wpdb-&gt;posts WHERE ID=$postid&quot;;
+ 	$result = $wpdb-&gt;get_row($sql, $mode);
+-	
++
+ 	// Set categories
+ 	if($mode == OBJECT) {
+ 		$result-&gt;post_category = wp_get_post_cats('',$postid);
+-	} 
++	}
+ 	else {
+ 		$result['post_category'] = wp_get_post_cats('',$postid);
+ 	}
+@@ -109,7 +148,7 @@
+ 	$post = add_magic_quotes($post);
+ 	extract($post);
+ 
+-	// Now overwrite any changed values being passed in. These are 
++	// Now overwrite any changed values being passed in. These are
+ 	// already escaped.
+ 	extract($postarr);
+ 
+@@ -120,7 +159,7 @@
+ 	$post_modified = current_time('mysql');
+ 	$post_modified_gmt = current_time('mysql', 1);
+ 
+-	$sql = &quot;UPDATE $wpdb-&gt;posts 
++	$sql = &quot;UPDATE $wpdb-&gt;posts
+ 		SET post_content = '$post_content',
+ 		post_title = '$post_title',
+ 		post_category = $post_category[0],
+@@ -133,7 +172,7 @@
+ 		ping_status = '$ping_status',
+ 		comment_status = '$comment_status'
+ 		WHERE ID = $ID&quot;;
+-		
++
+ 	$result = $wpdb-&gt;query($sql);
+ 	$rows_affected = $wpdb-&gt;rows_affected;
+ 
+@@ -146,10 +185,10 @@
+ 
+ function wp_get_post_cats($blogid = '1', $post_ID = 0) {
+ 	global $wpdb;
+-	
+-	$sql = &quot;SELECT category_id 
+-		FROM $wpdb-&gt;post2cat 
+-		WHERE post_id = $post_ID 
++
++	$sql = &quot;SELECT category_id
++		FROM $wpdb-&gt;post2cat
++		WHERE post_id = $post_ID
+ 		ORDER BY category_id&quot;;
+ 
+ 	$result = $wpdb-&gt;get_col($sql);
+@@ -170,10 +209,10 @@
+ 
+ 	// First the old categories
+ 	$old_categories = $wpdb-&gt;get_col(&quot;
+-		SELECT category_id 
+-		FROM $wpdb-&gt;post2cat 
++		SELECT category_id
++		FROM $wpdb-&gt;post2cat
+ 		WHERE post_id = $post_ID&quot;);
+-	
++
+ 	if (!$old_categories) {
+ 		$old_categories = array();
+ 	} else {
+@@ -190,9 +229,9 @@
+ 	if ($delete_cats) {
+ 		foreach ($delete_cats as $del) {
+ 			$wpdb-&gt;query(&quot;
+-				DELETE FROM $wpdb-&gt;post2cat 
+-				WHERE category_id = $del 
+-					AND post_id = $post_ID 
++				DELETE FROM $wpdb-&gt;post2cat
++				WHERE category_id = $del
++					AND post_id = $post_ID
+ 				&quot;);
+ 		}
+ 	}
+@@ -203,7 +242,7 @@
+ 	if ($add_cats) {
+ 		foreach ($add_cats as $new_cat) {
+ 			$wpdb-&gt;query(&quot;
+-				INSERT INTO $wpdb-&gt;post2cat (post_id, category_id) 
++				INSERT INTO $wpdb-&gt;post2cat (post_id, category_id)
+ 				VALUES ($post_ID, $new_cat)&quot;);
+ 		}
+ 	}
+@@ -220,13 +259,13 @@
+ 		$wpdb-&gt;query(&quot;UPDATE $wpdb-&gt;posts SET post_parent = $post-&gt;post_parent WHERE post_parent = $postid AND post_status = 'static'&quot;);
+ 
+ 	$wpdb-&gt;query(&quot;DELETE FROM $wpdb-&gt;posts WHERE ID = $postid&quot;);
+-	
++
+ 	$wpdb-&gt;query(&quot;DELETE FROM $wpdb-&gt;comments WHERE comment_post_ID = $postid&quot;);
+ 
+ 	$wpdb-&gt;query(&quot;DELETE FROM $wpdb-&gt;post2cat WHERE post_id = $postid&quot;);
+ 
+ 	$wpdb-&gt;query(&quot;DELETE FROM $wpdb-&gt;postmeta WHERE post_id = $postid&quot;);
+-	
++
+ 	return $post;
+ }
+ 
+@@ -242,17 +281,17 @@
+ // Get the name of a category from its ID
+ function get_cat_name($cat_id) {
+ 	global $wpdb;
+-	
++
+ 	$cat_id -= 0; 	// force numeric
+ 	$name = $wpdb-&gt;get_var(&quot;SELECT cat_name FROM $wpdb-&gt;categories WHERE cat_ID=$cat_id&quot;);
+-	
++
+ 	return $name;
+ }
+ 
+ // Get the ID of a category from its name
+ function get_cat_ID($cat_name='General') {
+ 	global $wpdb;
+-	
++
+ 	$cid = $wpdb-&gt;get_var(&quot;SELECT cat_ID FROM $wpdb-&gt;categories WHERE cat_name='$cat_name'&quot;);
+ 
+ 	return $cid?$cid:1;	// default to cat 1
+@@ -310,14 +349,14 @@
+ 
+ 		// import postdata as variables
+ 		extract($postdata);
+-		
++
+ 		// form an excerpt
+ 		$excerpt = strip_tags($post_excerpt?$post_excerpt:$post_content);
+-		
++
+ 		if (strlen($excerpt) &gt; 255) {
+ 			$excerpt = substr($excerpt,0,252) . '...';
+ 		}
+-		
++
+ 		$trackback_urls = explode(',', $tb_list);
+ 		foreach($trackback_urls as $tb_url) {
+ 		    $tb_url = trim($tb_url);
+@@ -421,11 +460,11 @@
+ 		// Skip empty lines
+ 		if ( empty($word) ) { continue; }
+ 
+-		// Do some escaping magic so that '#' chars in the 
++		// Do some escaping magic so that '#' chars in the
+ 		// spam words don't break things:
+ 		$word = preg_quote($word, '#');
+-		
+-		$pattern = &quot;#$word#i&quot;; 
++
++		$pattern = &quot;#$word#i&quot;;
+ 		if ( preg_match($pattern, $author    ) ) return true;
+ 		if ( preg_match($pattern, $email     ) ) return true;
+ 		if ( preg_match($pattern, $url       ) ) return true;
+@@ -433,7 +472,7 @@
+ 		if ( preg_match($pattern, $user_ip   ) ) return true;
+ 		if ( preg_match($pattern, $user_agent) ) return true;
+ 	}
+-	
++
+ 	if ( isset($_SERVER['REMOTE_ADDR']) ) {
+ 		if ( wp_proxy_check($_SERVER['REMOTE_ADDR']) ) return true;
+ 	}
+@@ -510,9 +549,9 @@
+ 
+ 	$approved = apply_filters('pre_comment_approved', $approved);
+ 
+-	$result = $wpdb-&gt;query(&quot;INSERT INTO $wpdb-&gt;comments 
++	$result = $wpdb-&gt;query(&quot;INSERT INTO $wpdb-&gt;comments
+ 	(comment_post_ID, comment_author, comment_author_email, comment_author_url, comment_author_IP, comment_date, comment_date_gmt, comment_content, comment_approved, comment_agent, comment_type, user_id)
+-	VALUES 
++	VALUES
+ 	('$comment_post_ID', '$author', '$email', '$url', '$user_ip', '$now', '$now_gmt', '$comment', '$approved', '$user_agent', '$comment_type', '$user_id')
+ 	&quot;);
+ 
+@@ -522,7 +561,7 @@
+ 	if ( 'spam' !== $approved ) { // If it's spam save it silently for later crunching
+ 		if ( '0' == $approved )
+ 			wp_notify_moderator($comment_id);
+-	
++
+ 		if ( get_settings('comments_notify') &amp;&amp; $approved )
+ 			wp_notify_postauthor($comment_id, $comment_type);
+ 	}
+@@ -569,7 +608,7 @@
+ 	$custom_fields = get_post_custom( $post_id );
+ 	$pung = array();
+ 	if( is_array( $custom_fields ) ) {
+-		while( list( $key, $val ) = each( $custom_fields ) ) { 
++		while( list( $key, $val ) = each( $custom_fields ) ) {
+ 			if( $key == 'enclosure' ) {
+ 				if (is_array($val)) {
+ 					foreach($val as $enc) {
+
+Modified: trunk/wp-includes/functions.php
+===================================================================
+--- trunk/wp-includes/functions.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/functions.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ require_once(dirname(__FILE__).'/functions-compat.php');
+ 
+ if (!function_exists('_')) {
+@@ -21,18 +60,18 @@
+ 	if (empty($m)) {
+ 		return false;
+ 	}
+-	$i = mktime(substr($m,11,2),substr($m,14,2),substr($m,17,2),substr($m,5,2),substr($m,8,2),substr($m,0,4)); 
++	$i = mktime(substr($m,11,2),substr($m,14,2),substr($m,17,2),substr($m,5,2),substr($m,8,2),substr($m,0,4));
+ 	if (!empty($month) &amp;&amp; !empty($weekday) &amp;&amp; $translate) {
+ 		$datemonth = $month[date('m', $i)];
+ 		$datemonth_abbrev = $month_abbrev[$datemonth];
+ 		$dateweekday = $weekday[date('w', $i)];
+-		$dateweekday_abbrev = $weekday_abbrev[$dateweekday]; 		
++		$dateweekday_abbrev = $weekday_abbrev[$dateweekday];
+ 		$dateformatstring = ' '.$dateformatstring;
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])D/&quot;, &quot;\\1&quot;.backslashit($dateweekday_abbrev), $dateformatstring);
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])F/&quot;, &quot;\\1&quot;.backslashit($datemonth), $dateformatstring);
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])l/&quot;, &quot;\\1&quot;.backslashit($dateweekday), $dateformatstring);
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])M/&quot;, &quot;\\1&quot;.backslashit($datemonth_abbrev), $dateformatstring);
+-	
++
+ 		$dateformatstring = substr($dateformatstring, 1, strlen($dateformatstring)-1);
+ 	}
+ 	$j = @date($dateformatstring, $i);
+@@ -60,12 +99,12 @@
+ 
+ function date_i18n($dateformatstring, $unixtimestamp) {
+ 	global $month, $weekday, $month_abbrev, $weekday_abbrev;
+-	$i = $unixtimestamp; 
++	$i = $unixtimestamp;
+ 	if ((!empty($month)) &amp;&amp; (!empty($weekday))) {
+ 		$datemonth = $month[date('m', $i)];
+ 		$datemonth_abbrev = $month_abbrev[$datemonth];
+ 		$dateweekday = $weekday[date('w', $i)];
+-		$dateweekday_abbrev = $weekday_abbrev[$dateweekday]; 		
++		$dateweekday_abbrev = $weekday_abbrev[$dateweekday];
+ 		$dateformatstring = ' '.$dateformatstring;
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])D/&quot;, &quot;\\1&quot;.backslashit($dateweekday_abbrev), $dateformatstring);
+ 		$dateformatstring = preg_replace(&quot;/([^\\\])F/&quot;, &quot;\\1&quot;.backslashit($datemonth), $dateformatstring);
+@@ -198,7 +237,7 @@
+ 
+ 	$req_uri = trim($req_uri, '/');
+ 	$request = $req_uri;
+-	
++
+ 	// Look for matches.
+ 	$request_match = $request;
+ 	foreach ($rewrite as $match =&gt; $query) {
+@@ -212,7 +251,7 @@
+ 			// Got a match.
+ 			// Trim the query of everything up to the '?'.
+ 			$query = preg_replace(&quot;!^.+\?!&quot;, '', $query);
+-			
++
+ 			// Substitute the substring matches into the query.
+ 			eval(&quot;\$query = \&quot;$query\&quot;;&quot;);
+ 			$query = new WP_Query($query);
+@@ -281,7 +320,7 @@
+ 	$wpdb-&gt;show_errors();
+ 
+ 	foreach ($options as $option) {
+-		// &quot;When trying to design a foolproof system, 
++		// &quot;When trying to design a foolproof system,
+ 		//  never underestimate the ingenuity of the fools :)&quot; -- Dougal
+ 		if ('siteurl' == $option-&gt;option_name) $option-&gt;option_value = preg_replace('|/+$|', '', $option-&gt;option_value);
+ 		if ('home' == $option-&gt;option_name) $option-&gt;option_value = preg_replace('|/+$|', '', $option-&gt;option_value);
+@@ -349,7 +388,7 @@
+ 
+ function add_post_meta($post_id, $key, $value, $unique = false) {
+ 	global $wpdb;
+-	
++
+ 	if ($unique) {
+ 		if( $wpdb-&gt;get_var(&quot;SELECT meta_key FROM $wpdb-&gt;postmeta WHERE meta_key
+ = '$key' AND post_id = '$post_id'&quot;) ) {
+@@ -358,10 +397,10 @@
+ 	}
+ 
+ 	$wpdb-&gt;query(&quot;INSERT INTO $wpdb-&gt;postmeta
+-                                (post_id,meta_key,meta_value) 
++                                (post_id,meta_key,meta_value)
+                                 VALUES ('$post_id','$key','$value')
+                         &quot;);
+-	
++
+ 	return true;
+ }
+ 
+@@ -385,7 +424,7 @@
+ 		$wpdb-&gt;query(&quot;DELETE FROM $wpdb-&gt;postmeta WHERE post_id = '$post_id'
+ AND meta_key = '$key' AND meta_value = '$value'&quot;);
+ 	}
+-        
++
+ 	return true;
+ }
+ 
+@@ -442,14 +481,14 @@
+ // Deprecated.  Use get_post().
+ function get_postdata($postid) {
+ 	$post = &amp;get_post($postid);
+-	
++
+ 	$postdata = array (
+-		'ID' =&gt; $post-&gt;ID, 
+-		'Author_ID' =&gt; $post-&gt;post_author, 
+-		'Date' =&gt; $post-&gt;post_date, 
+-		'Content' =&gt; $post-&gt;post_content, 
+-		'Excerpt' =&gt; $post-&gt;post_excerpt, 
+-		'Title' =&gt; $post-&gt;post_title, 
++		'ID' =&gt; $post-&gt;ID,
++		'Author_ID' =&gt; $post-&gt;post_author,
++		'Date' =&gt; $post-&gt;post_date,
++		'Content' =&gt; $post-&gt;post_content,
++		'Excerpt' =&gt; $post-&gt;post_excerpt,
++		'Title' =&gt; $post-&gt;post_title,
+ 		'Category' =&gt; $post-&gt;post_category,
+ 		'post_status' =&gt; $post-&gt;post_status,
+ 		'comment_status' =&gt; $post-&gt;comment_status,
+@@ -463,7 +502,7 @@
+ 	return $postdata;
+ }
+ 
+-// Retrieves post data given a post ID or post object. 
++// Retrieves post data given a post ID or post object.
+ // Handles post caching.
+ function &amp;get_post(&amp;$post, $output = OBJECT) {
+ 	global $post_cache, $wpdb;
+@@ -498,7 +537,7 @@
+ 	}
+ }
+ 
+-// Retrieves page data given a page ID or page object. 
++// Retrieves page data given a page ID or page object.
+ // Handles page caching.
+ function &amp;get_page(&amp;$page, $output = OBJECT) {
+ 	global $page_cache, $wpdb;
+@@ -535,7 +574,7 @@
+ 	}
+ }
+ 
+-// Retrieves category data given a category ID or category object. 
++// Retrieves category data given a category ID or category object.
+ // Handles category caching.
+ function &amp;get_category(&amp;$category, $output = OBJECT) {
+ 	global $cache_categories, $wpdb;
+@@ -705,7 +744,7 @@
+ 	}
+ 	return $post_title;
+ }
+-	
++
+ function xmlrpc_getpostcategory($content) {
+ 	global $post_default_category;
+ 	if (preg_match('/&lt;category&gt;(.+?)&lt;\/category&gt;/is', $content, $matchcat)) {
+@@ -795,7 +834,7 @@
+ }
+ 
+ function wp_get_http_headers( $url ) {
+-	set_time_limit( 60 ); 
++	set_time_limit( 60 );
+ 	$parts = parse_url( $url );
+ 	$file  = $parts['path'] . ($parts['query'] ? '?'.$parts['query'] : '');
+ 	$host  = $parts['host'];
+@@ -898,11 +937,11 @@
+ 
+ function apply_filters($tag, $string) {
+ 	global $wp_filter;
+-	
++
+ 	$args = array_slice(func_get_args(), 2);
+ 
+ 	merge_filters($tag);
+-	
++
+ 	if (!isset($wp_filter[$tag])) {
+ 		return $string;
+ 	}
+@@ -974,9 +1013,9 @@
+  		$args = array_merge($arg, $extra_args);
+ 	else
+ 		$args = array_merge(array($arg), $extra_args);
+-	
++
+ 	merge_filters($tag);
+-	
++
+ 	if (!isset($wp_filter[$tag])) {
+ 		return;
+ 	}
+@@ -1022,7 +1061,7 @@
+ 	if ($page-&gt;post_parent == $page-&gt;ID) {
+ 		return $uri;
+ 	}
+-	
++
+ 	while ($page-&gt;post_parent != 0) {
+ 		$page = get_page($page-&gt;post_parent);
+ 		$uri = urldecode($page-&gt;post_name) . &quot;/&quot; . $uri;
+@@ -1048,9 +1087,9 @@
+ 		&quot; WHERE post_date &lt;= '$now' AND (post_status = 'publish') &quot;.
+ 		( empty( $r['category'] ) ? &quot;&quot; : &quot;AND $wpdb-&gt;posts.ID = $wpdb-&gt;post2cat.post_id AND $wpdb-&gt;post2cat.category_id = &quot; . $r['category']. &quot; &quot; ) .
+ 		&quot; GROUP BY $wpdb-&gt;posts.ID ORDER BY &quot; . $r['orderby'] . &quot; &quot; . $r['order'] . &quot;  LIMIT &quot; . $r['offset'] . ',' . $r['numberposts'] );
+-	
++
+     update_post_caches($posts);
+-	
++
+ 	return $posts;
+ }
+ 
+@@ -1096,7 +1135,7 @@
+ 
+ 	if (! isset($cache_categories))
+ 		update_category_cache();
+-		
++
+ 	if ( !empty($dogs) ) {
+ 		foreach ($dogs as $catt) {
+ 			$category_cache[$catt-&gt;post_id][$catt-&gt;cat_ID] = &amp;$cache_categories[$catt-&gt;cat_ID];
+@@ -1107,7 +1146,7 @@
+ function update_post_caches(&amp;$posts) {
+ 	global $post_cache, $category_cache, $comment_count_cache, $post_meta_cache;
+ 	global $wpdb;
+-	
++
+ 	// No point in doing all this work if we didn't match any posts.
+ 	if ( !$posts )
+ 		return;
+@@ -1119,7 +1158,7 @@
+ 	}
+ 
+ 	$post_id_list = implode(',', $post_id_list);
+-	
++
+ 	update_post_category_cache($post_id_list);
+ 
+ 	// Do the same for comment numbers
+@@ -1128,7 +1167,7 @@
+ 	LEFT JOIN $wpdb-&gt;comments ON ( comment_post_ID = ID  AND comment_approved =  '1')
+ 	WHERE ID IN ($post_id_list)
+ 	GROUP BY ID&quot;);
+-	
++
+ 	if ($comment_counts) {
+ 		foreach ($comment_counts as $comment_count)
+ 			$comment_count_cache[&quot;$comment_count-&gt;ID&quot;] = $comment_count-&gt;ccount;
+@@ -1164,14 +1203,14 @@
+ 
+ function update_user_cache() {
+ 	global $cache_userdata, $wpdb;
+-	
++
+ 	if ( $users = $wpdb-&gt;get_results(&quot;SELECT * FROM $wpdb-&gt;users WHERE user_level &gt; 0&quot;) ) :
+ 		foreach ($users as $user) :
+ 			$cache_userdata[$user-&gt;ID] = $user;
+ 			$cache_userdata[$user-&gt;user_login] =&amp; $cache_userdata[$user-&gt;ID];
+ 		endforeach;
+ 		return true;
+-	else : 
++	else :
+ 		return false;
+ 	endif;
+ }
+@@ -1195,9 +1234,9 @@
+ 
+ 	$post_obj = $wp_query-&gt;get_queried_object();
+ 
+-	if ( $post == $post_obj-&gt;ID ) 
++	if ( $post == $post_obj-&gt;ID )
+ 		return true;
+-	elseif ( $post == $post_obj-&gt;post_title ) 
++	elseif ( $post == $post_obj-&gt;post_title )
+ 		return true;
+ 	elseif ( $post == $post_obj-&gt;post_name )
+ 		return true;
+@@ -1217,7 +1256,7 @@
+ 	}
+ 
+ 	$page_obj = $wp_query-&gt;get_queried_object();
+-		
++
+ 	if ($page == $page_obj-&gt;ID) {
+ 		return true;
+ 	} else if ($page == $page_obj-&gt;post_title) {
+@@ -1277,7 +1316,7 @@
+ 	}
+ 
+ 	$author_obj = $wp_query-&gt;get_queried_object();
+-		
++
+ 	if ($author == $author_obj-&gt;ID) {
+ 		return true;
+ 	} else if ($author == $author_obj-&gt;user_nickname) {
+@@ -1301,7 +1340,7 @@
+ 	}
+ 
+ 	$cat_obj = $wp_query-&gt;get_queried_object();
+-		
++
+ 	if ($category == $cat_obj-&gt;cat_ID) {
+ 		return true;
+ 	} else if ($category == $cat_obj-&gt;cat_name) {
+@@ -1510,8 +1549,8 @@
+ 
+ 	foreach($theme_files as $theme_file) {
+ 		$theme_data = get_theme_data(&quot;$theme_root/$theme_file&quot;);
+-	  
+-		$name = $theme_data['Name']; 
++
++		$name = $theme_data['Name'];
+ 		$title = $theme_data['Title'];
+ 		$description = wptexturize($theme_data['Description']);
+ 		$version = $theme_data['Version'];
+@@ -1538,21 +1577,21 @@
+ 			$wp_broken_themes[$name] = array('Name' =&gt; $name, 'Title' =&gt; $title, 'Description' =&gt; __('Template is missing.'));
+ 			continue;
+ 		}
+-		
++
+ 		$stylesheet_files = array();
+ 		$stylesheet_dir = @ dir(&quot;$theme_root/$stylesheet&quot;);
+ 		if ($stylesheet_dir) {
+ 			while(($file = $stylesheet_dir-&gt;read()) !== false) {
+-				if ( !preg_match('|^\.+$|', $file) &amp;&amp; preg_match('|\.css$|', $file) ) 
++				if ( !preg_match('|^\.+$|', $file) &amp;&amp; preg_match('|\.css$|', $file) )
+ 					$stylesheet_files[] = &quot;$theme_loc/$stylesheet/$file&quot;;
+ 			}
+ 		}
+ 
+-		$template_files = array();		
++		$template_files = array();
+ 		$template_dir = @ dir(&quot;$theme_root/$template&quot;);
+ 		if ($template_dir) {
+ 			while(($file = $template_dir-&gt;read()) !== false) {
+-				if ( !preg_match('|^\.+$|', $file) &amp;&amp; preg_match('|\.php$|', $file) ) 
++				if ( !preg_match('|^\.+$|', $file) &amp;&amp; preg_match('|\.php$|', $file) )
+ 					$template_files[] = &quot;$theme_loc/$template/$file&quot;;
+ 			}
+ 		}
+@@ -1580,7 +1619,7 @@
+ 				$name = &quot;$name/$stylesheet&quot;;
+ 			}
+ 		}
+-		
++
+ 		$themes[$name] = array('Name' =&gt; $name, 'Title' =&gt; $title, 'Description' =&gt; $description, 'Author' =&gt; $author, 'Version' =&gt; $version, 'Template' =&gt; $template, 'Stylesheet' =&gt; $stylesheet, 'Template Files' =&gt; $template_files, 'Stylesheet Files' =&gt; $stylesheet_files, 'Template Dir' =&gt; $template_dir, 'Stylesheet Dir' =&gt; $stylesheet_dir, 'Status' =&gt; $theme_data['Status']);
+ 	}
+ 
+@@ -1682,7 +1721,7 @@
+ function get_page_template() {
+ 	global $wp_query;
+ 
+-	$id = $wp_query-&gt;post-&gt;ID;	
++	$id = $wp_query-&gt;post-&gt;ID;
+ 	$template = get_post_meta($id, '_wp_page_template', true);
+ 
+ 	if ( 'default' == $template )
+@@ -1798,7 +1837,7 @@
+ 					$ret .= &quot;$k=$v&quot;;
+         }
+     }
+-	$ret = $base . $ret;   
++	$ret = $base . $ret;
+ 	return trim($ret, '?');
+ }
+ 
+@@ -1835,7 +1874,7 @@
+ 		while( $remote_read = fread($fp, 4096) )
+ 			$linea .= $remote_read;
+ 		fclose($fp);
+-		return $linea;		
++		return $linea;
+ 	} else if ( function_exists('curl_init') ) {
+ 		$handle = curl_init();
+ 		curl_setopt ($handle, CURLOPT_URL, $uri);
+@@ -1846,7 +1885,7 @@
+ 		return $buffer;
+ 	} else {
+ 		return false;
+-	}	
++	}
+ }
+ 
+ ?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-includes/gettext.php
+===================================================================
+--- trunk/wp-includes/gettext.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/gettext.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -2,7 +2,7 @@
+ /*
+    Copyright (c) 2003 Danilo Segan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">danilo at kvota.net</A>&gt;.
+    Copyright (c) 2005 Nico Kaiser &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">nico at siriux.net</A>&gt;
+-   
++
+    This file is part of PHP-gettext.
+ 
+    PHP-gettext is free software; you can redistribute it and/or modify
+@@ -20,23 +20,24 @@
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ 
+ */
+- 
++
+ /**
+  * Provides a simple gettext replacement that works independently from
+  * the system's gettext abilities.
+  * It can read MO files and use them for translating strings.
+  * The files are passed to gettext_reader as a Stream (see streams.php)
+- * 
++ *
+  * This version has the ability to cache all strings and translations to
+  * speed up the string lookup.
+  * While the cache is enabled by default, it can be switched off with the
+  * second parameter in the constructor (e.g. whenusing very large MO files
+  * that you don't want to keep in memory)
+  */
++
+ class gettext_reader {
+   //public:
+    var $error = 0; // public variable that holds error code (0 if no error)
+-   
++
+    //private:
+   var $BYTEORDER = 0;        // 0: low endian, 1: big endian
+   var $STREAM = NULL;
+@@ -52,11 +53,11 @@
+ 
+ 
+   /* Methods */
+-  
+-    
++
++
+   /**
+    * Reads a 32bit Integer from the Stream
+-   * 
++   *
+    * @access private
+    * @return Integer from the Stream
+    */
+@@ -72,7 +73,7 @@
+ 
+   /**
+    * Reads an array of Integers from the Stream
+-   * 
++   *
+    * @param int count How many elements should be read
+    * @return Array of Integers
+    */
+@@ -85,10 +86,10 @@
+         return unpack('N'.$count, $this-&gt;STREAM-&gt;read(4 * $count));
+       }
+   }
+-  
++
+   /**
+    * Constructor
+-   * 
++   *
+    * @param object Reader the StreamReader object
+    * @param boolean enable_cache Enable or disable caching of strings (default on)
+    */
+@@ -98,7 +99,7 @@
+       $this-&gt;short_circuit = true;
+       return;
+     }
+-    
++
+     // Caching can be turned off
+     $this-&gt;enable_cache = $enable_cache;
+ 
+@@ -117,20 +118,20 @@
+       $this-&gt;error = 1; // not MO file
+       return false;
+     }
+-    
++
+     // FIXME: Do we care about revision? We should.
+     $revision = $this-&gt;readint();
+-    
++
+     $this-&gt;total = $this-&gt;readint();
+     $this-&gt;originals = $this-&gt;readint();
+     $this-&gt;translations = $this-&gt;readint();
+   }
+-  
++
+   /**
+    * Loads the translation tables from the MO file into the cache
+    * If caching is enabled, also loads all strings into a cache
+    * to speed up translation lookups
+-   * 
++   *
+    * @access private
+    */
+   function load_tables() {
+@@ -138,13 +139,13 @@
+       is_array($this-&gt;table_originals) &amp;&amp;
+       is_array($this-&gt;table_translations))
+       return;
+-    
++
+     /* get original and translations tables */
+     $this-&gt;STREAM-&gt;seekto($this-&gt;originals);
+     $this-&gt;table_originals = $this-&gt;readintarray($this-&gt;total * 2);
+     $this-&gt;STREAM-&gt;seekto($this-&gt;translations);
+     $this-&gt;table_translations = $this-&gt;readintarray($this-&gt;total * 2);
+-    
++
+     if ($this-&gt;enable_cache) {
+       $this-&gt;cache_translations = array ();
+       /* read all strings in the cache */
+@@ -157,10 +158,10 @@
+       }
+     }
+   }
+-  
++
+   /**
+    * Returns a string from the &quot;originals&quot; table
+-   * 
++   *
+    * @access private
+    * @param int num Offset number of original string
+    * @return string Requested string if found, otherwise ''
+@@ -174,10 +175,10 @@
+     $data = $this-&gt;STREAM-&gt;read($length);
+     return (string)$data;
+   }
+-  
++
+   /**
+    * Returns a string from the &quot;translations&quot; table
+-   * 
++   *
+    * @access private
+    * @param int num Offset number of original string
+    * @return string Requested string if found, otherwise ''
+@@ -191,10 +192,10 @@
+     $data = $this-&gt;STREAM-&gt;read($length);
+     return (string)$data;
+   }
+-  
++
+   /**
+    * Binary search for string
+-   * 
++   *
+    * @access private
+    * @param string string
+    * @param int start (internally used in recursive function)
+@@ -232,10 +233,10 @@
+         return $this-&gt;find_string($string, $half, $end);
+     }
+   }
+-  
++
+   /**
+    * Translates a string
+-   * 
++   *
+    * @access public
+    * @param string string to be translated
+    * @return string translated string (or original, if not found)
+@@ -243,8 +244,8 @@
+   function translate($string) {
+     if ($this-&gt;short_circuit)
+       return $string;
+-    $this-&gt;load_tables();     
+-    
++    $this-&gt;load_tables();
++
+     if ($this-&gt;enable_cache) {
+       // Caching enabled, get translated string from cache
+       if (array_key_exists($string, $this-&gt;cache_translations))
+@@ -263,15 +264,15 @@
+ 
+   /**
+    * Get possible plural forms from MO header
+-   * 
++   *
+    * @access private
+    * @return string plural form header
+    */
+   function get_plural_forms() {
+-    // lets assume message number 0 is header  
++    // lets assume message number 0 is header
+     // this is true, right?
+     $this-&gt;load_tables();
+-    
++
+     // cache header field for plural forms
+     if (! is_string($this-&gt;pluralheader)) {
+       if ($this-&gt;enable_cache) {
+@@ -290,7 +291,7 @@
+ 
+   /**
+    * Detects which plural form to take
+-   * 
++   *
+    * @access private
+    * @param n count
+    * @return int array index of the right plural form
+@@ -300,7 +301,7 @@
+     $string = str_replace('nplurals',&quot;\$total&quot;,$string);
+     $string = str_replace(&quot;n&quot;,$n,$string);
+     $string = str_replace('plural',&quot;\$plural&quot;,$string);
+-    
++
+     $total = 0;
+     $plural = 0;
+ 
+@@ -311,7 +312,7 @@
+ 
+   /**
+    * Plural version of gettext
+-   * 
++   *
+    * @access public
+    * @param string single
+    * @param string plural
+@@ -327,12 +328,12 @@
+     }
+ 
+     // find out the appropriate form
+-    $select = $this-&gt;select_string($number); 
+-    
++    $select = $this-&gt;select_string($number);
++
+     // this should contains all strings separated by NULLs
+     $key = $single.chr(0).$plural;
+-    
+-    
++
++
+     if ($this-&gt;enable_cache) {
+       if (! array_key_exists($key, $this-&gt;cache_translations)) {
+         return ($number != 1) ? $plural : $single;
+
+Modified: trunk/wp-includes/links.php
+===================================================================
+--- trunk/wp-includes/links.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/links.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ /** function get_linksbyname()
+  ** Gets the links associated with category 'cat_name'.
+  ** Parameters:
+@@ -198,27 +237,27 @@
+     if (!$results) {
+         return;
+     }
+-    
++
+     $output = &quot;&quot;;
+-    
++
+     foreach ($results as $row) {
+ 		if (!isset($row-&gt;recently_updated)) $row-&gt;recently_updated = false;
+         $output .= ($before);
+-        
++
+         if ($show_updated &amp;&amp; $row-&gt;recently_updated) {
+             $output .= get_settings('links_recently_updated_prepend');
+         }
+-        
++
+         $the_link = '#';
+-        
++
+         if ( !empty($row-&gt;link_url) )
+             $the_link = wp_specialchars($row-&gt;link_url);
+         $rel = $row-&gt;link_rel;
+-        
++
+         if ($rel != '') {
+             $rel = &quot; rel='$rel'&quot;;
+         }
+-        
++
+         $desc = wp_specialchars($row-&gt;link_description, ENT_QUOTES);
+         $name = wp_specialchars($row-&gt;link_name, ENT_QUOTES);
+ 
+@@ -235,16 +274,16 @@
+         }
+ 
+         $alt = &quot; alt='$name'&quot;;
+-            
++
+         $target = $row-&gt;link_target;
+         if ('' != $target) {
+             $target = &quot; target='$target'&quot;;
+         }
+-        
++
+         $output.= &quot;&lt;a href='$the_link'&quot;;
+         $output.= $rel . $title . $target;
+         $output.= '&gt;';
+-        
++
+         if (($row-&gt;link_image != null) &amp;&amp; $show_images) {
+ 			if (strstr($row-&gt;link_image, 'http'))
+ 				$output.= &quot;&lt;img src='$row-&gt;link_image' $alt $title /&gt;&quot;;
+@@ -253,9 +292,9 @@
+         } else {
+             $output.= $name;
+         }
+-        
++
+         $output.= '&lt;/a&gt;';
+-        
++
+         if ($show_updated &amp;&amp; $row-&gt;recently_updated) {
+             $output.= get_settings('links_recently_updated_append');
+         }
+@@ -265,7 +304,7 @@
+         }
+         $output.= &quot;$after\n&quot;;
+     } // end while
+-    
++
+     if($echo) {
+ 	    echo $output;
+ 	} else {
+@@ -530,10 +569,10 @@
+ 	if (!isset($direction)) $direction = '';
+ 	// Fetch the link category data as an array of hashesa
+ 	$cats = $wpdb-&gt;get_results(&quot;
+-		SELECT DISTINCT link_category, cat_name, show_images, 
+-			show_description, show_rating, show_updated, sort_order, 
++		SELECT DISTINCT link_category, cat_name, show_images,
++			show_description, show_rating, show_updated, sort_order,
+ 			sort_desc, list_limit
+-		FROM `$wpdb-&gt;links` 
++		FROM `$wpdb-&gt;links`
+ 		LEFT JOIN `$wpdb-&gt;linkcategories` ON (link_category = cat_id)
+ 		WHERE link_visible =  'Y'
+ 			AND list_limit &lt;&gt; 0
+
+Modified: trunk/wp-includes/locale.php
+===================================================================
+--- trunk/wp-includes/locale.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/locale.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // Date and Time
+ 
+ // The Weekdays
+@@ -12,7 +51,7 @@
+ 
+ // The first letter of each day.  The _%day%_initial suffix is a hack to make
+ // sure the day initials are unique.  They should be translated to a one
+-// letter initial.  
++// letter initial.
+ $weekday_initial[__('Sunday')]    = __('S_Sunday_initial');
+ $weekday_initial[__('Monday')]    = __('M_Monday_initial');
+ $weekday_initial[__('Tuesday')]   = __('T_Tuesday_initial');
+
+Modified: trunk/wp-includes/pluggable-functions.php
+===================================================================
+--- trunk/wp-includes/pluggable-functions.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/pluggable-functions.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ 	/* These functions can be replaced via plugins.  They are loaded after
+ 	 plugins are loaded. */
+ 
+@@ -9,7 +48,7 @@
+ 	global $user_login, $userdata, $user_level, $user_ID, $user_nickname, $user_email, $user_url, $user_pass_md5, $user_identity;
+ 	// *** retrieving user's data from cookies and db - no spoofing
+ 
+-	if (isset($_COOKIE['wordpressuser_' . COOKIEHASH])) 
++	if (isset($_COOKIE['wordpressuser_' . COOKIEHASH]))
+ 		$user_login = $_COOKIE['wordpressuser_' . COOKIEHASH];
+ 	$userdata = get_userdatabylogin($user_login);
+ 	$user_level = $userdata-&gt;user_level;
+@@ -37,7 +76,7 @@
+ 	if ( empty($cache_userdata[$userid]) &amp;&amp; $userid != 0) {
+ 		$cache_userdata[$userid] = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;users WHERE ID = $userid&quot;);
+ 		$cache_userdata[$cache_userdata[$userid]-&gt;user_login] =&amp; $cache_userdata[$userid];
+-	} 
++	}
+ 
+ 	return $cache_userdata[$userid];
+ }
+@@ -61,7 +100,7 @@
+ function wp_mail($to, $subject, $message, $headers = '') {
+ 	if( $headers == '' ) {
+ 		$headers = &quot;MIME-Version: 1.0\n&quot; .
+-			&quot;From: &quot; . get_settings('admin_email') . &quot;\n&quot; . 
++			&quot;From: &quot; . get_settings('admin_email') . &quot;\n&quot; .
+ 			&quot;Content-Type: text/plain; charset=\&quot;&quot; . get_settings('blog_charset') . &quot;\&quot;\n&quot;;
+ 	}
+ 
+@@ -103,14 +142,14 @@
+ if ( !function_exists('auth_redirect') ) :
+ function auth_redirect() {
+ 	// Checks if a user is logged in, if not redirects them to the login page
+-	if ( (!empty($_COOKIE['wordpressuser_' . COOKIEHASH]) &amp;&amp; 
++	if ( (!empty($_COOKIE['wordpressuser_' . COOKIEHASH]) &amp;&amp;
+ 				!wp_login($_COOKIE['wordpressuser_' . COOKIEHASH], $_COOKIE['wordpresspass_' . COOKIEHASH], true)) ||
+ 			 (empty($_COOKIE['wordpressuser_' . COOKIEHASH])) ) {
+ 		header('Expires: Wed, 11 Jan 1984 05:00:00 GMT');
+ 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+ 		header('Cache-Control: no-cache, must-revalidate, max-age=0');
+ 		header('Pragma: no-cache');
+-	
++
+ 		header('Location: ' . get_settings('siteurl') . '/wp-login.php?redirect_to=' . urlencode($_SERVER['REQUEST_URI']));
+ 		exit();
+ 	}
+@@ -170,7 +209,7 @@
+ if ( ! function_exists('wp_notify_postauthor') ) :
+ function wp_notify_postauthor($comment_id, $comment_type='') {
+ 	global $wpdb;
+-    
++
+ 	$comment = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;comments WHERE comment_ID='$comment_id' LIMIT 1&quot;);
+ 	$post = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;posts WHERE ID='$comment-&gt;comment_post_ID' LIMIT 1&quot;);
+ 	$user = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;users WHERE ID='$post-&gt;post_author' LIMIT 1&quot;);
+@@ -180,9 +219,9 @@
+ 	$comment_author_domain = gethostbyaddr($comment-&gt;comment_author_IP);
+ 
+ 	$blogname = get_settings('blogname');
+-	
++
+ 	if ( empty( $comment_type ) ) $comment_type = 'comment';
+-	
++
+ 	if ('comment' == $comment_type) {
+ 		$notify_message  = sprintf( __('New comment on your post #%1$s &quot;%2$s&quot;'), $comment-&gt;comment_post_ID, $post-&gt;post_title ) . &quot;\r\n&quot;;
+ 		$notify_message .= sprintf( __('Author : %1$s (IP: %2$s , %3$s)'), $comment-&gt;comment_author, $comment-&gt;comment_author_IP, $comment_author_domain ) . &quot;\r\n&quot;;
+@@ -225,7 +264,7 @@
+ 		. &quot;Content-Type: text/plain; charset=\&quot;&quot; . get_settings('blog_charset') . &quot;\&quot;\n&quot;;
+ 
+ 	@wp_mail($user-&gt;user_email, $subject, $notify_message, $message_headers);
+-   
++
+ 	return true;
+ }
+ endif;
+@@ -240,8 +279,8 @@
+ 	global $wpdb;
+ 
+ 	if( get_settings( &quot;moderation_notify&quot; ) == 0 )
+-		return true; 
+-    
++		return true;
++
+ 	$comment = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;comments WHERE comment_ID='$comment_id' LIMIT 1&quot;);
+ 	$post = $wpdb-&gt;get_row(&quot;SELECT * FROM $wpdb-&gt;posts WHERE ID='$comment-&gt;comment_post_ID' LIMIT 1&quot;);
+ 
+@@ -267,7 +306,7 @@
+ 	$subject = apply_filters('comment_moderation_subject', $subject);
+ 
+ 	@wp_mail($admin_email, $subject, $notify_message);
+-    
++
+ 	return true;
+ }
+ endif;
+
+Modified: trunk/wp-includes/rss-functions.php
+===================================================================
+--- trunk/wp-includes/rss-functions.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/rss-functions.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ /*
+  * Project:     MagpieRSS: a simple RSS integration tool
+  * File:        A compiled file for RSS syndication
+@@ -9,9 +48,9 @@
+ 
+ define('RSS', 'RSS');
+ define('ATOM', 'Atom');
+-define('MAGPIE_USER_AGENT', 'WordPress/' . $wp_version);
++define('MAGPIE_USER_AGENT', 'SteamPress/' . $wp_version);
+ 
+-class MagpieRSS { 
++class MagpieRSS {
+ 	var $parser;
+ 	var $current_item	= array();	// item currently being parsed
+ 	var $items			= array();	// collection of parsed items
+@@ -25,28 +64,28 @@
+ 	var $stack				= array(); // parser stack
+ 	var $inchannel			= false;
+ 	var $initem 			= false;
+-	var $incontent			= false; // if in Atom &lt;content mode=&quot;xml&quot;&gt; field 
++	var $incontent			= false; // if in Atom &lt;content mode=&quot;xml&quot;&gt; field
+ 	var $intextinput		= false;
+ 	var $inimage 			= false;
+ 	var $current_field		= '';
+ 	var $current_namespace	= false;
+-	
++
+ 	//var $ERROR = &quot;&quot;;
+-	
++
+ 	var $_CONTENT_CONSTRUCTS = array('content', 'summary', 'info', 'title', 'tagline', 'copyright');
+ 
+ 	function MagpieRSS ($source) {
+-		
++
+ 		# if PHP xml isn't compiled in, die
+ 		#
+ 		if (!function_exists('xml_parser_create')) {
+-			$this-&gt;error( &quot;Failed to load PHP's XML Extension. &quot; . 
++			$this-&gt;error( &quot;Failed to load PHP's XML Extension. &quot; .
+ 						  &quot;<A HREF="http://www.php.net/manual/en/ref.xml.php">http://www.php.net/manual/en/ref.xml.php</A>&quot;,
+ 						   E_USER_ERROR );
+ 		}
+-		
++
+ 		$parser = @xml_parser_create();
+-		
++
+ 		if (!is_resource($parser))
+ 		{
+ 			$this-&gt;error( &quot;Failed to create an instance of PHP's XML parser. &quot; .
+@@ -54,20 +93,20 @@
+ 						  E_USER_ERROR );
+ 		}
+ 
+-		
++
+ 		$this-&gt;parser = $parser;
+-		
++
+ 		# pass in parser, and a reference to this object
+ 		# setup handlers
+ 		#
+ 		xml_set_object( $this-&gt;parser, $this );
+-		xml_set_element_handler($this-&gt;parser, 
++		xml_set_element_handler($this-&gt;parser,
+ 				'feed_start_element', 'feed_end_element' );
+-						
+-		xml_set_character_data_handler( $this-&gt;parser, 'feed_cdata' ); 
+-	
++
++		xml_set_character_data_handler( $this-&gt;parser, 'feed_cdata' );
++
+ 		$status = xml_parse( $this-&gt;parser, $source );
+-		
++
+ 		if (! $status ) {
+ 			$errorcode = xml_get_error_code( $this-&gt;parser );
+ 			if ( $errorcode != XML_ERROR_NONE ) {
+@@ -79,25 +118,25 @@
+ 				$this-&gt;error( $errormsg );
+ 			}
+ 		}
+-		
++
+ 		xml_parser_free( $this-&gt;parser );
+ 
+ 		$this-&gt;normalize();
+ 	}
+-	
++
+ 	function feed_start_element($p, $element, &amp;$attrs) {
+ 		$el = $element = strtolower($element);
+ 		$attrs = array_change_key_case($attrs, CASE_LOWER);
+-		
++
+ 		// check for a namespace, and split if found
+ 		$ns	= false;
+ 		if ( strpos( $element, ':' ) ) {
+-			list($ns, $el) = split( ':', $element, 2); 
++			list($ns, $el) = split( ':', $element, 2);
+ 		}
+ 		if ( $ns and $ns != 'rdf' ) {
+ 			$this-&gt;current_namespace = $ns;
+ 		}
+-			
++
+ 		# if feed type isn't set, then this is first element of feed
+ 		# identify feed from root element
+ 		#
+@@ -117,37 +156,37 @@
+ 			}
+ 			return;
+ 		}
+-	
+-		if ( $el == 'channel' ) 
++
++		if ( $el == 'channel' )
+ 		{
+ 			$this-&gt;inchannel = true;
+ 		}
+-		elseif ($el == 'item' or $el == 'entry' ) 
++		elseif ($el == 'item' or $el == 'entry' )
+ 		{
+ 			$this-&gt;initem = true;
+ 			if ( isset($attrs['rdf:about']) ) {
+-				$this-&gt;current_item['about'] = $attrs['rdf:about'];	
++				$this-&gt;current_item['about'] = $attrs['rdf:about'];
+ 			}
+ 		}
+-		
++
+ 		// if we're in the default namespace of an RSS feed,
+ 		//  record textinput or image fields
+-		elseif ( 
+-			$this-&gt;feed_type == RSS and 
+-			$this-&gt;current_namespace == '' and 
+-			$el == 'textinput' ) 
++		elseif (
++			$this-&gt;feed_type == RSS and
++			$this-&gt;current_namespace == '' and
++			$el == 'textinput' )
+ 		{
+ 			$this-&gt;intextinput = true;
+ 		}
+-		
++
+ 		elseif (
+-			$this-&gt;feed_type == RSS and 
+-			$this-&gt;current_namespace == '' and 
+-			$el == 'image' ) 
++			$this-&gt;feed_type == RSS and
++			$this-&gt;current_namespace == '' and
++			$el == 'image' )
+ 		{
+ 			$this-&gt;inimage = true;
+ 		}
+-		
++
+ 		# handle atom content constructs
+ 		elseif ( $this-&gt;feed_type == ATOM and in_array($el, $this-&gt;_CONTENT_CONSTRUCTS) )
+ 		{
+@@ -155,40 +194,40 @@
+ 			if ($el == 'content' ) {
+ 				$el = 'atom_content';
+ 			}
+-			
++
+ 			$this-&gt;incontent = $el;
+-			
+-			
++
++
+ 		}
+-		
++
+ 		// if inside an Atom content construct (e.g. content or summary) field treat tags as text
+-		elseif ($this-&gt;feed_type == ATOM and $this-&gt;incontent ) 
++		elseif ($this-&gt;feed_type == ATOM and $this-&gt;incontent )
+ 		{
+ 			// if tags are inlined, then flatten
+-			$attrs_str = join(' ', 
+-					array_map('map_attrs', 
+-					array_keys($attrs), 
++			$attrs_str = join(' ',
++					array_map('map_attrs',
++					array_keys($attrs),
+ 					array_values($attrs) ) );
+-			
++
+ 			$this-&gt;append_content( &quot;&lt;$element $attrs_str&gt;&quot;  );
+-					
++
+ 			array_unshift( $this-&gt;stack, $el );
+ 		}
+-		
++
+ 		// Atom support many links per containging element.
+ 		// Magpie treats link elements of type rel='alternate'
+ 		// as being equivalent to RSS's simple link element.
+ 		//
+-		elseif ($this-&gt;feed_type == ATOM and $el == 'link' ) 
++		elseif ($this-&gt;feed_type == ATOM and $el == 'link' )
+ 		{
+-			if ( isset($attrs['rel']) and $attrs['rel'] == 'alternate' ) 
++			if ( isset($attrs['rel']) and $attrs['rel'] == 'alternate' )
+ 			{
+ 				$link_el = 'link';
+ 			}
+ 			else {
+ 				$link_el = 'link_' . $attrs['rel'];
+ 			}
+-			
++
+ 			$this-&gt;append($link_el, $attrs['href']);
+ 		}
+ 		// set stack[0] to current element
+@@ -196,12 +235,12 @@
+ 			array_unshift($this-&gt;stack, $el);
+ 		}
+ 	}
+-	
+ 
+-	
++
++
+ 	function feed_cdata ($p, $text) {
+-		
+-		if ($this-&gt;feed_type == ATOM and $this-&gt;incontent) 
++
++		if ($this-&gt;feed_type == ATOM and $this-&gt;incontent)
+ 		{
+ 			$this-&gt;append_content( $text );
+ 		}
+@@ -210,36 +249,36 @@
+ 			$this-&gt;append($current_el, $text);
+ 		}
+ 	}
+-	
++
+ 	function feed_end_element ($p, $el) {
+ 		$el = strtolower($el);
+-		
+-		if ( $el == 'item' or $el == 'entry' ) 
++
++		if ( $el == 'item' or $el == 'entry' )
+ 		{
+ 			$this-&gt;items[] = $this-&gt;current_item;
+ 			$this-&gt;current_item = array();
+ 			$this-&gt;initem = false;
+ 		}
+-		elseif ($this-&gt;feed_type == RSS and $this-&gt;current_namespace == '' and $el == 'textinput' ) 
++		elseif ($this-&gt;feed_type == RSS and $this-&gt;current_namespace == '' and $el == 'textinput' )
+ 		{
+ 			$this-&gt;intextinput = false;
+ 		}
+-		elseif ($this-&gt;feed_type == RSS and $this-&gt;current_namespace == '' and $el == 'image' ) 
++		elseif ($this-&gt;feed_type == RSS and $this-&gt;current_namespace == '' and $el == 'image' )
+ 		{
+ 			$this-&gt;inimage = false;
+ 		}
+ 		elseif ($this-&gt;feed_type == ATOM and in_array($el, $this-&gt;_CONTENT_CONSTRUCTS) )
+-		{	
++		{
+ 			$this-&gt;incontent = false;
+ 		}
+-		elseif ($el == 'channel' or $el == 'feed' ) 
++		elseif ($el == 'channel' or $el == 'feed' )
+ 		{
+ 			$this-&gt;inchannel = false;
+ 		}
+ 		elseif ($this-&gt;feed_type == ATOM and $this-&gt;incontent  ) {
+ 			// balance tags properly
+ 			// note:  i don't think this is actually neccessary
+-			if ( $this-&gt;stack[0] == $el ) 
++			if ( $this-&gt;stack[0] == $el )
+ 			{
+ 				$this-&gt;append_content(&quot;&lt;/$el&gt;&quot;);
+ 			}
+@@ -252,17 +291,17 @@
+ 		else {
+ 			array_shift( $this-&gt;stack );
+ 		}
+-		
++
+ 		$this-&gt;current_namespace = false;
+ 	}
+-	
++
+ 	function concat (&amp;$str1, $str2=&quot;&quot;) {
+ 		if (!isset($str1) ) {
+ 			$str1=&quot;&quot;;
+ 		}
+ 		$str1 .= $str2;
+ 	}
+-	
++
+ 	function append_content($text) {
+ 		if ( $this-&gt;initem ) {
+ 			$this-&gt;concat( $this-&gt;current_item[ $this-&gt;incontent ], $text );
+@@ -271,13 +310,13 @@
+ 			$this-&gt;concat( $this-&gt;channel[ $this-&gt;incontent ], $text );
+ 		}
+ 	}
+-	
++
+ 	// smart append - field and namespace aware
+ 	function append($el, $text) {
+ 		if (!$el) {
+ 			return;
+ 		}
+-		if ( $this-&gt;current_namespace ) 
++		if ( $this-&gt;current_namespace )
+ 		{
+ 			if ( $this-&gt;initem ) {
+ 				$this-&gt;concat(
+@@ -313,10 +352,10 @@
+ 				$this-&gt;concat(
+ 					$this-&gt;channel[ $el ], $text );
+ 			}
+-			
++
+ 		}
+ 	}
+-	
++
+ 	function normalize () {
+ 		// if atom populate rss fields
+ 		if ( $this-&gt;is_atom() ) {
+@@ -327,9 +366,9 @@
+ 					$item['description'] = $item['summary'];
+ 				if ( isset($item['atom_content']))
+ 					$item['content']['encoded'] = $item['atom_content'];
+-				
++
+ 				$this-&gt;items[$i] = $item;
+-			}		
++			}
+ 		}
+ 		elseif ( $this-&gt;is_rss() ) {
+ 			$this-&gt;channel['tagline'] = $this-&gt;channel['description'];
+@@ -339,21 +378,21 @@
+ 					$item['summary'] = $item['description'];
+ 				if ( isset($item['content']['encoded'] ) )
+ 					$item['atom_content'] = $item['content']['encoded'];
+-			
++
+ 				$this-&gt;items[$i] = $item;
+ 			}
+ 		}
+ 	}
+-	
++
+ 	function is_rss () {
+ 		if ( $this-&gt;feed_type == RSS ) {
+-			return $this-&gt;feed_version;	
++			return $this-&gt;feed_version;
+ 		}
+ 		else {
+ 			return false;
+ 		}
+ 	}
+-	
++
+ 	function is_atom() {
+ 		if ( $this-&gt;feed_type == ATOM ) {
+ 			return $this-&gt;feed_version;
+@@ -372,12 +411,12 @@
+ function fetch_rss ($url) {
+ 	// initialize constants
+ 	init();
+-	
++
+ 	if ( !isset($url) ) {
+ 		error(&quot;fetch_rss called without a url&quot;);
+ 		return false;
+ 	}
+-	
++
+ 	// if cache is disabled
+ 	if ( !MAGPIE_CACHE_ON ) {
+ 		// fetch file, and parse it
+@@ -389,7 +428,7 @@
+ 			error(&quot;Failed to fetch $url and cache is off&quot;);
+ 			return false;
+ 		}
+-	} 
++	}
+ 	// else cache is ON
+ 	else {
+ 		// Flow
+@@ -397,19 +436,19 @@
+ 		// 2. if there is a hit, make sure its fresh
+ 		// 3. if cached obj fails freshness check, fetch remote
+ 		// 4. if remote fails, return stale object, or error
+-		
++
+ 		$cache = new RSSCache( MAGPIE_CACHE_DIR, MAGPIE_CACHE_AGE );
+-		
++
+ 		if (MAGPIE_DEBUG and $cache-&gt;ERROR) {
+ 			debug($cache-&gt;ERROR, E_USER_WARNING);
+ 		}
+-		
+-		
++
++
+ 		$cache_status 	 = 0;		// response of check_cache
+ 		$request_headers = array(); // HTTP headers to send with fetch
+ 		$rss 			 = 0;		// parsed RSS object
+ 		$errormsg		 = 0;		// errors, if any
+-		
++
+ 		if (!$cache-&gt;ERROR) {
+ 			// return cache HIT, MISS, or STALE
+ 			$cache_status = $cache-&gt;check_cache( $url );
+@@ -426,9 +465,9 @@
+ 				return $rss;
+ 			}
+ 		}
+-		
++
+ 		// else attempt a conditional get
+-		
++
+ 		// setup headers
+ 		if ( $cache_status == 'STALE' ) {
+ 			$rss = $cache-&gt;get( $url );
+@@ -437,9 +476,9 @@
+ 				$request_headers['If-Last-Modified'] = $rss-&gt;last_modified;
+ 			}
+ 		}
+-		
++
+ 		$resp = _fetch_remote_file( $url, $request_headers );
+-		
++
+ 		if (isset($resp) and $resp) {
+ 			if ($resp-&gt;status == '304' ) {
+ 				// we have the most current copy
+@@ -466,7 +505,7 @@
+ 				if ( $resp-&gt;error ) {
+ 					# compensate for Snoopy's annoying habbit to tacking
+ 					# on '\n'
+-					$http_error = substr($resp-&gt;error, 0, -2); 
++					$http_error = substr($resp-&gt;error, 0, -2);
+ 					$errormsg .= &quot;(HTTP Error: $http_error)&quot;;
+ 				}
+ 				else {
+@@ -477,9 +516,9 @@
+ 		else {
+ 			$errormsg = &quot;Unable to retrieve RSS file for unknown reasons.&quot;;
+ 		}
+-		
++
+ 		// else fetch failed
+-		
++
+ 		// attempt to return cached object
+ 		if ($rss) {
+ 			if ( MAGPIE_DEBUG ) {
+@@ -487,12 +526,12 @@
+ 			}
+ 			return $rss;
+ 		}
+-		
++
+ 		// else we totally failed
+-		error( $errormsg );	
+-		
++		error( $errormsg );
++
+ 		return false;
+-		
++
+ 	} // end if ( !MAGPIE_CACHE_ON ) {
+ } // end fetch_rss()
+ 
+@@ -505,7 +544,7 @@
+ 	if (is_array($headers) ) {
+ 		$client-&gt;rawheaders = $headers;
+ 	}
+-	
++
+ 	@$client-&gt;fetch($url);
+ 	return $client;
+ 
+@@ -513,10 +552,10 @@
+ 
+ function _response_to_rss ($resp) {
+ 	$rss = new MagpieRSS( $resp-&gt;results );
+-	
+-	// if RSS parsed successfully		
++
++	// if RSS parsed successfully
+ 	if ( $rss and !$rss-&gt;ERROR) {
+-		
++
+ 		// find Etag, and Last-Modified
+ 		foreach($resp-&gt;headers as $h) {
+ 			// 2003-03-02 - Nicola Asuni (www.tecnick.com) - fixed bug &quot;Undefined offset: 1&quot;
+@@ -527,26 +566,26 @@
+ 				$field = $h;
+ 				$val = &quot;&quot;;
+ 			}
+-			
++
+ 			if ( $field == 'ETag' ) {
+ 				$rss-&gt;etag = $val;
+ 			}
+-			
++
+ 			if ( $field == 'Last-Modified' ) {
+ 				$rss-&gt;last_modified = $val;
+ 			}
+ 		}
+-		
+-		return $rss;	
++
++		return $rss;
+ 	} // else construct error message
+ 	else {
+ 		$errormsg = &quot;Failed to parse RSS file.&quot;;
+-		
++
+ 		if ($rss) {
+ 			$errormsg .= &quot; (&quot; . $rss-&gt;ERROR . &quot;)&quot;;
+ 		}
+ 		error($errormsg);
+-		
++
+ 		return false;
+ 	} // end if ($rss and !$rss-&gt;error)
+ }
+@@ -563,7 +602,7 @@
+ 	else {
+ 		define('MAGPIE_INITALIZED', 1);
+ 	}
+-	
++
+ 	if ( !defined('MAGPIE_CACHE_ON') ) {
+ 		define('MAGPIE_CACHE_ON', 1);
+ 	}
+@@ -579,63 +618,63 @@
+ 	if ( !defined('MAGPIE_CACHE_FRESH_ONLY') ) {
+ 		define('MAGPIE_CACHE_FRESH_ONLY', 0);
+ 	}
+-	
++
+ 		if ( !defined('MAGPIE_DEBUG') ) {
+ 		define('MAGPIE_DEBUG', 0);
+ 	}
+ 
+ 	if ( !defined('MAGPIE_USER_AGENT') ) {
+ 		$ua = 'WordPress/' . $wp_version;
+-		
++
+ 		if ( MAGPIE_CACHE_ON ) {
+ 			$ua = $ua . ')';
+ 		}
+ 		else {
+ 			$ua = $ua . '; No cache)';
+ 		}
+-		
++
+ 		define('MAGPIE_USER_AGENT', $ua);
+ 	}
+-	
++
+ 	if ( !defined('MAGPIE_FETCH_TIME_OUT') ) {
+ 		define('MAGPIE_FETCH_TIME_OUT', 2);	// 2 second timeout
+ 	}
+-	
++
+ 	// use gzip encoding to fetch rss files if supported?
+ 	if ( !defined('MAGPIE_USE_GZIP') ) {
+-		define('MAGPIE_USE_GZIP', true);	
++		define('MAGPIE_USE_GZIP', true);
+ 	}
+ }
+ 
+-function is_info ($sc) { 
+-	return $sc &gt;= 100 &amp;&amp; $sc &lt; 200; 
++function is_info ($sc) {
++	return $sc &gt;= 100 &amp;&amp; $sc &lt; 200;
+ }
+ 
+-function is_success ($sc) { 
+-	return $sc &gt;= 200 &amp;&amp; $sc &lt; 300; 
++function is_success ($sc) {
++	return $sc &gt;= 200 &amp;&amp; $sc &lt; 300;
+ }
+ 
+-function is_redirect ($sc) { 
+-	return $sc &gt;= 300 &amp;&amp; $sc &lt; 400; 
++function is_redirect ($sc) {
++	return $sc &gt;= 300 &amp;&amp; $sc &lt; 400;
+ }
+ 
+-function is_error ($sc) { 
+-	return $sc &gt;= 400 &amp;&amp; $sc &lt; 600; 
++function is_error ($sc) {
++	return $sc &gt;= 400 &amp;&amp; $sc &lt; 600;
+ }
+ 
+-function is_client_error ($sc) { 
+-	return $sc &gt;= 400 &amp;&amp; $sc &lt; 500; 
++function is_client_error ($sc) {
++	return $sc &gt;= 400 &amp;&amp; $sc &lt; 500;
+ }
+ 
+-function is_server_error ($sc) { 
+-	return $sc &gt;= 500 &amp;&amp; $sc &lt; 600; 
++function is_server_error ($sc) {
++	return $sc &gt;= 500 &amp;&amp; $sc &lt; 600;
+ }
+ 
+ class RSSCache {
+ 	var $BASE_CACHE = 'wp-content/cache';	// where the cache files are stored
+ 	var $MAX_AGE	= 43200;  		// when are files stale, default twelve hours
+ 	var $ERROR 		= '';			// accumulate error messages
+-	
++
+ 	function RSSCache ($base='', $age='') {
+ 		if ( $base ) {
+ 			$this-&gt;BASE_CACHE = $base;
+@@ -643,50 +682,50 @@
+ 		if ( $age ) {
+ 			$this-&gt;MAX_AGE = $age;
+ 		}
+-	
++
+ 	}
+-	
++
+ /*=======================================================================*\
+ 	Function:	set
+ 	Purpose:	add an item to the cache, keyed on url
+ 	Input:		url from wich the rss file was fetched
+-	Output:		true on sucess	
++	Output:		true on sucess
+ \*=======================================================================*/
+ 	function set ($url, $rss) {
+ 		global $wpdb;
+ 		$cache_option = 'rss_' . $this-&gt;file_name( $url );
+ 		$cache_timestamp = 'rss_' . $this-&gt;file_name( $url ) . '_ts';
+-		
++
+ 		if ( !$wpdb-&gt;get_var(&quot;SELECT option_name FROM $wpdb-&gt;options WHERE option_name = '$cache_option'&quot;) )
+ 			add_option($cache_option, '', '', 'no');
+ 		if ( !$wpdb-&gt;get_var(&quot;SELECT option_name FROM $wpdb-&gt;options WHERE option_name = '$cache_timestamp'&quot;) )
+ 			add_option($cache_timestamp, '', '', 'no');
+-		
++
+ 		update_option($cache_option, $rss);
+ 		update_option($cache_timestamp, time() );
+-		
++
+ 		return $cache_option;
+ 	}
+-	
++
+ /*=======================================================================*\
+ 	Function:	get
+ 	Purpose:	fetch an item from the cache
+ 	Input:		url from wich the rss file was fetched
+-	Output:		cached object on HIT, false on MISS	
+-\*=======================================================================*/	
++	Output:		cached object on HIT, false on MISS
++\*=======================================================================*/
+ 	function get ($url) {
+ 		$this-&gt;ERROR = &quot;&quot;;
+ 		$cache_option = 'rss_' . $this-&gt;file_name( $url );
+-		
++
+ 		if ( ! get_option( $cache_option ) ) {
+-			$this-&gt;debug( 
++			$this-&gt;debug(
+ 				&quot;Cache doesn't contain: $url (cache option: $cache_option)&quot;
+ 			);
+ 			return 0;
+ 		}
+-		
++
+ 		$rss = get_option( $cache_option );
+-		
++
+ 		return $rss;
+ 	}
+ 
+@@ -695,8 +734,8 @@
+ 	Purpose:	check a url for membership in the cache
+ 				and whether the object is older then MAX_AGE (ie. STALE)
+ 	Input:		url from wich the rss file was fetched
+-	Output:		cached object on HIT, false on MISS	
+-\*=======================================================================*/		
++	Output:		cached object on HIT, false on MISS
++\*=======================================================================*/
+ 	function check_cache ( $url ) {
+ 		$this-&gt;ERROR = &quot;&quot;;
+ 		$cache_option = $this-&gt;file_name( $url );
+@@ -723,35 +762,35 @@
+ 
+ /*=======================================================================*\
+ 	Function:	serialize
+-\*=======================================================================*/		
++\*=======================================================================*/
+ 	function serialize ( $rss ) {
+ 		return serialize( $rss );
+ 	}
+ 
+ /*=======================================================================*\
+ 	Function:	unserialize
+-\*=======================================================================*/		
++\*=======================================================================*/
+ 	function unserialize ( $data ) {
+ 		return unserialize( $data );
+ 	}
+-	
++
+ /*=======================================================================*\
+ 	Function:	file_name
+ 	Purpose:	map url to location in cache
+ 	Input:		url from wich the rss file was fetched
+ 	Output:		a file name
+-\*=======================================================================*/		
++\*=======================================================================*/
+ 	function file_name ($url) {
+ 		return md5( $url );
+ 	}
+-	
++
+ /*=======================================================================*\
+ 	Function:	error
+ 	Purpose:	register error
+-\*=======================================================================*/			
++\*=======================================================================*/
+ 	function error ($errormsg, $lvl=E_USER_WARNING) {
+ 		// append PHP's error message if track_errors enabled
+-		if ( isset($php_errormsg) ) { 
++		if ( isset($php_errormsg) ) {
+ 			$errormsg .= &quot; ($php_errormsg)&quot;;
+ 		}
+ 		$this-&gt;ERROR = $errormsg;
+@@ -770,17 +809,17 @@
+ }
+ 
+ function parse_w3cdtf ( $date_str ) {
+-	
++
+ 	# regex to match wc3dtf
+ 	$pat = &quot;/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(:(\d{2}))?(?:([-+])(\d{2}):?(\d{2})|(Z))?/&quot;;
+-	
++
+ 	if ( preg_match( $pat, $date_str, $match ) ) {
+-		list( $year, $month, $day, $hours, $minutes, $seconds) = 
++		list( $year, $month, $day, $hours, $minutes, $seconds) =
+ 			array( $match[1], $match[2], $match[3], $match[4], $match[5], $match[6]);
+-		
++
+ 		# calc epoch for current date assuming GMT
+ 		$epoch = gmmktime( $hours, $minutes, $seconds, $month, $day, $year);
+-		
++
+ 		$offset = 0;
+ 		if ( $match[10] == 'Z' ) {
+ 			# zulu time, aka GMT
+@@ -788,20 +827,20 @@
+ 		else {
+ 			list( $tz_mod, $tz_hour, $tz_min ) =
+ 				array( $match[8], $match[9], $match[10]);
+-			
++
+ 			# zero out the variables
+ 			if ( ! $tz_hour ) { $tz_hour = 0; }
+ 			if ( ! $tz_min ) { $tz_min = 0; }
+-		
++
+ 			$offset_secs = (($tz_hour*60)+$tz_min)*60;
+-			
++
+ 			# is timezone ahead of GMT?  then subtract offset
+ 			#
+ 			if ( $tz_mod == '+' ) {
+ 				$offset_secs = $offset_secs * -1;
+ 			}
+-			
+-			$offset = $offset_secs;	
++
++			$offset = $offset_secs;
+ 		}
+ 		$epoch = $epoch + $offset;
+ 		return $epoch;
+@@ -823,7 +862,7 @@
+ 					echo htmlentities($item['title']);
+ 					echo &quot;&lt;/a&gt;&lt;br /&gt;\n&quot;;
+ 					echo &quot;&lt;/li&gt;\n&quot;;
+-				}		
++				}
+ 			echo &quot;&lt;/ul&gt;&quot;;
+ 	}
+ 		else {
+
+Modified: trunk/wp-includes/template-functions-author.php
+===================================================================
+--- trunk/wp-includes/template-functions-author.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/template-functions-author.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ function get_the_author($idmode = '') {
+     global $authordata;
+     if (empty($idmode)) {
+@@ -12,7 +51,7 @@
+     if ($idmode == 'namefl')    $id = $authordata-&gt;user_firstname.' '.$authordata-&gt;user_lastname;
+     if ($idmode == 'namelf')    $id = $authordata-&gt;user_lastname.' '.$authordata-&gt;user_firstname;
+     if (!$idmode) $id = $authordata-&gt;user_nickname;
+-    
++
+     return $id;
+ }
+ function the_author($idmode = '', $echo = true) {
+@@ -126,7 +165,7 @@
+ 	global $wpdb, $wp_rewrite, $post, $cache_userdata;
+     $auth_ID = $author_id;
+     $link = $wp_rewrite-&gt;get_author_permastruct();
+-    
++
+     if (empty($link)) {
+         $file = get_settings('home') . '/';
+         $link = $file . '?author=' . $auth_ID;
+@@ -166,7 +205,7 @@
+         if ($show_fullname &amp;&amp; ($author-&gt;user_firstname != '' &amp;&amp; $author-&gt;user_lastname != '')) {
+             $name = &quot;$author-&gt;user_firstname $author-&gt;user_lastname&quot;;
+         }
+-        
++
+         if (! ($posts == 0 &amp;&amp; $hide_empty)) echo &quot;&lt;li&gt;&quot;;
+         if ($posts == 0) {
+             if ( !$hide_empty )
+@@ -175,7 +214,7 @@
+             $link = '&lt;a href=&quot;' . get_author_link(0, $author-&gt;ID, $author-&gt;user_nicename) . '&quot; title=&quot;' . sprintf(__(&quot;Posts by %s&quot;), wp_specialchars($author-&gt;user_nickname)) . '&quot;&gt;' . $name . '&lt;/a&gt;';
+ 
+             if ( (! empty($feed_image)) || (! empty($feed)) ) {
+-                
++
+                 $link .= ' ';
+ 
+                 if (empty($feed_image)) {
+@@ -198,7 +237,7 @@
+                 } else {
+                     $link .= $name;
+                 }
+-                
++
+                 $link .= '&lt;/a&gt;';
+ 
+                 if (empty($feed_image)) {
+
+Modified: trunk/wp-includes/template-functions-category.php
+===================================================================
+--- trunk/wp-includes/template-functions-category.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/template-functions-category.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function get_the_category($id = false) {
+     global $post, $category_cache;
+ 
+@@ -30,7 +69,7 @@
+ 		$category = &amp;get_category($category_id);
+ 		$category_nicename = $category-&gt;category_nicename;
+ 
+-		if ($parent = $category-&gt;category_parent) 
++		if ($parent = $category-&gt;category_parent)
+ 			$category_nicename = get_category_parents($parent, false, '/', true) . $category_nicename . '/';
+ 
+ 		$catlink = str_replace('%category%', $category_nicename, $catlink);
+@@ -128,7 +167,7 @@
+ 
+ 	if ( ! isset($cache_categories))
+ 		update_category_cache();
+-		
++
+ 	$c_cache = $cache_categories; // Can't do recursive foreach on a global, have to make a copy
+ 	$chain = '';
+ 	foreach ($c_cache as $category){
+@@ -145,7 +184,7 @@
+     // Grab the first cat in the list.
+     $categories = get_the_category();
+     $cat = $categories[0]-&gt;cat_ID;
+-    
++
+     if ($echo) echo $cat;
+ 
+     return $cat;
+@@ -279,7 +318,7 @@
+ 		$now = current_time('mysql', 1);
+ 		$cat_counts = $wpdb-&gt;get_results(&quot;	SELECT cat_ID,
+ 		COUNT($wpdb-&gt;post2cat.post_id) AS cat_count
+-		FROM $wpdb-&gt;categories 
++		FROM $wpdb-&gt;categories
+ 		INNER JOIN $wpdb-&gt;post2cat ON (cat_ID = category_id)
+ 		INNER JOIN $wpdb-&gt;posts ON (ID = post_id)
+ 		WHERE post_status = 'publish'
+@@ -293,7 +332,7 @@
+             }
+         }
+ 	}
+-	
++
+ 	if ( $optiondates ) {
+ 		$cat_dates = $wpdb-&gt;get_results(&quot;	SELECT category_id,
+ 		UNIX_TIMESTAMP( MAX(post_date) ) AS ts
+@@ -304,10 +343,10 @@
+ 			$category_timestamp[&quot;$cat_date-&gt;category_id&quot;] = $cat_date-&gt;ts;
+ 		}
+ 	}
+-	
++
+ 	$num_found=0;
+ 	$thelist = &quot;&quot;;
+-	
++
+ 	foreach ($categories as $category) {
+ 		if ((intval($hide_empty) == 0 || isset($category_posts[&quot;$category-&gt;cat_ID&quot;])) &amp;&amp; (!$hierarchical || $category-&gt;category_parent == $child_of) ) {
+ 			$num_found++;
+@@ -321,7 +360,7 @@
+ 			$link .= apply_filters('list_cats', $category-&gt;cat_name, $category).'&lt;/a&gt;';
+ 
+ 			if ( (! empty($feed_image)) || (! empty($feed)) ) {
+-				
++
+ 				$link .= ' ';
+ 
+ 				if (empty($feed_image)) {
+@@ -344,7 +383,7 @@
+ 				} else {
+ 					$link .= $name;
+ 				}
+-				
++
+ 				$link .= '&lt;/a&gt;';
+ 
+ 				if (empty($feed_image)) {
+
+Modified: trunk/wp-includes/template-functions-general.php
+===================================================================
+--- trunk/wp-includes/template-functions-general.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/template-functions-general.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ /* Note: these tags go anywhere in the template */
+ 
+ function get_header() {
+@@ -44,7 +83,7 @@
+ 
+ 	if ('' == $user_ID &amp;&amp; get_settings('users_can_register') ) :
+ 		$link = $before . '&lt;a href=&quot;' . get_settings('siteurl') . '/wp-register.php&quot;&gt;' . __('Register') . '&lt;/a&gt;' . $after;
+-	elseif ('' == $user_ID &amp;&amp; !get_settings('users_can_register') ) : 
++	elseif ('' == $user_ID &amp;&amp; !get_settings('users_can_register') ) :
+ 		$link = '';
+ 	else :
+ 		$link = $before . '&lt;a href=&quot;' . get_settings('siteurl') . '/wp-admin/&quot;&gt;' . __('Site Admin') . '&lt;/a&gt;' . $after;
+@@ -67,7 +106,7 @@
+ 
+ 	switch($show) {
+ 	case 'url' :
+-	case 'home' : 
++	case 'home' :
+ 	case 'siteurl' :
+ 		$output = get_settings('home');
+ 		break;
+@@ -88,7 +127,7 @@
+ 		break;
+ 	case 'atom_url':
+ 		$output = get_feed_link('atom');
+-		break;        
++		break;
+ 	case 'comments_rss2_url':
+ 		$output = get_feed_link('comments_rss2');
+ 		break;
+@@ -435,11 +474,11 @@
+     }
+ 
+     $myweek = array();
+-	
++
+     for ($wdcount=0; $wdcount&lt;=6; $wdcount++) {
+         $myweek[]=$weekday[($wdcount+$week_begins)%7];
+     }
+-	
++
+     foreach ($myweek as $wd) {
+         echo &quot;\n\t\t&lt;th abbr=\&quot;$wd\&quot; scope=\&quot;col\&quot; title=\&quot;$wd\&quot;&gt;&quot; . $day_abbrev[$wd] . '&lt;/th&gt;';
+     }
+
+Modified: trunk/wp-includes/template-functions-links.php
+===================================================================
+--- trunk/wp-includes/template-functions-links.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/template-functions-links.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function the_permalink() {
+ 	echo apply_filters('the_permalink', get_permalink());
+ }
+@@ -56,7 +95,7 @@
+ 
+ 		$authordata = get_userdata($post-&gt;post_author);
+ 		$author = $authordata-&gt;user_nicename;
+-		$rewritereplace = 
++		$rewritereplace =
+ 		array(
+ 			date('Y', $unixtime),
+ 			date('m', $unixtime),
+@@ -203,9 +242,9 @@
+ 	if(! is_single()) {
+ 		return null;
+ 	}
+-    
++
+ 	$current_post_date = $post-&gt;post_date;
+-    
++
+ 	$join = '';
+ 	if ($in_same_cat) {
+ 		$join = &quot; INNER JOIN $wpdb-&gt;post2cat ON $wpdb-&gt;posts.ID= $wpdb-&gt;post2cat.post_id &quot;;
+@@ -214,7 +253,7 @@
+ 		for ($i = 1; $i &lt; (count($cat_array)); $i++) {
+ 			$join .= ' OR category_id = ' . intval($cat_array[$i]-&gt;cat_ID);
+ 		}
+-		$join .= ')'; 
++		$join .= ')';
+ 	}
+ 
+ 	$sql_exclude_cats = '';
+@@ -237,7 +276,7 @@
+ 	}
+ 
+ 	$current_post_date = $post-&gt;post_date;
+-    
++
+ 	$join = '';
+ 	if ($in_same_cat) {
+ 		$join = &quot; INNER JOIN $wpdb-&gt;post2cat ON $wpdb-&gt;posts.ID= $wpdb-&gt;post2cat.post_id &quot;;
+@@ -246,7 +285,7 @@
+ 		for ($i = 1; $i &lt; (count($cat_array)); $i++) {
+ 			$join .= ' OR category_id = ' . intval($cat_array[$i]-&gt;cat_ID);
+ 		}
+-		$join .= ')'; 
++		$join .= ')';
+ 	}
+ 
+ 	$sql_exclude_cats = '';
+@@ -259,7 +298,7 @@
+ 	}
+ 
+ 	$now = current_time('mysql');
+-    
++
+ 	return @$wpdb-&gt;get_row(&quot;SELECT ID,post_title FROM $wpdb-&gt;posts $join WHERE post_date &gt; '$current_post_date' AND post_date &lt; '$now' AND post_status = 'publish' $sqlcat $sql_exclude_cats AND ID != $post-&gt;ID ORDER BY post_date ASC LIMIT 1&quot;);
+ }
+ 
+@@ -280,7 +319,7 @@
+ 
+   $format = str_replace('%link', $link, $format);
+ 
+-  echo $format;	    
++  echo $format;
+ }
+ 
+ function next_post_link($format='%link &raquo;', $link='%title', $in_same_cat = false, $excluded_categories = '') {
+@@ -300,7 +339,7 @@
+ 
+   $format = str_replace('%link', $link, $format);
+ 
+-  echo $format;	    
++  echo $format;
+ }
+ 
+ // Deprecated.  Use previous_post_link().
+@@ -328,7 +367,7 @@
+ 
+ // Deprecated.  Use next_post_link().
+ function next_post($format='%', $next='next post: ', $title='yes', $in_same_cat='no', $limitnext=1, $excluded_categories='') {
+-	
++
+ 	if ( empty($in_same_cat) || 'no' == $in_same_cat )
+ 		$in_same_cat = false;
+ 	else
+@@ -354,7 +393,7 @@
+ 
+ 	$qstr = $_SERVER['REQUEST_URI'];
+ 
+-	$page_querystring = &quot;paged&quot;; 
++	$page_querystring = &quot;paged&quot;;
+ 	$page_modstring = &quot;page/&quot;;
+ 	$page_modregex = &quot;page/?&quot;;
+ 	$permalink = 0;
+@@ -420,7 +459,7 @@
+          $nextpage = intval($paged) + 1;
+          if (!$max_page || $max_page &gt;= $nextpage) {
+              echo get_pagenum_link($nextpage);
+-         }         
++         }
+      }
+ }
+ 
+
+Modified: trunk/wp-includes/template-functions-post.php
+===================================================================
+--- trunk/wp-includes/template-functions-post.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/template-functions-post.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function get_the_password_form() {
+     $output = '&lt;form action=&quot;' . get_settings('siteurl') . '/wp-pass.php&quot; method=&quot;post&quot;&gt;
+     &lt;p&gt;' . __(&quot;This post is password protected. To view it please enter your password below:&quot;) . '&lt;/p&gt;
+@@ -37,7 +76,7 @@
+ 
+ function get_the_guid( $id = 0 ) {
+ 	$post = &amp;get_post($id);
+-	
++
+ 	return apply_filters('get_the_guid', $post-&gt;guid);
+ }
+ 
+@@ -176,7 +215,7 @@
+ /*
+  * Post-meta: Custom per-post fields.
+  */
+- 
++
+ function get_post_custom( $post_id = 0 ) {
+ 	global $id, $post_meta_cache, $wpdb;
+ 	if ( $post_id )
+@@ -185,20 +224,20 @@
+ 		return $post_meta_cache[$id];
+ 	} else {
+ 	if ( $meta_list = $wpdb-&gt;get_results(&quot;SELECT post_id, meta_key, meta_value FROM $wpdb-&gt;postmeta  WHERE post_id = '$id' ORDER BY post_id, meta_key&quot;, ARRAY_A) ) {
+-		
++
+ 	// Change from flat structure to hierarchical:
+ 	$post_meta_cache = array();
+ 		foreach ($meta_list as $metarow) {
+ 			$mpid = $metarow['post_id'];
+ 			$mkey = $metarow['meta_key'];
+ 			$mval = $metarow['meta_value'];
+-			
++
+ 			// Force subkeys to be array type:
+ 			if (!isset($post_meta_cache[$mpid]) || !is_array($post_meta_cache[$mpid]))
+ 			$post_meta_cache[$mpid] = array();
+ 			if (!isset($post_meta_cache[$mpid][&quot;$mkey&quot;]) || !is_array($post_meta_cache[$mpid][&quot;$mkey&quot;]))
+ 			$post_meta_cache[$mpid][&quot;$mkey&quot;] = array();
+-			
++
+ 			// Add a value to the current pid/key:
+ 			$post_meta_cache[$mpid][$mkey][] = $mval;
+ 		}
+@@ -209,7 +248,7 @@
+ 
+ function get_post_custom_keys() {
+ 	global $id, $post_meta_cache;
+-	
++
+ 	if (!is_array($post_meta_cache[$id]))
+ 		return;
+ 	if ($keys = array_keys($post_meta_cache[$id]))
+@@ -224,7 +263,7 @@
+ 
+ function post_custom( $key = '' ) {
+ 	global $id, $post_meta_cache;
+-	
++
+ 	if ( 1 == count($post_meta_cache[$id][$key]) ) return $post_meta_cache[$id][$key][0];
+ 	else return $post_meta_cache[$id][$key];
+ }
+@@ -232,13 +271,13 @@
+ // this will probably change at some point...
+ function the_meta() {
+ 	global $id, $post_meta_cache;
+-	
++
+ 	if ($keys = get_post_custom_keys()) {
+ 		echo &quot;&lt;ul class='post-meta'&gt;\n&quot;;
+ 		foreach ($keys as $key) {
+ 			$values = array_map('trim',$post_meta_cache[$id][$key]);
+ 			$value = implode($values,', ');
+-			
++
+ 			echo &quot;&lt;li&gt;&lt;span class='post-meta-key'&gt;$key:&lt;/span&gt; $value&lt;/li&gt;\n&quot;;
+ 		}
+ 		echo &quot;&lt;/ul&gt;\n&quot;;
+@@ -313,7 +352,7 @@
+ 	if ( !isset($r['child_of']) ) $r['child_of'] = 0;
+ 	if ( !isset($r['title_li']) ) $r['title_li'] = __('Pages');
+ 	if ( !isset($r['echo']) ) $r['echo'] = 1;
+-	
++
+ 	$output = '';
+ 
+ 	// Query pages.
+@@ -355,12 +394,12 @@
+ 	if ( $r['title_li'] )
+ 		$output .= '&lt;/ul&gt;&lt;/li&gt;';
+ 	endif;
+-	
++
+ 	$output = apply_filters('wp_list_pages', $output);
+-	
++
+ 	if ( $r['echo'] )
+ 		echo $output;
+-	else 
++	else
+ 		return $output;
+ }
+ 
+
+Modified: trunk/wp-includes/vars.php
+===================================================================
+--- trunk/wp-includes/vars.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/vars.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ // On which page are we ?
+ $PHP_SELF = $_SERVER['PHP_SELF'];
+ if (preg_match('#([^/]+.php)#', $PHP_SELF, $self_matches))
+
+Modified: trunk/wp-includes/version.php
+===================================================================
+--- trunk/wp-includes/version.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/version.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ // This just holds the version number, in a separate file so we can bump it without cluttering the SVN
+ 
+ $wp_version = '1.5.2';
+
+Modified: trunk/wp-includes/wp-db.php
+===================================================================
+--- trunk/wp-includes/wp-db.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/wp-db.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,6 +1,46 @@
+ &lt;?php
+-//  WordPress DB Class
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
++//  SteamPress DB Class
++
+ //  ORIGINAL CODE FROM:
+ //  Justin Vincent (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">justin at visunet.ie</A>)
+ //	<A HREF="http://php.justinvincent.com">http://php.justinvincent.com</A>
+
+Modified: trunk/wp-includes/wp-l10n.php
+===================================================================
+--- trunk/wp-includes/wp-l10n.php	2005-11-22 15:43:27 UTC (rev 112)
++++ trunk/wp-includes/wp-l10n.php	2005-11-22 15:47:58 UTC (rev 113)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 SteamPress, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ if ( defined('WPLANG') &amp;&amp; '' != constant('WPLANG') )
+ {
+ 	include_once(ABSPATH . 'wp-includes/streams.php');
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000068.html">[SteamPress-SVN-Tracker] r112 - trunk/wp-admin
+</A></li>
+	<LI>Next message: <A HREF="000070.html">[SteamPress-SVN-Tracker] r114 - in trunk/wp-content: plugins themes/default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

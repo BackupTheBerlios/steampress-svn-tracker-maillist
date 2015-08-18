@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r51 - trunk/sp-admin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r51%20-%20trunk/sp-admin&In-Reply-To=%3C200412302313.iBUNDV6I003766%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000007.html">
+   <LINK REL="Next"  HREF="000009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r51 - trunk/sp-admin</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r51%20-%20trunk/sp-admin&In-Reply-To=%3C200412302313.iBUNDV6I003766%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r51 - trunk/sp-admin">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Fri Dec 31 00:13:31 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000007.html">[steampress-svn-tracker] r50 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000009.html">[steampress-svn-tracker] r52 - trunk/sp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2004-12-31 00:13:30 +0100 (Fri, 31 Dec 2004)
+New Revision: 51
+
+Modified:
+   trunk/sp-admin/install.php
+Log:
+changing the default blog list on install
+
+Modified: trunk/sp-admin/install.php
+===================================================================
+--- trunk/sp-admin/install.php	2004-12-30 19:36:31 UTC (rev 50)
++++ trunk/sp-admin/install.php	2004-12-30 23:13:30 UTC (rev 51)
+@@ -85,14 +85,8 @@
+ 
+ // Now drop in some default links
+ $spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;linkcategories (cat_id, cat_name) VALUES (1, 'Blogroll')&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://blog.carthik.net/index.php">http://blog.carthik.net/index.php</A>', 'Carthik', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://blogs.linux.ie/xeer/">http://blogs.linux.ie/xeer/</A>', 'Donncha', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://zengun.org/weblog/">http://zengun.org/weblog/</A>', 'Michel', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://boren.nu/">http://boren.nu/</A>', 'Ryan', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://photomatt.net/">http://photomatt.net/</A>', 'Matt', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://zed1.com/journalized/">http://zed1.com/journalized/</A>', 'Mike', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://www.alexking.org/">http://www.alexking.org/</A>', 'Alex', 1);&quot;);
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://dougal.gunters.org/">http://dougal.gunters.org/</A>', 'Dougal', 1);&quot;);
++$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://anothersadsong.com/">http://anothersadsong.com/</A>', 'Robert Deaton', 1);&quot;);
++$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;links (link_url, link_name, link_category) VALUES ('<A HREF="http://steamedpenguin.com/">http://steamedpenguin.com/</A>', 'Samir M. Nassar', 1);&quot;);
+ 
+ // Default category
+ $spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;categories (cat_ID, cat_name) VALUES ('0', 'Uncategorized')&quot;);
+@@ -105,7 +99,7 @@
+ $spdb-&gt;query( &quot;INSERT INTO $spdb-&gt;post2cat (`rel_id`, `post_id`, `category_id`) VALUES (1, 1, 1)&quot; );
+ 
+ // Default comment
+-$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;comments (comment_post_ID, comment_author, comment_author_email, comment_author_url, comment_author_IP, comment_date, comment_date_gmt, comment_content) VALUES ('1', 'Mr SteamPress', '<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">mr at steampress.berlios.de</A>', '<A HREF="http://steampress.berlios.de">http://steampress.berlios.de</A>', '127.0.0.1', '$now', '$now_gmt', 'Hi, this is a comment.&lt;br /&gt;To delete a comment, just log in, and view the posts\' comments, there you will have the option to edit or delete them.')&quot;);
++$spdb-&gt;query(&quot;INSERT INTO $spdb-&gt;comments (comment_post_ID, comment_author, comment_author_email, comment_author_url, comment_author_IP, comment_date, comment_date_gmt, comment_content) VALUES ('1', 'SteamPress', '<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">steampress at steampress.berlios.de</A>', '<A HREF="http://steampress.berlios.de">http://steampress.berlios.de</A>', '127.0.0.1', '$now', '$now_gmt', 'Hi, this is a comment.&lt;br /&gt;To delete a comment, just log in, and view the posts\' comments, there you will have the option to edit or delete them.')&quot;);
+ 
+ // Set up admin user
+ $random_password = substr(md5(uniqid(microtime())), 0, 6);
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000007.html">[steampress-svn-tracker] r50 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000009.html">[steampress-svn-tracker] r52 - trunk/sp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#8">[ date ]</a>
+              <a href="thread.html#8">[ thread ]</a>
+              <a href="subject.html#8">[ subject ]</a>
+              <a href="author.html#8">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,756 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r99 - trunk/wp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r99%20-%20trunk/wp-includes&In-Reply-To=%3C200511091802.jA9I25H9017583%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000054.html">
+   <LINK REL="Next"  HREF="000056.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r99 - trunk/wp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r99%20-%20trunk/wp-includes&In-Reply-To=%3C200511091802.jA9I25H9017583%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r99 - trunk/wp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 19:02:05 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000054.html">[steampress-svn-tracker] r98 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000056.html">[steampress-svn-tracker] r100 - trunk/wp-content/themes/default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 19:02:01 +0100 (Wed, 09 Nov 2005)
+New Revision: 99
+
+Removed:
+   trunk/wp-includes/class-pop3.php
+Log:
+no more need for this file
+
+Deleted: trunk/wp-includes/class-pop3.php
+===================================================================
+--- trunk/wp-includes/class-pop3.php	2005-11-09 17:56:42 UTC (rev 98)
++++ trunk/wp-includes/class-pop3.php	2005-11-09 18:02:01 UTC (rev 99)
+@@ -1,680 +0,0 @@
+-&lt;?php 
+-
+-   /**
+-    * mail_fetch/setup.php
+-    *
+-    * Copyright (c) 1999-2002 The SquirrelMail Project Team
+-    *
+-    * Copyright (c) 1999 CDI (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">cdi at thewebmasters.net</A>) All Rights Reserved
+-    * Modified by Philippe Mingo 2001 <A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">mingo at rotedic.com</A>
+-    * An RFC 1939 compliant wrapper class for the POP3 protocol.
+-    *
+-    * Licensed under the GNU GPL. For full terms see the file COPYING.
+-    *
+-    * pop3 class
+-    *
+-    * $Id: class-pop3.php 2066 2005-01-07 01:29:49Z saxmatt $
+-    */
+-
+-class POP3 {
+-    var $ERROR      = '';       //  Error string.
+-
+-    var $TIMEOUT    = 60;       //  Default timeout before giving up on a
+-                                //  network operation.
+-
+-    var $COUNT      = -1;       //  Mailbox msg count
+-
+-    var $BUFFER     = 512;      //  Socket buffer for socket fgets() calls.
+-                                //  Per RFC 1939 the returned line a POP3
+-                                //  server can send is 512 bytes.
+-
+-    var $FP         = '';       //  The connection to the server's
+-                                //  file descriptor
+-
+-    var $MAILSERVER = '';       // Set this to hard code the server name
+-
+-    var $DEBUG      = FALSE;    // set to true to echo pop3
+-                                // commands and responses to error_log
+-                                // this WILL log passwords!
+-
+-    var $BANNER     = '';       //  Holds the banner returned by the
+-                                //  pop server - used for apop()
+-
+-    var $RFC1939    = TRUE;     //  Set by noop(). See rfc1939.txt
+-                                //
+-
+-    var $ALLOWAPOP  = FALSE;    //  Allow or disallow apop()
+-                                //  This must be set to true
+-                                //  manually
+-
+-    function POP3 ( $server = '', $timeout = '' ) {
+-        settype($this-&gt;BUFFER,&quot;integer&quot;);
+-        if( !empty($server) ) {
+-            // Do not allow programs to alter MAILSERVER
+-            // if it is already specified. They can get around
+-            // this if they -really- want to, so don't count on it.
+-            if(empty($this-&gt;MAILSERVER))
+-                $this-&gt;MAILSERVER = $server;
+-        }
+-        if(!empty($timeout)) {
+-            settype($timeout,&quot;integer&quot;);
+-            $this-&gt;TIMEOUT = $timeout;
+-            set_time_limit($timeout);
+-        }
+-        return true;
+-    }
+-
+-    function update_timer () {
+-        set_time_limit($this-&gt;TIMEOUT);
+-        return true;
+-    }
+-
+-    function connect ($server, $port = 110)  {
+-        //  Opens a socket to the specified server. Unless overridden,
+-        //  port defaults to 110. Returns true on success, false on fail
+-
+-        // If MAILSERVER is set, override $server with it's value
+-
+-        if(!empty($this-&gt;MAILSERVER))
+-            $server = $this-&gt;MAILSERVER;
+-
+-        if(empty($server)){
+-            $this-&gt;ERROR = _(&quot;POP3 connect:&quot;) . ' ' . _(&quot;No server specified&quot;);
+-            unset($this-&gt;FP);
+-            return false;
+-        }
+-
+-        $fp = fsockopen(&quot;$server&quot;, $port, $errno, $errstr);
+-
+-        if(!$fp) {
+-            $this-&gt;ERROR = _(&quot;POP3 connect:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$errno] [$errstr]&quot;;
+-            unset($this-&gt;FP);
+-            return false;
+-        }
+-
+-        socket_set_blocking($fp,-1);
+-        $this-&gt;update_timer();
+-        $reply = fgets($fp,$this-&gt;BUFFER);
+-        $reply = $this-&gt;strip_clf($reply);
+-        if($this-&gt;DEBUG)
+-            error_log(&quot;POP3 SEND [connect: $server] GOT [$reply]&quot;,0);
+-        if(!$this-&gt;is_ok($reply)) {
+-            $this-&gt;ERROR = _(&quot;POP3 connect:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-            unset($this-&gt;FP);
+-            return false;
+-        }
+-        $this-&gt;FP = $fp;
+-        $this-&gt;BANNER = $this-&gt;parse_banner($reply);
+-        $this-&gt;RFC1939 = $this-&gt;noop();
+-        if($this-&gt;RFC1939) {
+-            $this-&gt;ERROR = _(&quot;POP3: premature NOOP OK, NOT an RFC 1939 Compliant server&quot;);
+-            $this-&gt;quit();
+-            return false;
+-        } else
+-            return true;
+-    }
+-
+-    function noop () {
+-    
+-        if(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 noop:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        } else {
+-            $cmd = &quot;NOOP&quot;;
+-            $reply = $this-&gt;send_cmd( $cmd );
+-            return( $this-&gt;is_ok( $reply ) );
+-        }
+-    }
+-
+-    function user ($user = &quot;&quot;) {
+-        // Sends the USER command, returns true or false
+-
+-        if( empty($user) ) {
+-            $this-&gt;ERROR = _(&quot;POP3 user:&quot;) . ' ' . _(&quot;no login ID submitted&quot;);
+-            return false;
+-        } elseif(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 user:&quot;) . ' ' . _(&quot;connection not established&quot;);
+-            return false;
+-        } else {
+-            $reply = $this-&gt;send_cmd(&quot;USER $user&quot;);
+-            if(!$this-&gt;is_ok($reply)) {
+-                $this-&gt;ERROR = _(&quot;POP3 user:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-                return false;
+-            } else
+-                return true;
+-        }
+-    }
+-
+-    function pass ($pass = &quot;&quot;)     {
+-        // Sends the PASS command, returns # of msgs in mailbox,
+-        // returns false (undef) on Auth failure
+-
+-        if(empty($pass)) {
+-            $this-&gt;ERROR = _(&quot;POP3 pass:&quot;) . ' ' . _(&quot;No password submitted&quot;);
+-            return false;
+-        } elseif(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 pass:&quot;) . ' ' . _(&quot;connection not established&quot;);
+-            return false;
+-        } else {
+-            $reply = $this-&gt;send_cmd(&quot;PASS $pass&quot;);
+-            if(!$this-&gt;is_ok($reply)) {
+-                $this-&gt;ERROR = _(&quot;POP3 pass:&quot;) . ' ' . _(&quot;authentication failed &quot;) . &quot;[$reply]&quot;;
+-                $this-&gt;quit();
+-                return false;
+-            } else {
+-                //  Auth successful.
+-                $count = $this-&gt;last(&quot;count&quot;);
+-                $this-&gt;COUNT = $count;
+-                $this-&gt;RFC1939 = $this-&gt;noop();
+-                if(!$this-&gt;RFC1939) {
+-                    $this-&gt;ERROR = _(&quot;POP3 pass:&quot;) . ' ' . _(&quot;NOOP failed. Server not RFC 1939 compliant&quot;);
+-                    $this-&gt;quit();
+-                    return false;
+-                } else
+-                    return $count;
+-            }
+-        }
+-    }
+-
+-    function apop ($login,$pass) {
+-        //  Attempts an APOP login. If this fails, it'll
+-        //  try a standard login. YOUR SERVER MUST SUPPORT
+-        //  THE USE OF THE APOP COMMAND!
+-        //  (apop is optional per rfc1939)
+-
+-        if(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        } elseif(!$this-&gt;ALLOWAPOP) {
+-            $retVal = $this-&gt;login($login,$pass);
+-            return $retVal;
+-        } elseif(empty($login)) {
+-            $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;No login ID submitted&quot;);
+-            return false;
+-        } elseif(empty($pass)) {
+-            $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;No password submitted&quot;);
+-            return false;
+-        } else {
+-            $banner = $this-&gt;BANNER;
+-            if( (!$banner) or (empty($banner)) ) {
+-                $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;No server banner&quot;) . ' - ' . _(&quot;abort&quot;);
+-                $retVal = $this-&gt;login($login,$pass);
+-                return $retVal;
+-            } else {
+-                $AuthString = $banner;
+-                $AuthString .= $pass;
+-                $APOPString = md5($AuthString);
+-                $cmd = &quot;APOP $login $APOPString&quot;;
+-                $reply = $this-&gt;send_cmd($cmd);
+-                if(!$this-&gt;is_ok($reply)) {
+-                    $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;apop authentication failed&quot;) . ' - ' . _(&quot;abort&quot;);
+-                    $retVal = $this-&gt;login($login,$pass);
+-                    return $retVal;
+-                } else {
+-                    //  Auth successful.
+-                    $count = $this-&gt;last(&quot;count&quot;);
+-                    $this-&gt;COUNT = $count;
+-                    $this-&gt;RFC1939 = $this-&gt;noop();
+-                    if(!$this-&gt;RFC1939) {
+-                        $this-&gt;ERROR = _(&quot;POP3 apop:&quot;) . ' ' . _(&quot;NOOP failed. Server not RFC 1939 compliant&quot;);
+-                        $this-&gt;quit();
+-                        return false;
+-                    } else
+-                        return $count;
+-                }
+-            }
+-        }
+-    }
+-
+-    function login ($login = &quot;&quot;, $pass = &quot;&quot;) {
+-        // Sends both user and pass. Returns # of msgs in mailbox or
+-        // false on failure (or -1, if the error occurs while getting
+-        // the number of messages.)
+-
+-        if( !isset($this-&gt;FP) ) {
+-            $this-&gt;ERROR = _(&quot;POP3 login:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        } else {
+-            $fp = $this-&gt;FP;
+-            if( !$this-&gt;user( $login ) ) {
+-                //  Preserve the error generated by user()
+-                return false;
+-            } else {
+-                $count = $this-&gt;pass($pass);
+-                if( (!$count) || ($count == -1) ) {
+-                    //  Preserve the error generated by last() and pass()
+-                    return false;
+-                } else
+-                    return $count;
+-            }
+-        }
+-    }
+-
+-    function top ($msgNum, $numLines = &quot;0&quot;) {
+-        //  Gets the header and first $numLines of the msg body
+-        //  returns data in an array with each returned line being
+-        //  an array element. If $numLines is empty, returns
+-        //  only the header information, and none of the body.
+-
+-        if(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 top:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-        $this-&gt;update_timer();
+-
+-        $fp = $this-&gt;FP;
+-        $buffer = $this-&gt;BUFFER;
+-        $cmd = &quot;TOP $msgNum $numLines&quot;;
+-        fwrite($fp, &quot;TOP $msgNum $numLines\r\n&quot;);
+-        $reply = fgets($fp, $buffer);
+-        $reply = $this-&gt;strip_clf($reply);
+-        if($this-&gt;DEBUG) {
+-            @error_log(&quot;POP3 SEND [$cmd] GOT [$reply]&quot;,0);
+-        }
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 top:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-            return false;
+-        }
+-
+-        $count = 0;
+-        $MsgArray = array();
+-
+-        $line = fgets($fp,$buffer);
+-        while ( !ereg(&quot;^\.\r\n&quot;,$line))
+-        {
+-            $MsgArray[$count] = $line;
+-            $count++;
+-            $line = fgets($fp,$buffer);
+-            if(empty($line))    { break; }
+-        }
+-
+-        return $MsgArray;
+-    }
+-
+-    function pop_list ($msgNum = &quot;&quot;) {
+-        //  If called with an argument, returns that msgs' size in octets
+-        //  No argument returns an associative array of undeleted
+-        //  msg numbers and their sizes in octets
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 pop_list:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-        $fp = $this-&gt;FP;
+-        $Total = $this-&gt;COUNT;
+-        if( (!$Total) or ($Total == -1) )
+-        {
+-            return false;
+-        }
+-        if($Total == 0)
+-        {
+-            return array(&quot;0&quot;,&quot;0&quot;);
+-            // return -1;   // mailbox empty
+-        }
+-
+-        $this-&gt;update_timer();
+-
+-        if(!empty($msgNum))
+-        {
+-            $cmd = &quot;LIST $msgNum&quot;;
+-            fwrite($fp,&quot;$cmd\r\n&quot;);
+-            $reply = fgets($fp,$this-&gt;BUFFER);
+-            $reply = $this-&gt;strip_clf($reply);
+-            if($this-&gt;DEBUG) {
+-                @error_log(&quot;POP3 SEND [$cmd] GOT [$reply]&quot;,0);
+-            }
+-            if(!$this-&gt;is_ok($reply))
+-            {
+-                $this-&gt;ERROR = _(&quot;POP3 pop_list:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-                return false;
+-            }
+-            list($junk,$num,$size) = explode(&quot; &quot;,$reply);
+-            return $size;
+-        }
+-        $cmd = &quot;LIST&quot;;
+-        $reply = $this-&gt;send_cmd($cmd);
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            $reply = $this-&gt;strip_clf($reply);
+-            $this-&gt;ERROR = _(&quot;POP3 pop_list:&quot;) . ' ' . _(&quot;Error &quot;) .  &quot;[$reply]&quot;;
+-            return false;
+-        }
+-        $MsgArray = array();
+-        $MsgArray[0] = $Total;
+-        for($msgC=1;$msgC &lt;= $Total; $msgC++)
+-        {
+-            if($msgC &gt; $Total) { break; }
+-            $line = fgets($fp,$this-&gt;BUFFER);
+-            $line = $this-&gt;strip_clf($line);
+-            if(ereg(&quot;^\.&quot;,$line))
+-            {
+-                $this-&gt;ERROR = _(&quot;POP3 pop_list:&quot;) . ' ' . _(&quot;Premature end of list&quot;);
+-                return false;
+-            }
+-            list($thisMsg,$msgSize) = explode(&quot; &quot;,$line);
+-            settype($thisMsg,&quot;integer&quot;);
+-            if($thisMsg != $msgC)
+-            {
+-                $MsgArray[$msgC] = &quot;deleted&quot;;
+-            }
+-            else
+-            {
+-                $MsgArray[$msgC] = $msgSize;
+-            }
+-        }
+-        return $MsgArray;
+-    }
+-
+-    function get ($msgNum) {
+-        //  Retrieve the specified msg number. Returns an array
+-        //  where each line of the msg is an array element.
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 get:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-
+-        $this-&gt;update_timer();
+-
+-        $fp = $this-&gt;FP;
+-        $buffer = $this-&gt;BUFFER;
+-        $cmd = &quot;RETR $msgNum&quot;;
+-        $reply = $this-&gt;send_cmd($cmd);
+-
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 get:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-            return false;
+-        }
+-
+-        $count = 0;
+-        $MsgArray = array();
+-
+-        $line = fgets($fp,$buffer);
+-        while ( !ereg(&quot;^\.\r\n&quot;,$line))
+-        {
+-            $MsgArray[$count] = $line;
+-            $count++;
+-            $line = fgets($fp,$buffer);
+-            if(empty($line))    { break; }
+-        }
+-        return $MsgArray;
+-    }
+-
+-    function last ( $type = &quot;count&quot; ) {
+-        //  Returns the highest msg number in the mailbox.
+-        //  returns -1 on error, 0+ on success, if type != count
+-        //  results in a popstat() call (2 element array returned)
+-
+-        $last = -1;
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 last:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return $last;
+-        }
+-
+-        $reply = $this-&gt;send_cmd(&quot;STAT&quot;);
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 last:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-            return $last;
+-        }
+-
+-        $Vars = explode(&quot; &quot;,$reply);
+-        $count = $Vars[1];
+-        $size = $Vars[2];
+-        settype($count,&quot;integer&quot;);
+-        settype($size,&quot;integer&quot;);
+-        if($type != &quot;count&quot;)
+-        {
+-            return array($count,$size);
+-        }
+-        return $count;
+-    }
+-
+-    function reset () {
+-        //  Resets the status of the remote server. This includes
+-        //  resetting the status of ALL msgs to not be deleted.
+-        //  This method automatically closes the connection to the server.
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 reset:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-        $reply = $this-&gt;send_cmd(&quot;RSET&quot;);
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            //  The POP3 RSET command -never- gives a -ERR
+-            //  response - if it ever does, something truely
+-            //  wild is going on.
+-
+-            $this-&gt;ERROR = _(&quot;POP3 reset:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-            @error_log(&quot;POP3 reset: ERROR [$reply]&quot;,0);
+-        }
+-        $this-&gt;quit();
+-        return true;
+-    }
+-
+-    function send_cmd ( $cmd = &quot;&quot; )
+-    {
+-        //  Sends a user defined command string to the
+-        //  POP server and returns the results. Useful for
+-        //  non-compliant or custom POP servers.
+-        //  Do NOT includ the \r\n as part of your command
+-        //  string - it will be appended automatically.
+-
+-        //  The return value is a standard fgets() call, which
+-        //  will read up to $this-&gt;BUFFER bytes of data, until it
+-        //  encounters a new line, or EOF, whichever happens first.
+-
+-        //  This method works best if $cmd responds with only
+-        //  one line of data.
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 send_cmd:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-
+-        if(empty($cmd))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 send_cmd:&quot;) . ' ' . _(&quot;Empty command string&quot;);
+-            return &quot;&quot;;
+-        }
+-
+-        $fp = $this-&gt;FP;
+-        $buffer = $this-&gt;BUFFER;
+-        $this-&gt;update_timer();
+-        fwrite($fp,&quot;$cmd\r\n&quot;);
+-        $reply = fgets($fp,$buffer);
+-        $reply = $this-&gt;strip_clf($reply);
+-        if($this-&gt;DEBUG) { @error_log(&quot;POP3 SEND [$cmd] GOT [$reply]&quot;,0); }
+-        return $reply;
+-    }
+-
+-    function quit() {
+-        //  Closes the connection to the POP3 server, deleting
+-        //  any msgs marked as deleted.
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 quit:&quot;) . ' ' . _(&quot;connection does not exist&quot;);
+-            return false;
+-        }
+-        $fp = $this-&gt;FP;
+-        $cmd = &quot;QUIT&quot;;
+-        fwrite($fp,&quot;$cmd\r\n&quot;);
+-        $reply = fgets($fp,$this-&gt;BUFFER);
+-        $reply = $this-&gt;strip_clf($reply);
+-        if($this-&gt;DEBUG) { @error_log(&quot;POP3 SEND [$cmd] GOT [$reply]&quot;,0); }
+-        fclose($fp);
+-        unset($this-&gt;FP);
+-        return true;
+-    }
+-
+-    function popstat () {
+-        //  Returns an array of 2 elements. The number of undeleted
+-        //  msgs in the mailbox, and the size of the mbox in octets.
+-
+-        $PopArray = $this-&gt;last(&quot;array&quot;);
+-
+-        if($PopArray == -1) { return false; }
+-
+-        if( (!$PopArray) or (empty($PopArray)) )
+-        {
+-            return false;
+-        }
+-        return $PopArray;
+-    }
+-
+-    function uidl ($msgNum = &quot;&quot;)
+-    {
+-        //  Returns the UIDL of the msg specified. If called with
+-        //  no arguments, returns an associative array where each
+-        //  undeleted msg num is a key, and the msg's uidl is the element
+-        //  Array element 0 will contain the total number of msgs
+-
+-        if(!isset($this-&gt;FP)) {
+-            $this-&gt;ERROR = _(&quot;POP3 uidl:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-
+-        $fp = $this-&gt;FP;
+-        $buffer = $this-&gt;BUFFER;
+-
+-        if(!empty($msgNum)) {
+-            $cmd = &quot;UIDL $msgNum&quot;;
+-            $reply = $this-&gt;send_cmd($cmd);
+-            if(!$this-&gt;is_ok($reply))
+-            {
+-                $this-&gt;ERROR = _(&quot;POP3 uidl:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-                return false;
+-            }
+-            list ($ok,$num,$myUidl) = explode(&quot; &quot;,$reply);
+-            return $myUidl;
+-        } else {
+-            $this-&gt;update_timer();
+-
+-            $UIDLArray = array();
+-            $Total = $this-&gt;COUNT;
+-            $UIDLArray[0] = $Total;
+-
+-            if ($Total &lt; 1)
+-            {
+-                return $UIDLArray;
+-            }
+-            $cmd = &quot;UIDL&quot;;
+-            fwrite($fp, &quot;UIDL\r\n&quot;);
+-            $reply = fgets($fp, $buffer);
+-            $reply = $this-&gt;strip_clf($reply);
+-            if($this-&gt;DEBUG) { @error_log(&quot;POP3 SEND [$cmd] GOT [$reply]&quot;,0); }
+-            if(!$this-&gt;is_ok($reply))
+-            {
+-                $this-&gt;ERROR = _(&quot;POP3 uidl:&quot;) . ' ' . _(&quot;Error &quot;) . &quot;[$reply]&quot;;
+-                return false;
+-            }
+-
+-            $line = &quot;&quot;;
+-            $count = 1;
+-            $line = fgets($fp,$buffer);
+-            while ( !ereg(&quot;^\.\r\n&quot;,$line)) {
+-                if(ereg(&quot;^\.\r\n&quot;,$line)) {
+-                    break;
+-                }
+-                list ($msg,$msgUidl) = explode(&quot; &quot;,$line);
+-                $msgUidl = $this-&gt;strip_clf($msgUidl);
+-                if($count == $msg) {
+-                    $UIDLArray[$msg] = $msgUidl;
+-                }
+-                else
+-                {
+-                    $UIDLArray[$count] = 'deleted';
+-                }
+-                $count++;
+-                $line = fgets($fp,$buffer);
+-            }
+-        }
+-        return $UIDLArray;
+-    }
+-
+-    function delete ($msgNum = &quot;&quot;) {
+-        //  Flags a specified msg as deleted. The msg will not
+-        //  be deleted until a quit() method is called.
+-
+-        if(!isset($this-&gt;FP))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 delete:&quot;) . ' ' . _(&quot;No connection to server&quot;);
+-            return false;
+-        }
+-        if(empty($msgNum))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 delete:&quot;) . ' ' . _(&quot;No msg number submitted&quot;);
+-            return false;
+-        }
+-        $reply = $this-&gt;send_cmd(&quot;DELE $msgNum&quot;);
+-        if(!$this-&gt;is_ok($reply))
+-        {
+-            $this-&gt;ERROR = _(&quot;POP3 delete:&quot;) . ' ' . _(&quot;Command failed &quot;) . &quot;[$reply]&quot;;
+-            return false;
+-        }
+-        return true;
+-    }
+-
+-    //  *********************************************************
+-
+-    //  The following methods are internal to the class.
+-
+-    function is_ok ($cmd = &quot;&quot;) {
+-        //  Return true or false on +OK or -ERR
+-
+-        if( empty($cmd) )
+-            return false;
+-        else
+-            return( ereg (&quot;^\+OK&quot;, $cmd ) );
+-    }
+-
+-    function strip_clf ($text = &quot;&quot;) {
+-        // Strips \r\n from server responses
+-
+-        if(empty($text))
+-            return $text;
+-        else {
+-            $stripped = str_replace(&quot;\r&quot;,'',$text);
+-            $stripped = str_replace(&quot;\n&quot;,'',$stripped);
+-            return $stripped;
+-        }
+-    }
+-
+-    function parse_banner ( $server_text ) {
+-        $outside = true;
+-        $banner = &quot;&quot;;
+-        $length = strlen($server_text);
+-        for($count =0; $count &lt; $length; $count++)
+-        {
+-            $digit = substr($server_text, $count, 1);
+-            if ( false !== $digit ) {
+-                if( (!$outside) &amp;&amp; ($digit != '&lt;') &amp;&amp; ($digit != '&gt;') )
+-                {
+-                    $banner .= $digit;
+-                }
+-                if ($digit == '&lt;')
+-                {
+-                    $outside = false;
+-                }
+-                if($digit == '&gt;')
+-                {
+-                    $outside = true;
+-                }
+-            }
+-        }
+-        $banner = $this-&gt;strip_clf($banner);    // Just in case
+-        return &quot;&lt;$banner&gt;&quot;;
+-    }
+-
+-}   // End class
+-
+-?&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000054.html">[steampress-svn-tracker] r98 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000056.html">[steampress-svn-tracker] r100 - trunk/wp-content/themes/default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#55">[ date ]</a>
+              <a href="thread.html#55">[ thread ]</a>
+              <a href="subject.html#55">[ subject ]</a>
+              <a href="author.html#55">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

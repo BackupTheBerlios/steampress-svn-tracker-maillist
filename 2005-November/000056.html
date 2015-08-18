@@ -1,0 +1,919 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r100 - trunk/wp-content/themes/default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r100%20-%20trunk/wp-content/themes/default&In-Reply-To=%3C200511091831.jA9IVG0H027902%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000055.html">
+   <LINK REL="Next"  HREF="000057.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r100 - trunk/wp-content/themes/default</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r100%20-%20trunk/wp-content/themes/default&In-Reply-To=%3C200511091831.jA9IVG0H027902%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r100 - trunk/wp-content/themes/default">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 19:31:16 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000055.html">[steampress-svn-tracker] r99 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000057.html">[steampress-svn-tracker] r101 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 19:31:13 +0100 (Wed, 09 Nov 2005)
+New Revision: 100
+
+Modified:
+   trunk/wp-content/themes/default/archive.php
+   trunk/wp-content/themes/default/comments-popup.php
+   trunk/wp-content/themes/default/comments.php
+   trunk/wp-content/themes/default/header.php
+   trunk/wp-content/themes/default/index.php
+   trunk/wp-content/themes/default/page.php
+   trunk/wp-content/themes/default/search.php
+   trunk/wp-content/themes/default/sidebar.php
+   trunk/wp-content/themes/default/single.php
+Log:
+Added whitespace. Fixed brackets. Make code purdy. remove 'if: endif;' crap
+
+Modified: trunk/wp-content/themes/default/archive.php
+===================================================================
+--- trunk/wp-content/themes/default/archive.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/archive.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -2,31 +2,63 @@
+ 
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+-		&lt;?php if (have_posts()) : ?&gt;
++&lt;?php
++if (have_posts())
++{
++?&gt;
+ 
+ 		 &lt;?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?&gt;
+-&lt;?php /* If this is a category archive */ if (is_category()) { ?&gt;				
++&lt;?php /* If this is a category archive */
++	if (is_category())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Archive for the '&lt;?php echo single_cat_title(); ?&gt;' Category&lt;/h2&gt;
+-		
+- 	  &lt;?php /* If this is a daily archive */ } elseif (is_day()) { ?&gt;
++
++&lt;?php /* If this is a daily archive */
++	}
++	elseif (is_day())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Archive for &lt;?php the_time('F jS, Y'); ?&gt;&lt;/h2&gt;
+-		
+-	 &lt;?php /* If this is a monthly archive */ } elseif (is_month()) { ?&gt;
++
++&lt;?php /* If this is a monthly archive */
++	}
++	elseif (is_month())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Archive for &lt;?php the_time('F, Y'); ?&gt;&lt;/h2&gt;
+ 
+-		&lt;?php /* If this is a yearly archive */ } elseif (is_year()) { ?&gt;
++&lt;?php /* If this is a yearly archive */
++	}
++	elseif (is_year())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Archive for &lt;?php the_time('Y'); ?&gt;&lt;/h2&gt;
+-		
+-	  &lt;?php /* If this is a search */ } elseif (is_search()) { ?&gt;
++
++&lt;?php /* If this is a search */
++	}
++	elseif (is_search())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Search Results&lt;/h2&gt;
+-		
+-	  &lt;?php /* If this is an author archive */ } elseif (is_author()) { ?&gt;
++
++&lt;?php /* If this is an author archive */
++	}
++	elseif (is_author())
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Author Archive&lt;/h2&gt;
+ 
+-		&lt;?php /* If this is a paged archive */ } elseif (isset($_GET['paged']) &amp;&amp; !empty($_GET['paged'])) { ?&gt;
++&lt;?php /* If this is a paged archive */
++	}
++	elseif (isset($_GET['paged']) &amp;&amp; !empty($_GET['paged']))
++	{
++?&gt;
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Blog Archives&lt;/h2&gt;
+ 
+-		&lt;?php } ?&gt;
++&lt;?php
++	}
++?&gt;
+ 
+ 
+ 		&lt;div class=&quot;navigation&quot;&gt;
+@@ -34,33 +66,44 @@
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php previous_posts_link('Next Entries &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+ 
+-		&lt;?php while (have_posts()) : the_post(); ?&gt;
++&lt;?php
++	while (have_posts())
++	{
++		the_post(); ?&gt;
+ 		&lt;div class=&quot;post&quot;&gt;
+ 				&lt;h3 id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link to &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
+ 				&lt;small&gt;&lt;?php the_time('l, F jS, Y') ?&gt;&lt;/small&gt;
+-				
++
+ 				&lt;div class=&quot;entry&quot;&gt;
+ 					&lt;?php the_excerpt() ?&gt;
+ 				&lt;/div&gt;
+-		
+-				&lt;p class=&quot;postmetadata&quot;&gt;Posted in &lt;?php the_category(', ') ?&gt; &lt;strong&gt;|&lt;/strong&gt; &lt;?php edit_post_link('Edit','','&lt;strong&gt;|&lt;/strong&gt;'); ?&gt;  &lt;?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?&gt;&lt;/p&gt; 
+ 
++				&lt;p class=&quot;postmetadata&quot;&gt;Posted in &lt;?php the_category(', ') ?&gt; &lt;strong&gt;|&lt;/strong&gt; &lt;?php edit_post_link('Edit','','&lt;strong&gt;|&lt;/strong&gt;'); ?&gt;  &lt;?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?&gt;&lt;/p&gt;
++
+ 			&lt;/div&gt;
+-	
+-		&lt;?php endwhile; ?&gt;
+ 
++&lt;?php
++	}
++?&gt;
++
+ 		&lt;div class=&quot;navigation&quot;&gt;
+ 			&lt;div class=&quot;alignleft&quot;&gt;&lt;?php next_posts_link('&laquo; Previous Entries') ?&gt;&lt;/div&gt;
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php previous_posts_link('Next Entries &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+-	
+-	&lt;?php else : ?&gt;
+ 
++&lt;?php
++}
++else
++{
++?&gt;
++
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+ 		&lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+ 
+-	&lt;?php endif; ?&gt;
+-		
++&lt;?php
++}
++?&gt;
++
+ 	&lt;/div&gt;
+ 
+ &lt;?php get_sidebar(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/comments-popup.php
+===================================================================
+--- trunk/wp-content/themes/default/comments-popup.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/comments-popup.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -1,12 +1,14 @@
+ &lt;?php
+ /* Don't remove these lines. */
+ add_filter('comment_text', 'popuplinks');
+-foreach ($posts as $post) { start_wp();
++foreach ($posts as $post)
++{
++	start_wp();
+ ?&gt;
+ &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
+ &lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
+ &lt;head&gt;
+-     &lt;title&gt;&lt;?php echo get_settings('blogname'); ?&gt; - Comments on &lt;?php the_title(); ?&gt;&lt;/title&gt;
++	&lt;title&gt;&lt;?php echo get_settings('blogname'); ?&gt; - Comments on &lt;?php the_title(); ?&gt;&lt;/title&gt;
+ 
+ 	&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;&lt;?php bloginfo('html_type'); ?&gt;; charset=&lt;?php echo get_settings('blog_charset'); ?&gt;&quot; /&gt;
+ 	&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
+@@ -23,72 +25,102 @@
+ 
+ &lt;p&gt;&lt;a href=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;/wp-commentsrss2.php?p=&lt;?php echo $post-&gt;ID; ?&gt;&quot;&gt;&lt;abbr title=&quot;Really Simple Syndication&quot;&gt;RSS&lt;/abbr&gt; feed for comments on this post.&lt;/a&gt;&lt;/p&gt;
+ 
+-&lt;?php if ('open' == $post-&gt;ping_status) { ?&gt;
++&lt;?php
++	if ('open' == $post-&gt;ping_status)
++	{
++?&gt;
+ &lt;p&gt;The &lt;acronym title=&quot;Uniform Resource Identifier&quot;&gt;URI&lt;/acronym&gt; to TrackBack this entry is: &lt;em&gt;&lt;?php trackback_url() ?&gt;&lt;/em&gt;&lt;/p&gt;
+-&lt;?php } ?&gt;
++&lt;?php
++	}
++?&gt;
+ 
+ &lt;?php
+-// this line is WordPress' motor, do not delete it.
+-$comment_author = (isset($_COOKIE['comment_author_' . COOKIEHASH])) ? trim($_COOKIE['comment_author_'. COOKIEHASH]) : '';
+-$comment_author_email = (isset($_COOKIE['comment_author_email_'. COOKIEHASH])) ? trim($_COOKIE['comment_author_email_'. COOKIEHASH]) : '';
+-$comment_author_url = (isset($_COOKIE['comment_author_url_'. COOKIEHASH])) ? trim($_COOKIE['comment_author_url_'. COOKIEHASH]) : '';
+-$comments = $wpdb-&gt;get_results(&quot;SELECT * FROM $wpdb-&gt;comments WHERE comment_post_ID = $id AND comment_approved = '1' ORDER BY comment_date&quot;);
+-$commentstatus = $wpdb-&gt;get_row(&quot;SELECT comment_status, post_password FROM $wpdb-&gt;posts WHERE ID = $id&quot;);
+-if (!empty($commentstatus-&gt;post_password) &amp;&amp; $_COOKIE['wp-postpass_'. COOKIEHASH] != $commentstatus-&gt;post_password) {  // and it doesn't match the cookie
+-	echo(get_the_password_form());
+-} else { ?&gt;
++	// this line is WordPress' motor, do not delete it.
++	$comment_author = (isset($_COOKIE['comment_author_' . COOKIEHASH])) ? trim($_COOKIE['comment_author_'. COOKIEHASH]) : '';
++	$comment_author_email = (isset($_COOKIE['comment_author_email_'. COOKIEHASH])) ? trim($_COOKIE['comment_author_email_'. COOKIEHASH]) : '';
++	$comment_author_url = (isset($_COOKIE['comment_author_url_'. COOKIEHASH])) ? trim($_COOKIE['comment_author_url_'. COOKIEHASH]) : '';
++	$comments = $wpdb-&gt;get_results(&quot;SELECT * FROM $wpdb-&gt;comments WHERE comment_post_ID = $id AND comment_approved = '1' ORDER BY comment_date&quot;);
++	$commentstatus = $wpdb-&gt;get_row(&quot;SELECT comment_status, post_password FROM $wpdb-&gt;posts WHERE ID = $id&quot;);
++	if (!empty($commentstatus-&gt;post_password) &amp;&amp; $_COOKIE['wp-postpass_'. COOKIEHASH] != $commentstatus-&gt;post_password) // and it doesn't match the cookie
++	{
++		echo(get_the_password_form());
++	}
++	else
++	{
++?&gt;
+ 
+-&lt;?php if ($comments) { ?&gt;
++&lt;?php
++		if ($comments)
++		{
++?&gt;
+ &lt;ol id=&quot;commentlist&quot;&gt;
+-&lt;?php foreach ($comments as $comment) { ?&gt;
++&lt;?php
++			foreach ($comments as $comment)
++			{
++?&gt;
+ 	&lt;li id=&quot;comment-&lt;?php comment_ID() ?&gt;&quot;&gt;
+ 	&lt;?php comment_text() ?&gt;
+ 	&lt;p&gt;&lt;cite&gt;&lt;?php comment_type('Comment', 'Trackback', 'Pingback'); ?&gt; by &lt;?php comment_author_link() ?&gt; &#8212; &lt;?php comment_date() ?&gt; @ &lt;a href=&quot;#comment-&lt;?php comment_ID() ?&gt;&quot;&gt;&lt;?php comment_time() ?&gt;&lt;/a&gt;&lt;/cite&gt;&lt;/p&gt;
+ 	&lt;/li&gt;
+ 
+-&lt;?php } // end for each comment ?&gt;
++&lt;?php
++			} // end for each comment
++?&gt;
+ &lt;/ol&gt;
+-&lt;?php } else { // this is displayed if there are no comments so far ?&gt;
++&lt;?php
++		}
++		else
++		{ // this is displayed if there are no comments so far ?&gt;
+ 	&lt;p&gt;No comments yet.&lt;/p&gt;
+-&lt;?php } ?&gt;
++&lt;?php
++		}
++?&gt;
+ 
+-&lt;?php if ('open' == $commentstatus-&gt;comment_status) { ?&gt;
++&lt;?php
++		if ('open' == $commentstatus-&gt;comment_status)
++		{
++?&gt;
+ &lt;h2&gt;Leave a comment&lt;/h2&gt;
+ &lt;p&gt;Line and paragraph breaks automatic, e-mail address never displayed, &lt;acronym title=&quot;Hypertext Markup Language&quot;&gt;HTML&lt;/acronym&gt; allowed: &lt;code&gt;&lt;?php echo allowed_tags(); ?&gt;&lt;/code&gt;&lt;/p&gt;
+ 
+ &lt;form action=&quot;&lt;?php echo get_settings('siteurl'); ?&gt;/wp-comments-post.php&quot; method=&quot;post&quot; id=&quot;commentform&quot;&gt;
+ 	&lt;p&gt;
+-	  &lt;input type=&quot;text&quot; name=&quot;author&quot; id=&quot;author&quot; class=&quot;textarea&quot; value=&quot;&lt;?php echo $comment_author; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;1&quot; /&gt;
+-	   &lt;label for=&quot;author&quot;&gt;Name&lt;/label&gt;
++	&lt;input type=&quot;text&quot; name=&quot;author&quot; id=&quot;author&quot; class=&quot;textarea&quot; value=&quot;&lt;?php echo $comment_author; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;1&quot; /&gt;
++	&lt;label for=&quot;author&quot;&gt;Name&lt;/label&gt;
+ 	&lt;input type=&quot;hidden&quot; name=&quot;comment_post_ID&quot; value=&quot;&lt;?php echo $id; ?&gt;&quot; /&gt;
+ 	&lt;input type=&quot;hidden&quot; name=&quot;redirect_to&quot; value=&quot;&lt;?php echo wp_specialchars($_SERVER[&quot;REQUEST_URI&quot;]); ?&gt;&quot; /&gt;
+ 	&lt;/p&gt;
+ 
+ 	&lt;p&gt;
+-	  &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; value=&quot;&lt;?php echo $comment_author_email; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;2&quot; /&gt;
+-	   &lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
++	&lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot; value=&quot;&lt;?php echo $comment_author_email; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;2&quot; /&gt;
++	&lt;label for=&quot;email&quot;&gt;E-mail&lt;/label&gt;
+ 	&lt;/p&gt;
+ 
+ 	&lt;p&gt;
+-	  &lt;input type=&quot;text&quot; name=&quot;url&quot; id=&quot;url&quot; value=&quot;&lt;?php echo $comment_author_url; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;3&quot; /&gt;
+-	   &lt;label for=&quot;url&quot;&gt;&lt;acronym title=&quot;Uniform Resource Identifier&quot;&gt;URI&lt;/acronym&gt;&lt;/label&gt;
++	&lt;input type=&quot;text&quot; name=&quot;url&quot; id=&quot;url&quot; value=&quot;&lt;?php echo $comment_author_url; ?&gt;&quot; size=&quot;28&quot; tabindex=&quot;3&quot; /&gt;
++	&lt;label for=&quot;url&quot;&gt;&lt;acronym title=&quot;Uniform Resource Identifier&quot;&gt;URI&lt;/acronym&gt;&lt;/label&gt;
+ 	&lt;/p&gt;
+ 
+ 	&lt;p&gt;
+-	  &lt;label for=&quot;comment&quot;&gt;Your Comment&lt;/label&gt;
++	&lt;label for=&quot;comment&quot;&gt;Your Comment&lt;/label&gt;
+ 	&lt;br /&gt;
+-	  &lt;textarea name=&quot;comment&quot; id=&quot;comment&quot; cols=&quot;70&quot; rows=&quot;4&quot; tabindex=&quot;4&quot;&gt;&lt;/textarea&gt;
++	&lt;textarea name=&quot;comment&quot; id=&quot;comment&quot; cols=&quot;70&quot; rows=&quot;4&quot; tabindex=&quot;4&quot;&gt;&lt;/textarea&gt;
+ 	&lt;/p&gt;
+ 
+ 	&lt;p&gt;
+-	  &lt;input name=&quot;submit&quot; type=&quot;submit&quot; tabindex=&quot;5&quot; value=&quot;Say It!&quot; /&gt;
++	&lt;input name=&quot;submit&quot; type=&quot;submit&quot; tabindex=&quot;5&quot; value=&quot;Say It!&quot; /&gt;
+ 	&lt;/p&gt;
+ 	&lt;?php do_action('comment_form', $post-&gt;ID); ?&gt;
+ &lt;/form&gt;
+-&lt;?php } else { // comments are closed ?&gt;
++&lt;?php
++		}
++		else
++		{ // comments are closed
++?&gt;
+ &lt;p&gt;Sorry, the comment form is closed at this time.&lt;/p&gt;
+-&lt;?php }
+-} // end password check
++&lt;?php
++		}
++	} // end password check
+ ?&gt;
+ 
+ &lt;div&gt;&lt;strong&gt;&lt;a href=&quot;javascript:window.close()&quot;&gt;Close this window.&lt;/a&gt;&lt;/strong&gt;&lt;/div&gt;
+
+Modified: trunk/wp-content/themes/default/comments.php
+===================================================================
+--- trunk/wp-content/themes/default/comments.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/comments.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -1,36 +1,49 @@
+ &lt;?php // Do not delete these lines
+ 	if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
++	{
+ 		die ('Please do not load this page directly. Thanks!');
++	}
+ 
+-        if (!empty($post-&gt;post_password)) { // if there's a password
+-            if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post-&gt;post_password) {  // and it doesn't match the cookie
+-				?&gt;
+-				
++	if (!empty($post-&gt;post_password)) // if there's a password
++	{
++		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post-&gt;post_password) // and it doesn't match the cookie
++		{
++?&gt;
+ 				&lt;p class=&quot;nocomments&quot;&gt;This post is password protected. Enter the password to view comments.&lt;p&gt;
+-				
+-				&lt;?php
+-				return;
+-            }
+-        }
++&lt;?php
++			return;
++		}
++	}
+ 
+-		/* This variable is for alternating comment background */
+-		$oddcomment = 'alt';
++	/* This variable is for alternating comment background */
++	$oddcomment = 'alt';
+ ?&gt;
+ 
+ &lt;!-- You can start editing here. --&gt;
+ 
+-&lt;?php if ($comments) : ?&gt;
+-	&lt;h3 id=&quot;comments&quot;&gt;&lt;?php comments_number('No Responses', 'One Response', '% Responses' );?&gt; to &#8220;&lt;?php the_title(); ?&gt;&#8221;&lt;/h3&gt; 
++&lt;?php
++if ($comments)
++{
++?&gt;
++	&lt;h3 id=&quot;comments&quot;&gt;&lt;?php comments_number('No Responses', 'One Response', '% Responses' );?&gt; to &#8220;&lt;?php the_title(); ?&gt;&#8221;&lt;/h3&gt;
+ 
+ 	&lt;ol class=&quot;commentlist&quot;&gt;
+ 
+-	&lt;?php foreach ($comments as $comment) : ?&gt;
++&lt;?php
++	foreach ($comments as $comment)
++	{
++?&gt;
+ 
+ 		&lt;li class=&quot;&lt;?php echo $oddcomment; ?&gt;&quot; id=&quot;comment-&lt;?php comment_ID() ?&gt;&quot;&gt;
+ 			&lt;cite&gt;&lt;?php comment_author_link() ?&gt;&lt;/cite&gt; Says:
+-			&lt;?php if ($comment-&gt;comment_approved == '0') : ?&gt;
++&lt;?php
++		if ($comment-&gt;comment_approved == '0')
++		{
++?&gt;
+ 			&lt;em&gt;Your comment is awaiting moderation.&lt;/em&gt;
+-			&lt;?php endif; ?&gt;
++&lt;?php
++		}
++?&gt;
+ 			&lt;br /&gt;
+ 
+ 			&lt;small class=&quot;commentmetadata&quot;&gt;&lt;a href=&quot;#comment-&lt;?php comment_ID() ?&gt;&quot; title=&quot;&quot;&gt;&lt;?php comment_date('F jS, Y') ?&gt; at &lt;?php comment_time() ?&gt;&lt;/a&gt; &lt;?php edit_comment_link('e','',''); ?&gt;&lt;/small&gt;
+@@ -39,43 +52,83 @@
+ 
+ 		&lt;/li&gt;
+ 
+-	&lt;?php /* Changes every other comment to a different class */	
+-		if ('alt' == $oddcomment) $oddcomment = '';
+-		else $oddcomment = 'alt';
++	&lt;?php /* Changes every other comment to a different class */
++		if ('alt' == $oddcomment)
++		{
++			$oddcomment = '';
++		}
++		else
++		{
++			$oddcomment = 'alt';
++		}
+ 	?&gt;
+ 
+-	&lt;?php endforeach; /* end for each comment */ ?&gt;
++&lt;?php
++	} /* end for each comment */
++?&gt;
+ 
+ 	&lt;/ol&gt;
+ 
+- &lt;?php else : // this is displayed if there are no comments so far ?&gt;
++&lt;?php
++}
++else // this is displayed if there are no comments so far
++{
++?&gt;
+ 
+-  &lt;?php if ('open' == $post-&gt;comment_status) : ?&gt; 
++&lt;?php
++	if ('open' == $post-&gt;comment_status)
++	{
++?&gt;
+ 		&lt;!-- If comments are open, but there are no comments. --&gt;
+-		
+-	 &lt;?php else : // comments are closed ?&gt;
++
++&lt;?php
++	}
++	else // comments are closed
++	{
++?&gt;
+ 		&lt;!-- If comments are closed. --&gt;
+ 		&lt;p class=&quot;nocomments&quot;&gt;Comments are closed.&lt;/p&gt;
+-		
+-	&lt;?php endif; ?&gt;
+-&lt;?php endif; ?&gt;
+ 
++&lt;?php
++	}
++?&gt;
++&lt;?php
++}
++?&gt;
+ 
+-&lt;?php if ('open' == $post-&gt;comment_status) : ?&gt;
+ 
++&lt;?php
++if ('open' == $post-&gt;comment_status)
++{
++?&gt;
++
+ &lt;h3 id=&quot;respond&quot;&gt;Leave a Reply&lt;/h3&gt;
+ 
+-&lt;?php if ( get_option('comment_registration') &amp;&amp; !$user_ID ) : ?&gt;
++&lt;?php
++	if ( get_option('comment_registration') &amp;&amp; !$user_ID )
++	{
++?&gt;
+ &lt;p&gt;You must be &lt;a href=&quot;&lt;?php echo get_option('siteurl'); ?&gt;/wp-login.php?redirect_to=&lt;?php the_permalink(); ?&gt;&quot;&gt;logged in&lt;/a&gt; to post a comment.&lt;/p&gt;
+-&lt;?php else : ?&gt;
++&lt;?php
++	}
++	else
++	{
++?&gt;
+ 
+ &lt;form action=&quot;&lt;?php echo get_option('siteurl'); ?&gt;/wp-comments-post.php&quot; method=&quot;post&quot; id=&quot;commentform&quot;&gt;
+ 
+-&lt;?php if ( $user_ID ) : ?&gt;
++&lt;?php
++		if ( $user_ID )
++		{
++?&gt;
+ 
+ &lt;p&gt;Logged in as &lt;a href=&quot;&lt;?php echo get_option('siteurl'); ?&gt;/wp-admin/profile.php&quot;&gt;&lt;?php echo $user_identity; ?&gt;&lt;/a&gt;. &lt;a href=&quot;&lt;?php echo get_option('siteurl'); ?&gt;/wp-login.php?action=logout&quot; title=&quot;Log out of this account&quot;&gt;Logout &raquo;&lt;/a&gt;&lt;/p&gt;
+ 
+-&lt;?php else : ?&gt;
++&lt;?php
++		}
++		else
++		{
++?&gt;
+ 
+ &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;author&quot; id=&quot;author&quot; value=&quot;&lt;?php echo $comment_author; ?&gt;&quot; size=&quot;22&quot; tabindex=&quot;1&quot; /&gt;
+ &lt;label for=&quot;author&quot;&gt;&lt;small&gt;Name &lt;?php if ($req) echo &quot;(required)&quot;; ?&gt;&lt;/small&gt;&lt;/label&gt;&lt;/p&gt;
+@@ -86,7 +139,9 @@
+ &lt;p&gt;&lt;input type=&quot;text&quot; name=&quot;url&quot; id=&quot;url&quot; value=&quot;&lt;?php echo $comment_author_url; ?&gt;&quot; size=&quot;22&quot; tabindex=&quot;3&quot; /&gt;
+ &lt;label for=&quot;url&quot;&gt;&lt;small&gt;Website&lt;/small&gt;&lt;/label&gt;&lt;/p&gt;
+ 
+-&lt;?php endif; ?&gt;
++&lt;?php
++		}
++?&gt;
+ 
+ &lt;!--&lt;p&gt;&lt;small&gt;&lt;strong&gt;XHTML:&lt;/strong&gt; You can use these tags: &lt;?php echo allowed_tags(); ?&gt;&lt;/small&gt;&lt;/p&gt;--&gt;
+ 
+@@ -99,6 +154,10 @@
+ 
+ &lt;/form&gt;
+ 
+-&lt;?php endif; // If registration required and not logged in ?&gt;
++&lt;?php // If registration required and not logged in
++	}
++?&gt;
+ 
+-&lt;?php endif; // if you delete this the sky will fall on your head ?&gt;
++&lt;?php // if you delete this the sky will fall on your head
++}
++?&gt;
+
+Modified: trunk/wp-content/themes/default/header.php
+===================================================================
+--- trunk/wp-content/themes/default/header.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/header.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -20,11 +20,20 @@
+ 	not, then go right ahead and delete the following lines, and the image files. */
+ 
+ 	body { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgcolor.jpg&quot;); }
+-&lt;?php /* Checks to see whether it needs a sidebar or not */ if ((! $withcomments) &amp;&amp; (! is_single())) { ?&gt;
++&lt;?php /* Checks to see whether it needs a sidebar or not */
++if ((! $withcomments) &amp;&amp; (! is_single()))
++{
++?&gt;
+ 	#page { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbg.jpg&quot;) repeat-y top; border: none; }
+-&lt;?php } else { // No sidebar ?&gt;
++&lt;?php
++}
++else
++{ // No sidebar
++?&gt;
+ 	#page { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickbgwide.jpg&quot;) repeat-y top; border: none; }
+-&lt;?php } ?&gt;
++&lt;?php
++}
++?&gt;
+ 	#header { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickheader.jpg&quot;) no-repeat bottom center; }
+ 	#footer { background: url(&quot;&lt;?php bloginfo('stylesheet_directory'); ?&gt;/images/kubrickfooter.jpg&quot;) no-repeat bottom; border: none;}
+ 
+
+Modified: trunk/wp-content/themes/default/index.php
+===================================================================
+--- trunk/wp-content/themes/default/index.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/index.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -2,35 +2,50 @@
+ 
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+-	&lt;?php if (have_posts()) : ?&gt;
+-		
+-		&lt;?php while (have_posts()) : the_post(); ?&gt;
+-				
++&lt;?php
++if (have_posts())
++{
++?&gt;
++
++&lt;?php
++	while (have_posts())
++	{
++		the_post();
++?&gt;
++
+ 			&lt;div class=&quot;post&quot; id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;
+ 				&lt;h2&gt;&lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link to &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+ 				&lt;small&gt;&lt;?php the_time('F jS, Y') ?&gt; &lt;!-- by &lt;?php the_author() ?&gt; --&gt;&lt;/small&gt;
+-				
++
+ 				&lt;div class=&quot;entry&quot;&gt;
+ 					&lt;?php the_content('Read the rest of this entry &raquo;'); ?&gt;
+ 				&lt;/div&gt;
+-		
++
+ 				&lt;p class=&quot;postmetadata&quot;&gt;Posted in &lt;?php the_category(', ') ?&gt; &lt;strong&gt;|&lt;/strong&gt; &lt;?php edit_post_link('Edit','','&lt;strong&gt;|&lt;/strong&gt;'); ?&gt;  &lt;?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?&gt;&lt;/p&gt;
+ 			&lt;/div&gt;
+-	
+-		&lt;?php endwhile; ?&gt;
+ 
++&lt;?php
++	}
++?&gt;
++
+ 		&lt;div class=&quot;navigation&quot;&gt;
+ 			&lt;div class=&quot;alignleft&quot;&gt;&lt;?php next_posts_link('&laquo; Previous Entries') ?&gt;&lt;/div&gt;
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php previous_posts_link('Next Entries &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+-		
+-	&lt;?php else : ?&gt;
+ 
++&lt;?php
++}
++else
++{
++?&gt;
++
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+ 		&lt;p class=&quot;center&quot;&gt;Sorry, but you are looking for something that isn't here.&lt;/p&gt;
+ 		&lt;?php include (TEMPLATEPATH . &quot;/searchform.php&quot;); ?&gt;
+ 
+-	&lt;?php endif; ?&gt;
++&lt;?php
++}
++?&gt;
+ 
+ 	&lt;/div&gt;
+ 
+
+Modified: trunk/wp-content/themes/default/page.php
+===================================================================
+--- trunk/wp-content/themes/default/page.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/page.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -2,20 +2,29 @@
+ 
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+-    &lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
++&lt;?php
++if (have_posts())
++{
++	while (have_posts())
++	{
++		the_post();
++?&gt;
+ 		&lt;div class=&quot;post&quot; id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;
+ 		&lt;h2&gt;&lt;?php the_title(); ?&gt;&lt;/h2&gt;
+ 			&lt;div class=&quot;entrytext&quot;&gt;
+ 				&lt;?php the_content('&lt;p class=&quot;serif&quot;&gt;Read the rest of this page &raquo;&lt;/p&gt;'); ?&gt;
+-	
++
+ 				&lt;?php link_pages('&lt;p&gt;&lt;strong&gt;Pages:&lt;/strong&gt; ', '&lt;/p&gt;', 'number'); ?&gt;
+-	
++
+ 			&lt;/div&gt;
+ 		&lt;/div&gt;
+-	  &lt;?php endwhile; endif; ?&gt;
++&lt;?php
++	}
++}
++?&gt;
+ 	&lt;?php edit_post_link('Edit this entry.', '&lt;p&gt;', '&lt;/p&gt;'); ?&gt;
+ 	&lt;/div&gt;
+ 
+ &lt;?php get_sidebar(); ?&gt;
+ 
+-&lt;?php get_footer(); ?&gt;
+\ No newline at end of file
++&lt;?php get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/search.php
+===================================================================
+--- trunk/wp-content/themes/default/search.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/search.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -2,45 +2,60 @@
+ 
+ 	&lt;div id=&quot;content&quot; class=&quot;narrowcolumn&quot;&gt;
+ 
+-	&lt;?php if (have_posts()) : ?&gt;
++&lt;?php
++if (have_posts())
++{
++?&gt;
+ 
+ 		&lt;h2 class=&quot;pagetitle&quot;&gt;Search Results&lt;/h2&gt;
+-		
++
+ 		&lt;div class=&quot;navigation&quot;&gt;
+ 			&lt;div class=&quot;alignleft&quot;&gt;&lt;?php next_posts_link('&laquo; Previous Entries') ?&gt;&lt;/div&gt;
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php previous_posts_link('Next Entries &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+ 
+ 
+-		&lt;?php while (have_posts()) : the_post(); ?&gt;
+-				
++&lt;?php
++	while (have_posts())
++	{
++		the_post();
++?&gt;
++
+ 			&lt;div class=&quot;post&quot;&gt;
+ 				&lt;h3 id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;&lt;a href=&quot;&lt;?php the_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link to &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h3&gt;
+ 				&lt;small&gt;&lt;?php the_time('l, F jS, Y') ?&gt;&lt;/small&gt;
+-				
++
+ 				&lt;div class=&quot;entry&quot;&gt;
+ 					&lt;?php the_excerpt() ?&gt;
+ 				&lt;/div&gt;
+-		
++
+ 				&lt;p class=&quot;postmetadata&quot;&gt;Posted in &lt;?php the_category(', ') ?&gt; &lt;strong&gt;|&lt;/strong&gt; &lt;?php edit_post_link('Edit','','&lt;strong&gt;|&lt;/strong&gt;'); ?&gt;  &lt;?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?&gt;&lt;/p&gt;
+ 			&lt;/div&gt;
+-	
+-		&lt;?php endwhile; ?&gt;
+ 
++&lt;?php
++	}
++?&gt;
++
+ 		&lt;div class=&quot;navigation&quot;&gt;
+ 			&lt;div class=&quot;alignleft&quot;&gt;&lt;?php next_posts_link('&laquo; Previous Entries') ?&gt;&lt;/div&gt;
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php previous_posts_link('Next Entries &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+-	
+-	&lt;?php else : ?&gt;
+ 
++&lt;?php
++}
++else
++{
++?&gt;
++
+ 		&lt;h2 class=&quot;center&quot;&gt;Not Found&lt;/h2&gt;
+ 		&lt;?php include (TEMPLATEPATH . '/searchform.php'); ?&gt;
+ 
+-	&lt;?php endif; ?&gt;
+-		
++&lt;?php
++}
++?&gt;
++
+ 	&lt;/div&gt;
+ 
+ &lt;?php get_sidebar(); ?&gt;
+ 
+-&lt;?php get_footer(); ?&gt;
+\ No newline at end of file
++&lt;?php get_footer(); ?&gt;
+
+Modified: trunk/wp-content/themes/default/sidebar.php
+===================================================================
+--- trunk/wp-content/themes/default/sidebar.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/sidebar.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -61,7 +61,7 @@
+ 					&lt;li&gt;&lt;?php wp_loginout(); ?&gt;&lt;/li&gt;
+ 					&lt;li&gt;&lt;a href=&quot;<A HREF="http://validator.w3.org/check/referer">http://validator.w3.org/check/referer</A>&quot; title=&quot;This page validates as XHTML 1.0 Transitional&quot;&gt;Valid &lt;abbr title=&quot;eXtensible HyperText Markup Language&quot;&gt;XHTML&lt;/abbr&gt;&lt;/a&gt;&lt;/li&gt;
+ 					&lt;li&gt;&lt;a href=&quot;<A HREF="http://gmpg.org/xfn/">http://gmpg.org/xfn/</A>&quot;&gt;&lt;abbr title=&quot;XHTML Friends Network&quot;&gt;XFN&lt;/abbr&gt;&lt;/a&gt;&lt;/li&gt;
+-					&lt;li&gt;&lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress//">http://steamedpenguin.com/projects/steampress//</A>&quot; title=&quot;Powered by SteamPress, lightweight personal publishing platform.&quot;&gt;SteamPress&lt;/a&gt;&lt;/li&gt;
++					&lt;li&gt;&lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>&quot; title=&quot;Powered by SteamPress, lightweight personal publishing platform.&quot;&gt;SteamPress&lt;/a&gt;&lt;/li&gt;
+ 					&lt;?php wp_meta(); ?&gt;
+ 				&lt;/ul&gt;
+ 				&lt;/li&gt;
+
+Modified: trunk/wp-content/themes/default/single.php
+===================================================================
+--- trunk/wp-content/themes/default/single.php	2005-11-09 18:02:01 UTC (rev 99)
++++ trunk/wp-content/themes/default/single.php	2005-11-09 18:31:13 UTC (rev 100)
+@@ -1,65 +1,89 @@
+ &lt;?php get_header(); ?&gt;
+ 
+ 	&lt;div id=&quot;content&quot; class=&quot;widecolumn&quot;&gt;
+-				
+-  &lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
+-	
++
++&lt;?php
++if (have_posts())
++{
++	while (have_posts())
++	{
++		the_post(); ?&gt;
++
+ 		&lt;div class=&quot;navigation&quot;&gt;
+ 			&lt;div class=&quot;alignleft&quot;&gt;&lt;?php previous_post_link('&laquo; %link') ?&gt;&lt;/div&gt;
+ 			&lt;div class=&quot;alignright&quot;&gt;&lt;?php next_post_link('%link &raquo;') ?&gt;&lt;/div&gt;
+ 		&lt;/div&gt;
+-	
++
+ 		&lt;div class=&quot;post&quot; id=&quot;post-&lt;?php the_ID(); ?&gt;&quot;&gt;
+ 			&lt;h2&gt;&lt;a href=&quot;&lt;?php echo get_permalink() ?&gt;&quot; rel=&quot;bookmark&quot; title=&quot;Permanent Link: &lt;?php the_title(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+-	
++
+ 			&lt;div class=&quot;entrytext&quot;&gt;
+ 				&lt;?php the_content('&lt;p class=&quot;serif&quot;&gt;Read the rest of this entry &raquo;&lt;/p&gt;'); ?&gt;
+-	
++
+ 				&lt;?php link_pages('&lt;p&gt;&lt;strong&gt;Pages:&lt;/strong&gt; ', '&lt;/p&gt;', 'number'); ?&gt;
+-	
++
+ 				&lt;p class=&quot;postmetadata alt&quot;&gt;
+ 					&lt;small&gt;
+ 						This entry was posted
+ 						&lt;?php /* This is commented, because it requires a little adjusting sometimes.
+ 							You'll need to download this plugin, and follow the instructions:
+ 							<A HREF="http://binarybonsai.com/archives/2004/08/17/time-since-plugin/">http://binarybonsai.com/archives/2004/08/17/time-since-plugin/</A> */
+-							/* $entry_datetime = abs(strtotime($post-&gt;post_date) - (60*120)); echo time_since($entry_datetime); echo ' ago'; */ ?&gt; 
++							/* $entry_datetime = abs(strtotime($post-&gt;post_date) - (60*120)); echo time_since($entry_datetime); echo ' ago'; */ ?&gt;
+ 						on &lt;?php the_time('l, F jS, Y') ?&gt; at &lt;?php the_time() ?&gt;
+ 						and is filed under &lt;?php the_category(', ') ?&gt;.
+-						You can follow any responses to this entry through the &lt;?php comments_rss_link('RSS 2.0'); ?&gt; feed. 
+-						
+-						&lt;?php if (('open' == $post-&gt; comment_status) &amp;&amp; ('open' == $post-&gt;ping_status)) {
++						You can follow any responses to this entry through the &lt;?php comments_rss_link('RSS 2.0'); ?&gt; feed.
++
++&lt;?php
++		if (('open' == $post-&gt; comment_status) &amp;&amp; ('open' == $post-&gt;ping_status))
++		{
+ 							// Both Comments and Pings are open ?&gt;
+ 							You can &lt;a href=&quot;#respond&quot;&gt;leave a response&lt;/a&gt;, or &lt;a href=&quot;&lt;?php trackback_url(true); ?&gt;&quot; rel=&quot;trackback&quot;&gt;trackback&lt;/a&gt; from your own site.
+-						
+-						&lt;?php } elseif (!('open' == $post-&gt; comment_status) &amp;&amp; ('open' == $post-&gt;ping_status)) {
++
++&lt;?php
++		}
++		elseif (!('open' == $post-&gt; comment_status) &amp;&amp; ('open' == $post-&gt;ping_status))
++		{
+ 							// Only Pings are Open ?&gt;
+ 							Responses are currently closed, but you can &lt;a href=&quot;&lt;?php trackback_url(true); ?&gt; &quot; rel=&quot;trackback&quot;&gt;trackback&lt;/a&gt; from your own site.
+-						
+-						&lt;?php } elseif (('open' == $post-&gt; comment_status) &amp;&amp; !('open' == $post-&gt;ping_status)) {
++
++&lt;?php
++		}
++		elseif (('open' == $post-&gt; comment_status) &amp;&amp; !('open' == $post-&gt;ping_status))
++		{
+ 							// Comments are open, Pings are not ?&gt;
+ 							You can skip to the end and leave a response. Pinging is currently not allowed.
+-			
+-						&lt;?php } elseif (!('open' == $post-&gt; comment_status) &amp;&amp; !('open' == $post-&gt;ping_status)) {
++
++&lt;?php
++		}
++		elseif (!('open' == $post-&gt; comment_status) &amp;&amp; !('open' == $post-&gt;ping_status))
++		{
+ 							// Neither Comments, nor Pings are open ?&gt;
+-							Both comments and pings are currently closed.			
+-						
+-						&lt;?php } edit_post_link('Edit this entry.','',''); ?&gt;
+-						
++							Both comments and pings are currently closed.
++
++&lt;?php
++		}
++		edit_post_link('Edit this entry.','','');
++?&gt;
+ 					&lt;/small&gt;
+ 				&lt;/p&gt;
+-	
+ 			&lt;/div&gt;
+ 		&lt;/div&gt;
+-		
++
+ 	&lt;?php comments_template(); ?&gt;
+-	
+-	&lt;?php endwhile; else: ?&gt;
+-	
++
++&lt;?php
++	}
++}
++else
++{
++?&gt;
++
+ 		&lt;p&gt;Sorry, no posts matched your criteria.&lt;/p&gt;
+-	
+-&lt;?php endif; ?&gt;
+-	
++
++&lt;?php
++}
++?&gt;
++
+ 	&lt;/div&gt;
+ 
+ &lt;?php get_footer(); ?&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000055.html">[steampress-svn-tracker] r99 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000057.html">[steampress-svn-tracker] r101 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#56">[ date ]</a>
+              <a href="thread.html#56">[ thread ]</a>
+              <a href="subject.html#56">[ subject ]</a>
+              <a href="author.html#56">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

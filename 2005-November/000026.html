@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r70 - trunk/wp-admin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r70%20-%20trunk/wp-admin&In-Reply-To=%3C200511021804.jA2I4SsF008631%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r70 - trunk/wp-admin</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r70%20-%20trunk/wp-admin&In-Reply-To=%3C200511021804.jA2I4SsF008631%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r70 - trunk/wp-admin">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  2 19:04:28 CET 2005</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000027.html">[steampress-svn-tracker] r71 - /
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-02 19:04:27 +0100 (Wed, 02 Nov 2005)
+New Revision: 70
+
+Added:
+   trunk/wp-admin/sidebar.php
+Log:
+Ok, now we are really cooking with gas. committing sidebar properly.
+
+Added: trunk/wp-admin/sidebar.php
+===================================================================
+--- trunk/wp-admin/sidebar.php	2005-10-26 23:39:08 UTC (rev 69)
++++ trunk/wp-admin/sidebar.php	2005-11-02 18:04:27 UTC (rev 70)
+@@ -0,0 +1,81 @@
++&lt;?php
++$mode = 'sidebar';
++
++require_once('admin.php');
++
++get_currentuserinfo();
++
++if ($user_level == 0)
++	die (&quot;Cheatin' uh ?&quot;);
++
++if ('b' == $_GET['a']) {
++
++?&gt;&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
++&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
++&lt;head&gt;
++&lt;title&gt;SteamPress &#8250; Posted&lt;/title&gt;
++&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;&lt;?php bloginfo('html_type'); ?&gt;; charset=UTF-8&quot; /&gt;
++&lt;link rel=&quot;stylesheet&quot; href=&quot;wp-admin.css&quot; type=&quot;text/css&quot; /&gt;
++&lt;/head&gt;
++&lt;body&gt;
++	&lt;p&gt;Posted !&lt;/p&gt;
++	&lt;p&gt;&lt;a href=&quot;sidebar.php&quot;&gt;Click here&lt;/a&gt; to post again.&lt;/p&gt;
++&lt;/body&gt;
++&lt;/html&gt;&lt;?php
++
++} else {
++
++?&gt;&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;<A HREF="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd</A>&quot;&gt;
++&lt;html xmlns=&quot;<A HREF="http://www.w3.org/1999/xhtml">http://www.w3.org/1999/xhtml</A>&quot;&gt;
++&lt;head&gt;
++&lt;title&gt;SteamPress &#8250; Sidebar&lt;/title&gt;
++&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;&lt;?php bloginfo('html_type'); ?&gt;; charset=&lt;?php bloginfo('blog_charset'); ?&gt;&quot; /&gt;
++&lt;link rel=&quot;stylesheet&quot; href=&quot;wp-admin.css&quot; type=&quot;text/css&quot; /&gt;
++&lt;style type=&quot;text/css&quot; media=&quot;screen&quot;&gt;
++form {
++	padding: 3px;
++}
++.sidebar-categories {
++    display: block;
++    height: 6.6em;
++    overflow: auto;
++    background-color: #f4f4f4;
++}
++.sidebar-categories label {
++	font-size: 10px;
++    display: block;
++    width: 90%;
++}
++&lt;/style&gt;
++&lt;/head&gt;
++&lt;body id=&quot;sidebar&quot;&gt;
++&lt;h1 id=&quot;wphead&quot;&gt;&lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>&quot; rel=&quot;external&quot;&gt;SteamPress&lt;/a&gt;&lt;/h1&gt;
++&lt;form name=&quot;post&quot; action=&quot;post.php&quot; method=&quot;POST&quot;&gt;
++&lt;div&gt;&lt;input type=&quot;hidden&quot; name=&quot;action&quot; value=&quot;post&quot; /&gt;
++&lt;input type=&quot;hidden&quot; name=&quot;user_ID&quot; value=&quot;&lt;?php echo $user_ID ?&gt;&quot; /&gt;
++&lt;input type=&quot;hidden&quot; name=&quot;mode&quot; value=&quot;sidebar&quot; /&gt;
++&lt;p&gt;Title:
++&lt;input type=&quot;text&quot; name=&quot;post_title&quot; size=&quot;20&quot; tabindex=&quot;1&quot; style=&quot;width: 100%;&quot; /&gt;
++&lt;/p&gt;
++&lt;p&gt;Categories:
++&lt;span class=&quot;sidebar-categories&quot;&gt;
++&lt;?php dropdown_categories(); ?&gt;
++&lt;/span&gt;
++&lt;/p&gt;
++&lt;p&gt;
++Post:
++&lt;textarea rows=&quot;8&quot; cols=&quot;12&quot; style=&quot;width: 100%&quot; name=&quot;content&quot; tabindex=&quot;2&quot;&gt;&lt;/textarea&gt;
++&lt;/p&gt;
++&lt;p&gt;
++    &lt;input name=&quot;saveasdraft&quot; type=&quot;submit&quot; id=&quot;saveasdraft&quot; tabindex=&quot;9&quot; value=&quot;Save as Draft&quot; /&gt;
++    &lt;input name=&quot;publish&quot; type=&quot;submit&quot; id=&quot;publish&quot; tabindex=&quot;6&quot; style=&quot;font-weight: bold;&quot; value=&quot;Publish&quot; /&gt;
++
++&lt;/p&gt;
++&lt;/div&gt;
++&lt;/form&gt;
++
++&lt;/body&gt;
++&lt;/html&gt;
++&lt;?php
++}
++?&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000027.html">[steampress-svn-tracker] r71 - /
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#26">[ date ]</a>
+              <a href="thread.html#26">[ thread ]</a>
+              <a href="subject.html#26">[ subject ]</a>
+              <a href="author.html#26">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

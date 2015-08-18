@@ -1,0 +1,307 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r101 - trunk/wp-admin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r101%20-%20trunk/wp-admin&In-Reply-To=%3C200511091844.jA9IiS8s032554%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000056.html">
+   <LINK REL="Next"  HREF="000058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r101 - trunk/wp-admin</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r101%20-%20trunk/wp-admin&In-Reply-To=%3C200511091844.jA9IiS8s032554%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r101 - trunk/wp-admin">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 19:44:28 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000056.html">[steampress-svn-tracker] r100 - trunk/wp-content/themes/default
+</A></li>
+        <LI>Next message: <A HREF="000058.html">[steampress-svn-tracker] r102 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 19:44:25 +0100 (Wed, 09 Nov 2005)
+New Revision: 101
+
+Removed:
+   trunk/wp-admin/upload.php
+Log:
+no more need for this file
+
+Deleted: trunk/wp-admin/upload.php
+===================================================================
+--- trunk/wp-admin/upload.php	2005-11-09 18:31:13 UTC (rev 100)
++++ trunk/wp-admin/upload.php	2005-11-09 18:44:25 UTC (rev 101)
+@@ -1,230 +0,0 @@
+-&lt;?php
+-require_once('admin.php');
+-
+-$title = 'Upload Image or File';
+-
+-require_once('admin-header.php');
+-
+-if ($user_level == 0) //Checks to see if user has logged in
+-	die (__(&quot;Cheatin' uh ?&quot;));
+-
+-if (!get_settings('use_fileupload')) //Checks if file upload is enabled in the config
+-	die (__(&quot;The admin disabled this function&quot;));
+-
+-if ( !get_settings('fileupload_minlevel') )
+-	die (__(&quot;You are not allowed to upload files&quot;));
+-
+-$allowed_types = explode(' ', trim(strtolower(get_settings('fileupload_allowedtypes'))));
+-
+-if ($_POST['submit']) {
+-	$action = 'upload';
+-} else {
+-	$action = '';
+-}
+-
+-if (!is_writable(get_settings('fileupload_realpath')))
+-	$action = 'not-writable';
+-?&gt;
+-
+-&lt;div class=&quot;wrap&quot;&gt;
+-
+-&lt;?php
+-switch ($action) {
+-case 'not-writable':
+-?&gt;
+-&lt;p&gt;&lt;?php printf(__(&quot;It doesn't look like you can use the file upload feature at this time because the directory you have specified (&lt;code&gt;%s&lt;/code&gt;) doesn't appear to be writable by WordPress. Check the permissions on the directory and for typos.&quot;), get_settings('fileupload_realpath')) ?&gt;&lt;/p&gt;
+-
+-&lt;?php
+-break;
+-case '':
+-	foreach ($allowed_types as $type) {
+-		$type_tags[] = &quot;&lt;code&gt;$type&lt;/code&gt;&quot;;
+-	}
+-	$i = implode(', ', $type_tags);
+-?&gt;
+-&lt;p&gt;&lt;?php printf(__('You can upload files with the extension %1$s as long as they are no larger than %2$s &lt;abbr title=&quot;Kilobytes&quot;&gt;KB&lt;/abbr&gt;. If you&#8217;re an admin you can configure these values under &lt;a href=&quot;%3$s&quot;&gt;options&lt;/a&gt;.'), $i, get_settings('fileupload_maxk'), 'options-misc.php') ?&gt;&lt;/p&gt;
+-    &lt;form action=&quot;upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+-    &lt;p&gt;
+-      &lt;label for=&quot;img1&quot;&gt;&lt;?php _e('File:') ?&gt;&lt;/label&gt;
+-      &lt;br /&gt;
+-	&lt;input type=&quot;hidden&quot; name=&quot;MAX_FILE_SIZE&quot; value=&quot;&lt;?php echo get_settings('fileupload_maxk') * 1024 ?&gt;&quot; /&gt;
+-    &lt;input type=&quot;file&quot; name=&quot;img1&quot; id=&quot;img1&quot; size=&quot;35&quot; class=&quot;uploadform&quot; /&gt;&lt;/p&gt;
+-    &lt;p&gt;
+-    &lt;label for=&quot;imgdesc&quot;&gt;&lt;?php _e('Description:') ?&gt;&lt;/label&gt;&lt;br /&gt;
+-    &lt;input type=&quot;text&quot; name=&quot;imgdesc&quot; id=&quot;imgdesc&quot; size=&quot;30&quot; class=&quot;uploadform&quot; /&gt;
+-    &lt;/p&gt;
+-	
+-    &lt;p&gt;&lt;?php _e('Create a thumbnail?') ?&gt;&lt;/p&gt;
+-    &lt;p&gt;
+-    &lt;label for=&quot;thumbsize_no&quot;&gt;
+-    &lt;input type=&quot;radio&quot; name=&quot;thumbsize&quot; value=&quot;none&quot; checked=&quot;checked&quot; id=&quot;thumbsize_no&quot; /&gt;
+-    &lt;?php _e('No thanks') ?&gt;&lt;/label&gt;
+-    &lt;br /&gt;
+-        &lt;label for=&quot;thumbsize_small&quot;&gt;
+-&lt;input type=&quot;radio&quot; name=&quot;thumbsize&quot; value=&quot;small&quot; id=&quot;thumbsize_small&quot; /&gt;
+-&lt;?php _e('Small (200px largest side)') ?&gt;&lt;/label&gt;
+-        &lt;br /&gt;
+-        &lt;label for=&quot;thumbsize_large&quot;&gt;
+-&lt;input type=&quot;radio&quot; name=&quot;thumbsize&quot; value=&quot;large&quot; id=&quot;thumbsize_large&quot; /&gt;
+-&lt;?php _e('Large (400px largest side)') ?&gt;&lt;/label&gt;
+-        &lt;br /&gt;
+-        &lt;label for=&quot;thumbsize_custom&quot;&gt;
+-        &lt;input type=&quot;radio&quot; name=&quot;thumbsize&quot; value=&quot;custom&quot; id=&quot;thumbsize_custom&quot; /&gt;
+-&lt;?php _e('Custom size') ?&gt;&lt;/label&gt;
+-      : 
+-      &lt;input type=&quot;text&quot; name=&quot;imgthumbsizecustom&quot; size=&quot;4&quot; /&gt;
+-    &lt;?php _e('px (largest side)') ?&gt;    &lt;/p&gt;
+-	&lt;p&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;&lt;?php _e('Upload File') ?&gt;&quot; /&gt;&lt;/p&gt;
+-    &lt;/form&gt;
+-&lt;/div&gt;&lt;?php 
+-break;
+-case 'upload':
+-
+-	$imgalt = basename( (isset($_POST['imgalt'])) ? $_POST['imgalt'] : '' );
+-
+-	$img1_name = (strlen($imgalt)) ? $imgalt : basename( $_FILES['img1']['name'] );
+-	$img1_name = preg_replace('/[^a-z0-9_.]/i', '', $img1_name); 
+-	$img1_size = $_POST['img1_size'] ? intval($_POST['img1_size']) : intval($_FILES['img1']['size']);
+-
+-	$img1_type = (strlen($imgalt)) ? $_POST['img1_type'] : $_FILES['img1']['type'];
+-	$imgdesc = htmlentities2($_POST['imgdesc']);
+-
+-	$pi = pathinfo($img1_name);
+-	$imgtype = strtolower($pi['extension']);
+-
+-	if (in_array($imgtype, $allowed_types) == false)
+-		die(sprintf(__('File %1$s of type %2$s is not allowed.') , $img1_name, $imgtype));
+-
+-    if (strlen($imgalt)) {
+-        $pathtofile = get_settings('fileupload_realpath').&quot;/&quot;.$imgalt;
+-        $img1 = $_POST['img1'];
+-    } else {
+-        $pathtofile = get_settings('fileupload_realpath').&quot;/&quot;.$img1_name;
+-        $img1 = $_FILES['img1']['tmp_name'];
+-    }
+-
+-    // makes sure not to upload duplicates, rename duplicates
+-    $i = 1;
+-    $pathtofile2 = $pathtofile;
+-    $tmppathtofile = $pathtofile2;
+-    $img2_name = $img1_name;
+-
+-    while ( file_exists($pathtofile2) ) {
+-        $pos = strpos( strtolower($tmppathtofile), '.' . trim($imgtype) );
+-        $pathtofile_start = substr($tmppathtofile, 0, $pos);
+-        $pathtofile2 = $pathtofile_start.'_'.zeroise($i++, 2).'.'.trim($imgtype);
+-        $img2_name = explode('/', $pathtofile2);
+-        $img2_name = $img2_name[count($img2_name)-1];
+-    }
+-
+-    if (file_exists($pathtofile) &amp;&amp; !strlen($imgalt)) {
+-        $i = explode(' ', get_settings('fileupload_allowedtypes'));
+-        $i = implode(', ',array_slice($i, 1, count($i)-2));
+-        $moved = move_uploaded_file($img1, $pathtofile2);
+-        // if move_uploaded_file() fails, try copy()
+-        if (!$moved) {
+-            $moved = copy($img1, $pathtofile2);
+-        }
+-        if (!$moved) {
+-            die(sprintf(__(&quot;Couldn't upload your file to %s.&quot;), $pathtofile2));
+-        } else {
+-			chmod($pathtofile2, 0666);
+-            @unlink($img1);
+-        }
+-
+-	// 
+-    
+-    // duplicate-renaming function contributed by Gary Lawrence Murphy
+-    ?&gt;
+-    &lt;p&gt;&lt;strong&gt;&lt;?php __('Duplicate File?') ?&gt;&lt;/strong&gt;&lt;/p&gt;
+-    &lt;p&gt;&lt;b&gt;&lt;em&gt;&lt;?php printf(__(&quot;The filename '%s' already exists!&quot;), $img1_name); ?&gt;&lt;/em&gt;&lt;/b&gt;&lt;/p&gt;
+-    &lt;p&gt; &lt;?php printf(__(&quot;Filename '%1\$s' moved to '%2\$s'&quot;), $img1, &quot;$pathtofile2 - $img2_name&quot;) ?&gt;&lt;/p&gt;
+-    &lt;p&gt;&lt;?php _e('Confirm or rename:') ?&gt;&lt;/p&gt;
+-    &lt;form action=&quot;upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;MAX_FILE_SIZE&quot; value=&quot;&lt;?php echo  get_settings('fileupload_maxk') *1024 ?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;img1_type&quot; value=&quot;&lt;?php echo $img1_type;?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;img1_name&quot; value=&quot;&lt;?php echo $img2_name;?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;img1_size&quot; value=&quot;&lt;?php echo $img1_size;?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;img1&quot; value=&quot;&lt;?php echo $pathtofile2;?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;thumbsize&quot; value=&quot;&lt;?php echo $_REQUEST['thumbsize'];?&gt;&quot; /&gt;
+-    &lt;input type=&quot;hidden&quot; name=&quot;imgthumbsizecustom&quot; value=&quot;&lt;?php echo $_REQUEST['imgthumbsizecustom'];?&gt;&quot; /&gt;
+-    &lt;?php _e('Alternate name:') ?&gt;&lt;br /&gt;&lt;input type=&quot;text&quot; name=&quot;imgalt&quot; size=&quot;30&quot; class=&quot;uploadform&quot; value=&quot;&lt;?php echo $img2_name;?&gt;&quot; /&gt;&lt;br /&gt;
+-    &lt;br /&gt;
+-    &lt;?php _e('Description:') ?&gt;&lt;br /&gt;&lt;input type=&quot;text&quot; name=&quot;imgdesc&quot; size=&quot;30&quot; class=&quot;uploadform&quot; value=&quot;&lt;?php echo $imgdesc;?&gt;&quot; /&gt;
+-    &lt;br /&gt;
+-    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;&lt;?php _e('Rename') ?&gt;&quot; class=&quot;search&quot; /&gt;
+-    &lt;/form&gt;
+-&lt;/div&gt;
+-&lt;?php 
+-
+-require('admin-footer.php');
+-die();
+-
+-    }
+-
+-    if (!strlen($imgalt)) {
+-        @$moved = move_uploaded_file($img1, $pathtofile); //Path to your images directory, chmod the dir to 777
+-        // move_uploaded_file() can fail if open_basedir in PHP.INI doesn't
+-        // include your tmp directory. Try copy instead?
+-        if(!$moved) {
+-            $moved = copy($img1, $pathtofile);
+-        }
+-        // Still couldn't get it. Give up.
+-        if (!$moved) {
+-            die(sprintf(__(&quot;Couldn't upload your file to %s.&quot;), $pathtofile));
+-        } else {
+-			chmod($pathtofile, 0666);
+-            @unlink($img1);
+-        }
+-        
+-    } else {
+-        rename($img1, $pathtofile)
+-        or die(sprintf(__(&quot;Couldn't upload your file to %s.&quot;), $pathtofile));
+-    }
+-    
+-    if($_POST['thumbsize'] != 'none' ) {
+-        if($_POST['thumbsize'] == 'small') {
+-            $max_side = 200;
+-        }
+-        elseif($_POST['thumbsize'] == 'large') {
+-            $max_side = 400;
+-        }
+-        elseif($_POST['thumbsize'] == 'custom') {
+-            $max_side = intval($_POST['imgthumbsizecustom']);
+-        }
+-        
+-        $result = wp_create_thumbnail($pathtofile, $max_side, NULL);
+-        if($result != 1) {
+-            print $result;
+-        }
+-    }
+-
+-if ( ereg('image/',$img1_type) )
+-	$piece_of_code = &quot;&lt;img src='&quot; . get_settings('fileupload_url') .&quot;/$img1_name' alt='$imgdesc' /&gt;&quot;;
+-else
+-	$piece_of_code = &quot;&lt;a href='&quot;. get_settings('fileupload_url') . &quot;/$img1_name' title='$imgdesc'&gt;$imgdesc&lt;/a&gt;&quot;;
+-
+-$piece_of_code = htmlspecialchars( $piece_of_code );
+-?&gt;
+-
+-&lt;h3&gt;&lt;?php _e('File uploaded!') ?&gt;&lt;/h3&gt;
+-&lt;p&gt;&lt;?php printf(__(&quot;Your file &lt;code&gt;%s&lt;/code&gt; was uploaded successfully!&quot;), $img1_name); ?&gt;&lt;/p&gt;
+-&lt;p&gt;&lt;?php _e('Here&#8217;s the code to display it:') ?&gt;&lt;/p&gt;
+-&lt;p&gt;&lt;code&gt;&lt;?php echo $piece_of_code; ?&gt;&lt;/code&gt;
+-&lt;/p&gt;
+-&lt;p&gt;&lt;strong&gt;&lt;?php _e('Image Details') ?&gt;&lt;/strong&gt;: &lt;br /&gt;
+-&lt;?php _e('Name:'); ?&gt;
+-&lt;?php echo $img1_name; ?&gt;
+-&lt;br /&gt;
+-&lt;?php _e('Size:') ?&gt;
+-&lt;?php echo round($img1_size / 1024, 2); ?&gt; &lt;?php _e('&lt;abbr title=&quot;Kilobyte&quot;&gt;KB&lt;/abbr&gt;') ?&gt;&lt;br /&gt;
+-&lt;?php _e('Type:') ?&gt;
+-&lt;?php echo $img1_type; ?&gt;
+-&lt;/p&gt;
+-&lt;/div&gt;
+-&lt;p&gt;&lt;a href=&quot;upload.php&quot;&gt;&lt;?php _e('Upload another') ?&gt;&lt;/a&gt;&lt;/p&gt;
+-&lt;?php
+-break;
+-}
+-include('admin-footer.php');
+-?&gt;
+\ No newline at end of file
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000056.html">[steampress-svn-tracker] r100 - trunk/wp-content/themes/default
+</A></li>
+	<LI>Next message: <A HREF="000058.html">[steampress-svn-tracker] r102 - trunk/wp-admin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#57">[ date ]</a>
+              <a href="thread.html#57">[ thread ]</a>
+              <a href="subject.html#57">[ subject ]</a>
+              <a href="author.html#57">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

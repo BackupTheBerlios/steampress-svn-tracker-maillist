@@ -1,0 +1,110 @@
+From steampress-svn-tracker-admin at lists.berlios.de  Mon Jan  3 09:12:24 2005
+From: steampress-svn-tracker-admin at lists.berlios.de (steampress-svn-tracker-admin at lists.berlios.de)
+Date: Mon, 3 Jan 2005 09:12:24 +0100
+Subject: [steampress-svn-tracker] r58 - devtools
+Message-ID: <200501030812.j038CO7r016960@sheep.berlios.de>
+
+Author: masquerade
+Date: 2005-01-03 09:12:22 +0100 (Mon, 03 Jan 2005)
+New Revision: 58
+
+Modified:
+   devtools/wp-sp-transformer
+Log:
+fixing renaming bugs
+
+Modified: devtools/wp-sp-transformer
+===================================================================
+--- devtools/wp-sp-transformer	2004-12-31 20:25:10 UTC (rev 57)
++++ devtools/wp-sp-transformer	2005-01-03 08:12:22 UTC (rev 58)
+@@ -14,6 +14,10 @@
+ rpl -R 'wptexturize' 'sptexturize' *
+ rpl -R 'wphead' 'sphead' *
+ 
++//fixes the problem with activating themes, as the link was still to
++//themes.php
++rpl -R '/themes.php' '/options-themes.php' *
++
+ echo 'replacing done'
+ 
+ rename wp- sp- *
+
+
+
+From steampress-svn-tracker-admin at lists.berlios.de  Mon Jan  3 09:18:52 2005
+From: steampress-svn-tracker-admin at lists.berlios.de (steampress-svn-tracker-admin at lists.berlios.de)
+Date: Mon, 3 Jan 2005 09:18:52 +0100
+Subject: [steampress-svn-tracker] r59 - devtools
+Message-ID: <200501030818.j038IqdI017116@sheep.berlios.de>
+
+Author: masquerade
+Date: 2005-01-03 09:18:51 +0100 (Mon, 03 Jan 2005)
+New Revision: 59
+
+Modified:
+   devtools/wp-sp-transformer
+Log:
+fixing my silly mistakes, tested now
+
+Modified: devtools/wp-sp-transformer
+===================================================================
+--- devtools/wp-sp-transformer	2005-01-03 08:12:22 UTC (rev 58)
++++ devtools/wp-sp-transformer	2005-01-03 08:18:51 UTC (rev 59)
+@@ -14,9 +14,11 @@
+ rpl -R 'wptexturize' 'sptexturize' *
+ rpl -R 'wphead' 'sphead' *
+ 
+-//fixes the problem with activating themes, as the link was still to
+-//themes.php
+-rpl -R '/themes.php' '/options-themes.php' *
++#fixes the problem with activating themes, as the link was still to 
++#themes.php for actions in options-themes.php, uses the questionmarks so 
++#it doesn't double the menu up when doing the conversions on a already 
++sp install
++rpl -R 'themes.php?' 'options-themes.php?' *
+ 
+ echo 'replacing done'
+ 
+
+
+
+From steampress-svn-tracker-admin at lists.berlios.de  Mon Jan  3 09:19:33 2005
+From: steampress-svn-tracker-admin at lists.berlios.de (steampress-svn-tracker-admin at lists.berlios.de)
+Date: Mon, 3 Jan 2005 09:19:33 +0100
+Subject: [steampress-svn-tracker] r60 - trunk/sp-admin
+Message-ID: <200501030819.j038JXRm017147@sheep.berlios.de>
+
+Author: masquerade
+Date: 2005-01-03 09:19:32 +0100 (Mon, 03 Jan 2005)
+New Revision: 60
+
+Modified:
+   trunk/sp-admin/options-themes.php
+Log:
+fixing the bug in themes with 404s when trying to activate
+
+Modified: trunk/sp-admin/options-themes.php
+===================================================================
+--- trunk/sp-admin/options-themes.php	2005-01-03 08:18:51 UTC (rev 59)
++++ trunk/sp-admin/options-themes.php	2005-01-03 08:19:32 UTC (rev 60)
+@@ -15,7 +15,7 @@
+ 
+ 		do_action('switch_theme', get_current_theme());
+ 
+-	  header('Location: themes.php?activated=true');
++	  header('Location: options-themes.php?activated=true');
+ 	}
+  }
+ 
+@@ -81,7 +81,7 @@
+ 		if ($template == $current_template && $stylesheet == $current_stylesheet) {
+ 			$action = __('Active Theme');
+ 		} else {
+-			$action = "<a href='themes.php?action=activate&amp;template=$template&amp;stylesheet=$stylesheet' title='" . __('Select this theme') . "' class='edit'>" . __('Select') . '</a>';
++			$action = "<a href='options-themes.php?action=activate&amp;template=$template&amp;stylesheet=$stylesheet' title='" . __('Select this theme') . "' class='edit'>" . __('Select') . '</a>';
+ 		}
+ 
+ 		$theme = ('class="alternate"' == $theme) ? '' : 'class="alternate"';
+
+
+

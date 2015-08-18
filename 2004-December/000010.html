@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r53 - trunk/sp-includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2004-December/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r53%20-%20trunk/sp-includes&In-Reply-To=%3C200412310331.iBV3VE8d024490%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000009.html">
+   <LINK REL="Next"  HREF="000011.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r53 - trunk/sp-includes</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r53%20-%20trunk/sp-includes&In-Reply-To=%3C200412310331.iBV3VE8d024490%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r53 - trunk/sp-includes">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Fri Dec 31 04:31:14 CET 2004</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000009.html">[steampress-svn-tracker] r52 - trunk/sp-includes
+</A></li>
+        <LI>Next message: <A HREF="000011.html">[steampress-svn-tracker] r54 - trunk/sp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: masquerade
+Date: 2004-12-31 04:31:07 +0100 (Fri, 31 Dec 2004)
+New Revision: 53
+
+Modified:
+   trunk/sp-includes/functions.php
+Log:
+Lots of fixes and code cleanup. Fixed the strange bugs after the initial login. Got rid of the commented out sessions code. Internationalized strings from the login to match their WP counterparts
+
+Modified: trunk/sp-includes/functions.php
+===================================================================
+--- trunk/sp-includes/functions.php	2004-12-31 03:13:47 UTC (rev 52)
++++ trunk/sp-includes/functions.php	2004-12-31 03:31:07 UTC (rev 53)
+@@ -1568,13 +1568,9 @@
+ 
+ function logged_in()
+ {
+-	//all session code is commented out until its finished
+ 	global $error, $spdb;
+ 	$usercookie =  $_COOKIE['steampressuser_' . COOKIEHASH];
+ 	$passcookie = $_COOKIE['steampresspass_' . COOKIEHASH];
+-	//@session_start();
+-	//$usersession = $_SESSION['steampressuser_' . COOKIEHASH];
+-	//$passsession = $_SESSION['steampresspass_' . COOKIEHASH];
+ 	if(isset($_POST['loginformsubmit']) &amp;&amp; empty($usercookie) &amp;&amp; empty($passcookie))
+ 	{
+ 		$spuser = $_POST['log'];
+@@ -1582,26 +1578,21 @@
+ 		$passfromdb = $spdb-&gt;get_row(&quot;SELECT user_pass FROM $spdb-&gt;users WHERE user_login = '$spuser'&quot;, 'ARRAY_A');
+ 		if(!$passfromdb)
+ 		{
+-			$error = &quot;Incorrect Username. Remember, usernames are CaSe SeNsEtIvE&quot;;
++			$error = __('Wrong login.');
+ 			include(ABSPATH . SPINC . '/login.php');
+ 			die();
+ 		}
+ 		if($sppass == $passfromdb['user_pass'])
+ 		{
+-			//if($_POST['usesessions'])
+-			//{
+-			//	$_SESSION['steampressuser_' . COOKIEHASH] = $spuser;
+-			//	$_SESSION['steampresspass_' . COOKIEHASH] = md5($sppass);
+-			//}
+-			//else
+-			//{
+-				setcookie('steampressuser_' . COOKIEHASH, $spuser, time() + 31536000, COOKIEPATH);
+-				setcookie('steampresspass_' . COOKIEHASH, md5($sppass), time() + 31536000, COOKIEPATH);
+-			//}
++			setcookie('steampressuser_' . COOKIEHASH, $spuser, time() + 31536000, COOKIEPATH);
++			setcookie('steampresspass_' . COOKIEHASH, md5($sppass), time() + 31536000, COOKIEPATH);
++			//this is here so allt he code recognizes the user as logged in after
++			//the initial login, strange things happen otherwise
++			header('Location: ' . $_SERVER['PHP_SELF']);
+ 		}
+ 		else
+ 		{
+-			$error = &quot;Incorrect Password.&quot;;
++			$error = __('Incorrect Password.');
+ 			require(ABSPATH . SPINC . '/login.php');
+ 			die();
+ 		}
+@@ -1618,20 +1609,14 @@
+ 			$passfromdb = $spdb-&gt;get_row(&quot;SELECT user_pass FROM $spdb-&gt;users WHERE user_login = '$usercookie'&quot;, 'ARRAY_A');
+ 			if(!$passfromdb)
+ 			{
+-				$error = &quot;Incorrect Username. Remember, usernames are CaSe SeNsEtIvE&quot;;
++				$error = __('Wrong login.');
+ 				include(ABSPATH . SPINC . '/login.php');
+ 				die();
+ 			}
+ 			else
+ 			{
+-				if($passcookie == md5($passfromdb['user_pass']))
++				if($passcookie != md5($passfromdb['user_pass']))
+ 				{
+-				return true;
+-				}
+-				else
+-				{
+-					//expire the cookies and kill the sessions
+-					//session_destroy();
+ 				   setcookie('steampressuser_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
+ 				   setcookie('steampresspass_' . COOKIEHASH, ' ', time() - 31536000, COOKIEPATH);
+ 					include(ABSPATH . SPINC . '/login.php');
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000009.html">[steampress-svn-tracker] r52 - trunk/sp-includes
+</A></li>
+	<LI>Next message: <A HREF="000011.html">[steampress-svn-tracker] r54 - trunk/sp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#10">[ date ]</a>
+              <a href="thread.html#10">[ thread ]</a>
+              <a href="subject.html#10">[ subject ]</a>
+              <a href="author.html#10">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

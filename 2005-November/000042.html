@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [steampress-svn-tracker] r86 - trunk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r86%20-%20trunk&In-Reply-To=%3C200511090539.jA95d0hQ011502%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000041.html">
+   <LINK REL="Next"  HREF="000043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[steampress-svn-tracker] r86 - trunk</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5Bsteampress-svn-tracker%5D%20r86%20-%20trunk&In-Reply-To=%3C200511090539.jA95d0hQ011502%40sheep.berlios.de%3E"
+       TITLE="[steampress-svn-tracker] r86 - trunk">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Wed Nov  9 06:39:00 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000041.html">[steampress-svn-tracker] r85 - trunk
+</A></li>
+        <LI>Next message: <A HREF="000043.html">[steampress-svn-tracker] r87 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-09 06:38:57 +0100 (Wed, 09 Nov 2005)
+New Revision: 86
+
+Modified:
+   trunk/wp-links-opml.php
+Log:
+Add brackets. Whitespace makes code legible. change references to wordpress to steampress
+
+Modified: trunk/wp-links-opml.php
+===================================================================
+--- trunk/wp-links-opml.php	2005-11-09 05:35:51 UTC (rev 85)
++++ trunk/wp-links-opml.php	2005-11-09 05:38:57 UTC (rev 86)
+@@ -1,58 +1,67 @@
+-&lt;?php 
++&lt;?php
+ $doing_rss = 1;
+ 
+ require('wp-blog-header.php');
+ header('Content-type: text/xml; charset=' . get_settings('blog_charset'), true);
+ $link_cat = $_GET['link_cat'];
+-if ((empty($link_cat)) || ($link_cat == 'all') || ($link_cat == '0')) {
+-    $sql_cat = '';
+-} else { // be safe
+-    $link_cat = ''.urldecode($link_cat).'';
+-    $link_cat = addslashes_gpc($link_cat);
+-    $link_cat = intval($link_cat);
+-    if ($link_cat != 0) {
+-        $sql_cat = &quot;AND $wpdb-&gt;links.link_category = $link_cat&quot;;
+-        $cat_name = $wpdb-&gt;get_var(&quot;SELECT $wpdb-&gt;linkcategories.cat_name FROM $wpdb-&gt;linkcategories WHERE $wpdb-&gt;linkcategories.cat_id = $link_cat&quot;);
+-        if (!empty($cat_name)) {
+-            $cat_name = &quot;: category $cat_name&quot;;
+-        }
+-    }
++if ((empty($link_cat)) || ($link_cat == 'all') || ($link_cat == '0'))
++{
++	$sql_cat = '';
+ }
++else // be safe
++{
++	$link_cat = ''.urldecode($link_cat).'';
++	$link_cat = addslashes_gpc($link_cat);
++	$link_cat = intval($link_cat);
++	if ($link_cat != 0)
++	{
++		$sql_cat = &quot;AND $wpdb-&gt;links.link_category = $link_cat&quot;;
++		$cat_name = $wpdb-&gt;get_var(&quot;SELECT $wpdb-&gt;linkcategories.cat_name FROM $wpdb-&gt;linkcategories WHERE $wpdb-&gt;linkcategories.cat_id = $link_cat&quot;);
++		if (!empty($cat_name))
++		{
++			$cat_name = &quot;: category $cat_name&quot;;
++		}
++	}
++}
+ ?&gt;&lt;?php echo '&lt;?xml version=&quot;1.0&quot;?'.&quot;&gt;\n&quot;; ?&gt;
+-&lt;!-- generator=&quot;wordpress/&lt;?php echo $wp_version ?&gt;&quot; --&gt;
++&lt;!-- generator=&quot;steampress/&lt;?php echo $wp_version ?&gt;&quot; --&gt;
+ &lt;opml version=&quot;1.0&quot;&gt;
+-    &lt;head&gt;
+-        &lt;title&gt;Links for &lt;?php echo get_bloginfo('name').$cat_name ?&gt;&lt;/title&gt;
+-        &lt;dateCreated&gt;&lt;?php echo gmdate(&quot;D, d M Y H:i:s&quot;); ?&gt; GMT&lt;/dateCreated&gt;
+-    &lt;/head&gt;
+-    &lt;body&gt;
+-&lt;?php $sql = &quot;SELECT $wpdb-&gt;links.link_url, link_rss, $wpdb-&gt;links.link_name, $wpdb-&gt;links.link_category, $wpdb-&gt;linkcategories.cat_name, link_updated 
+-FROM $wpdb-&gt;links 
+- JOIN $wpdb-&gt;linkcategories on $wpdb-&gt;links.link_category = $wpdb-&gt;linkcategories.cat_id
+- $sql_cat
+- ORDER BY $wpdb-&gt;linkcategories.cat_name, $wpdb-&gt;links.link_name \n&quot;;
+- //echo(&quot;&lt;!-- $sql --&gt;&quot;);
+- $prev_cat_id = 0;
+- $results = $wpdb-&gt;get_results($sql);
+- if ($results) {
+-     foreach ($results as $result) {
+-         if ($result-&gt;link_category != $prev_cat_id) { // new category
+-             if ($prev_cat_id != 0)  { // not first time
++	&lt;head&gt;
++		&lt;title&gt;Links for &lt;?php echo get_bloginfo('name').$cat_name ?&gt;&lt;/title&gt;
++		&lt;dateCreated&gt;&lt;?php echo gmdate(&quot;D, d M Y H:i:s&quot;); ?&gt; GMT&lt;/dateCreated&gt;
++	&lt;/head&gt;
++	&lt;body&gt;
++&lt;?php $sql = &quot;SELECT $wpdb-&gt;links.link_url, link_rss, $wpdb-&gt;links.link_name, $wpdb-&gt;links.link_category, $wpdb-&gt;linkcategories.cat_name, link_updated
++FROM $wpdb-&gt;links
++JOIN $wpdb-&gt;linkcategories on $wpdb-&gt;links.link_category = $wpdb-&gt;linkcategories.cat_id
++$sql_cat
++ORDER BY $wpdb-&gt;linkcategories.cat_name, $wpdb-&gt;links.link_name \n&quot;;
++//echo(&quot;&lt;!-- $sql --&gt;&quot;);
++$prev_cat_id = 0;
++$results = $wpdb-&gt;get_results($sql);
++if ($results)
++{
++	foreach ($results as $result)
++	{
++		if ($result-&gt;link_category != $prev_cat_id) // new category
++		{
++			if ($prev_cat_id != 0) // not first time
++			{
+ ?&gt;
+-        &lt;/outline&gt;
++		&lt;/outline&gt;
+ &lt;?php
+-             } // end if not first time
++			} // end if not first time
+ ?&gt;
+-        &lt;outline type=&quot;category&quot; title=&quot;&lt;?php echo wp_specialchars($result-&gt;cat_name); ?&gt;&quot;&gt;
++		&lt;outline type=&quot;category&quot; title=&quot;&lt;?php echo wp_specialchars($result-&gt;cat_name); ?&gt;&quot;&gt;
+ &lt;?php
+-             $prev_cat_id = $result-&gt;link_category;
+-        } // end if new category
++			$prev_cat_id = $result-&gt;link_category;
++		} // end if new category
+ ?&gt;
+-            &lt;outline title=&quot;&lt;?php echo wp_specialchars($result-&gt;link_name); ?&gt;&quot; type=&quot;link&quot; xmlUrl=&quot;&lt;?php echo wp_specialchars($result-&gt;link_rss); ?&gt;&quot; htmlUrl=&quot;&lt;?php echo wp_specialchars($result-&gt;link_url); ?&gt;&quot; updated=&quot;&lt;?php if ('0000-00-00 00:00:00' != $result-&gt;link_updated) echo $result-&gt;link_updated; ?&gt;&quot; /&gt;
++			&lt;outline title=&quot;&lt;?php echo wp_specialchars($result-&gt;link_name); ?&gt;&quot; type=&quot;link&quot; xmlUrl=&quot;&lt;?php echo wp_specialchars($result-&gt;link_rss); ?&gt;&quot; htmlUrl=&quot;&lt;?php echo wp_specialchars($result-&gt;link_url); ?&gt;&quot; updated=&quot;&lt;?php if ('0000-00-00 00:00:00' != $result-&gt;link_updated) echo $result-&gt;link_updated; ?&gt;&quot; /&gt;
+ &lt;?php
+-        } // end foreach
+-    } // end if
++	} // end foreach
++} // end if
+ ?&gt;
+-        &lt;/outline&gt;
+-    &lt;/body&gt;
+-&lt;/opml&gt;
+\ No newline at end of file
++		&lt;/outline&gt;
++	&lt;/body&gt;
++&lt;/opml&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000041.html">[steampress-svn-tracker] r85 - trunk
+</A></li>
+	<LI>Next message: <A HREF="000043.html">[steampress-svn-tracker] r87 - trunk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#42">[ date ]</a>
+              <a href="thread.html#42">[ thread ]</a>
+              <a href="subject.html#42">[ subject ]</a>
+              <a href="author.html#42">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>

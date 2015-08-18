@@ -1,0 +1,3083 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [SteamPress-SVN-Tracker] r112 - trunk/wp-admin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/steampress-svn-tracker/2005-November/index.html" >
+   <LINK REL="made" HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r112%20-%20trunk/wp-admin&In-Reply-To=%3C200511221543.jAMFhVkh015237%40sheep.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000067.html">
+   <LINK REL="Next"  HREF="000069.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[SteamPress-SVN-Tracker] r112 - trunk/wp-admin</H1>
+    <B>steampress-svn-tracker-admin at lists.berlios.de</B> 
+    <A HREF="mailto:steampress-svn-tracker%40lists.berlios.de?Subject=Re%3A%20%5BSteamPress-SVN-Tracker%5D%20r112%20-%20trunk/wp-admin&In-Reply-To=%3C200511221543.jAMFhVkh015237%40sheep.berlios.de%3E"
+       TITLE="[SteamPress-SVN-Tracker] r112 - trunk/wp-admin">steampress-svn-tracker-admin at lists.berlios.de
+       </A><BR>
+    <I>Tue Nov 22 16:43:31 CET 2005</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000067.html">[SteamPress-SVN-Tracker] r111 - trunk/wp-includes
+</A></li>
+        <LI>Next message: <A HREF="000069.html">[SteamPress-SVN-Tracker] r113 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Author: steamedpenguin
+Date: 2005-11-22 16:43:27 +0100 (Tue, 22 Nov 2005)
+New Revision: 112
+
+Modified:
+   trunk/wp-admin/admin-footer.php
+   trunk/wp-admin/admin-functions.php
+   trunk/wp-admin/admin-header.php
+   trunk/wp-admin/admin.php
+   trunk/wp-admin/categories.php
+   trunk/wp-admin/edit-comments.php
+   trunk/wp-admin/edit-form-advanced.php
+   trunk/wp-admin/edit-form-comment.php
+   trunk/wp-admin/edit-form.php
+   trunk/wp-admin/edit-page-form.php
+   trunk/wp-admin/edit-pages.php
+   trunk/wp-admin/edit.php
+   trunk/wp-admin/import-b2.php
+   trunk/wp-admin/import-blogger.php
+   trunk/wp-admin/import-greymatter.php
+   trunk/wp-admin/import-livejournal.php
+   trunk/wp-admin/import-mt.php
+   trunk/wp-admin/import-rss.php
+   trunk/wp-admin/import-textpattern.php
+   trunk/wp-admin/index.php
+   trunk/wp-admin/install-helper.php
+   trunk/wp-admin/install.php
+   trunk/wp-admin/link-add.php
+   trunk/wp-admin/link-categories.php
+   trunk/wp-admin/link-import.php
+   trunk/wp-admin/link-manager.php
+   trunk/wp-admin/link-parse-opml.php
+   trunk/wp-admin/menu-header.php
+   trunk/wp-admin/menu.php
+   trunk/wp-admin/moderation.php
+   trunk/wp-admin/options-discussion.php
+   trunk/wp-admin/options-general.php
+   trunk/wp-admin/options-head.php
+   trunk/wp-admin/options-permalink.php
+   trunk/wp-admin/options-reading.php
+   trunk/wp-admin/options-writing.php
+   trunk/wp-admin/options.php
+   trunk/wp-admin/page-new.php
+   trunk/wp-admin/plugins.php
+   trunk/wp-admin/post.php
+   trunk/wp-admin/profile.php
+   trunk/wp-admin/setup-config.php
+   trunk/wp-admin/sidebar.php
+   trunk/wp-admin/themes.php
+   trunk/wp-admin/update-links.php
+   trunk/wp-admin/upgrade-functions.php
+   trunk/wp-admin/upgrade-schema.php
+   trunk/wp-admin/upgrade.php
+   trunk/wp-admin/user-edit.php
+   trunk/wp-admin/users.php
+   trunk/wp-admin/wp-admin.css
+Log:
+- Added  copyright notices and permission to copy statements at the beginning of every file of source code.
+
+
+
+Modified: trunk/wp-admin/admin-footer.php
+===================================================================
+--- trunk/wp-admin/admin-footer.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/admin-footer.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,3 +1,44 @@
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
+ &lt;div id=&quot;footer&quot;&gt;
+ 	&lt;p&gt;
+ 		&lt;a href=&quot;<A HREF="http://steamedpenguin.com/projects/steampress/">http://steamedpenguin.com/projects/steampress/</A>&quot;&gt;SteamPress&lt;/a&gt;
+
+Modified: trunk/wp-admin/admin-functions.php
+===================================================================
+--- trunk/wp-admin/admin-functions.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/admin-functions.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ function url_shorten ($url) {
+ 	$short_url = str_replace('<A HREF="http://">http://</A>', '', stripslashes($url));
+ 	$short_url = str_replace('www.', '', $short_url);
+
+Modified: trunk/wp-admin/admin-header.php
+===================================================================
+--- trunk/wp-admin/admin-header.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/admin-header.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ @header('Content-type: ' . get_option('html_type') . '; charset=' . get_option('blog_charset'));
+ if (!isset($_GET[&quot;page&quot;])) require_once('admin.php'); ?&gt;
+ &lt;?php get_admin_page_title(); ?&gt;
+
+Modified: trunk/wp-admin/admin.php
+===================================================================
+--- trunk/wp-admin/admin.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/admin.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,8 +1,51 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++
+ if ( defined('ABSPATH') )
++{
+ 	require_once( ABSPATH . 'wp-config.php');
++}
+ else
++{
+ 	require_once('../wp-config.php');
++}
+ 
+ require_once(ABSPATH . 'wp-admin/admin-functions.php');
+ auth_redirect();
+@@ -68,4 +111,4 @@
+ 	exit();
+ }
+ 
+-?&gt;
+\ No newline at end of file
++?&gt;
+
+Modified: trunk/wp-admin/categories.php
+===================================================================
+--- trunk/wp-admin/categories.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/categories.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Categories');
+@@ -127,9 +166,7 @@
+ $messages[1] = __('Category added.');
+ $messages[2] = __('Category deleted.');
+ $messages[3] = __('Category updated.');
+-?&gt;
+-
+-&lt;?php if (isset($_GET['message'])) : ?&gt;
++  if (isset($_GET['message'])) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php echo $messages[$_GET['message']]; ?&gt;&lt;/p&gt;&lt;/div&gt;
+ &lt;?php endif; ?&gt;
+ 
+@@ -176,9 +213,7 @@
+ 		&lt;p class=&quot;submit&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;action&quot; value=&quot;addcat&quot; /&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;&lt;?php _e('Add Category &raquo;') ?&gt;&quot; /&gt;&lt;/p&gt;
+ 	&lt;/form&gt;
+ &lt;/div&gt;
+-&lt;?php endif; ?&gt;
+-
+-&lt;?php
++&lt;?php endif;  
+ break;
+ }
+ 
+
+Modified: trunk/wp-admin/edit-comments.php
+===================================================================
+--- trunk/wp-admin/edit-comments.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-comments.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Edit Comments');
+
+Modified: trunk/wp-admin/edit-form-advanced.php
+===================================================================
+--- trunk/wp-admin/edit-form-advanced.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-form-advanced.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ $messages[1] = __('Post updated');
+ $messages[2] = __('Custom field updated');
+ $messages[3] = __('Custom field deleted.');
+
+Modified: trunk/wp-admin/edit-form-comment.php
+===================================================================
+--- trunk/wp-admin/edit-form-comment.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-form-comment.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ $submitbutton_text = __('Edit Comment &raquo;');
+ $toprow_title = sprintf(__('Editing Comment # %s'), $commentdata['comment_ID']);
+ $form_action = 'editedcomment';
+
+Modified: trunk/wp-admin/edit-form.php
+===================================================================
+--- trunk/wp-admin/edit-form.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-form.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,45 @@
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
++
+ &lt;div class=&quot;wrap&quot;&gt;
+ &lt;h2&gt;&lt;?php _e('Write Post'); ?&gt;&lt;/h2&gt;
+ &lt;form name=&quot;post&quot; action=&quot;post.php&quot; method=&quot;post&quot; id=&quot;simple&quot;&gt;
+@@ -57,9 +98,7 @@
+ 
+ 	&lt;?php if ( user_can_create_post($user_ID) ) : ?&gt;
+ &lt;input name=&quot;publish&quot; type=&quot;submit&quot; id=&quot;publish&quot; tabindex=&quot;6&quot; style=&quot;font-weight: bold;&quot; value=&quot;&lt;?php _e('Publish') ?&gt;&quot; /&gt;
+-&lt;?php endif; ?&gt;
+-
+-&lt;?php if ('bookmarklet' != $mode) {
++&lt;?php endif;   if ('bookmarklet' != $mode) {
+ 	echo '&lt;input name=&quot;advanced&quot; type=&quot;submit&quot; id=&quot;advancededit&quot; tabindex=&quot;7&quot; value=&quot;' .  __('Advanced Editing &raquo;') . '&quot; /&gt;';
+ } ?&gt;
+ &lt;input name=&quot;referredby&quot; type=&quot;hidden&quot; id=&quot;referredby&quot; value=&quot;&lt;?php if (isset($_SERVER['HTTP_REFERER'])) echo urlencode($_SERVER['HTTP_REFERER']); ?&gt;&quot; /&gt;
+
+Modified: trunk/wp-admin/edit-page-form.php
+===================================================================
+--- trunk/wp-admin/edit-page-form.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-page-form.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,45 @@
++&lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
++
+ &lt;div class=&quot;wrap&quot;&gt;
+ &lt;h2&gt;&lt;?php _e('Write Page'); ?&gt;&lt;/h2&gt;
+ &lt;?php
+
+Modified: trunk/wp-admin/edit-pages.php
+===================================================================
+--- trunk/wp-admin/edit-pages.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit-pages.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ $title = __('Pages');
+ $parent_file = 'edit.php';
+
+Modified: trunk/wp-admin/edit.php
+===================================================================
+--- trunk/wp-admin/edit.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/edit.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Posts');
+@@ -40,9 +79,7 @@
+ 		}
+ 	?&gt;
+ 	.&lt;/p&gt;
+-&lt;?php } ?&gt;
+-
+-&lt;?php if ($other_drafts) { ?&gt;
++&lt;?php }   if ($other_drafts) { ?&gt;
+ 	&lt;p&gt;&lt;strong&gt;&lt;?php _e('Other&#8217;s Drafts:') ?&gt;&lt;/strong&gt;
+ 	&lt;?php
+ 	$i = 0;
+
+Modified: trunk/wp-admin/import-b2.php
+===================================================================
+--- trunk/wp-admin/import-b2.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-b2.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ if (!file_exists('../wp-config.php')) die(&quot;There doesn't seem to be a wp-config.php file. Double check that you updated wp-config-sample.php with the proper database connection information and renamed it to wp-config.php.&quot;);
+ require_once('../wp-config.php');
+ require('upgrade-functions.php');
+
+Modified: trunk/wp-admin/import-blogger.php
+===================================================================
+--- trunk/wp-admin/import-blogger.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-blogger.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ $wpvarstoreset = array('action');
+ for ($i=0; $i&lt;count($wpvarstoreset); $i += 1) {
+ 	$wpvar = $wpvarstoreset[$i];
+@@ -39,9 +78,9 @@
+ 		for($bgm=1; $bgm&lt;13; $bgm++) {
+ 
+ 		$bgmm = zeroise($bgm,2);
+-	
++
+ 		$archivefile = &quot;../$bgy&quot;.&quot;_&quot;.&quot;$bgmm&quot;.&quot;_01_wordpress.php&quot;;
+-		
++
+ 		if (file_exists($archivefile)) {
+ 
+ 			$f = fopen($archivefile,&quot;r&quot;);
+@@ -127,9 +166,9 @@
+ 
+ 			$post_content = addslashes($post_content);
+ 			$post_content = str_replace('&lt;br&gt;', '&lt;br /&gt;', $post_content); // the XHTML touch... ;)
+-			
++
+ 			$post_title = addslashes($post_title);
+-			
++
+ 			// Quick-n-dirty check for dups:
+ 			$dupcheck = $wpdb-&gt;get_results(&quot;SELECT ID,post_date,post_title FROM $wpdb-&gt;posts WHERE post_date='$post_date' AND post_title='$post_title' LIMIT 1&quot;,ARRAY_A);
+ 			if ($dupcheck[0]['ID']) {
+@@ -140,15 +179,15 @@
+ 			}
+ 
+ 			$result = $wpdb-&gt;query(&quot;
+-			INSERT INTO $wpdb-&gt;posts 
++			INSERT INTO $wpdb-&gt;posts
+ 				(post_author,post_date,post_content,post_title,post_category)
+-			VALUES 
++			VALUES
+ 				('$post_author_ID','$post_date','$post_content','$post_title','1')
+ 			&quot;);
+ 
+ 
+ 			} echo '... &lt;strong&gt;Done&lt;/strong&gt;&lt;/li&gt;';
+-			
++
+ 		}}
+ 	}
+ 
+
+Modified: trunk/wp-admin/import-greymatter.php
+===================================================================
+--- trunk/wp-admin/import-greymatter.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-greymatter.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ if (!file_exists('../wp-config.php')) die(&quot;There doesn't seem to be a wp-config.php file. You must install WordPress before you import any entries.&quot;);
+ 
+ require_once('../wp-config.php');
+
+Modified: trunk/wp-admin/import-livejournal.php
+===================================================================
+--- trunk/wp-admin/import-livejournal.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-livejournal.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('XMLFILE', '');
+ // Example:
+ // define('XMLFILE', '/home/example/public_html/rss.xml');
+@@ -47,13 +86,13 @@
+ 		line-height: 140%;
+ 	}
+ 	&lt;/style&gt;
+-&lt;/head&gt;&lt;body&gt; 
+-&lt;h1 id=&quot;logo&quot;&gt;&lt;a href=&quot;<A HREF="http://wordpress.org/">http://wordpress.org/</A>&quot;&gt;WordPress&lt;/a&gt;&lt;/h1&gt; 
++&lt;/head&gt;&lt;body&gt;
++&lt;h1 id=&quot;logo&quot;&gt;&lt;a href=&quot;<A HREF="http://wordpress.org/">http://wordpress.org/</A>&quot;&gt;WordPress&lt;/a&gt;&lt;/h1&gt;
+ &lt;?php
+ switch($step) {
+ 
+ 	case 0:
+-?&gt; 
++?&gt;
+ &lt;p&gt;Howdy! This importer allows you to extract posts from a LiveJournal XML export file. To get started you must edit the following line in this file (&lt;code&gt;import-livejournal.php&lt;/code&gt;) &lt;/p&gt;
+ &lt;p&gt;&lt;code&gt;define('XMLFILE', '');&lt;/code&gt;&lt;/p&gt;
+ &lt;p&gt;You want to define where the XML file we'll be working with is, for example: &lt;/p&gt;
+@@ -62,7 +101,7 @@
+ &lt;p&gt;If you've done that and you&#8217;re all ready, &lt;a href=&quot;import-livejournal.php?step=1&quot;&gt;let's go&lt;/a&gt;!&lt;/p&gt;
+ &lt;?php
+ 	break;
+-	
++
+ 	case 1:
+ if ('' != XMLFILE &amp;&amp; !file_exists(XMLFILE)) die(&quot;The file you specified does not seem to exist. Please check the path you've given.&quot;);
+ if ('' == XMLFILE) die(&quot;You must edit the XMLFILE line as described on the &lt;a href='import-rss.php'&gt;previous page&lt;/a&gt; to continue.&quot;);
+@@ -97,11 +136,11 @@
+ // Now lets put it in the DB
+ if ($wpdb-&gt;get_var(&quot;SELECT ID FROM $wpdb-&gt;posts WHERE post_title = '$title' AND post_date = '$post_date'&quot;)) :
+ 	echo 'Post already imported';
+-else : 
+-	
+-	$wpdb-&gt;query(&quot;INSERT INTO $wpdb-&gt;posts 
++else :
++
++	$wpdb-&gt;query(&quot;INSERT INTO $wpdb-&gt;posts
+ 		(post_author, post_date, post_date_gmt, post_content, post_title,post_status, comment_status, ping_status, post_name)
+-		VALUES 
++		VALUES
+ 		('$post_author', '$post_date', DATE_ADD('$post_date', INTERVAL '$add_hours:$add_minutes' HOUR_MINUTE), '$content', '$title', 'publish', '$comment_status', '$ping_status', '$post_name')&quot;);
+ 	$post_id = $wpdb-&gt;get_var(&quot;SELECT ID FROM $wpdb-&gt;posts WHERE post_title = '$title' AND post_date = '$post_date'&quot;);
+ 	if (!$post_id) die(&quot;couldn't get post ID&quot;);
+@@ -119,6 +158,6 @@
+ &lt;?php
+ 	break;
+ }
+-?&gt; 
++?&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-admin/import-mt.php
+===================================================================
+--- trunk/wp-admin/import-mt.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-mt.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('MTEXPORT', '');
+ // enter the relative path of the import.txt file containing the mt entries. If the file is called import.txt and it is /wp-admin, then this line
+ //should be define('MTEXPORT', 'import.txt');
+
+Modified: trunk/wp-admin/import-rss.php
+===================================================================
+--- trunk/wp-admin/import-rss.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-rss.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('RSSFILE', '');
+ // Example:
+ // define('RSSFILE', '/home/example/public_html/rss.xml');
+
+Modified: trunk/wp-admin/import-textpattern.php
+===================================================================
+--- trunk/wp-admin/import-textpattern.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/import-textpattern.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ // For security reasons, fill in the connection details to your Textpattern database below:
+ 
+ $tp_database_name = 'textpattern';
+@@ -43,13 +82,13 @@
+ 		line-height: 140%;
+ 	}
+ 	&lt;/style&gt;
+-&lt;/head&gt;&lt;body&gt; 
+-&lt;h1 id=&quot;logo&quot;&gt;&lt;a href=&quot;<A HREF="http://wordpress.org">http://wordpress.org</A>&quot;&gt;WordPress&lt;/a&gt;&lt;/h1&gt; 
++&lt;/head&gt;&lt;body&gt;
++&lt;h1 id=&quot;logo&quot;&gt;&lt;a href=&quot;<A HREF="http://wordpress.org">http://wordpress.org</A>&quot;&gt;WordPress&lt;/a&gt;&lt;/h1&gt;
+ &lt;?php
+ switch($step) {
+ 
+ 	case 0:
+-?&gt; 
++?&gt;
+ &lt;p&gt;This script imports your entries from Textpattern into WordPress. It should be relatively painless, and we hope you're happy with the result.&lt;/p&gt;
+ &lt;p&gt;To run this, you first need to edit this file (&lt;code&gt;import-textpattern.php&lt;/code&gt;) and enter your Textpattern database connection details. Let's check if the database connection information works...&lt;/p&gt;
+ &lt;?php
+@@ -65,11 +104,11 @@
+ &lt;?php
+ }
+ 	break;
+-	
++
+ 	case 1:
+-?&gt; 
+-&lt;h1&gt;Step 1&lt;/h1&gt; 
+-&lt;p&gt;First let's get posts and comments.&lt;/p&gt; 
++?&gt;
++&lt;h1&gt;Step 1&lt;/h1&gt;
++&lt;p&gt;First let's get posts and comments.&lt;/p&gt;
+ &lt;?php
+ // For people running this on .72
+ $query = &quot;ALTER TABLE `$wpdb-&gt;posts` ADD `post_name` VARCHAR(200) NOT NULL&quot;;
+@@ -97,7 +136,7 @@
+ 	$second = substr($posted,12,2);
+ 	$timestamp = mktime($hour, $minute, $second, $month, $day, $year);
+ 	$posted = date('Y-m-d H:i:s', $timestamp);
+-	
++
+ 	$content = addslashes($post['Body_html']);
+ 	$title = addslashes($post['Title']);
+ 	$post_name = sanitize_title($title);
+@@ -109,7 +148,7 @@
+ 
+ 	// Get wordpress post id
+ 	$wp_post_ID = $wpdb-&gt;get_var(&quot;SELECT ID FROM $wpdb-&gt;posts ORDER BY ID DESC LIMIT 1&quot;);
+-	
++
+ 	// Now let's insert comments if there are any for the TP post
+ 	$tp_id = $post['ID'];
+ 	$comments = mysql_query(&quot;SELECT * FROM txp_Discuss WHERE parentid = $tp_id&quot;);
+@@ -128,11 +167,11 @@
+ 
+ upgrade_all();
+ ?&gt;
+-&lt;p&gt;&lt;strong&gt;All done.&lt;/strong&gt; Wasn&#8217;t that fun? &lt;a href=&quot;../&quot;&gt;Have fun&lt;/a&gt;.&lt;/p&gt; 
++&lt;p&gt;&lt;strong&gt;All done.&lt;/strong&gt; Wasn&#8217;t that fun? &lt;a href=&quot;../&quot;&gt;Have fun&lt;/a&gt;.&lt;/p&gt;
+ &lt;?php
+ break;
+ }
+-?&gt; 
++?&gt;
+ 
+ &lt;/body&gt;
+ &lt;/html&gt;
+
+Modified: trunk/wp-admin/index.php
+===================================================================
+--- trunk/wp-admin/index.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/index.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++
+ require_once('admin.php');
+ $title = __('Dashboard');
+ require_once('admin-header.php');
+@@ -30,9 +69,7 @@
+ 		&lt;/ul&gt;
+ &lt;?php
+ }
+-?&gt;
+-
+-&lt;?php
++ 
+ if ( $scheduled = $wpdb-&gt;get_results(&quot;SELECT ID, post_title, post_date_gmt FROM $wpdb-&gt;posts WHERE post_status = 'publish' AND post_date_gmt &gt; '$today'&quot;) )
+ {
+ ?&gt;
+@@ -51,9 +88,7 @@
+ 		&lt;/ul&gt;
+ &lt;?php
+ }
+-?&gt;
+-
+-&lt;?php
++ 
+ if ( $comments = $wpdb-&gt;get_results(&quot;SELECT comment_author, comment_author_url, comment_ID, comment_post_ID FROM $wpdb-&gt;comments WHERE comment_approved = '1' ORDER BY comment_date_gmt DESC LIMIT 5&quot;) )
+ {
+ ?&gt;
+@@ -75,9 +110,7 @@
+ 		&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;moderation.php&quot;&gt;&lt;?php echo sprintf(__('There are comments in moderation (%s)'), number_format($numcomments) ); ?&gt; &raquo;&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+ &lt;?php
+ 	}
+-?&gt;
+-
+-&lt;?php
++ 
+ }
+ ?&gt;
+ 
+
+Modified: trunk/wp-admin/install-helper.php
+===================================================================
+--- trunk/wp-admin/install-helper.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/install-helper.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('../wp-config.php');
+ $debug = 0;
+ 
+
+Modified: trunk/wp-admin/install.php
+===================================================================
+--- trunk/wp-admin/install.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/install.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('WP_INSTALLING', true);
+ if (!file_exists('../wp-config.php'))
+ 	die(&quot;There doesn't seem to be a &lt;code&gt;wp-config.php&lt;/code&gt; file. I need this before we can get started. Need more help? &lt;a href='<A HREF="http://wordpress.org/docs/faq/#wp-config">http://wordpress.org/docs/faq/#wp-config</A>'&gt;We got it&lt;/a&gt;. You can &lt;a href='setup-config.php'&gt;create a &lt;code&gt;wp-config.php&lt;/code&gt; file through a web interface&lt;/a&gt;, but this doesn't work for all server setups. The safest way is to manually create the file.&quot;);
+
+Modified: trunk/wp-admin/link-add.php
+===================================================================
+--- trunk/wp-admin/link-add.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/link-add.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Add Link');
+@@ -62,9 +101,7 @@
+ 
+ $xfn = true;
+ require('admin-header.php');
+-?&gt;
+-
+-&lt;?php if ($_GET['added']) : ?&gt;
++  if ($_GET['added']) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php _e('Link added.'); ?&gt;&lt;/p&gt;&lt;/div&gt;
+ &lt;?php endif; ?&gt;
+ &lt;div class=&quot;wrap&quot;&gt;
+
+Modified: trunk/wp-admin/link-categories.php
+===================================================================
+--- trunk/wp-admin/link-categories.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/link-categories.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // Links
+ // Copyright (C) 2002, 2003 Mike Little -- <A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">mike at zed1.com</A>
+ require_once('admin.php');
+
+Modified: trunk/wp-admin/link-import.php
+===================================================================
+--- trunk/wp-admin/link-import.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/link-import.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // Links
+ // Copyright (C) 2002 Mike Little -- <A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">mike at zed1.com</A>
+ 
+
+Modified: trunk/wp-admin/link-manager.php
+===================================================================
+--- trunk/wp-admin/link-manager.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/link-manager.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // Links
+ // Copyright (C) 2002, 2003 Mike Little -- <A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">mike at zed1.com</A>
+ 
+@@ -762,6 +801,4 @@
+ 	break;
+ } // end default
+ } // end case
+-?&gt;
+-
+-&lt;?php include('admin-footer.php'); ?&gt;
++  include('admin-footer.php'); ?&gt;
+
+Modified: trunk/wp-admin/link-parse-opml.php
+===================================================================
+--- trunk/wp-admin/link-parse-opml.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/link-parse-opml.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('../wp-config.php');
+ 
+ // columns we wish to find are:  link_url, link_name, link_target, link_description
+
+Modified: trunk/wp-admin/menu-header.php
+===================================================================
+--- trunk/wp-admin/menu-header.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/menu-header.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,3 +1,44 @@
++&lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++?&gt;
++
+ &lt;ul id=&quot;adminmenu&quot;&gt;
+ &lt;?php
+ $self = preg_replace('|^.*/wp-admin/|i', '', $_SERVER['PHP_SELF']);
+
+Modified: trunk/wp-admin/menu.php
+===================================================================
+--- trunk/wp-admin/menu.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/menu.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // This array constructs the admin menu bar.
+ //
+ // Menu item name
+
+Modified: trunk/wp-admin/moderation.php
+===================================================================
+--- trunk/wp-admin/moderation.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/moderation.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Moderate comments');
+
+Modified: trunk/wp-admin/options-discussion.php
+===================================================================
+--- trunk/wp-admin/options-discussion.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-discussion.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Discussion Options');
+
+Modified: trunk/wp-admin/options-general.php
+===================================================================
+--- trunk/wp-admin/options-general.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-general.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('General Options');
+
+Modified: trunk/wp-admin/options-head.php
+===================================================================
+--- trunk/wp-admin/options-head.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-head.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ $wpvarstoreset = array('action','standalone', 'option_group_id');
+ for ($i=0; $i&lt;count($wpvarstoreset); $i += 1)
+ {
+
+Modified: trunk/wp-admin/options-permalink.php
+===================================================================
+--- trunk/wp-admin/options-permalink.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-permalink.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Permalink Options');
+@@ -40,9 +79,7 @@
+ 	$usingpi = false;
+ 
+ save_mod_rewrite_rules();
+-?&gt;
+-
+-&lt;?php if (isset($_POST['submit'])) : ?&gt;
++  if (isset($_POST['submit'])) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php
+ if ($writable)
+ 	_e('Permalink structure updated.');
+
+Modified: trunk/wp-admin/options-reading.php
+===================================================================
+--- trunk/wp-admin/options-reading.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-reading.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Reading Options');
+
+Modified: trunk/wp-admin/options-writing.php
+===================================================================
+--- trunk/wp-admin/options-writing.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options-writing.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Writing Options');
+
+Modified: trunk/wp-admin/options.php
+===================================================================
+--- trunk/wp-admin/options.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/options.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Options');
+
+Modified: trunk/wp-admin/page-new.php
+===================================================================
+--- trunk/wp-admin/page-new.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/page-new.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,22 +1,57 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ $title = __('New Page');
+ $parent_file = 'post.php';
+ require_once('admin-header.php');
+ 
+ get_currentuserinfo();
+-?&gt;
+-
+-&lt;?php
++ 
+ if ( isset($_GET['saved']) )
+ {
+ ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;strong&gt;&lt;?php _e('Page saved.') ?&gt; &lt;a href=&quot;edit-pages.php&quot;&gt;&lt;?php _e('Manage pages'); ?&gt; &raquo;&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;
+ &lt;?php
+ }
+-?&gt;
+-
+-&lt;?php
++ 
+ if ($user_level &gt; 0)
+ {
+ 	$action = 'post';
+@@ -31,6 +66,4 @@
+ 
+ 	include('edit-page-form.php');
+ }
+-?&gt;
+-
+-&lt;?php include('admin-footer.php'); ?&gt;
+\ No newline at end of file
++  include('admin-footer.php'); ?&gt;
+\ No newline at end of file
+
+Modified: trunk/wp-admin/plugins.php
+===================================================================
+--- trunk/wp-admin/plugins.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/plugins.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ if ( isset($_GET['action']) )
+@@ -53,9 +92,7 @@
+ 			update_option('active_plugins', $current);
+ 	}
+ }
+-?&gt;
+-
+-&lt;?php
++ 
+ if (isset($_GET['activate']))
+ {
+ ?&gt;
+
+Modified: trunk/wp-admin/post.php
+===================================================================
+--- trunk/wp-admin/post.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/post.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $wpvarstoreset = array('action', 'safe_mode', 'withcomments', 'posts', 'content', 'edited_post_title', 'comment_error', 'profile', 'trackback_url', 'excerpt', 'showcomments', 'commentstart', 'commentend', 'commentorder' );
+@@ -747,9 +786,7 @@
+ 		{
+ 			include('edit-form.php');
+ 		}
+-?&gt;
+-
+-&lt;?php
++ 
+ 	}
+ 
+ 	break;
+
+Modified: trunk/wp-admin/profile.php
+===================================================================
+--- trunk/wp-admin/profile.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/profile.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = 'Profile';
+
+Modified: trunk/wp-admin/setup-config.php
+===================================================================
+--- trunk/wp-admin/setup-config.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/setup-config.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('WP_INSTALLING', true);
+ 
+ if (file_exists('../wp-config.php'))
+
+Modified: trunk/wp-admin/sidebar.php
+===================================================================
+--- trunk/wp-admin/sidebar.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/sidebar.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ $mode = 'sidebar';
+ 
+ require_once('admin.php');
+
+Modified: trunk/wp-admin/themes.php
+===================================================================
+--- trunk/wp-admin/themes.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/themes.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ if ( isset($_GET['action']) ) {
+@@ -27,9 +66,7 @@
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php _e('The active theme is broken.  Reverting to the default theme.'); ?&gt;&lt;/p&gt;&lt;/div&gt;
+ &lt;?php elseif ( isset($activated) ) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php _e('New theme activated'); ?&gt;&lt;/p&gt;&lt;/div&gt;
+-&lt;?php endif; ?&gt;
+-
+-&lt;?php
++&lt;?php endif;  
+ $themes = get_themes();
+ $current_theme = get_current_theme();
+ $current_title = $themes[$current_theme]['Title'];
+@@ -105,9 +142,7 @@
+ &lt;/table&gt;
+ &lt;?php
+ }
+-?&gt;
+-
+-&lt;?php
++ 
+ // List broken themes, if any.
+ $broken_themes = get_broken_themes();
+ if (count($broken_themes)) {
+
+Modified: trunk/wp-admin/update-links.php
+===================================================================
+--- trunk/wp-admin/update-links.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/update-links.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once( dirname( dirname(__FILE__) ) . '/wp-config.php');
+ require_once( ABSPATH . 'wp-includes/class-snoopy.php');
+ 
+@@ -28,13 +67,13 @@
+ 	while ( !feof($fs) )
+ 		$response .= fgets($fs, 1160); // One TCP-IP packet
+ 	fclose($fs);
+-    
++
+ 	$response = explode(&quot;\r\n\r\n&quot;, $response, 2);
+ 	$body = trim( $response[1] );
+ 	$body = str_replace(array(&quot;\r\n&quot;, &quot;\r&quot;), &quot;\n&quot;, $body);
+-    
++
+ 	$returns = explode(&quot;\n&quot;, $body);
+-    
++
+ 	foreach ($returns as $return) :
+ 		$time = addslashes( substr($return, 0, 19) );
+ 		$uri = addslashes( preg_replace('/(.*?) | (.*?)/', '$2', $return) );
+
+Modified: trunk/wp-admin/upgrade-functions.php
+===================================================================
+--- trunk/wp-admin/upgrade-functions.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/upgrade-functions.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,5 +1,44 @@
+ &lt;?php
+ 
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
++
+ require_once(ABSPATH . '/wp-admin/admin-functions.php');
+ require_once(ABSPATH . '/wp-admin/upgrade-schema.php');
+ // Functions to be called in install and upgrade scripts
+
+Modified: trunk/wp-admin/upgrade-schema.php
+===================================================================
+--- trunk/wp-admin/upgrade-schema.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/upgrade-schema.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ // Here we keep the DB structure and option values
+ 
+ $wp_queries=&quot;CREATE TABLE $wpdb-&gt;categories (
+
+Modified: trunk/wp-admin/upgrade.php
+===================================================================
+--- trunk/wp-admin/upgrade.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/upgrade.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ define('WP_INSTALLING', true);
+ if (!file_exists('../wp-config.php')) die(&quot;There doesn't seem to be a wp-config.php file. Double check that you updated wp-config-sample.php with the proper database connection information and renamed it to wp-config.php.&quot;);
+ require('../wp-config.php');
+@@ -26,17 +65,17 @@
+ 		margin-right: 20%;
+ 		padding: .2em 2em;
+ 	}
+-	
++
+ 	h1 {
+ 		color: #006;
+ 		font-size: 18px;
+ 		font-weight: lighter;
+ 	}
+-	
++
+ 	h2 {
+ 		font-size: 16px;
+ 	}
+-	
++
+ 	p, li, dt {
+ 		line-height: 140%;
+ 		padding-bottom: 2px;
+@@ -66,30 +105,28 @@
+ switch($step) {
+ 
+ 	case 0:
+-?&gt; 
+-&lt;p&gt;&lt;?php _e('This file upgrades you from any previous version of WordPress to the latest. It may take a while though, so be patient.'); ?&gt;&lt;/p&gt; 
++?&gt;
++&lt;p&gt;&lt;?php _e('This file upgrades you from any previous version of WordPress to the latest. It may take a while though, so be patient.'); ?&gt;&lt;/p&gt;
+ 	&lt;h2 class=&quot;step&quot;&gt;&lt;a href=&quot;upgrade.php?step=1&quot;&gt;&lt;?php _e('Upgrade WordPress &raquo;'); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+ &lt;?php
+ 	break;
+-	
++
+ 	case 1:
+ 	make_db_current_silent();
+ 	upgrade_all();
+-?&gt; 
+-&lt;h2&gt;&lt;?php _e('Step 1'); ?&gt;&lt;/h2&gt; 
++?&gt;
++&lt;h2&gt;&lt;?php _e('Step 1'); ?&gt;&lt;/h2&gt;
+ 	&lt;p&gt;&lt;?php printf(__(&quot;There's actually only one step. So if you see this, you're done. &lt;a href='%s'&gt;Have fun&lt;/a&gt;!&quot;), '../'); ?&gt;&lt;/p&gt;
+ 
+ &lt;!--
+ &lt;pre&gt;
+-&lt;?php printf(__('%s queries'), $wpdb-&gt;num_queries); ?&gt;
+-
+-&lt;?php printf(__('%s seconds'), timer_stop(0)); ?&gt;
++&lt;?php printf(__('%s queries'), $wpdb-&gt;num_queries);   printf(__('%s seconds'), timer_stop(0)); ?&gt;
+ &lt;/pre&gt;
+ --&gt;
+ 
+ &lt;?php
+ 	break;
+ }
+-?&gt; 
++?&gt;
+ &lt;/body&gt;
+ &lt;/html&gt;
+
+Modified: trunk/wp-admin/user-edit.php
+===================================================================
+--- trunk/wp-admin/user-edit.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/user-edit.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Edit User');
+@@ -86,9 +125,7 @@
+ $edituser = get_userdata($user_id);
+ 
+ if ($edituser-&gt;user_level &gt;= $user_level) die( __('You do not have permission to edit this user.') );
+-?&gt;
+-
+-&lt;?php if ( isset($_GET['updated']) ) : ?&gt;
++  if ( isset($_GET['updated']) ) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;
+ 	&lt;p&gt;&lt;strong&gt;&lt;?php _e('User updated.') ?&gt;&lt;/strong&gt;&lt;/p&gt;
+ &lt;/div&gt;
+
+Modified: trunk/wp-admin/users.php
+===================================================================
+--- trunk/wp-admin/users.php	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/users.php	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,4 +1,43 @@
+ &lt;?php
++
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++ 
+ require_once('admin.php');
+ 
+ $title = __('Users');
+@@ -161,9 +200,7 @@
+ default:
+ 
+ 	include ('admin-header.php');
+-	?&gt;
+-
+-&lt;?php if (isset($_GET['deleted'])) : ?&gt;
++	  if (isset($_GET['deleted'])) : ?&gt;
+ &lt;div class=&quot;updated&quot;&gt;&lt;p&gt;&lt;?php _e('User deleted.') ?&gt;&lt;/p&gt;&lt;/div&gt;
+ &lt;?php endif; ?&gt;
+ &lt;div class=&quot;wrap&quot;&gt;
+
+Modified: trunk/wp-admin/wp-admin.css
+===================================================================
+--- trunk/wp-admin/wp-admin.css	2005-11-22 15:14:38 UTC (rev 111)
++++ trunk/wp-admin/wp-admin.css	2005-11-22 15:43:27 UTC (rev 112)
+@@ -1,3 +1,41 @@
++/*************************************************
++
++SteamPress - Blogging without the Dirt
++Author: SteamPress Development Team (<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">developers at steampress.org</A>)
++Copyright (c): 2005 ispi, all rights reserved
++
++    This file is part of SteamPress.
++
++    SteamPress is free software; you can redistribute it and/or modify
++    it under the terms of the GNU General Public License as published by
++    the Free Software Foundation; either version 2 of the License, or
++    (at your option) any later version.
++
++    SteamPress is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++    GNU General Public License for more details.
++
++    You should have received a copy of the GNU General Public License
++    along with SteamPress; if not, write to the Free Software
++    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
++
++You may contact the authors of Snoopy by e-mail at:
+<A HREF="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">+developers at steampress.org</A>
++
++Or, write to:
++
++SteamPress Development Team
++c/o Samir M. Nassar
++2015 Central Ave. NE, #226
++Minneapolis, MN 55418
++USA
++
++The latest version of SteamPress can be obtained from:
++<A HREF="http://steampress.org/">http://steampress.org/</A>
++
++*************************************************/
++
+ * html #poststuff
+ {
+ 	height: 100%; /* kill peekaboo bug in IE */
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000067.html">[SteamPress-SVN-Tracker] r111 - trunk/wp-includes
+</A></li>
+	<LI>Next message: <A HREF="000069.html">[SteamPress-SVN-Tracker] r113 - trunk/wp-includes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/steampress-svn-tracker">More information about the steampress-svn-tracker
+mailing list</a><br>
+</body></html>
